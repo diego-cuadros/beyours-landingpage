@@ -1,0 +1,269 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi-section {
+    padding-top: var(--section-padding-top);
+    padding-bottom: var(--section-padding-bottom);
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__heading {
+    font-size: 63px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: {{ section.settings.heading_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: {{ section.settings.grid_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 1 calc((100% - 60px) / 3);
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__block-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__block-inner:hover {
+    opacity: 0.85;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__image-wrapper {
+    max-width: 220px;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__image-wrapper img,
+  #shopify-section-{{ section.id }} .dc_tcwi__image-wrapper svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__content {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__title {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__text {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .dc_tcwi__heading {
+      font-size: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__block {
+      flex: 0 1 {% if section.settings.columns_mobile == '2' %}calc((100% - 30px) / 2){% else %}100%{% endif %};
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__image-wrapper {
+      max-width: 120px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__title {
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__text {
+      font-size: 14px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="dc_tcwi-section">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="dc_tcwi__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="dc_tcwi__grid">
+      {%- for block in section.blocks -%}
+        <div class="dc_tcwi__block" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="dc_tcwi__block-inner">
+          {%- else -%}
+            <div class="dc_tcwi__block-inner">
+          {%- endif -%}
+
+          {%- if block.settings.image != blank -%}
+            <div class="dc_tcwi__image-wrapper">
+              {{
+                block.settings.image
+                | image_url: width: 500
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '120, 220, 440, 500',
+                  sizes: '(min-width: 750px) 220px, 120px',
+                  is: 'lazy-image'
+              }}
+            </div>
+          {%- else -%}
+            <div class="dc_tcwi__image-wrapper">
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+
+          <div class="dc_tcwi__content">
+            {%- if block.settings.title != blank -%}
+              <p class="dc_tcwi__title">{{ block.settings.title | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div
+                class="dc_tcwi__text"
+                {%- if block.settings.text_color != blank %}
+                  style="color: {{ block.settings.text_color }};"
+                {% endif %}
+              >
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "📼 Columns with images",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Active ingredients",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "grid_alignment",
+      "label": "Grid alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Column title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post.</p>",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "📼 Columns with images",
+      "blocks": [{ "type": "column" }, { "type": "column" }, { "type": "column" }]
+    }
+  ]
+}
+{% endschema %}
