@@ -1,0 +1,482 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --image-with-text-v2-alt-panel-background: {{ section.settings.panel_background }};
+    --image-with-text-v2-alt-panel-text: {{ section.settings.panel_text_color }};
+    --image-with-text-v2-alt-panel-radius: {{ section.settings.panel_radius }}px;
+    --image-with-text-v2-alt-panel-height-desktop: {{ section.settings.panel_height_desktop }}px;
+    --image-with-text-v2-alt-panel-height-mobile: {{ section.settings.panel_height_mobile }}px;
+    --image-with-text-v2-alt-image-width-desktop: {{ section.settings.collage_width_desktop }}%;
+    --image-with-text-v2-alt-image-width-mobile: {{ section.settings.collage_width_mobile }}%;
+    --image-with-text-v2-alt-image-overlap-desktop: {{ section.settings.collage_overlap_desktop }}px;
+    --image-with-text-v2-alt-image-overlap-mobile: {{ section.settings.collage_overlap_mobile }}px;
+    --image-with-text-v2-alt-image-offset-x: {{ section.settings.collage_offset_horizontal }}px;
+    --image-with-text-v2-alt-image-offset-x-mobile: {{ section.settings.collage_offset_horizontal_mobile }}px;
+    --image-with-text-v2-alt-image-position-mobile: {% case section.settings.collage_position_mobile %}{% when 'left' %}0%{% when 'right' %}100%{% else %}50%{% endcase %};
+    --image-with-text-v2-alt-image-translate-mobile: {% case section.settings.collage_position_mobile %}{% when 'left' %}0%{% when 'right' %}-100%{% else %}-50%{% endcase %};
+    --image-with-text-v2-alt-grid-gap: {{ section.settings.desktop_gap }}px;
+    --image-with-text-v2-alt-item-gap: {{ section.settings.item_gap }}px;
+    --image-with-text-v2-alt-item-heading-color: {{ section.settings.item_heading_color }};
+    --image-with-text-v2-alt-item-text-color: {{ section.settings.item_text_color }};
+    --color-highlight: {{ section.settings.colors_highlight.red }}, {{ section.settings.colors_highlight.green }}, {{ section.settings.colors_highlight.blue }};
+  }
+{%- endstyle -%}
+
+{{ 'section-image-with-text-v2-alt.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign layout_class = ''
+  if section.settings.layout == 'text_first'
+    assign layout_class = ' image-with-text-v2-alt__grid--reverse'
+  endif
+
+  assign primary_image = section.settings.image
+
+  capture image_sizes
+    echo '(min-width: '
+    echo settings.page_width
+    echo 'px) 540px, (min-width: 990px) 46vw, (min-width: 750px) 50vw, 100vw'
+  endcapture
+-%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="image-with-text-v2-alt page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <div class="image-with-text-v2-alt__grid{{ layout_class }}">
+      <div class="image-with-text-v2-alt__visual">
+        <div class="image-with-text-v2-alt__panel">
+          {%- if section.settings.heading != blank or section.settings.panel_text != blank -%}
+            <div class="image-with-text-v2-alt__panel-copy">
+              {%- if section.settings.heading != blank -%}
+                <{{ section.settings.heading_tag }} class="image-with-text-v2-alt__heading {{ section.settings.heading_size }}">
+                  {%- render 'highlight-text',
+                    hl_input: section.settings.heading | newline_to_br,
+                    hl_style: section.settings.highlight_style,
+                    hl_enable: section.settings.enable_highlight,
+                    hl_animateWrap: true
+                  -%}
+                </{{ section.settings.heading_tag }}>
+              {%- endif -%}
+              {%- if section.settings.panel_text != blank -%}
+                <div class="image-with-text-v2-alt__panel-text rte">
+                  {{ section.settings.panel_text }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          <div class="image-with-text-v2-alt__image-frame">
+            {%- if primary_image != blank -%}
+              {%- liquid
+                assign primary_alt = primary_image.alt | default: section.settings.heading | strip_html | newline_to_space | strip
+              -%}
+              {{
+                primary_image
+                | image_url: width: 2400
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '375, 550, 750, 900, 1100, 1500, 1780, 2200, 2400',
+                  sizes: image_sizes,
+                  class: 'image-with-text-v2-alt__image',
+                  alt: primary_alt,
+                  is: 'lazy-image'
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder image-with-text-v2-alt__placeholder' }}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      <div class="image-with-text-v2-alt__content">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'item' -%}
+              <div class="image-with-text-v2-alt__item" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <{{ block.settings.heading_tag }} class="image-with-text-v2-alt__item-heading {{ block.settings.heading_size }}">
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.heading,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
+                  </{{ block.settings.heading_tag }}>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="image-with-text-v2-alt__item-text rte {{ block.settings.text_size }}">
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.text,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
+                  </div>
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image with text v2 alt",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What it feels like to\nwork here"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "div", "label": "Div" },
+        { "value": "p", "label": "Paragraph" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "panel_text",
+      "label": "Panel text"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout",
+      "default": "image_first",
+      "options": [
+        { "value": "image_first", "label": "Visual left, text right" },
+        { "value": "text_first", "label": "Text left, visual right" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Panel styling"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "Panel background",
+      "default": "#f7d799"
+    },
+    {
+      "type": "color",
+      "id": "panel_text_color",
+      "label": "Panel text color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "panel_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Panel corner radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "panel_height_desktop",
+      "min": 260,
+      "max": 680,
+      "step": 10,
+      "unit": "px",
+      "label": "Panel height desktop",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "panel_height_mobile",
+      "min": 220,
+      "max": 520,
+      "step": 10,
+      "unit": "px",
+      "label": "Panel height mobile",
+      "default": 360
+    },
+    {
+      "type": "header",
+      "content": "Image layout"
+    },
+    {
+      "type": "range",
+      "id": "collage_width_desktop",
+      "min": 45,
+      "max": 95,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width desktop",
+      "default": 74
+    },
+    {
+      "type": "range",
+      "id": "collage_width_mobile",
+      "min": 55,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width mobile",
+      "default": 82
+    },
+    {
+      "type": "range",
+      "id": "collage_overlap_desktop",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "label": "Image overlap desktop",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "collage_overlap_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Image overlap mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "collage_offset_horizontal",
+      "min": -40,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Image horizontal offset",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "collage_position_mobile",
+      "label": "Image position mobile",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "collage_offset_horizontal_mobile",
+      "min": -80,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Image horizontal offset mobile",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content styling"
+    },
+    {
+      "type": "color",
+      "id": "item_heading_color",
+      "label": "Item heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "item_text_color",
+      "label": "Item text color",
+      "default": "#303030"
+    },
+    {
+      "type": "range",
+      "id": "desktop_gap",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop column gap",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Item spacing",
+      "default": 28
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable highlight text",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "label": "Highlight style",
+      "default": "circle",
+      "options": [
+        { "value": "circle", "label": "Circle" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "stroke", "label": "Stroke" },
+        { "value": "scribble", "label": "Scribble" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "colors_highlight",
+      "label": "Highlight color",
+      "default": "#ffb503"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Small team, big surface area."
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading tag",
+          "default": "h3",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "p", "label": "Paragraph" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "default": "h3",
+          "options": [
+            { "value": "h4", "label": "Small" },
+            { "value": "h3", "label": "Medium" },
+            { "value": "h2", "label": "Large" }
+          ]
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Working at Troscriptions means thinking and acting like an owner, taking initiative and building something you are proud of.</p>"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "label": "Text size",
+          "default": "typeset",
+          "options": [
+            { "value": "typeset", "label": "Small" },
+            { "value": "typeset2", "label": "Medium" },
+            { "value": "typeset3", "label": "Large" }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "Enable highlight",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "label": "Highlight style",
+          "default": "circle",
+          "options": [
+            { "value": "circle", "label": "Circle" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "stroke", "label": "Stroke" },
+            { "value": "scribble", "label": "Scribble" }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Image with text v2 alt",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,458 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --careers-image-card-content-max-width: {{ section.settings.content_max_width }}px;
+    --careers-image-card-content-offset: {{ section.settings.content_offset_desktop }}px;
+    --careers-image-card-min-height-desktop: {% if section.settings.image_ratio == 'adapt' %}0px{% else %}{{ section.settings.image_ratio }}{% endif %};
+    --careers-image-card-safe-padding-desktop: {{ section.settings.safe_padding_desktop }}px;
+    --careers-image-card-safe-padding-mobile: {{ section.settings.safe_padding_mobile }}px;
+    --careers-image-card-eyebrow-size-desktop:
+      {% case section.settings.heading_size %}
+        {% when 'h2' %}clamp(2.8rem, 2.8vw, 3.6rem)
+        {% when 'h0' %}clamp(4rem, 4.2vw, 5.6rem)
+        {% else %}clamp(3.6rem, 3.6vw, 4.8rem)
+      {% endcase %};
+    --careers-image-card-eyebrow-size-mobile:
+      {% case section.settings.heading_size %}
+        {% when 'h2' %}clamp(2.6rem, 7.2vw, 3.2rem)
+        {% when 'h0' %}clamp(3.6rem, 10vw, 4.4rem)
+        {% else %}clamp(3.2rem, 9vw, 4rem)
+      {% endcase %};
+    --careers-image-card-surface: {{ section.settings.surface_color.red }}, {{ section.settings.surface_color.green }}, {{ section.settings.surface_color.blue }};
+    --careers-image-card-surface-mobile: {{ section.settings.surface_color_mobile.red }}, {{ section.settings.surface_color_mobile.green }}, {{ section.settings.surface_color_mobile.blue }};
+    --careers-image-card-eyebrow: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --careers-image-card-eyebrow-mobile: {{ section.settings.heading_color_mobile.red }}, {{ section.settings.heading_color_mobile.green }}, {{ section.settings.heading_color_mobile.blue }};
+    --careers-image-card-panel-background: {{ section.settings.panel_background.red }}, {{ section.settings.panel_background.green }}, {{ section.settings.panel_background.blue }};
+    --careers-image-card-panel-background-mobile: {{ section.settings.panel_background_mobile.red }}, {{ section.settings.panel_background_mobile.green }}, {{ section.settings.panel_background_mobile.blue }};
+    --careers-image-card-panel-opacity: {{ section.settings.panel_opacity | divided_by: 100.0 }};
+    --careers-image-card-panel-border: {{ section.settings.panel_border.red }}, {{ section.settings.panel_border.green }}, {{ section.settings.panel_border.blue }};
+    --careers-image-card-panel-border-mobile: {{ section.settings.panel_border_mobile.red }}, {{ section.settings.panel_border_mobile.green }}, {{ section.settings.panel_border_mobile.blue }};
+    --careers-image-card-title: {{ section.settings.card_title_color.red }}, {{ section.settings.card_title_color.green }}, {{ section.settings.card_title_color.blue }};
+    --careers-image-card-text: {{ section.settings.card_text_color.red }}, {{ section.settings.card_text_color.green }}, {{ section.settings.card_text_color.blue }};
+    --color-button-background: {{ section.settings.button_background.red }}, {{ section.settings.button_background.green }}, {{ section.settings.button_background.blue }};
+    --color-button-border: var(--color-button-background);
+    --color-button-text: {{ section.settings.button_text.red }}, {{ section.settings.button_text.green }}, {{ section.settings.button_text.blue }};
+    {%- if section.settings.image != blank -%}
+      --image-ratio-percent: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+      --image-position: {{ section.settings.image_position }};
+    {%- endif -%}
+  }
+
+  {%- if section.settings.image_mobile != blank and section.settings.mobile_image_ratio == 'adapt' -%}
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} {
+        --image-ratio-percent: {{ 1 | divided_by: section.settings.image_mobile.aspect_ratio | times: 100 }}%;
+      }
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'section-careers-image-card.css' | asset_url | stylesheet_tag }}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <section class="careers-image-card">
+      <div class="careers-image-card__media">
+        <use-animate data-animate="zoom-fade" class="media-wrapper media-wrapper--large">
+          <div class="image-animate media media--{{ section.settings.image_ratio }} media-mobile--{{ section.settings.mobile_image_ratio }}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+            {%- if section.settings.image != blank -%}
+              {%- liquid
+                assign widths = '375, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+                capture sizes
+                  if section.settings.full_width
+                    echo '100vw'
+                  else
+                    echo '(min-width: '
+                    echo settings.page_width
+                    echo 'px) '
+                    echo settings.page_width | minus: 100
+                    echo 'px, (min-width: 750px) calc(100vw - 10rem), calc(100vw - 3rem)'
+                  endif
+                endcapture
+
+                if section.settings.image_mobile == blank
+                  echo section.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', class: 'image-fit', sizes: sizes, widths: widths, is: 'lazy-image'
+                else
+                  echo section.settings.image_mobile | image_url: width: 3840 | image_tag: loading: 'lazy', class: 'image-fit medium-hide large-up-hide', sizes: sizes, widths: widths, is: 'lazy-image'
+                  echo section.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', class: 'image-fit small-hide', sizes: sizes, widths: widths, is: 'lazy-image'
+                endif
+              -%}
+            {%- else -%}
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder image-animate' }}
+            {%- endif -%}
+          </div>
+        </use-animate>
+      </div>
+
+      <div class="careers-image-card__content{% if section.settings.full_width %} page-width{% endif %}">
+        <div class="careers-image-card__inner">
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag }} class="careers-image-card__eyebrow {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </{{ section.settings.heading_tag }}>
+          {%- endif -%}
+
+          <div class="careers-image-card__panel">
+            {%- if section.settings.card_title != blank -%}
+              <{{ section.settings.card_title_tag }} class="careers-image-card__title {{ section.settings.card_title_size }}">
+                {{ section.settings.card_title }}
+              </{{ section.settings.card_title_tag }}>
+            {%- endif -%}
+
+            {%- if section.settings.body != blank -%}
+              <div class="careers-image-card__body rte">
+                {{ section.settings.body }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.button_label != blank -%}
+              <a
+                class="careers-image-card__button button"
+                {% if section.settings.button_link != blank %}
+                  href="{{ section.settings.button_link }}"
+                {% else %}
+                  role="link"
+                  aria-disabled="true"
+                {% endif %}
+              >
+                {{ section.settings.button_label | escape }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Careers image card",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Desktop image position",
+      "default": "center center",
+      "options": [
+        { "value": "20% 0", "label": "Top left" },
+        { "value": "top center", "label": "Top center" },
+        { "value": "80% 0", "label": "Top right" },
+        { "value": "20% 50%", "label": "Middle left" },
+        { "value": "center center", "label": "Middle center" },
+        { "value": "80% 50%", "label": "Middle right" },
+        { "value": "20% 100%", "label": "Bottom left" },
+        { "value": "bottom center", "label": "Bottom center" },
+        { "value": "80% 100%", "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Desktop image height",
+      "default": "400px",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "400px", "label": "400px" },
+        { "value": "450px", "label": "450px" },
+        { "value": "500px", "label": "500px" },
+        { "value": "550px", "label": "550px" },
+        { "value": "600px", "label": "600px" },
+        { "value": "650px", "label": "650px" },
+        { "value": "700px", "label": "700px" },
+        { "value": "750px", "label": "750px" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_ratio",
+      "label": "Mobile image height",
+      "default": "250px",
+      "options": [
+        { "value": "auto", "label": "Auto" },
+        { "value": "200px", "label": "200px" },
+        { "value": "250px", "label": "250px" },
+        { "value": "300px", "label": "300px" },
+        { "value": "400px", "label": "400px" },
+        { "value": "500px", "label": "500px" },
+        { "value": "adapt", "label": "Adapt to image" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "label": "Image animation",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "ambient", "label": "Ambient" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading above card",
+      "default": "Don't see your role?"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "div", "label": "Div" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" },
+        { "value": "h0", "label": "Extra large" }
+      ]
+    },
+    {
+      "type": "inline_richtext",
+      "id": "card_title",
+      "label": "Card title",
+      "default": "Make your own lane."
+    },
+    {
+      "type": "select",
+      "id": "card_title_tag",
+      "label": "Card title tag",
+      "default": "h3",
+      "options": [
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "div", "label": "Div" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "card_title_size",
+      "label": "Card title size",
+      "default": "h3",
+      "options": [
+        { "value": "h5", "label": "Small" },
+        { "value": "h4", "label": "Medium" },
+        { "value": "h3", "label": "Large" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>We're drawn to people who think independently, care deeply about health optimization, and take pride in building things that actually work.</p><p>If you don't see a perfect fit but you're confident you belong here, tell us:</p><ul><li>What problem you want to help solve</li><li>Why it matters to our mission</li><li>What you've built, shipped, or improved before</li></ul>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Send us your resume"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 320,
+      "max": 620,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop content width",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "content_offset_desktop",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop left offset",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "safe_padding_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop safe padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "safe_padding_mobile",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile safe padding",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "surface_color_mobile",
+      "label": "Mobile section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Desktop heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_mobile",
+      "label": "Mobile heading color",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "Desktop card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "panel_opacity",
+      "label": "Desktop card opacity",
+      "default": 84,
+      "min": 40,
+      "max": 100,
+      "step": 2,
+      "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "panel_background_mobile",
+      "label": "Mobile card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_border",
+      "label": "Desktop card border",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_border_mobile",
+      "label": "Mobile card border",
+      "default": "#808080"
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#313131"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#1d1d1d"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Careers image card"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  }
+}
+{% endschema %}

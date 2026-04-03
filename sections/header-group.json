@@ -1,0 +1,204 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header-group.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "countdown_wqwPAr": {
+          "type": "countdown",
+          "disabled": true,
+          "settings": {
+            "date": "01-07-2026",
+            "text": "",
+            "expired_message": "Sale has ended!",
+            "link": "",
+            "position": "top",
+            "display_style": "full",
+            "text_size": 13,
+            "hide_when_expired": false,
+            "use_custom_colors": true,
+            "countdown_background": "#d72c0c",
+            "countdown_text": "#ffffff"
+          }
+        },
+        "9518463a-71f9-42b5-b5ef-174a4f08e081": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "🔥 Save up to 60% with code <strong>NEWYEAR</strong>",
+            "text_on_mobile": "🔥 Save up to 60% with code NEWYEAR",
+            "text_size": 13,
+            "link": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "countdown_wqwPAr",
+        "9518463a-71f9-42b5-b5ef-174a4f08e081"
+      ],
+      "settings": {
+        "only_homepage": false,
+        "layout": "default",
+        "mobile_layout": "carousel",
+        "autorotate": true,
+        "autorotate_speed": 5,
+        "show_navigation": true,
+        "direction": "left",
+        "speed": 1.6,
+        "colors_text": "#ffffff",
+        "colors_background": "#1a1b18",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "header": {
+      "type": "header-v2",
+      "blocks": {
+        "23ac3cc1-1fc4-42a6-8e72-c6fad0b13420": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_title": "Skincare",
+            "narrow": false,
+            "show_menu_image": false,
+            "promo_image_ratio_1": "adapt",
+            "promo_image_position_1": "center center",
+            "promo_heading_1": "All Skincare",
+            "promo_text_1": "Add a tagline",
+            "promo_overlay_content_1": false,
+            "promo_link_1": "",
+            "promo_image_ratio_2": "adapt",
+            "promo_image_position_2": "center center",
+            "promo_heading_2": "Trending weekly",
+            "promo_text_2": "Add a tagline",
+            "promo_overlay_content_2": true,
+            "promo_link_2": ""
+          }
+        },
+        "seasonal_deal_iyWjpq": {
+          "type": "seasonal_deal",
+          "settings": {
+            "image_ratio": "adapt",
+            "layout": "layout-bottom",
+            "text_box_position": "middle-center",
+            "text_alignment": "center",
+            "heading": "THE PERFECT PRESENT",
+            "subheading": "",
+            "description": "<p>Enhance your beauty routine with our luxurious cream gift box. Includes a cuddly teddy bear for added charm. Limited availability.</p>",
+            "button_label": "BUY NOW",
+            "button_link": "",
+            "heading_color": "#000000",
+            "subheading_color": "#000000",
+            "description_color": "#000000",
+            "background_color": "#f7eedd",
+            "colors_overlay_opacity": 92
+          }
+        },
+        "seasonal_deal_fTVMTi": {
+          "type": "seasonal_deal",
+          "settings": {
+            "image_ratio": "landscape",
+            "layout": "layout-left",
+            "text_box_position": "middle-center",
+            "text_alignment": "center",
+            "heading": "MEET OUR NEW BAE!",
+            "subheading": "",
+            "description": "<p>Introducing our latest beauty cream for radiant, glowing skin. </p>",
+            "button_label": "EXPLORE",
+            "button_link": "",
+            "heading_color": "#000000",
+            "subheading_color": "#000000",
+            "description_color": "#000000",
+            "background_color": "#a8e8e2",
+            "colors_overlay_opacity": 40
+          }
+        },
+        "seasonal_deal_ffwHEh": {
+          "type": "seasonal_deal",
+          "settings": {
+            "image_ratio": "square",
+            "layout": "overlay-opacity",
+            "text_box_position": "top-right",
+            "text_alignment": "right",
+            "heading": "Organic ingredients?",
+            "subheading": "",
+            "description": "<p>Curious about the effectiveness of organic ingredients? Learn how our products harness nature’s potential for real results.</p>",
+            "button_label": "WHAT WE DO",
+            "button_link": "",
+            "heading_color": "#000000",
+            "subheading_color": "#000000",
+            "description_color": "#000000",
+            "background_color": "#ffffff",
+            "colors_overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "23ac3cc1-1fc4-42a6-8e72-c6fad0b13420",
+        "seasonal_deal_iyWjpq",
+        "seasonal_deal_fTVMTi",
+        "seasonal_deal_ffwHEh"
+      ],
+      "settings": {
+        "logo": "shopify://shop_images/Troscriptions-Tx-Logo-white.png",
+        "logo_height": 30,
+        "mobile_logo_height": 30,
+        "logo_position": "top-center",
+        "menu": "menu-v2",
+        "menu_mobile": "menu-v2",
+        "customer_account_menu": "",
+        "enable_dropdown_menu": true,
+        "show_line_separator": true,
+        "uppercase_menu_items": true,
+        "cart_icon": "cart",
+        "icon_weight": "1.3",
+        "enable_country_selector": false,
+        "enable_language_selector": true,
+        "enable_sticky_header": true,
+        "show_sticky_header_scroll_up": true,
+        "transparent_logo": "shopify://shop_images/Troscriptions-Tx-Logo.png",
+        "mobile_transparent_logo": "shopify://shop_images/Troscriptions-Tx-Logo-dark_gray_with_border.png",
+        "enable_transparent_header": false,
+        "enable_transparent_header_collection": true,
+        "enable_transparent_header_custom": "",
+        "show_transparent_header_border": false,
+        "transparent_text_color": "#55595c",
+        "enable_highlight": true,
+        "highlight_labels": "Skincare",
+        "highlight_style": "squiggle",
+        "button_menu_item_label": "Quiz",
+        "button_menu_item_background": "#037178",
+        "button_menu_item_background_hover": "#f79a3e",
+        "button_menu_item_text": "#ffffff",
+        "button_menu_item_corner_radius": 24,
+        "enable_sidebar": false,
+        "sidebar_heading": "Must-see this week",
+        "mobile_logo_position": "center",
+        "colors_text": "#ffffff",
+        "colors_border": "#d2d5d9",
+        "colors_background": "#037178",
+        "gradient_background": "",
+        "colors_highlight": "#faeaa1",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

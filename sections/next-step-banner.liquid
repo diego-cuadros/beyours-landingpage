@@ -1,0 +1,426 @@
+{%- liquid
+  assign banner_image = section.settings.image
+  assign banner_image_mobile = section.settings.image_mobile | default: banner_image
+  assign banner_image_display = banner_image | default: banner_image_mobile
+  assign banner_image_sizes = '(max-width: 749px) ' | append: section.settings.image_width_mobile | append: 'px, ' | append: section.settings.image_width | append: 'px'
+  assign banner_image_alt = banner_image.alt | default: banner_image_mobile.alt | default: section.settings.heading | strip_html
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --next-step-banner-background: {{ section.settings.background_color }};
+    --next-step-banner-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --next-step-banner-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --next-step-banner-link: {{ section.settings.link_color.red }}, {{ section.settings.link_color.green }}, {{ section.settings.link_color.blue }};
+    --next-step-banner-max-width: {{ section.settings.max_content_width }}px;
+    --next-step-banner-row-gap: {{ section.settings.heading_content_spacing }}px;
+    --next-step-banner-row-gap-mobile: {{ section.settings.heading_content_spacing_mobile }}px;
+    --next-step-banner-image-width: {{ section.settings.image_width }}px;
+    --next-step-banner-image-width-mobile: {{ section.settings.image_width_mobile }}px;
+    --next-step-banner-image-scale: {{ section.settings.image_scale | divided_by: 100.0 }};
+    --next-step-banner-image-offset-x: {{ section.settings.image_offset_x }}px;
+    --next-step-banner-image-offset-y: {{ section.settings.image_offset_y }}px;
+    --next-step-banner-image-scale-mobile: {{ section.settings.image_scale_mobile | divided_by: 100.0 }};
+    --next-step-banner-image-offset-x-mobile: {{ section.settings.image_offset_x_mobile }}px;
+    --next-step-banner-image-offset-y-mobile: {{ section.settings.image_offset_y_mobile }}px;
+  }
+{%- endstyle -%}
+
+{{ 'section-next-step-banner.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section class="next-step-banner section--padding">
+    <div class="page-width">
+      <div class="next-step-banner__inner">
+        <div class="next-step-banner__grid">
+          {%- if section.settings.heading != blank -%}
+            <div class="next-step-banner__heading-wrap">
+              <{{ section.settings.heading_tag }} class="next-step-banner__heading {{ section.settings.heading_size }}">
+                {{ section.settings.heading }}
+              </{{ section.settings.heading_tag }}>
+            </div>
+          {%- endif -%}
+
+          <div class="next-step-banner__copy">
+            {%- if section.settings.body != blank -%}
+              <div class="next-step-banner__body rte">
+                {{ section.settings.body }}
+              </div>
+            {%- endif -%}
+
+            <div class="next-step-banner__actions">
+              {%- if section.settings.primary_button_label != blank -%}
+                <a
+                  class="next-step-banner__button button button--medium"
+                  {% if section.settings.primary_button_link != blank %}
+                    href="{{ section.settings.primary_button_link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                >
+                  {{ section.settings.primary_button_label | escape }}
+                </a>
+              {%- endif -%}
+
+              {%- if section.settings.secondary_link_text != blank -%}
+                <a
+                  class="next-step-banner__text-link"
+                  {% if section.settings.secondary_link_url != blank %}
+                    href="{{ section.settings.secondary_link_url }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                >
+                  {{ section.settings.secondary_link_text }}
+                </a>
+              {%- endif -%}
+
+              {%- if section.settings.secondary_button_label != blank -%}
+                <a
+                  class="next-step-banner__button button button--secondary button--medium"
+                  {% if section.settings.secondary_button_link != blank %}
+                    href="{{ section.settings.secondary_button_link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                >
+                  {{ section.settings.secondary_button_label | escape }}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class="next-step-banner__visual">
+            {%- if banner_image != blank or banner_image_mobile != blank -%}
+              <div class="next-step-banner__visual-media">
+                <picture class="next-step-banner__visual-picture">
+                  {%- if banner_image_mobile != blank -%}
+                    <source
+                      media="(max-width: 749px)"
+                      srcset="
+                        {{ banner_image_mobile | image_url: width: 320 }} 320w,
+                        {{ banner_image_mobile | image_url: width: 440 }} 440w,
+                        {{ banner_image_mobile | image_url: width: 640 }} 640w,
+                        {{ banner_image_mobile | image_url: width: 880 }} 880w
+                      "
+                    >
+                  {%- endif -%}
+                  <img
+                    src="{{ banner_image_display | image_url: width: 1400 }}"
+                    srcset="
+                      {{ banner_image_display | image_url: width: 320 }} 320w,
+                      {{ banner_image_display | image_url: width: 440 }} 440w,
+                      {{ banner_image_display | image_url: width: 640 }} 640w,
+                      {{ banner_image_display | image_url: width: 880 }} 880w,
+                      {{ banner_image_display | image_url: width: 1100 }} 1100w,
+                      {{ banner_image_display | image_url: width: 1400 }} 1400w
+                    "
+                    sizes="{{ banner_image_sizes }}"
+                    width="{{ banner_image_display.width }}"
+                    height="{{ banner_image_display.height }}"
+                    loading="lazy"
+                    class="next-step-banner__image"
+                    alt="{{ banner_image_alt | escape }}"
+                  >
+                </picture>
+              </div>
+            {%- else -%}
+              <div class="next-step-banner__visual-media next-step-banner__visual-media--placeholder">
+                <div class="next-step-banner__placeholder" aria-hidden="true"></div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Next step banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Whether you're here to join us or try the products yourself, there's a next step.",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading tag"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "default": "<p>Help us build the future of health optimization.</p>",
+      "label": "Body"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "default": "Careers",
+      "label": "Primary button label"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "secondary_link_text",
+      "default": "Experience the products trusted by practitioners worldwide.",
+      "label": "Secondary link text"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link_url",
+      "label": "Secondary link URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "default": "Shop Now",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image",
+      "info": "Optional. Uses the desktop image when left empty."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#e7faf2",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#1a1b18",
+      "label": "Heading color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#23302b",
+      "label": "Body text color"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "default": "#1f3f35",
+      "label": "Secondary link color"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "heading_content_spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Desktop heading to content spacing"
+    },
+    {
+      "type": "range",
+      "id": "image_scale",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "default": 100,
+      "label": "Desktop image scale"
+    },
+    {
+      "type": "range",
+      "id": "image_offset_x",
+      "min": -300,
+      "max": 300,
+      "step": 6,
+      "unit": "px",
+      "default": 0,
+      "label": "Desktop image X offset"
+    },
+    {
+      "type": "range",
+      "id": "image_offset_y",
+      "min": -300,
+      "max": 300,
+      "step": 6,
+      "unit": "px",
+      "default": 0,
+      "label": "Desktop image Y offset"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 900,
+      "max": 1440,
+      "step": 20,
+      "unit": "px",
+      "default": 1120,
+      "label": "Desktop content max width"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 220,
+      "max": 620,
+      "step": 10,
+      "unit": "px",
+      "default": 460,
+      "label": "Desktop image width"
+    },
+    {
+      "type": "header",
+      "content": "Layout mobile"
+    },
+    {
+      "type": "range",
+      "id": "heading_content_spacing_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 28,
+      "label": "Mobile heading to content spacing"
+    },
+    {
+      "type": "range",
+      "id": "image_width_mobile",
+      "min": 120,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 220,
+      "label": "Mobile image width"
+    },
+    {
+      "type": "range",
+      "id": "image_scale_mobile",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "default": 100,
+      "label": "Mobile image scale"
+    },
+    {
+      "type": "range",
+      "id": "image_offset_x_mobile",
+      "min": -300,
+      "max": 300,
+      "step": 6,
+      "unit": "px",
+      "default": 0,
+      "label": "Mobile image X offset"
+    },
+    {
+      "type": "range",
+      "id": "image_offset_y_mobile",
+      "min": -300,
+      "max": 300,
+      "step": 6,
+      "unit": "px",
+      "default": 0,
+      "label": "Mobile image Y offset"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 56,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 56,
+      "label": "Bottom padding"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Next step banner"
+    }
+  ]
+}
+{% endschema %}

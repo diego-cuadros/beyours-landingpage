@@ -1,0 +1,74 @@
+<div class="product__trust-points" {{ block.shopify_attributes }}>
+  <ul class="product__trust-points-list" role="list" aria-label="Product trust points">
+    {%- if block.settings.item_1_text != blank -%}
+      {%- assign item_1_icon = block.settings.item_1_icon -%}
+      <li
+        class="product__trust-points-item"
+        style="--product-trust-point-icon-size: {{ block.settings.item_1_icon_size }}px; --product-trust-point-icon-size-mobile: {{ block.settings.item_1_icon_size_mobile }}px;"
+      >
+        {%- if item_1_icon != blank and item_1_icon != 'none' -%}
+          <span class="product__trust-points-icon" aria-hidden="true">
+            {%- render 'product-trust-point-icon', icon: item_1_icon -%}
+          </span>
+        {%- endif -%}
+        <span class="product__trust-points-text">{{ block.settings.item_1_text }}</span>
+      </li>
+    {%- endif -%}
+    {%- if block.settings.item_2_text != blank -%}
+      {%- assign item_2_icon = block.settings.item_2_icon -%}
+      <li
+        class="product__trust-points-item"
+        style="--product-trust-point-icon-size: {{ block.settings.item_2_icon_size }}px; --product-trust-point-icon-size-mobile: {{ block.settings.item_2_icon_size_mobile }}px;"
+      >
+        {%- if item_2_icon != blank and item_2_icon != 'none' -%}
+          <span class="product__trust-points-icon" aria-hidden="true">
+            {%- render 'product-trust-point-icon', icon: item_2_icon -%}
+          </span>
+        {%- endif -%}
+        <span class="product__trust-points-text">{{ block.settings.item_2_text }}</span>
+      </li>
+    {%- endif -%}
+    {%- if block.settings.item_3_text != blank -%}
+      {%- assign item_3_icon = block.settings.item_3_icon -%}
+      <li
+        class="product__trust-points-item"
+        style="--product-trust-point-icon-size: {{ block.settings.item_3_icon_size }}px; --product-trust-point-icon-size-mobile: {{ block.settings.item_3_icon_size_mobile }}px;"
+      >
+        {%- if item_3_icon != blank and item_3_icon != 'none' -%}
+          <span class="product__trust-points-icon" aria-hidden="true">
+            {%- render 'product-trust-point-icon', icon: item_3_icon -%}
+          </span>
+        {%- endif -%}
+        <span class="product__trust-points-text">{{ block.settings.item_3_text }}</span>
+      </li>
+    {%- endif -%}
+    {%- if block.settings.item_4_text != blank -%}
+      {%- assign item_4_icon = block.settings.item_4_icon -%}
+      <li
+        class="product__trust-points-item"
+        style="--product-trust-point-icon-size: {{ block.settings.item_4_icon_size }}px; --product-trust-point-icon-size-mobile: {{ block.settings.item_4_icon_size_mobile }}px;"
+      >
+        {%- if item_4_icon != blank and item_4_icon != 'none' -%}
+          <span class="product__trust-points-icon" aria-hidden="true">
+            {%- render 'product-trust-point-icon', icon: item_4_icon -%}
+          </span>
+        {%- endif -%}
+        <span class="product__trust-points-text">{{ block.settings.item_4_text }}</span>
+      </li>
+    {%- endif -%}
+    {%- if block.settings.item_5_text != blank -%}
+      {%- assign item_5_icon = block.settings.item_5_icon -%}
+      <li
+        class="product__trust-points-item"
+        style="--product-trust-point-icon-size: {{ block.settings.item_5_icon_size }}px; --product-trust-point-icon-size-mobile: {{ block.settings.item_5_icon_size_mobile }}px;"
+      >
+        {%- if item_5_icon != blank and item_5_icon != 'none' -%}
+          <span class="product__trust-points-icon" aria-hidden="true">
+            {%- render 'product-trust-point-icon', icon: item_5_icon -%}
+          </span>
+        {%- endif -%}
+        <span class="product__trust-points-text">{{ block.settings.item_5_text }}</span>
+      </li>
+    {%- endif -%}
+  </ul>
+</div>

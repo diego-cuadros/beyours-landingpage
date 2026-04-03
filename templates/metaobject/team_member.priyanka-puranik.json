@@ -1,0 +1,172 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_with_text_v2_MX9dMX": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_er8XnF": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ metaobject.full_name.value }}",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_dgAJKM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ metaobject.bio | metafield_tag }}</p>",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_wjGUWc": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "LinkedIn",
+            "button_link": "{{ metaobject.linked_in.value }}",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_er8XnF",
+        "text_dgAJKM",
+        "button_wjGUWc"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "{{ metaobject.portrtait.value }}",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "image_corner_radius": 10,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_blog_v2_manual_EdMnT9": {
+      "type": "featured-blog-v2-manual",
+      "blocks": {
+        "post_8P4chN": {
+          "type": "post",
+          "settings": {
+            "article": "main/anandamide"
+          }
+        },
+        "post_VPdgrb": {
+          "type": "post",
+          "settings": {
+            "article": "main/nicotine-for-cognitive-enhancement"
+          }
+        },
+        "post_UdcmJP": {
+          "type": "post",
+          "settings": {
+            "article": "main/the-merry-history-behind-agarin"
+          }
+        },
+        "title_hYFPNH": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_FjBRJx": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_zANiBB": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "post_8P4chN",
+        "post_VPdgrb",
+        "post_UdcmJP",
+        "title_hYFPNH",
+        "summary_FjBRJx",
+        "read_more_zANiBB"
+      ],
+      "name": "Featured blog (v2 manual)",
+      "settings": {
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "primary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "View all",
+        "view_all_link": "",
+        "show_divider": false,
+        "heading": "Blog articles written by {{ metaobject.full_name.value }}, MSc",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "image_with_text_v2_MX9dMX",
+    "featured_blog_v2_manual_EdMnT9"
+  ]
+}

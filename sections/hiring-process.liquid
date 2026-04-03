@@ -1,0 +1,318 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --hiring-process-background: {{ section.settings.background_color }};
+    --hiring-process-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --hiring-process-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --hiring-process-note: {{ section.settings.note_color.red }}, {{ section.settings.note_color.green }}, {{ section.settings.note_color.blue }};
+    --hiring-process-card-background: {{ section.settings.card_background_color }};
+    --hiring-process-max-width: {{ section.settings.max_content_width }}px;
+    --hiring-process-card-radius: {{ section.settings.card_border_radius }}px;
+    --hiring-process-card-padding-v: {{ section.settings.card_padding_vertical }}px;
+    --hiring-process-card-padding-h: {{ section.settings.card_padding_horizontal }}px;
+    --hiring-process-mobile-card-width: {{ section.settings.mobile_card_width }}%;
+  }
+{%- endstyle -%}
+
+{{ 'section-hiring-process.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section class="hiring-process section--padding">
+    <div class="page-width">
+      <div class="hiring-process__inner">
+        {%- if section.settings.heading != blank -%}
+          <div class="hiring-process__header">
+            <{{ section.settings.heading_tag }} class="hiring-process__heading {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </{{ section.settings.heading_tag }}>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <p class="hiring-process__subheading">
+            {{ section.settings.subheading }}
+          </p>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="hiring-process__track" role="list" is="scroll-snap-slider" data-draggable="true">
+            {%- for block in section.blocks -%}
+              <li
+                class="hiring-process__card"
+                role="listitem"
+                style="--hiring-process-step-border: {{ block.settings.border_color }};"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.step_number != blank -%}
+                  <p class="hiring-process__step-number">
+                    {{ block.settings.step_number }}
+                  </p>
+                {%- endif -%}
+
+                {%- if block.settings.title != blank -%}
+                  <h3 class="hiring-process__card-title">
+                    {{ block.settings.title }}
+                  </h3>
+                {%- endif -%}
+
+                {%- if block.settings.text != blank -%}
+                  <div class="hiring-process__card-body rte">
+                    {{ block.settings.text }}
+                  </div>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if section.settings.footnote != blank -%}
+          <p class="hiring-process__footnote">
+            {{ section.settings.footnote }}
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hiring process",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Hiring Process"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading tag"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We try to make our process clear, respectful, and free of corporate theater."
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "Footnote",
+      "default": "We respect your time. Wherever possible, we bundle conversations and keep you updated on where things stand."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 960,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1320,
+      "label": "Desktop content max width"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "min": 68,
+      "max": 88,
+      "step": 1,
+      "unit": "%",
+      "default": 76,
+      "label": "Mobile card width"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20,
+      "label": "Card corner radius"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_vertical",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 14,
+      "label": "Card vertical padding"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_horizontal",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 10,
+      "label": "Card horizontal padding"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#fdfcf9",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "default": "#fdfcf9",
+      "label": "Card background"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#171616",
+      "label": "Heading color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#2a2a2a",
+      "label": "Body text color"
+    },
+    {
+      "type": "color",
+      "id": "note_color",
+      "default": "#3d3d3d",
+      "label": "Footnote color"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60,
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step number",
+          "default": "1"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "Intro chat (30 min)"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>A conversation about you, us, and whether the timing and role make sense.</p>"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#5cc5c4"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hiring process",
+      "blocks": [
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        },
+        {
+          "type": "step"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

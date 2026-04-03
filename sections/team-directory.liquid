@@ -1,0 +1,464 @@
+{%- liquid
+  assign main_team_members = blank
+  assign science_writer_members = blank
+  assign legacy_team_members = blank
+  assign main_team_count = 0
+  assign science_writer_count = 0
+  assign main_first_row_limit = section.settings.main_first_row_items | default: 3
+
+  if page != blank
+    if page.metafields.custom.team_members != blank and page.metafields.custom.team_members.value != blank
+      assign main_team_members = page.metafields.custom.team_members.value
+    endif
+
+    if page.metafields.custom.science_writers != blank and page.metafields.custom.science_writers.value != blank
+      assign science_writer_members = page.metafields.custom.science_writers.value
+    endif
+  endif
+
+  if main_team_members != blank
+    for member in main_team_members
+      assign main_team_count = main_team_count | plus: 1
+    endfor
+  endif
+
+  if science_writer_members != blank
+    for member in science_writer_members
+      assign science_writer_count = science_writer_count | plus: 1
+    endfor
+  endif
+
+  if main_team_count == 0 and science_writer_count == 0
+    assign legacy_team_members = shop.metaobjects.team_member.values
+
+    for member in legacy_team_members
+      assign member_position = member.position.value | default: member.position
+      assign member_position_handle = member_position | handleize
+
+      if member_position_handle contains 'science-writer'
+        assign science_writer_count = science_writer_count | plus: 1
+      else
+        assign main_team_count = main_team_count | plus: 1
+      endif
+    endfor
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --team-directory-background: {{ section.settings.background_color }};
+    --team-directory-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --team-directory-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --team-directory-muted: {{ section.settings.muted_color.red }}, {{ section.settings.muted_color.green }}, {{ section.settings.muted_color.blue }};
+    --team-directory-card-surface: {{ section.settings.card_surface.red }}, {{ section.settings.card_surface.green }}, {{ section.settings.card_surface.blue }};
+    --team-directory-detail-surface: {{ section.settings.detail_surface.red }}, {{ section.settings.detail_surface.green }}, {{ section.settings.detail_surface.blue }};
+    --team-directory-card-radius: {{ section.settings.card_radius }}px;
+    --team-directory-image-radius: {{ section.settings.image_radius }}px;
+    --team-directory-accent: {{ section.settings.accent_color.red }}, {{ section.settings.accent_color.green }}, {{ section.settings.accent_color.blue }};
+    --team-directory-max-width: {{ section.settings.max_content_width }}px;
+    --team-directory-main-first-columns: {{ section.settings.main_first_row_columns }};
+    --team-directory-main-columns: {{ section.settings.main_columns }};
+    --team-directory-science-columns: {{ section.settings.science_columns }};
+    --team-directory-motion-ease: cubic-bezier(0.22, 0.8, 0.3, 1);
+    --team-directory-motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --team-directory-motion-duration: 360ms;
+    --team-directory-motion-duration-long: 520ms;
+    --team-directory-motion-duration-short: 180ms;
+  }
+{%- endstyle -%}
+
+{{ 'section-team-directory.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-team-directory.js' | asset_url }}" defer="defer"></script>
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section class="team-directory section--padding">
+    <div class="page-width">
+      <team-directory-section class="team-directory__inner" data-mobile-breakpoint="749">
+        {%- if section.settings.heading != blank or section.settings.intro != blank -%}
+          <div class="team-directory__header">
+            {%- if section.settings.heading != blank -%}
+              <{{ section.settings.heading_tag }} class="team-directory__heading {{ section.settings.heading_size }}">
+                {{ section.settings.heading }}
+              </{{ section.settings.heading_tag }}>
+            {%- endif -%}
+
+            {%- if section.settings.intro != blank -%}
+              <div class="team-directory__intro rte">{{ section.settings.intro }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div class="team-directory__detail-home" data-team-detail-home hidden></div>
+
+        {%- if main_team_count > 0 -%}
+          <div class="team-directory__grid team-directory__grid--mobile-main" data-team-grid="mobile-main" role="list">
+            {%- if main_team_members != blank -%}
+              {%- for member in main_team_members -%}
+                {%- render 'team-directory-member-card',
+                  member: member,
+                  member_id: 'mobile-main-' | append: section.id | append: '-' | append: forloop.index,
+                  show_role: true,
+                  card_sizes: '(min-width: 750px) 25vw, 50vw'
+                -%}
+              {%- endfor -%}
+            {%- elsif legacy_team_members != blank -%}
+              {%- assign mobile_main_index = 0 -%}
+              {%- for member in legacy_team_members -%}
+                {%- assign member_position = member.position.value | default: member.position -%}
+                {%- assign member_position_handle = member_position | handleize -%}
+                {%- unless member_position_handle contains 'science-writer' -%}
+                  {%- assign mobile_main_index = mobile_main_index | plus: 1 -%}
+                  {%- render 'team-directory-member-card',
+                    member: member,
+                    member_id: 'mobile-main-' | append: section.id | append: '-' | append: mobile_main_index,
+                    show_role: true,
+                    card_sizes: '(min-width: 750px) 25vw, 50vw'
+                  -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if main_team_count > 0 -%}
+          <div class="team-directory__grid team-directory__grid--main-first" data-team-grid="main-first" role="list">
+            {%- assign main_index = 0 -%}
+            {%- if main_team_members != blank -%}
+              {%- for member in main_team_members -%}
+                {%- assign main_index = main_index | plus: 1 -%}
+                {%- if main_index <= main_first_row_limit -%}
+                  {%- render 'team-directory-member-card',
+                    member: member,
+                    member_id: 'main-' | append: section.id | append: '-' | append: main_index,
+                    show_role: true,
+                    card_sizes: '(min-width: 750px) 33vw, 50vw'
+                  -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for member in legacy_team_members -%}
+                {%- assign member_position = member.position.value | default: member.position -%}
+                {%- assign member_position_handle = member_position | handleize -%}
+                {%- unless member_position_handle contains 'science-writer' -%}
+                  {%- assign main_index = main_index | plus: 1 -%}
+                  {%- if main_index <= main_first_row_limit -%}
+                    {%- render 'team-directory-member-card',
+                      member: member,
+                      member_id: 'main-' | append: section.id | append: '-' | append: main_index,
+                      show_role: true,
+                      card_sizes: '(min-width: 750px) 33vw, 50vw'
+                    -%}
+                  {%- endif -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          {%- if main_team_count > main_first_row_limit -%}
+            <div class="team-directory__grid team-directory__grid--main" data-team-grid="main" role="list">
+              {%- assign main_index = 0 -%}
+              {%- if main_team_members != blank -%}
+                {%- for member in main_team_members -%}
+                  {%- assign main_index = main_index | plus: 1 -%}
+                  {%- if main_index > main_first_row_limit -%}
+                    {%- render 'team-directory-member-card',
+                      member: member,
+                      member_id: 'main-' | append: section.id | append: '-' | append: main_index,
+                      show_role: true,
+                      card_sizes: '(min-width: 750px) 25vw, 33vw'
+                    -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- for member in legacy_team_members -%}
+                  {%- assign member_position = member.position.value | default: member.position -%}
+                  {%- assign member_position_handle = member_position | handleize -%}
+                  {%- unless member_position_handle contains 'science-writer' -%}
+                    {%- assign main_index = main_index | plus: 1 -%}
+                    {%- if main_index > main_first_row_limit -%}
+                      {%- render 'team-directory-member-card',
+                        member: member,
+                        member_id: 'main-' | append: section.id | append: '-' | append: main_index,
+                        show_role: true,
+                        card_sizes: '(min-width: 750px) 25vw, 33vw'
+                      -%}
+                    {%- endif -%}
+                  {%- endunless -%}
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if science_writer_count > 0 -%}
+          <section class="team-directory__science">
+            <h3 class="team-directory__science-heading">{{ section.settings.science_heading }}</h3>
+            <div class="team-directory__detail-home" data-team-detail-science hidden></div>
+
+            <div class="team-directory__grid team-directory__grid--science" data-team-grid="science" role="list">
+              {%- assign science_index = 0 -%}
+              {%- if science_writer_members != blank -%}
+                {%- for member in science_writer_members -%}
+                  {%- assign science_index = science_index | plus: 1 -%}
+                  {%- render 'team-directory-member-card',
+                    member: member,
+                    member_id: 'science-' | append: section.id | append: '-' | append: science_index,
+                    show_role: false,
+                    card_sizes: '(min-width: 750px) 25vw, 33vw'
+                  -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- for member in legacy_team_members -%}
+                  {%- assign member_position = member.position.value | default: member.position -%}
+                  {%- assign member_position_handle = member_position | handleize -%}
+                  {%- if member_position_handle contains 'science-writer' -%}
+                  {%- assign science_index = science_index | plus: 1 -%}
+                    {%- render 'team-directory-member-card',
+                      member: member,
+                      member_id: 'science-' | append: section.id | append: '-' | append: science_index,
+                      show_role: false,
+                      card_sizes: '(min-width: 750px) 25vw, 33vw'
+                    -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          </section>
+        {%- endif -%}
+
+        {%- if main_team_count == 0 and science_writer_count == 0 -%}
+          <div class="team-directory__empty rte">
+            {{ section.settings.empty_state }}
+          </div>
+        {%- endif -%}
+      </team-directory-section>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Team directory",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Team Behind the Work"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro text",
+      "default": "<p>Faces matter. Credibility matters. This is where both live.</p>"
+    },
+    {
+      "type": "text",
+      "id": "science_heading",
+      "label": "Science writers heading",
+      "default": "Science Writers"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_state",
+      "label": "Empty state",
+      "default": "<p>Add entries to the page metafields <strong>custom.team_members</strong> and <strong>custom.science_writers</strong> to populate this section.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#ffffff",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#232323"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2c2c2c"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted color",
+      "default": "#5e5e5e"
+    },
+    {
+      "type": "color",
+      "id": "card_surface",
+      "label": "Card surface",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "detail_surface",
+      "label": "Detail surface",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#4a6df0"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 840,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 1120,
+      "label": "Desktop content max width"
+    },
+    {
+      "type": "range",
+      "id": "main_first_row_items",
+      "label": "Main team first row cards",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "main_first_row_columns",
+      "label": "Main team first row columns",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "main_columns",
+      "label": "Main team remaining columns",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "science_columns",
+      "label": "Science writers columns",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image corner radius",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Team directory"
+    }
+  ]
+}
+{% endschema %}

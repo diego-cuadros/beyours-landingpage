@@ -1,0 +1,459 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "image_with_text_v2_3BgkUR": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_A6gWaj": {
+          "type": "heading",
+          "settings": {
+            "heading": "Perks, Unlocked. Only for Troscriptions Subscribers",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_7WPwTV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Subscriber-only perks from top brands—because VIPs like you shouldn’t have to pay sticker price.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_W3KbxE": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "Subscribe Now",
+            "button_link": "shopify://collections/subscribe-save",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_A6gWaj",
+        "text_7WPwTV",
+        "button_W3KbxE"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/Screenshot_from_2025-07-07_18-50-20.png",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "center",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": true,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 32,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "column_perks_custom_GJDyHd": {
+      "type": "column-perks-custom",
+      "blocks": {
+        "perk_ctf4hG": {
+          "type": "perk",
+          "settings": {
+            "icon": "recharge",
+            "icon_color": "#9898de",
+            "image": "shopify://shop_images/special_offers_-_white.png",
+            "custom_icon": "",
+            "title": "Special offers from leading brands in health, wellness, and longevity",
+            "title_size": "h3",
+            "text": ""
+          }
+        },
+        "perk_bbmqTU": {
+          "type": "perk",
+          "settings": {
+            "icon": "wellbeing",
+            "icon_color": "#ff8a21",
+            "image": "shopify://shop_images/ask_me_anything_-_white.png",
+            "custom_icon": "",
+            "title": "Monthly AMAs (Ask Me Anything) with the Troscriptions Team",
+            "title_size": "h3",
+            "text": ""
+          }
+        },
+        "perk_hUKkd6": {
+          "type": "perk",
+          "settings": {
+            "icon": "growth",
+            "icon_color": "#1473e6",
+            "image": "shopify://shop_images/adding_new_perks_-_white.png",
+            "custom_icon": "",
+            "title": "We are always adding to the list of perks. New ones will be added every month!",
+            "title_size": "h3",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "perk_ctf4hG",
+        "perk_bbmqTU",
+        "perk_hUKkd6"
+      ],
+      "name": "Column perks custom",
+      "settings": {
+        "heading": "Tro Perks",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "intro": "<p>Subscribed. Saving. Now getting VIP Treatment</p>",
+        "show_divider": false,
+        "background_color": "#037178",
+        "heading_color": "#ffffff",
+        "text_color": "#ffffff",
+        "icon_card_color": "#037178",
+        "max_content_width": 1320,
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
+    },
+    "text_columns_troperks_v2_FefKeF": {
+      "type": "text-columns-troperks-v2",
+      "blocks": {
+        "offer_card_with_image_WcGUm9": {
+          "type": "offer_card_with_image",
+          "settings": {
+            "image": "{{ metaobjects.tro_perks_ama_offer[\"tro-perks-ama-offer-tcnuacfa\"].card_image.value }}",
+            "image_position": "right",
+            "image_width_ratio": 40,
+            "image_text_gap": 30,
+            "image_text_gap_mobile": 20,
+            "text_alignment": "horizontal-left",
+            "logo_width": 200,
+            "title": "{{ metaobjects.tro_perks_ama_offer[\"tro-perks-ama-offer-tcnuacfa\"].title.value }}",
+            "title_font_size": 24,
+            "title_font_weight_bold": true,
+            "caption": "<p>Get exclusive access to live “Ask Me Anything” sessions with Dr. Scott Sherr—our Clinical Director and one of the brains behind Troscriptions. Dive deep into the science, ask your health optimization questions, and get real-time insights you won’t find anywhere else.</p>",
+            "caption_font_size": 16,
+            "caption_font_weight_bold": false,
+            "link_text": "Learn more",
+            "link_url": "{{ metaobjects.tro_perks_ama_offer[\"tro-perks-ama-offer-tcnuacfa\"].system.url }}",
+            "link_color": "#037178",
+            "link_font_size": 16,
+            "link_font_weight_bold": false,
+            "override_spacing": false,
+            "gap_above_logo": 0,
+            "gap_below_logo": 24,
+            "gap_below_title": 16,
+            "gap_below_caption": 24,
+            "gap_below_link": 0,
+            "seo_h_tag": "h3"
+          }
+        },
+        "dynamic_offers_v2_TD8hUC": {
+          "type": "dynamic_offers_v2",
+          "settings": {
+            "metaobject_definition": "tro_perks_offer",
+            "perk_name_size": "medium",
+            "short_description_size": "medium",
+            "button_color": "#037178",
+            "column_gap": 10,
+            "columns_ultrawide": "4",
+            "columns_desktop": "3",
+            "columns_tablet": "2",
+            "columns_mobile": "1"
+          }
+        }
+      },
+      "block_order": [
+        "offer_card_with_image_WcGUm9",
+        "dynamic_offers_v2_TD8hUC"
+      ],
+      "name": "TroPerks Columns v2",
+      "settings": {
+        "heading": "This Month's Tro Perks Features",
+        "heading_font_weight": "600",
+        "heading_font_size": 40,
+        "subheading": "",
+        "section_heading_layout": "section-heading--left",
+        "seo_h_tag": "h2",
+        "grid_gap": 28,
+        "card_min_width": 280,
+        "block_text_alignment": "left",
+        "card_border_radius": 20,
+        "content_padding_top": 24,
+        "content_padding_bottom": 24,
+        "collapsed_padding_top": 24,
+        "collapsed_padding_bottom": 24,
+        "card_max_height": 0,
+        "details_margin_top": 0,
+        "details_margin_bottom": 0,
+        "card_background": "#ffffff",
+        "card_link_color": "#2d5bff",
+        "accent_color": "#ffb503",
+        "subheading_color": "#6b7280",
+        "show_divider": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "image_with_text_v2_dtkwCG": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_HPjnez": {
+          "type": "heading",
+          "settings": {
+            "heading": "Become a Tro Perks member",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_qKYNMk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every Troscriptions subscription includes complimentary access to Tro Perks.<br/><br/>Unlock exclusive savings and benefits from trusted brands in skincare, sleep, supplements, mindfulness, and more—all designed to help you optimize your health and performance.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_eKJFn3": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "subscribe now",
+            "button_link": "shopify://collections/subscribe-save",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_HPjnez",
+        "text_qKYNMk",
+        "button_eKJFn3"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/Become_a_Tro_Perks_member_image.png",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "500px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_v2_XfEhpW": {
+      "type": "faq-v2",
+      "blocks": {
+        "question_JQFt7e": {
+          "type": "question",
+          "settings": {
+            "title": "What is Tro Perks?",
+            "text": "<p>Tro Perks is our exclusive perks program for active Troscriptions subscribers. As a member, you’ll unlock insider-only discounts on products and services from brands we love, use, and trust — from cutting-edge tech to foundational health tools. These are deals you<em>won’t</em>find publicly.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_y4Ahqe": {
+          "type": "question",
+          "settings": {
+            "title": "Who is eligible to use Tro Perks?",
+            "text": "<p>Any active Troscriptions subscriber (to any product) is automatically eligible. As long as your subscription is active, your access to Tro Perks is too.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_yJ4Kmc": {
+          "type": "question",
+          "settings": {
+            "title": "How do I access my perks?",
+            "text": "<p>Once subscribed, you’ll receive a private link to the Tro Perks portal. From there, you can browse current perks, grab discount codes, and discover new tools to support your health optimization journey. We’ll also email you when new perks drop.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_zr3VbX": {
+          "type": "question",
+          "settings": {
+            "title": "Who is eligible to use TroPerks?",
+            "text": "<p>Once subscribed, you’ll receive a private link to the Tro Perks portal. From there, you can browse current perks, grab discount codes, and discover new tools to support your health optimization journey. We’ll also email you when new perks drop.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_WiBQfj": {
+          "type": "question",
+          "settings": {
+            "title": "Interested in joining Tro Perks?",
+            "text": "<p>Simple: subscribe to any Troscriptions product and you're in. No hoops. No forms. Just perks.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_nDch3C": {
+          "type": "question",
+          "settings": {
+            "title": "Have an idea for a new Tro Perks partner?",
+            "text": "<p>Yes please. Send suggestions to <strong>buccalup@troscriptions.com</strong>— whether it’s your favorite red light panel, magnesium spray, or tech tool you swear by. If it aligns with smarter health, we’ll check it out.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_nxBTt8": {
+          "type": "question",
+          "settings": {
+            "title": "What kinds of companies are part of Tro Perks?",
+            "text": "<p>We partner with brands that align with our values: quality, transparency, innovation, and real-world impact. Expect a curated mix of health tech, supplements, wearables, testing platforms, and lifestyle optimization tools — stuff we actually use ourselves.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_ABQaAf": {
+          "type": "question",
+          "settings": {
+            "title": "Can I share my Tro Perks codes with friends or patients?",
+            "text": "<p>Nope — these are just for you. Sharing codes may void access to future perks, and we’d hate to see you miss out. Let’s keep it in the (Tro)fam.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_3UQhBA": {
+          "type": "question",
+          "settings": {
+            "title": "What happens if I cancel my subscription?",
+            "text": "<p>If your subscription ends, so does access to Tro Perks — including use of current codes. Reactivate your subscription, and your perks will come right back.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_9znQcz": {
+          "type": "question",
+          "settings": {
+            "title": "How often are new perks added?",
+            "text": "<p>Constantly. We’re always testing and vetting new products behind the scenes. When something makes the cut, it goes live on Tro Perks. Stay tuned — and subscribed!</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "question_JQFt7e",
+        "question_y4Ahqe",
+        "question_yJ4Kmc",
+        "question_zr3VbX",
+        "question_WiBQfj",
+        "question_nDch3C",
+        "question_nxBTt8",
+        "question_ABQaAf",
+        "question_3UQhBA",
+        "question_9znQcz"
+      ],
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "narrow": false,
+        "secondary_background": false,
+        "show_divider": false,
+        "heading": "Frequently asked questions",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "faq_content_source": "manual",
+        "metafield_source_product": "",
+        "metafield_namespace": "custom",
+        "metafield_key": "faqs",
+        "icon_corner_radius": 8,
+        "use_custom_question_typography": true,
+        "question_heading_size": "h3",
+        "question_font_style": "normal",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_v2_3BgkUR",
+    "column_perks_custom_GJDyHd",
+    "text_columns_troperks_v2_FefKeF",
+    "image_with_text_v2_dtkwCG",
+    "faq_v2_XfEhpW"
+  ]
+}

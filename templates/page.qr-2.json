@@ -1,0 +1,306 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "multicolumn_v2_knpJTN": {
+      "type": "multicolumn-v2",
+      "blocks": {
+        "column_cyFW3c": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroBlueCannatine3Square_908ce7c0-e1ab-4d81-bf23-1a39a152cf24.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Blue Cannatine",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-bluecan",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_jbWXQP": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroJustBlue3Square_09e2881c-827c-4e7b-874b-0bacefa89268.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Just Blue",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-jusblu",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_xfD9cV": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/Tro_Plus_Calm_Product_Photo.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro Calm",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-trocalm",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_mhK4x8": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroPlusBlueProductPhoto1.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro+ Blue",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-troplus",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_V4nk6g": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroZZZ3Square.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro Zzz",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-troz",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_jChigh": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroMuneproductphoto.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro Mune",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-tromun",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_WRAYYG": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroPlusMuneFront.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro+ Mune",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-plusmune",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_fTMrzE": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/Tro_Somna.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro+ Somna without Melatonin",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-plussomna-wo",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_XnJ9NX": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/Tro_Somna_w_Melatonin.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro+ Somna with Melatonin",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-plussomna",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_eBM6RP": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/Tro_Plus_Calm_Product_Photo.png",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Tro+ Calm",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "https://troscriptions.com/pages/qr/sqr-tropluscalm",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "column_cyFW3c",
+        "column_jbWXQP",
+        "column_xfD9cV",
+        "column_mhK4x8",
+        "column_V4nk6g",
+        "column_jChigh",
+        "column_WRAYYG",
+        "column_fTMrzE",
+        "column_XnJ9NX",
+        "column_eBM6RP"
+      ],
+      "name": "Multicolumn v2",
+      "settings": {
+        "image_ratio": "square",
+        "image_position": "center center",
+        "text_alignment": "center",
+        "show_divider": false,
+        "image_width": "full",
+        "icon_size": 44,
+        "card_min_height": 268,
+        "match_card_heights_desktop": false,
+        "taller_media_desktop": false,
+        "heading_in_grid_desktop": false,
+        "columns_desktop": 3,
+        "open_in_new_tab": false,
+        "heading": "QR (Quick Read) Pages of our Products",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "mobile_text_alignment": "center",
+        "columns_mobile": "1",
+        "mobile_indicator_gap": 12,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "card_border_radius": 12,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multicolumn_v2_knpJTN"
+  ]
+}

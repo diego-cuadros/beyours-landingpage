@@ -1,0 +1,155 @@
+.image-with-text-v2-alt__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: var(--image-with-text-v2-alt-grid-gap, 5.6rem);
+  align-items: start;
+}
+
+.image-with-text-v2-alt__grid--reverse {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.image-with-text-v2-alt__grid--reverse .image-with-text-v2-alt__visual {
+  order: 2;
+}
+
+.image-with-text-v2-alt__grid--reverse .image-with-text-v2-alt__content {
+  order: 1;
+}
+
+.image-with-text-v2-alt__visual {
+  padding-top: 0.4rem;
+}
+
+.image-with-text-v2-alt__panel {
+  position: relative;
+  min-height: var(--image-with-text-v2-alt-panel-height-desktop, 42rem);
+  padding: clamp(2.4rem, 3vw, 3.6rem);
+  border-radius: var(--image-with-text-v2-alt-panel-radius, 1.6rem);
+  background: var(--image-with-text-v2-alt-panel-background, #f7d799);
+  color: var(--image-with-text-v2-alt-panel-text, #111111);
+  overflow: visible;
+}
+
+.image-with-text-v2-alt__panel-copy {
+  position: relative;
+  z-index: 4;
+  max-width: min(64%, 25rem);
+}
+
+.image-with-text-v2-alt__heading {
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  color: inherit;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.image-with-text-v2-alt__panel-text {
+  margin-top: 1.4rem;
+  color: inherit;
+}
+
+.image-with-text-v2-alt__panel-text p:last-child {
+  margin-bottom: 0;
+}
+
+.image-with-text-v2-alt__image-frame {
+  position: absolute;
+  right: var(--image-with-text-v2-alt-image-offset-x, 1.8rem);
+  bottom: calc(var(--image-with-text-v2-alt-image-overlap-desktop, 2rem) * -1);
+  z-index: 3;
+  width: min(var(--image-with-text-v2-alt-image-width-desktop, 74%), 36rem);
+}
+
+.image-with-text-v2-alt__image,
+.image-with-text-v2-alt__placeholder,
+.image-with-text-v2-alt__placeholder svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-with-text-v2-alt__image {
+  filter: drop-shadow(0 1.2rem 2.4rem rgba(17, 17, 17, 0.14));
+}
+
+.image-with-text-v2-alt__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--image-with-text-v2-alt-item-gap, 2.8rem);
+  padding-top: clamp(0.2rem, 0.8vw, 0.8rem);
+}
+
+.image-with-text-v2-alt__item {
+  max-width: 56rem;
+}
+
+.image-with-text-v2-alt__item-heading {
+  margin: 0;
+  color: var(--image-with-text-v2-alt-item-heading-color, #111111);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.image-with-text-v2-alt__item-text {
+  margin-top: 0.9rem;
+  color: var(--image-with-text-v2-alt-item-text-color, #303030);
+}
+
+.image-with-text-v2-alt__item-text p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 990px) {
+  .image-with-text-v2-alt__grid,
+  .image-with-text-v2-alt__grid--reverse {
+    align-items: center;
+  }
+
+  .image-with-text-v2-alt.page-width--full-width .image-with-text-v2-alt__content {
+    padding-right: clamp(1.5rem, 4vw, 5rem);
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .image-with-text-v2-alt__grid,
+  .image-with-text-v2-alt__grid--reverse {
+    grid-template-columns: 1fr;
+    gap: 4.8rem;
+  }
+
+  .image-with-text-v2-alt__grid--reverse .image-with-text-v2-alt__visual,
+  .image-with-text-v2-alt__grid--reverse .image-with-text-v2-alt__content {
+    order: initial;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .image-with-text-v2-alt__panel {
+    min-height: var(--image-with-text-v2-alt-panel-height-mobile, 36rem);
+    padding: 2rem 2rem 8rem;
+  }
+
+  .image-with-text-v2-alt__panel-copy {
+    max-width: min(68%, 21rem);
+  }
+
+  .image-with-text-v2-alt__heading {
+    line-height: 1;
+  }
+
+  .image-with-text-v2-alt__image-frame {
+    left: var(--image-with-text-v2-alt-image-position-mobile, 50%);
+    right: auto;
+    bottom: calc(var(--image-with-text-v2-alt-image-overlap-mobile, 2rem) * -1);
+    width: min(var(--image-with-text-v2-alt-image-width-mobile, 82%), 31rem);
+    transform: translateX(var(--image-with-text-v2-alt-image-translate-mobile, -50%)) translateX(var(--image-with-text-v2-alt-image-offset-x-mobile, 0px));
+  }
+
+  .image-with-text-v2-alt__content {
+    gap: 2.4rem;
+  }
+}

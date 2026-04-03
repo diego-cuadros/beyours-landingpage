@@ -1,0 +1,354 @@
+.professional-endorsements {
+  background: rgb(var(--professional-endorsements-background));
+}
+
+.professional-endorsements__inner {
+  width: min(100%, var(--professional-endorsements-max-width));
+  margin: 0 auto;
+}
+
+.professional-endorsements .title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.professional-endorsements .title-wrapper.left {
+  align-items: flex-start;
+}
+
+.professional-endorsements .title-wrapper.center {
+  align-items: center;
+}
+
+.professional-endorsements .title-wrapper.right {
+  align-items: flex-end;
+}
+
+.professional-endorsements__header {
+  margin: 0 auto clamp(2.4rem, 4vw, 3.8rem);
+  width: 100%;
+  max-width: none;
+}
+
+.professional-endorsements__eyebrow {
+  margin: 0;
+  color: rgb(var(--professional-endorsements-eyebrow));
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.professional-endorsements__heading {
+  margin: 0;
+  color: rgb(var(--professional-endorsements-heading));
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.professional-endorsements__subheading {
+  display: block;
+  max-width: none;
+  margin: 0;
+  color: var(--professional-endorsements-subheading-color, rgba(var(--professional-endorsements-text), 0.74));
+  font-size: var(--professional-endorsements-subheading-font-size);
+  line-height: 1.45;
+}
+
+.professional-endorsements__header.center .professional-endorsements__subheading {
+  margin-inline: auto;
+}
+
+.professional-endorsements__header.right .professional-endorsements__subheading {
+  margin-left: auto;
+}
+
+.professional-endorsements__grid {
+  margin-bottom: 0;
+  column-gap: var(--professional-endorsements-card-gap);
+  row-gap: var(--professional-endorsements-card-gap);
+  --grid-horizontal-spacing: var(--professional-endorsements-card-gap);
+}
+
+.professional-endorsements__track-wrapper {
+  position: relative;
+}
+
+.professional-endorsements__component {
+  display: block;
+}
+
+.professional-endorsements__item {
+  min-width: 0;
+}
+
+.professional-endorsements__card {
+  height: 100%;
+  border: 1px solid rgba(var(--professional-endorsements-card-border), 0.9);
+  border-radius: var(--professional-endorsements-card-radius);
+  background: rgb(var(--professional-endorsements-card-surface));
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    transform var(--duration-default, 250ms) ease,
+    border-color var(--duration-default, 250ms) ease,
+    box-shadow var(--duration-default, 250ms) ease;
+}
+
+.professional-endorsements__media-wrapper {
+  width: 100%;
+}
+
+.professional-endorsements__media {
+  overflow: hidden;
+  margin: 0.1rem 0.1rem 0;
+  border-radius: var(--professional-endorsements-image-radius) var(--professional-endorsements-image-radius) 0 0;
+  background: rgba(var(--professional-endorsements-card-border), 0.28);
+}
+
+.professional-endorsements__image,
+.professional-endorsements__media img,
+.professional-endorsements__media .placeholder-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.professional-endorsements__image,
+.professional-endorsements__media img {
+  object-fit: cover;
+  object-position: var(--image-position, center top);
+  transition: transform var(--duration-long, 500ms) ease;
+}
+
+.professional-endorsements__media.media--adapt {
+  padding-bottom: var(--image-ratio-percent, 125%);
+}
+
+.professional-endorsements__image--placeholder {
+  color: rgba(var(--professional-endorsements-role), 0.45);
+}
+
+.professional-endorsements__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  padding: var(--professional-endorsements-card-padding);
+}
+
+.professional-endorsements__content.multicolumn-card__info > :nth-child(2) {
+  margin-top: 0;
+}
+
+.professional-endorsements__name,
+.professional-endorsements__role,
+.professional-endorsements__quote,
+.professional-endorsements__quote p {
+  margin: 0;
+}
+
+.professional-endorsements__name.multicolumn-card__title {
+  flex: initial;
+  width: 100%;
+  color: rgb(var(--professional-endorsements-name));
+  font-size: clamp(1.75rem, 0.24vw + 1.66rem, 1.95rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  -webkit-line-clamp: initial;
+}
+
+.professional-endorsements__role {
+  color: rgb(var(--professional-endorsements-role));
+  font-size: 1.38rem;
+  line-height: 1.45;
+}
+
+.professional-endorsements__quote {
+  margin-top: 0.7rem;
+  padding: 0;
+  border: 0;
+  border-inline-start: 0;
+  color: rgb(var(--professional-endorsements-text));
+  font-size: clamp(1.55rem, 0.12vw + 1.5rem, 1.68rem);
+  font-style: normal;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.professional-endorsements__empty {
+  padding: 2.4rem;
+  border: 1px dashed rgba(var(--professional-endorsements-card-border), 0.9);
+  border-radius: var(--professional-endorsements-card-radius);
+  color: rgb(var(--professional-endorsements-role));
+  text-align: center;
+}
+
+@media screen and (hover: hover) {
+  .professional-endorsements__card:hover {
+    transform: translateY(-0.4rem);
+  }
+
+  .professional-endorsements__card:hover .professional-endorsements__image,
+  .professional-endorsements__card:hover .professional-endorsements__media img {
+    transform: scale(1.03);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .professional-endorsements__header {
+    margin-bottom: 2.4rem;
+  }
+
+  .professional-endorsements__track-wrapper {
+    padding-inline-start: 2rem;
+    padding-inline-end: 2rem;
+  }
+
+  .professional-endorsements__grid.slider--mobile {
+    position: relative;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+  }
+
+  .professional-endorsements__grid.slider--mobile::-webkit-scrollbar {
+    display: none;
+    height: 0;
+    width: 0;
+  }
+
+  .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide {
+    width: calc(100% - 3rem);
+    max-width: calc(100% - 3rem);
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__track-wrapper {
+    overflow: hidden;
+  }
+
+  .professional-endorsements__component.is-mobile-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile {
+    display: block;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding: 1rem 0 0;
+    margin-top: -1rem;
+    margin-inline: -4rem;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile .flickity-viewport {
+    overflow: visible;
+    transition: height var(--duration-default, 250ms) ease;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide {
+    display: flex;
+    align-items: stretch;
+    height: auto;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: 1;
+    padding-bottom: 0;
+    transition:
+      opacity var(--duration-default) ease,
+      transform var(--duration-default) ease;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .multicolumn-card.professional-endorsements__card {
+    width: 100%;
+    height: auto;
+    min-height: var(--multicolumn-review-equal-card-height, 0px);
+    transform: scale(0.88);
+    transform-origin: center top;
+    transition: transform var(--duration-default) ease;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide.is-selected {
+    opacity: 1;
+    z-index: 3;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide.is-selected .professional-endorsements__card {
+    transform: scale(1);
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide.is-next,
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide.is-previous {
+    opacity: 0.55;
+    z-index: 2;
+  }
+
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide.is-next .professional-endorsements__card,
+  .professional-endorsements__component.is-mobile-slider .professional-endorsements__grid.slider--mobile > .professional-endorsements__item.slider__slide.is-previous .professional-endorsements__card {
+    transform: scale(0.95);
+  }
+
+  .professional-endorsements__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: var(--professional-endorsements-dots-gap-mobile, 0.8rem);
+    position: relative;
+    z-index: 4;
+  }
+
+  .professional-endorsements .multicolumn-review__dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 0;
+    padding: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    background-color: rgba(var(--color-foreground), 0.25);
+    opacity: 0.6;
+    transition:
+      opacity var(--duration-default) ease,
+      background-color var(--duration-default) ease;
+  }
+
+  .professional-endorsements .multicolumn-review__dot.is-active {
+    opacity: 1;
+    background-color: rgb(var(--color-foreground));
+  }
+
+  .professional-endorsements__content {
+    gap: 0.7rem;
+  }
+
+  .professional-endorsements__quote {
+    margin-top: 0.4rem;
+    line-height: 1.55;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .professional-endorsements__content {
+    padding: 1.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .professional-endorsements__card,
+  .professional-endorsements__image,
+  .professional-endorsements__media img {
+    transition: none !important;
+  }
+}

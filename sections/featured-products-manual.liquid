@@ -1,0 +1,639 @@
+{%- liquid
+  assign selected_products = section.settings.products
+  assign selected_products_count = selected_products | size
+  assign placeholder_count = 0
+  assign section_anchor_id = section.settings.section_id | handleize
+
+  if selected_products_count == 0 and request.design_mode
+    assign placeholder_count = 3
+  endif
+
+  assign render_count = selected_products_count
+  if placeholder_count > render_count
+    assign render_count = placeholder_count
+  endif
+
+  assign grid_classes = 'product-grid featured-products-manual__grid flex-grid flex-grid--rigid flex-grid--2-col'
+  if section.settings.columns_mobile == '1'
+    assign grid_classes = grid_classes | append: ' flex-grid--1-col-mobile'
+  endif
+
+  if render_count <= 1
+    assign grid_classes = grid_classes | append: ' flex-grid--1-col-tablet flex-grid--1-col-desktop'
+  elsif render_count == 2
+    assign grid_classes = grid_classes | append: ' flex-grid--2-col-tablet flex-grid--2-col-desktop'
+  else
+    assign grid_classes = grid_classes | append: ' flex-grid--3-col-tablet flex-grid--3-col-desktop'
+  endif
+-%}
+
+{%- if selected_products_count > 0 or request.design_mode -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      --section-padding-top: {{ section.settings.padding_top }}px;
+      --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+      --image-position: {{ section.settings.image_position }};
+      --color-highlight: {{ section.settings.colors_highlight.red }}, {{ section.settings.colors_highlight.green }}, {{ section.settings.colors_highlight.blue }};
+    }
+
+    #shopify-section-{{ section.id }} .loox-rating,
+    #shopify-section-{{ section.id }} .rating,
+    #shopify-section-{{ section.id }} .rating-text,
+    #shopify-section-{{ section.id }} .rating-count {
+      display: none !important;
+    }
+  {%- endstyle -%}
+
+  <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-product-grid.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'section-featured-products-manual.css' | asset_url }}" media="print" onload="this.media='all'">
+
+  {%- if settings.quick_view_enabled and section.settings.enable_quick_view -%}
+    <link rel="stylesheet" href="{{ 'section-main-product.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
+  {%- endif -%}
+
+  <noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
+  <noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
+  <noscript>{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}</noscript>
+  <noscript>{{ 'section-featured-products-manual.css' | asset_url | stylesheet_tag }}</noscript>
+
+  <div{% if section_anchor_id != blank %} id="{{ section_anchor_id }}"{% endif %} class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+    <div class="page-width">
+      <div class="title-wrapper{% if section.settings.heading == blank and section.settings.subheading == blank and section.settings.description == blank %} title-wrapper--no-heading{% endif %} {{ section.settings.heading_alignment }}">
+        <div class="featured-products-manual__intro">
+          {%- if section.settings.subheading != blank -%}
+            <p class="featured-products-manual__subheading">
+              {{ section.settings.subheading | escape }}
+            </p>
+          {%- endif -%}
+
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag }} class="title {{ section.settings.heading_size }}">
+              {%- render 'highlight-text',
+                hl_input: section.settings.heading,
+                hl_style: section.settings.highlight_style,
+                hl_enable: section.settings.enable_highlight,
+                hl_animateWrap: true
+              -%}
+            </{{ section.settings.heading_tag }}>
+          {%- endif -%}
+
+          {%- if section.settings.description != blank -%}
+            <div class="featured-products-manual__description rte">
+              {{ section.settings.description }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <ul class="{{ grid_classes }}" role="list">
+        {%- if selected_products_count > 0 -%}
+          {%- for product in selected_products limit: 3 -%}
+            {%- liquid
+              assign lazy_load = true
+              assign practitioner_only = false
+              assign practitioner_badge_text = blank
+              assign card_enable_quick_view = section.settings.enable_quick_view
+              assign first_selling_plan_id = blank
+              assign custom_price = blank
+              assign custom_compare_at_price = blank
+              assign custom_price_min = blank
+              assign custom_price_max = blank
+              assign custom_compare_at_price_min = blank
+              assign custom_compare_at_price_max = blank
+              assign pricing_exempt = false
+              assign show_from_lowest_price_card = true
+              assign has_subscription_pricing = false
+              assign subscription_price_min_cents = blank
+              assign subscription_price_max_cents = blank
+              assign discount_multiplier = blank
+              assign is_bundle_product = false
+              assign base_price_min_cents = product.price_min
+              assign base_price_max_cents = product.price_max
+
+              if product.gift_card?
+                assign pricing_exempt = true
+                assign show_from_lowest_price_card = false
+              endif
+
+              if forloop.first
+                assign lazy_load = false
+              endif
+
+              if product.tags contains 'plusline'
+                assign practitioner_only = true
+                assign practitioner_badge_text = 'For practitioners only'
+                assign card_enable_quick_view = false
+              endif
+
+              if product.variants.size == 1 and product.selling_plan_groups != blank
+                assign first_group = product.selling_plan_groups.first
+                if first_group and first_group.selling_plans != blank
+                  assign first_plan = first_group.selling_plans.first
+                  if first_plan
+                    assign first_selling_plan_id = first_plan.id
+                  endif
+                endif
+              endif
+
+              for product_collection in product.collections
+                if product_collection.handle == 'bundles'
+                  assign is_bundle_product = true
+                  break
+                endif
+              endfor
+
+              if pricing_exempt == false
+                for variant in product.variants
+                  assign first_subscription_allocation = variant.selling_plan_allocations | first
+                  if first_subscription_allocation
+                    assign has_subscription_pricing = true
+                    if subscription_price_min_cents == blank or first_subscription_allocation.price < subscription_price_min_cents
+                      assign subscription_price_min_cents = first_subscription_allocation.price
+                    endif
+                    if subscription_price_max_cents == blank or first_subscription_allocation.price > subscription_price_max_cents
+                      assign subscription_price_max_cents = first_subscription_allocation.price
+                    endif
+                  endif
+                endfor
+              endif
+
+              if pricing_exempt == false and is_bundle_product
+                if section.settings.show_bundle_discount_price and base_price_min_cents != blank and practitioner_only == false
+                  assign discount_multiplier = 100 | minus: section.settings.bundle_discount_percentage
+                  assign custom_compare_at_price = base_price_min_cents
+                  assign custom_price = custom_compare_at_price | times: discount_multiplier | divided_by: 100
+                  assign custom_compare_at_price_min = base_price_min_cents
+                  assign custom_compare_at_price_max = base_price_max_cents
+                  assign custom_price_min = custom_compare_at_price_min | times: discount_multiplier | divided_by: 100
+                  assign custom_price_max = custom_compare_at_price_max | times: discount_multiplier | divided_by: 100
+                endif
+              elsif pricing_exempt == false and section.settings.show_dtc_discount_price and practitioner_only == false
+                if has_subscription_pricing
+                  assign custom_price = subscription_price_min_cents
+                  assign custom_compare_at_price = subscription_price_min_cents
+                  assign custom_price_min = subscription_price_min_cents
+                  assign custom_price_max = subscription_price_max_cents
+                  assign custom_compare_at_price_min = subscription_price_min_cents
+                  assign custom_compare_at_price_max = subscription_price_max_cents
+                elsif base_price_min_cents != blank
+                  assign discount_multiplier = 100 | minus: section.settings.dtc_discount_percentage
+                  assign custom_price = base_price_min_cents | times: discount_multiplier | divided_by: 100
+                  assign custom_compare_at_price = custom_price
+                  assign custom_price_min = base_price_min_cents | times: discount_multiplier | divided_by: 100
+                  assign custom_price_max = base_price_max_cents | times: discount_multiplier | divided_by: 100
+                  assign custom_compare_at_price_min = custom_price_min
+                  assign custom_compare_at_price_max = custom_price_max
+                endif
+              endif
+            -%}
+            <li class="flex-grid__item">
+              {% render 'card-product-v2',
+                card_product: product,
+                card_collection: collection,
+                media_size: section.settings.image_ratio,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_quick_buy: section.settings.show_quick_buy,
+                show_vendor: section.settings.show_vendor,
+                show_rating: false,
+                show_loox_rating: false,
+                enable_quick_view: card_enable_quick_view,
+                enable_color_swatches: section.settings.enable_color_swatches,
+                enable_countdown: section.settings.enable_countdown,
+                enable_image_fill: section.settings.enable_image_fill,
+                lazy_load: lazy_load,
+                custom_badge_text: practitioner_badge_text,
+                disable_add_to_cart: practitioner_only,
+                custom_price: custom_price,
+                custom_compare_at_price: custom_compare_at_price,
+                custom_price_min: custom_price_min,
+                custom_price_max: custom_price_max,
+                custom_compare_at_price_min: custom_compare_at_price_min,
+                custom_compare_at_price_max: custom_compare_at_price_max,
+                show_from_lowest_price: show_from_lowest_price_card,
+                first_selling_plan_id: first_selling_plan_id
+              %}
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..placeholder_count) -%}
+            <li class="flex-grid__item">
+              {% render 'card-product-placeholder', media_size: section.settings.image_ratio %}
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Featured products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Select up to three products to feature in this section."
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show section divider"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID",
+      "info": "Optional anchor ID for scroll links. Example: featured-products links to #featured-products."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Featured products",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Highlight a curated selection of products anywhere across the storefront.</p>"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        },
+        {
+          "value": "span",
+          "label": "Span"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading tag"
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "1",
+      "label": "Columns on mobile"
+    },
+    {
+      "type": "header",
+      "content": "Pricing"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dtc_discount_price",
+      "default": true,
+      "label": "Show DTC price at 15% off",
+      "info": "Applies to featured products that are not in the bundles collection."
+    },
+    {
+      "type": "range",
+      "id": "dtc_discount_percentage",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "DTC discount percentage",
+      "default": 15
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle_discount_price",
+      "default": true,
+      "label": "Show bundles price at 10% off",
+      "info": "Applies to featured products that belong to the bundles collection."
+    },
+    {
+      "type": "range",
+      "id": "bundle_discount_percentage",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Bundle discount percentage",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Product cards"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "20% 0",
+          "label": "Top left"
+        },
+        {
+          "value": "top center",
+          "label": "Top center"
+        },
+        {
+          "value": "80% 0",
+          "label": "Top right"
+        },
+        {
+          "value": "20% 50%",
+          "label": "Middle left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "80% 50%",
+          "label": "Middle right"
+        },
+        {
+          "value": "20% 100%",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "80% 100%",
+          "label": "Bottom right"
+        }
+      ],
+      "default": "center center",
+      "label": "Image focal point"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_fill",
+      "default": true,
+      "label": "Enable image fill"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show secondary image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "default": true,
+      "label": "Show quick buy"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_view",
+      "default": true,
+      "label": "Enable quick view"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_swatches",
+      "default": true,
+      "label": "Enable color swatches"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_countdown",
+      "default": true,
+      "label": "Enable countdown"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "colors_highlight",
+      "label": "Highlight color",
+      "default": "#ffb503"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Highlight"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable highlighted heading",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "Marker"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "bold-underline",
+          "label": "Bold underline"
+        },
+        {
+          "value": "modern-underline",
+          "label": "Modern underline"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "Sketch underline"
+        },
+        {
+          "value": "squiggle",
+          "label": "Squiggle"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "Heavy squiggle"
+        },
+        {
+          "value": "solid-color",
+          "label": "Solid color"
+        }
+      ],
+      "default": "marker",
+      "label": "Highlight style"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["404", "article", "blog", "cart", "collection", "list-collections", "index", "metaobject", "page", "product", "search"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,382 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --careers-collage-hero-bg: {{ section.settings.background_color }};
+    --careers-collage-hero-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --careers-collage-hero-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --careers-collage-hero-muted: {{ section.settings.muted_color.red }}, {{ section.settings.muted_color.green }}, {{ section.settings.muted_color.blue }};
+    --careers-collage-hero-card: {{ section.settings.accent_color }};
+    --careers-collage-hero-card-soft: {{ section.settings.accent_soft_color }};
+    --careers-collage-hero-radius: {{ section.settings.image_radius }}px;
+    --careers-collage-hero-gap: {{ section.settings.desktop_gap }}px;
+    --careers-collage-hero-max: {{ section.settings.max_content_width }}px;
+    --color-highlight: {{ section.settings.highlight_color.red }}, {{ section.settings.highlight_color.green }}, {{ section.settings.highlight_color.blue }};
+  }
+{%- endstyle -%}
+
+{{ 'section-careers-collage-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign roles_anchor = section.settings.roles_anchor_id | default: 'open-roles' | handle
+-%}
+
+<section class="careers-collage-hero section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="careers-collage-hero__inner page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <div class="careers-collage-hero__grid">
+      <div class="careers-collage-hero__copy">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="careers-collage-hero__heading {{ section.settings.heading_size }}">
+            {%- render 'highlight-text',
+              hl_input: section.settings.heading | newline_to_br,
+              hl_style: section.settings.highlight_style,
+              hl_enable: section.settings.enable_highlight,
+              hl_animateWrap: true
+            -%}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.settings.body != blank -%}
+          <div class="careers-collage-hero__body rte">
+            {{ section.settings.body }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank -%}
+          <div class="careers-collage-hero__buttons">
+            {%- if section.settings.primary_button_label != blank -%}
+              <a class="button button--{{ section.settings.button_size }}" href="#{{ roles_anchor }}">
+                {{ section.settings.primary_button_label | escape }}
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.secondary_button_label != blank -%}
+              <a
+                class="button button--secondary button--{{ section.settings.button_size }}"
+                {% if section.settings.secondary_button_link != blank %}href="{{ section.settings.secondary_button_link }}"{% else %}aria-disabled="true"{% endif %}
+              >
+                {{ section.settings.secondary_button_label | escape }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="careers-collage-hero__visual">
+        <div class="careers-collage-hero__collage">
+          <span class="careers-collage-hero__shape careers-collage-hero__shape--top-left" aria-hidden="true"></span>
+          <span class="careers-collage-hero__shape careers-collage-hero__shape--top-right" aria-hidden="true"></span>
+          <span class="careers-collage-hero__shape careers-collage-hero__shape--bottom-right" aria-hidden="true"></span>
+          <span class="careers-collage-hero__shape careers-collage-hero__shape--bottom-left" aria-hidden="true"></span>
+
+          {%- assign hero_alt_fallback = section.settings.heading | strip_html | default: 'Careers hero image' -%}
+
+          <div class="careers-collage-hero__image-wrap careers-collage-hero__image-wrap--a{% if section.settings.image_1 == blank %} careers-collage-hero__image-wrap--empty{% endif %}">
+            {%- if section.settings.image_1 != blank -%}
+              {{
+                section.settings.image_1
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  widths: '300, 450, 600, 900, 1200',
+                  sizes: '(max-width: 749px) 42vw, (max-width: 989px) 32vw, 18vw',
+                  class: 'careers-collage-hero__image',
+                  alt: section.settings.image_1.alt | default: hero_alt_fallback
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'careers-collage-hero__placeholder placeholder' }}
+            {%- endif -%}
+          </div>
+
+          <div class="careers-collage-hero__image-wrap careers-collage-hero__image-wrap--b{% if section.settings.image_2 == blank %} careers-collage-hero__image-wrap--empty{% endif %}">
+            {%- if section.settings.image_2 != blank -%}
+              {{
+                section.settings.image_2
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'eager',
+                  widths: '300, 450, 600, 900, 1200',
+                  sizes: '(max-width: 749px) 42vw, (max-width: 989px) 32vw, 18vw',
+                  class: 'careers-collage-hero__image',
+                  alt: section.settings.image_2.alt | default: hero_alt_fallback
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'careers-collage-hero__placeholder placeholder' }}
+            {%- endif -%}
+          </div>
+
+          <div class="careers-collage-hero__image-wrap careers-collage-hero__image-wrap--c{% if section.settings.image_3 == blank %} careers-collage-hero__image-wrap--empty{% endif %}">
+            {%- if section.settings.image_3 != blank -%}
+              {{
+                section.settings.image_3
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '300, 450, 600, 900, 1200',
+                  sizes: '(max-width: 749px) 42vw, (max-width: 989px) 32vw, 18vw',
+                  class: 'careers-collage-hero__image',
+                  alt: section.settings.image_3.alt | default: hero_alt_fallback
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'careers-collage-hero__placeholder placeholder' }}
+            {%- endif -%}
+          </div>
+
+          <div class="careers-collage-hero__image-wrap careers-collage-hero__image-wrap--d{% if section.settings.image_4 == blank %} careers-collage-hero__image-wrap--empty{% endif %}">
+            {%- if section.settings.image_4 != blank -%}
+              {{
+                section.settings.image_4
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '300, 450, 600, 900, 1200',
+                  sizes: '(max-width: 749px) 42vw, (max-width: 989px) 32vw, 18vw',
+                  class: 'careers-collage-hero__image',
+                  alt: section.settings.image_4.alt | default: hero_alt_fallback
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'careers-collage-hero__placeholder placeholder' }}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Careers collage hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Help Us Democratize\nEnlightenment —\nOne Formula at a Time"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h1",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p><strong>Troscriptions®</strong> creates precision-dosed, physician-formulated, pharmaceutical-grade formulas for people who refuse to settle for vague wellness and empty promises.</p><p>We’re an <strong>Inc. 5000 company</strong> building the health optimization brand we wish existed: <strong>serious science, playful execution, and radical conscientiousness baked into everything we do.</strong></p>"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "View open roles"
+    },
+    {
+      "type": "text",
+      "id": "roles_anchor_id",
+      "label": "Open roles anchor id",
+      "default": "open-roles"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Send us your resumé"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button size",
+      "default": "medium",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Top left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Top right image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Bottom left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Bottom right image"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#171615"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#373331"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted color",
+      "default": "#5f5a56"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#0d7b82"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#c9f4ea"
+    },
+    {
+      "type": "color",
+      "id": "accent_soft_color",
+      "label": "Accent soft color",
+      "default": "#e6fbf4"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width container",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable heading highlight",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "label": "Highlight style",
+      "default": "solid-color",
+      "options": [
+        { "value": "solid-color", "label": "Solid color" },
+        { "value": "marker", "label": "Marker" },
+        { "value": "underline", "label": "Underline" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 960,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop content max width",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "desktop_gap",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop column gap",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Careers collage hero"
+    }
+  ]
+}
+{% endschema %}

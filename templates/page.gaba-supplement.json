@@ -1,0 +1,860 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "slideshow_rK6Mrr": {
+      "type": "slideshow",
+      "blocks": {
+        "image_99648p": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/GABA_Supplement_1.jpg",
+            "image_position": "80% 50%",
+            "text_box_position": "middle-left",
+            "subheading": "",
+            "subheading_size": "h5",
+            "heading": "GABA Supplements",
+            "heading_size": "h0",
+            "heading_tag": "h2",
+            "text": "Why they may not be your best option and what to use instead",
+            "text_size": "typeset2",
+            "button_label": "",
+            "button_link": "",
+            "button_size": "medium",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_size": "medium",
+            "button_alt_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "image_99648p"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "slideshow_type": "legacy",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "autorotate": false,
+        "autorotate_speed": 5,
+        "full_width": true,
+        "image_behavior": "none",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "300px",
+        "show_text_below": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "colors_overlay": "#000000",
+        "colors_overlay_opacity": 0,
+        "colors_navigation_text": "#ffffff",
+        "colors_navigation_background": "#1a1b18",
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "rich_text_NgpMzJ": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "text_rirJNc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>GABA is an neurotransmitter that decreases the firing of neurons in the brain, relaxing and chilling out your brain (and you). But there is a <strong>paradox</strong> and a <strong>problem</strong>.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "text_8fpbb9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The <strong>paradox</strong>? You have to get excited before you can chill out. This is because GABA is made in the brain from glutamate, our primary excitatory neurotransmitter. </p><p>The <strong>problem</strong>? Despite what your<strong> GABA supplements</strong> may tell you, GABA itself can’t get across the blood- brain barrier (BBB) to work its magic.  </p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "text_rirJNc",
+        "text_8fpbb9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "stacked",
+        "content_max_width": 980,
+        "fill_content_width": false,
+        "content_horizontal_position": "match_alignment",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 28,
+        "padding_bottom": 60
+      }
+    },
+    "custom_liquid_fgry8D": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "#do_gaba .flex-display {display: grid !important; grid-template-columns: minmax(0, 1fr) 260px; gap: 48px; align-items: start !important;}",
+        "#do_gaba .flex-display > div:first-child {margin-right: 0 !important;}",
+        "#do_gaba .article__meta-author {display: flex; flex-direction: column; align-items: flex-start; gap: 14px;}",
+        "#do_gaba .lazy-image {width: 140px; height: 140px; padding-top: 0 !important; border-radius: 12px; overflow: hidden;}",
+        "#do_gaba .lazy-image img {width: 100%; height: 100%; object-fit: cover; display: block;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"do_gaba\" class=\"card card__text \n           gutter--xlarge  \n           \n        spacing--large remove-empty-space\"> \n\n<div class=\"flex-display\" style=\"align-items: center;\n  justify-content: center;\">\n<div style=\"margin-right: 50px;\">\n<div class=\"h3\">Do GABA Supplements Work? A Critical View</div>\n<p >Several drugs mimic or increase GABA in the brain, including  benzodiazepines and gabapentin, but taking GABA directly as a supplement won’t  work for most people. This is because GABA is made in the brain and cannot easily get across the blood-brain barrier (BBB) when taken directly, despite what your  supplement company may tell you.</p>\n\n<p >Remember the “problem” above? Well, this is it! Another problem is that most of these pharmaceutical drugs that modulate GABA receptors are highly addictive and/or can induce tolerance and withdrawal when you stop them. But there’s good news! Much safer solutions are available, including N-nicotinoyl-GABA and Kava, which enhance GABA in novel ways (more below!).</p>\n</div>\n<div><div class=\"grid grid--layout \"><div class=\"article__meta-author\">\n                \n\n                <div class=\"card__icon-margin card__icon-size--regular\" id=\"element-image_KN7exw-0\"><figure class=\"lazy-image lazy-image--animation lazyloaded\" data-ratio=\"\" style=\"padding-top: 100%\">\n                      <img src=\"//troscriptions.com/cdn/shop/files/scott-sherr-updated.jpg?crop=center&amp;height=120&amp;v=1679455060&amp;width=120\" alt=\"\" srcset=\"\n                          //troscriptions.com/cdn/shop/files/scott-sherr-updated.jpg?crop=center&amp;height=120&amp;v=1679455060&amp;width=120 120w\n                           ,//troscriptions.com/cdn/shop/files/scott-sherr-updated.jpg?crop=center&amp;height=240&amp;v=1679455060&amp;width=240 240w, \n                           ,//troscriptions.com/cdn/shop/files/scott-sherr-updated.jpg?crop=center&amp;height=360&amp;v=1679455060&amp;width=360 360w, \n                           ,//troscriptions.com/cdn/shop/files/scott-sherr-updated.jpg?crop=center&amp;height=480&amp;v=1679455060&amp;width=480 480w, \n                           ,//troscriptions.com/cdn/shop/files/scott-sherr-updated.jpg?crop=center&amp;height=640&amp;v=1679455060&amp;width=640 640w, \n                        \" loading=\"lazy\" sizes=\"(max-width: 474px) 120px, 160px\" width=\"120\" height=\"120\" onload=\"this.parentNode.classList.add('lazyloaded')\">\n                    </figure></div>\n\n                <div class=\"spacing--small remove-empty-space\"><div>\n                      <h2 class=\"h5\" style=\"margin-bottom:0;\"><span class=\"text-animation--underline\">Dr. Scott Sherr</span></h2>\n                    </div><div class=\"text-size--small text-color--opacity\" style=\"min-width: 250px; max-width: 350px;\">Dr. Scott Sherr is a Board-Certified Internal Medicine Physician Certified to Practice Health Optimization Medicine (HOMe), a specialist in Hyperbaric Oxygen Therapy (HBOT), and COO of Troscriptions (a Smarter Not Harder company). His clinical telepractice includes HOMe as its foundation alongside an integrative approach to HBOT that includes cutting edge and dynamic HBOT protocols, comprehensive testing (using the HOMe framework), targeted supplementation, personal practices, synergistic technologies (new, ancient, psychedelic), and more.</div></div>\n              </div>\n          </div></div>\n</div>\n</div>",
+        "full_width": false,
+        "show_divider": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "featured_product_Lnx68H": {
+      "type": "featured-product",
+      "blocks": {
+        "text_MeHVpf": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "<strong>A GABA Alternative for Anxiousness and Stress</strong>",
+            "text_style": "body",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "title_a7AwcL": {
+          "type": "title",
+          "settings": {
+            "title_size": "h2",
+            "title_tag": "h2",
+            "show_price": false,
+            "price_size": "medium"
+          }
+        },
+        "price_7CgEt7": {
+          "type": "price",
+          "settings": {
+            "price_size": "medium",
+            "show_badges": true,
+            "sale_badge_basis": "auto"
+          }
+        },
+        "custom_liquid_ecemEG": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p><a href=\"https://troscriptions.com/products/trocalm\" style=\"text-decoration: underline;\">Tro Calm</a> is our precision-dosed, pharmaceutical-grade, and physician-formulated buccal troche that will  help you take the edge off, chill out, and quiet your mind. It has two ingredients that modulate the brain’s  GABAergic system:</p>"
+          }
+        },
+        "custom_liquid_nhJyHq": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<br><ul style=\"list-style-type: disc; list-style-position: inside; margin-top: -10px; padding-left: 20px;\">\n  <li><a href=\"https://troscriptions.com/blogs/main/nicotinoyl-gaba\" style=\"  text-decoration: underline;\">N-nicotinoyl-GABA</a>, a vitamin B3 attached to a GABA molecule, easily crosses the BBB and increases GABA  directly. This is called orthosteric modulation of the GABA receptor.</li>\n  <li><a href=\"https://troscriptions.com/blogs/main/kava\" style=\"  text-decoration: underline;\">Kava</a> binds to the GABA receptor at a separate site (allosteric modulation) and increases the binding of  GABA.</li>\n</ul>"
+          }
+        },
+        "custom_liquid_YHAt4L": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<br><p>When used as directed, these ingredients work synergistically and safely at low doses without risk of  dependence or tolerance. Tro Calm also contains <a href=\"https://troscriptions.com/blogs/main/cannabidiol-cbd\" style=\"  text-decoration: underline;\">CBD</a> and <a href=\"https://troscriptions.com/blogs/main/cannabigerol-cbg\" style=\" text-decoration: underline;\">CBG</a>, which modulate the GABergic and  endocannabinoid systems.</p> <p>The result of this novel formula? 1⁄4 troche will take the edge off and you’ll perform better, 1⁄2 troche and  you’ll be more chill (think a glass or two of wine without the downside), 3⁄4 to 1 full troche for full relaxation,  full quieting of the mind, and deeper sleep.</p>"
+          }
+        },
+        "variant_picker_9rCDiF": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "swatch_source": "variant",
+            "swatch_type": "round",
+            "enable_swatch_unavailable_click": false,
+            "size_chart": ""
+          }
+        },
+        "buy_buttons_BfhQ3M": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "share_kqeUtC": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "read_more_jKycTJ": {
+          "type": "read_more",
+          "settings": {
+            "show_icon": false
+          }
+        }
+      },
+      "block_order": [
+        "text_MeHVpf",
+        "title_a7AwcL",
+        "price_7CgEt7",
+        "custom_liquid_ecemEG",
+        "custom_liquid_nhJyHq",
+        "custom_liquid_YHAt4L",
+        "variant_picker_9rCDiF",
+        "buy_buttons_BfhQ3M",
+        "share_kqeUtC",
+        "read_more_jKycTJ"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "trocalm",
+        "layout": "media_first",
+        "full_width": false,
+        "show_divider": false,
+        "show_featured_media": false,
+        "hide_variants": false,
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "image_ratio": "square",
+        "image_position": "center center",
+        "enable_layered_images": false,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "featured_product_PLgU9c": {
+      "type": "featured-product",
+      "blocks": {
+        "text_rUjcMt": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "<strong>A GABA Alternative for Sleep</strong>",
+            "text_style": "body",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "title_WPj7Ht": {
+          "type": "title",
+          "settings": {
+            "title_size": "h2",
+            "title_tag": "h2",
+            "show_price": false,
+            "price_size": "medium"
+          }
+        },
+        "price_KA46HH": {
+          "type": "price",
+          "settings": {
+            "price_size": "medium",
+            "show_badges": true,
+            "sale_badge_basis": "auto"
+          }
+        },
+        "text_jaHmJ4": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "If sleep is what you're after, Tro Zzz offers a comprehensive approach to enhancing sleep quality. Unlike traditional GABA supplements that may struggle with efficient absorption and crossing the blood- brain barrier, Tro Zzz's formulation contains several ingredients that enhance the GABA system, including honokiol from magnolia bark and agarin, from the fly agaric mushroom. These two compounds easily cross the blood- brain barrier and work synergistically, supporting your natural sleep cycles.",
+            "text_style": "body",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_eqjk7W": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "text": "With Tro Zzz, you will fall asleep faster, enjoy a deeper sleep for longer periods, and effortlessly returning to sleep if you wake during the night. It is an effective alternative to ordinary GABA supplements, providing a direct, efficient path to improved sleep induction and maintenance.",
+            "text_style": "body",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "custom_liquid_wM3ybt": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p><a href=\"https://troscriptions.com/products/tro-zzz\" style=\"  text-decoration: underline;\">Learn more about Tro Zzz here</a> and how it can help you wake up feeling rejuvenated and ready to conquer\nyour day. </p>"
+          }
+        },
+        "variant_picker_eMDwHy": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "swatch_source": "variant",
+            "swatch_type": "round",
+            "enable_swatch_unavailable_click": false,
+            "size_chart": ""
+          }
+        },
+        "buy_buttons_9FrJT4": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "share_6FLMaY": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "read_more_xf4hnX": {
+          "type": "read_more",
+          "settings": {
+            "show_icon": false
+          }
+        }
+      },
+      "block_order": [
+        "text_rUjcMt",
+        "title_WPj7Ht",
+        "price_KA46HH",
+        "text_jaHmJ4",
+        "text_eqjk7W",
+        "custom_liquid_wM3ybt",
+        "variant_picker_eMDwHy",
+        "buy_buttons_9FrJT4",
+        "share_6FLMaY",
+        "read_more_xf4hnX"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "tro-zzz",
+        "layout": "media_first",
+        "full_width": false,
+        "show_divider": false,
+        "show_featured_media": false,
+        "hide_variants": false,
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "image_ratio": "square",
+        "image_position": "center center",
+        "enable_layered_images": false,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "video_DBkJc9": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=FBlJVJZbVs8",
+        "cover_image": "shopify://shop_images/gaba.jpg",
+        "description": "",
+        "full_width": false,
+        "show_divider": false,
+        "heading": "Our GABA Podcast Episode",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "featured_blog_v2_manual_cmYMyc": {
+      "type": "featured-blog-v2-manual",
+      "blocks": {
+        "post_efGxGe": {
+          "type": "post",
+          "settings": {
+            "article": "main/7-ways-to-naturally-increase-gaba"
+          }
+        },
+        "post_fxGz9i": {
+          "type": "post",
+          "settings": {
+            "article": "main/nicotinoyl-gaba"
+          }
+        },
+        "post_6pBiVD": {
+          "type": "post",
+          "settings": {
+            "article": "main/is-gaba-the-key-to-meditation"
+          }
+        },
+        "title_Knmngw": {
+          "type": "title",
+          "settings": {
+            "show_date": false,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        }
+      },
+      "block_order": [
+        "post_efGxGe",
+        "post_fxGz9i",
+        "post_6pBiVD",
+        "title_Knmngw"
+      ],
+      "name": "Featured blog (v2 manual)",
+      "settings": {
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "primary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "View all",
+        "view_all_link": "",
+        "show_divider": false,
+        "heading": "Our GABA Articles",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "multicolumn_v2_MF8bdC": {
+      "type": "multicolumn-v2",
+      "blocks": {
+        "column_nHqJT3": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "<strong>Why our Buccal Troches are the Best GABA Supplement Alternatives</strong>",
+            "title_size": "h2",
+            "text": "<p>While it's well-understood that many GABA supplements struggle to cross the blood-brain barrier (BBB) effectively, a solution stands out. Discover the advantages of Buccal Troches which contain novel ingredients which enhance the GABA system via orthosteric and allosteric compounds. </p><p>Let us explain...</p><p>Orthosteric compounds bind directly to the GABA site on the GABA receptor. Nicotinoyl-GABA (Tro Calm) and Agarin (Tro Zz) both do this. Allosteric compounds bind to a separate site on the GABA receptor, enhancing GABA binding. In Tro Calm, Kava, CBD, and CBG perform this role. In Tro Zzz, there is honokiol, CBD, and CBN make the GABA magic happen. </p><h6>There is no other company on the planet has discovered the power of this combination! </h6>",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "column_nHqJT3"
+      ],
+      "name": "Multicolumn v2",
+      "settings": {
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "text_alignment": "left",
+        "show_divider": false,
+        "image_width": "full",
+        "icon_size": 44,
+        "card_min_height": 268,
+        "match_card_heights_desktop": true,
+        "taller_media_desktop": false,
+        "heading_in_grid_desktop": false,
+        "columns_desktop": 3,
+        "open_in_new_tab": false,
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "mobile_text_alignment": "center",
+        "columns_mobile": "1",
+        "mobile_indicator_gap": 12,
+        "mobile_card_min_height": 0,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "card_border_radius": 12,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "image_with_text_v2_X8aJfK": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_QpAeRy": {
+          "type": "heading",
+          "settings": {
+            "heading": "Personalized Dosing",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_dqTNtj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every person is unique, and so is their optimal dose of GABA. We recognize this individuality, which is why our troches is scored. This design makes it effortless for users to split the troche and customize their dosage based on personal  preference and response.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_QpAeRy",
+        "text_dqTNtj"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/precision_dosed.png",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 10,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_mobile_padding": false,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "rich_text_g9rYtt": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_FmeD6i": {
+          "type": "heading",
+          "settings": {
+            "heading": "GABA Benefits and Side Effects",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "text_HCeCNn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>GABA supplements have been explored for their potential to support mental and physical health by promoting relaxation, improving sleep, and reducing anxiety. However, users should be aware of possible side effects, which can range from mild digestive issues to more pronounced drowsiness or muscle weakness. It's crucial to consider these factors when deciding to use GABA supplements as part of a wellness or healing regimen</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_FmeD6i",
+        "text_HCeCNn"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "stacked",
+        "content_max_width": 980,
+        "fill_content_width": false,
+        "content_horizontal_position": "match_alignment",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_Pj6xBw": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div class=\"h4\" style=\"text-align:center;\">Warning: Extreme caution is recommended if pairing GABA supplements with drugs such as  benzodiazepines and alcohol, as such combinations can be life-threatening.</div>",
+        "full_width": false,
+        "show_divider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_yRcyFr": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_Rbmhmy": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Conclusion on GABA Supplements",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "text_FRyKBg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Given the limitations associated with traditional GABA supplements, particularly their difficulty in crossing  the blood-brain barrier effectively, buccal troches emerge as a superior alternative, especially when they contain allosteric and orthosteric compounds that enhance GABA. </p><p>Buccal troches allow direct absorption into the bloodstream, bypassing the digestive system and enhancing bioavailability. This delivery method not only maximizes the potential benefits of GABA without the common side effects associated with oral supplements but also offers a more efficient and user-friendly approach to leveraging the calming effects of GABA. </p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "button_MVfnXh": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "What's a Troche",
+            "button_link": "shopify://pages/whats-a-troche",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false,
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_Rbmhmy",
+        "text_FRyKBg",
+        "button_MVfnXh"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "stacked",
+        "content_max_width": 980,
+        "fill_content_width": false,
+        "content_horizontal_position": "match_alignment",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq_v2_x9Wxfn": {
+      "type": "faq-v2",
+      "blocks": {
+        "question_gnVw4e": {
+          "type": "question",
+          "settings": {
+            "title": "How does GABA work?",
+            "text": "<p>GABA works by binding to GABA receptors in the brain, inhibiting neural activity, which can lead to decreased anxiety, enhanced mood,  better sleep, and a feeling of calm. Supplements that increase GABA are a great option for those looking to naturally manage stress and anxiety levels. But remember: GABA itself doesn’t cross the blood- brain barrier. Tro Calm and Tro Zzz have proven ingredients that enhance the GABA system in novel ways, easily crossing the blood-brain barrier. </p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_V877CB": {
+          "type": "question",
+          "settings": {
+            "title": "How long does a GABA supplement stay in my system?",
+            "text": "<p>Supplements that increase GABA have effects that last several hours, with variability depending on individual metabolism and the specific GABA supplement dosage. Most users feel improvements within 4 to 6 hours after ingestion.  Remember that most direct GABA supplementation wil have no or little effect. </p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_XkfgbW": {
+          "type": "question",
+          "settings": {
+            "title": "Can GABA supplements cause liver damage?",
+            "text": "<p>There is no significant evidence indicating that supplements that increase GABA directly cause liver damage when taken at recommended doses. However, please consult your healthcare provider before starting/stopping any supplements or medications.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_VzbtiT": {
+          "type": "question",
+          "settings": {
+            "title": "Does GABA cross the blood-brain barrier?",
+            "text": "<p>GABA's ability to cross the blood-brain barrier is limited, raising questions about the effectiveness  of some GABA supplements for anxiety, stress, sleep, or any other purported benefit. This has led to the exploration of compounds that increase GABA indirectly, such as Kava (in Tro Calm) Honokiol, and Agarain (in Tro Zzz).</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_HqyNiV": {
+          "type": "question",
+          "settings": {
+            "title": "Is it OK to take GABA regularly?",
+            "text": "<p>Regularly taking supplements that increase GABA or having foods that contain GABA is considered safe for most people, especially when following the recommended supplement  dosage. Consistent use may lead to sustained benefits for managing stress and enhancing sleep  quality. </p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_qADQbF": {
+          "type": "question",
+          "settings": {
+            "title": "What is the downside of taking GABA?",
+            "text": "<p>The primary downside to taking supplements that increase GABA might include potential side effects such as drowsiness, digestive discomfort, headaches, and lowering of blood pressure. Furthermore, the challenge of  crossing the blood-brain barrier will affect the efficacy of direct GABA supplemenation. </p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_M8GpTe": {
+          "type": "question",
+          "settings": {
+            "title": "Does GABA make you sleepy?",
+            "text": "<p>GABA taken directly will unlikely have a major effect as GABA does not cross the blood-brain barrier. However, ingredients in Tro Calm were designed to be relaxing and not sedating, using several ingredients that enhance GABA in novel ways. Tro Zzz contains GABA-enhancing ingredients that will make you sleep...that's why it is for sleep! </p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "question_gnVw4e",
+        "question_V877CB",
+        "question_XkfgbW",
+        "question_VzbtiT",
+        "question_HqyNiV",
+        "question_qADQbF",
+        "question_M8GpTe"
+      ],
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "narrow": false,
+        "secondary_background": false,
+        "show_divider": false,
+        "heading": "FAQs",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "faq_content_source": "manual",
+        "metafield_source_product": "",
+        "metafield_namespace": "custom",
+        "metafield_key": "faqs",
+        "icon_corner_radius": 8,
+        "use_custom_question_typography": true,
+        "question_heading_size": "h3",
+        "question_font_style": "normal",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_rK6Mrr",
+    "rich_text_NgpMzJ",
+    "custom_liquid_fgry8D",
+    "featured_product_Lnx68H",
+    "featured_product_PLgU9c",
+    "video_DBkJc9",
+    "featured_blog_v2_manual_cmYMyc",
+    "multicolumn_v2_MF8bdC",
+    "image_with_text_v2_X8aJfK",
+    "rich_text_g9rYtt",
+    "custom_liquid_Pj6xBw",
+    "rich_text_yRcyFr",
+    "faq_v2_x9Wxfn"
+  ]
+}

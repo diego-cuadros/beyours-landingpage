@@ -1,0 +1,273 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "content_scrollspy_KjGLRV": {
+      "type": "content-scrollspy",
+      "name": "t:sections.content_scrollspy.presets.name",
+      "settings": {
+        "heading_selector": ".product__heading, h2.title",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "active_color": "#1d428a",
+        "border_color": "#1d428a",
+        "enable_animations": true,
+        "animation_threshold": 0.6,
+        "hide_on_scroll_up": true,
+        "show_scroll_indicator": true
+      }
+    },
+    "main": {
+      "type": "main-product-v2",
+      "blocks": {
+        "c3859847-75da-421a-8890-a0b32e290e91": {
+          "type": "breadcrumb",
+          "disabled": true,
+          "settings": {
+            "text_style": "uppercase",
+            "show_divider": true
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "h0",
+            "show_price": false,
+            "price_size": "medium"
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": "medium",
+            "show_badges": true,
+            "sale_badge_basis": "auto"
+          }
+        },
+        "countdown": {
+          "type": "countdown",
+          "settings": {
+            "heading": "Hurry up ! Sale end in:",
+            "number_size": "compact",
+            "colors_heading": "#da3f3f",
+            "colors_text": "#da3f3f",
+            "colors_background": "#ffeeee"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "swatch_source": "variant",
+            "swatch_type": "round",
+            "enable_swatch_unavailable_click": false,
+            "size_chart": ""
+          }
+        },
+        "trust_points": {
+          "type": "trust_points",
+          "settings": {}
+        },
+        "b6e55313-9929-4132-a01e-2fdd52057e32": {
+          "type": "description",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "inventory_status": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 20,
+            "show_inventory_transfer": true,
+            "color_scheme": "accent-3"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "sticky_cart": {
+          "type": "sticky_cart",
+          "disabled": true,
+          "settings": {
+            "show_quantity_selector": false
+          }
+        }
+      },
+      "block_order": [
+        "c3859847-75da-421a-8890-a0b32e290e91",
+        "title",
+        "rating",
+        "price",
+        "countdown",
+        "variant_picker",
+        "trust_points",
+        "b6e55313-9929-4132-a01e-2fdd52057e32",
+        "buy_buttons",
+        "inventory_status",
+        "share",
+        "sticky_cart"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "media_position": "left",
+        "media_size": "medium",
+        "gallery_layout": "stacked",
+        "image_ratio": "square",
+        "show_featured_media": true,
+        "show_thumbnails": true,
+        "hide_variants": true,
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "mobile_image_ratio": "square",
+        "show_mobile_thumbnails": true,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "guarantees_6QwJRK": {
+      "type": "guarantees",
+      "blocks": {
+        "guarantee_Mttw3j": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "star",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "custom_icon": "",
+            "title": "Physician Formulated",
+            "title_size": "h4",
+            "text": "<p>Our team isn't just built on expertise - it's powered by real-world clinical application. We have 4 physicians on the team who use Troscriptions® in their practice.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_NFNy3J": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "globe",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "custom_icon": "",
+            "title": "Pharmaceutical Grade",
+            "title_size": "h4",
+            "text": "<p>We traverse the globe to create, craft and discover groundbreaking, effective ingredients, subjecting each one to rigorous testing for unparalleled purity and potency.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_XAjjf3": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "recycle",
+            "icon_size": "large",
+            "image": "shopify://shop_images/pharmaceutical_grade_aa8d1e27-f62e-4ac4-911c-df7fbbd6dd60.png",
+            "custom_icon": "",
+            "title": "Precision Dosed",
+            "title_size": "h4",
+            "text": "<p>All ingredients are evenly distributed and carefully calibrated into our formulas. Plus, our troches are scored to help you easily find your unique dosage.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_P6CFTU": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "map_pin",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Made in the USA",
+            "title_size": "h4",
+            "text": "<p>We ensure uncompromising standards and superior quality. Our products are meticulously created, clinically tested, and crafted with utmost care, right here in the USA.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_Mttw3j",
+        "guarantee_NFNy3J",
+        "guarantee_XAjjf3",
+        "guarantee_P6CFTU"
+      ],
+      "name": "Why Tro",
+      "settings": {
+        "layout": "default",
+        "column_alignment": "center",
+        "horizontal_content": false,
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 4,
+        "heading": "Why Troscriptions®?",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "product_list_limit": 5,
+        "show_divider": false,
+        "heading": "Perfect Pairings For Your Gift Card",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "image_ratio": "square",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "content_scrollspy_KjGLRV",
+    "main",
+    "guarantees_6QwJRK",
+    "product-recommendations"
+  ]
+}

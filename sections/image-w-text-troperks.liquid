@@ -1,0 +1,1788 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile | default: section.settings.padding_top }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: section.settings.padding_bottom }}px;
+    --image-with-text-v2-image-radius: {{ section.settings.image_corner_radius }}px;
+    --image-with-text-v2-heading-text-gap: {{ section.settings.heading_text_gap }}px;
+    --image-with-text-v2-hanging-quote-size: 5rem;
+    --image-with-text-v2-hanging-quote-offset: clamp(1.4rem, 2vw, 2.4rem);
+    --image-with-text-v2-hanging-quote-color: {{ section.settings.hanging_quote_color | default: '#9ca3af' }};
+    --image-with-text-v2-full-width-max-content: {{ section.settings.full_width_max_content_width }}px;
+    --image-with-text-v2-full-width-image-padding: {{ section.settings.full_width_image_padding }}px;
+    --image-with-text-v2-image-max-width: {% if section.settings.image_max_width > 0 %}{{ section.settings.image_max_width }}px{% else %}100%{% endif %};
+    {%- if section.settings.image != blank %}
+      --image-ratio-percent: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;
+      --image-position: {{ section.settings.image_position }};
+    {% endif -%}
+    {%- if section.settings.use_custom_colors %}
+      --gradient-background: {% if section.settings.gradient_background != blank %}{{ section.settings.gradient_background }}{% else %}{{ section.settings.colors_background }}{% endif %};
+      --color-background: {{ section.settings.colors_background.red }}, {{ section.settings.colors_background.green }}, {{ section.settings.colors_background.blue }};
+      --color-foreground: {{ section.settings.colors_text.red }}, {{ section.settings.colors_text.green }}, {{ section.settings.colors_text.blue }};
+      --color-link: var(--color-foreground);
+      --color-border: var(--color-foreground);
+      --color-heading: var(--color-foreground);
+      --color-button-background: {{ section.settings.colors_button_background.red }}, {{ section.settings.colors_button_background.green }}, {{ section.settings.colors_button_background.blue }};
+      --color-button-text: {{ section.settings.colors_button_label.red }}, {{ section.settings.colors_button_label.green }}, {{ section.settings.colors_button_label.blue }};
+      --color-button-border: var(--color-button-background);
+      --color-shadow: var(--color-foreground);
+    {% endif -%}
+    --shadow-opacity: 0.3;
+    --color-highlight: {{ section.settings.colors_highlight.red }}, {{ section.settings.colors_highlight.green }}, {{ section.settings.colors_highlight.blue }};
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes {
+    position: relative;
+    padding-inline: var(--image-with-text-v2-hanging-quote-offset);
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__subheading {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__content > :is(.image-with-text__heading, .image-with-text__subheading) + .image-with-text__text {
+    margin-top: var(--image-with-text-v2-heading-text-gap);
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.6rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__content > .image-with-text__social-stats {
+    margin-top: var(--image-with-text-v2-social-stats-margin-top, 2rem);
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: rgba(var(--color-highlight), 0.12);
+    color: rgb(var(--color-highlight));
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stat-icon .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stat-text {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stat-value {
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__social-stat-label {
+    opacity: 0.72;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__content.center .image-with-text__social-stats,
+  #shopify-section-{{ section.id }} .image-with-text__content.mobile-center .image-with-text__social-stats {
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__content.right .image-with-text__social-stats,
+  #shopify-section-{{ section.id }} .image-with-text__content.mobile-right .image-with-text__social-stats {
+    justify-content: flex-end;
+  }
+
+  #shopify-section-{{ section.id }} a.image-with-text__social-stat:hover {
+    opacity: 0.8;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text.page-width--full-width .image-with-text__media-item {
+    padding: var(--image-with-text-v2-full-width-image-padding);
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__media-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__media-item > .media-wrapper {
+    width: 100%;
+    max-width: min(100%, var(--image-with-text-v2-image-max-width));
+    border-radius: var(--image-with-text-v2-image-radius);
+    overflow: hidden;
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__media-frame {
+    width: 100%;
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__media-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__grid--content-only {
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__grid--content-only > .flex-grid__item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__grid--content-only .image-with-text__content {
+    max-width: min(100%, 76rem);
+    margin-inline: auto;
+    padding-inline: clamp(1.5rem, 4vw, 7rem);
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes > *:first-child,
+  #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes > *:last-child {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes > *:first-child::before {
+    content: '“';
+    position: absolute;
+    left: calc(var(--image-with-text-v2-hanging-quote-offset) * -1);
+    top: -0.35em;
+    font-size: var(--image-with-text-v2-hanging-quote-size);
+    line-height: 1;
+    color: var(--image-with-text-v2-hanging-quote-color);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes > *:last-child::after {
+    content: '”';
+    position: absolute;
+    right: calc(var(--image-with-text-v2-hanging-quote-offset) * -0.9);
+    bottom: -0.55em;
+    font-size: var(--image-with-text-v2-hanging-quote-size);
+    line-height: 1;
+    color: var(--image-with-text-v2-hanging-quote-color);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-action-button-wrapper {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-action-button {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-action-button.working {
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-action-button .button__preloader {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-action-button.working .button__text {
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-action-button.working .button__preloader {
+    display: flex;
+  }
+
+  #shopify-section-{{ section.id }} .button__preloader-element {
+    width: 2.2rem;
+    height: 2.2rem;
+    animation: troperks-rotate 1.4s linear infinite;
+  }
+
+  #shopify-section-{{ section.id }} .button__preloader-element circle {
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    animation: troperks-dash 1.4s ease-in-out infinite;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-disclaimer-text {
+    opacity: 0.8;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-disclaimer-text p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-final-message {
+    margin-top: 2rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-revealed-code {
+    margin-top: 2rem;
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+    background: rgba(var(--color-highlight), 0.12);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-revealed-code h4 {
+    margin: 0 0 0.8rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-revealed-code p {
+    margin: 0;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-revealed-code a {
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-template {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-products {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-product {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: 1.2rem;
+    padding: 1rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-product-image {
+    border-radius: 0.8rem;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.05);
+    aspect-ratio: 1;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-product-image img,
+  #shopify-section-{{ section.id }} .troperks-subscription-product-image .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-product-title {
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-product-price {
+    opacity: 0.8;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-subscription-cta {
+    margin-top: 1.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .product-popup-modal.troperks-theme-modal {
+    box-sizing: border-box;
+    opacity: 0;
+    position: fixed;
+    visibility: hidden;
+    z-index: -1;
+    margin: 0 auto;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: url(cross.svg), url(cross.png), zoom-out;
+    background-color: rgba(var(--color-overlay), 0.5);
+    transition: opacity var(--duration-default) ease;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .product-popup-modal.troperks-theme-modal {
+      align-items: center;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .product-popup-modal.troperks-theme-modal[open] {
+    opacity: 1;
+    visibility: visible;
+    z-index: 101;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__content {
+    background-color: rgb(var(--color-background));
+    margin: 0 auto;
+    position: relative;
+    cursor: auto;
+    max-width: 72rem;
+    min-width: 36rem;
+    min-height: 28rem;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__content-info {
+    padding: 2.5rem 1.5rem;
+    max-height: 80vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__content-info {
+      padding: 3rem 4.5rem;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__content-info::-webkit-scrollbar {
+    appearance: none;
+    width: 0.9rem;
+    background-clip: padding-box;
+    border: 0.3rem solid transparent;
+    border-radius: 1.6rem;
+    background-color: rgba(var(--color-border), 0.3);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__content-info::-webkit-scrollbar-thumb {
+    border: 0.3rem solid transparent;
+    background-clip: padding-box;
+    border-radius: 1.6rem;
+    background-color: rgb(var(--color-border));
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    height: 4.4rem;
+    width: 4.4rem;
+    border-radius: 50%;
+    color: rgb(var(--color-foreground));
+    background-color: rgb(var(--color-background));
+    box-shadow: 0 0 4rem rgba(var(--color-foreground), 0.2);
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__content {
+      max-width: 100%;
+      min-width: 0;
+      border-top-left-radius: 0.8rem;
+      border-top-right-radius: 0.8rem;
+    }
+
+    #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__toggle {
+      top: 0;
+      right: 50%;
+      margin-top: -5.5rem;
+      margin-right: -2.2rem;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__toggle .icon {
+    pointer-events: none;
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    transition: transform var(--duration-default) ease;
+    will-change: transform;
+    transform: scale(1) rotate(45deg);
+  }
+
+  @media screen and (hover: hover) {
+    #shopify-section-{{ section.id }} .troperks-theme-modal .product-popup-modal__toggle:hover .icon {
+      transform: scale(0.8) rotate(135deg);
+    }
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal__title {
+    margin: 0 0 1.2rem;
+    padding-right: 5rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal__body > *:first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-theme-modal__body > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @keyframes troperks-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes troperks-dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --section-padding-top: var(--section-padding-top-mobile);
+      --section-padding-bottom: var(--section-padding-bottom-mobile);
+    }
+
+    #shopify-section-{{ section.id }} .section--padding {
+      background: var(--gradient-background);
+      background-color: rgb(var(--color-background));
+    }
+
+    #shopify-section-{{ section.id }} .image-with-text,
+    #shopify-section-{{ section.id }} .image-with-text__grid,
+    #shopify-section-{{ section.id }} .image-with-text__grid-mobile--overlap {
+      background: transparent;
+      background-color: transparent;
+    }
+
+    #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes {
+      padding-inline: 1.6rem;
+    }
+
+    #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes > *:first-child::before {
+      left: -1.4rem;
+      font-size: 4rem;
+    }
+
+    #shopify-section-{{ section.id }} .image-with-text__text--hanging-quotes > *:last-child::after {
+      right: -1.2rem;
+      font-size: 4rem;
+    }
+
+    #shopify-section-{{ section.id }} .troperks-subscription-products {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  {%- if section.settings.image_mobile != blank and section.settings.mobile_image_ratio == 'adapt' %}
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} {
+        --image-ratio-percent: {{ 1 | divided_by: section.settings.image_mobile.aspect_ratio | times: 100 }}%;
+      }
+    }
+  {% endif -%}
+
+  @media screen and (min-width: 1600px) {
+    #shopify-section-{{ section.id }} .image-with-text.page-width--full-width {
+      background: var(--gradient-background);
+      background-color: rgb(var(--color-background));
+    }
+
+    #shopify-section-{{ section.id }} .image-with-text.page-width--full-width > .image-with-text__grid {
+      max-width: min(100%, var(--image-with-text-v2-full-width-max-content));
+      margin-inline: auto;
+      background: transparent;
+      background-color: transparent;
+    }
+  }
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'button' -%}
+      #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"].troperks-action-button-wrapper {
+        margin-top: {{ block.settings.button_spacing_top }}px;
+      }
+
+      #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-revealed-code {
+        {%- if block.settings.revealed_code_background != 'rgba(0,0,0,0)' -%}
+          background-color: {{ block.settings.revealed_code_background }};
+        {%- endif -%}
+        {%- if block.settings.revealed_code_text != 'rgba(0,0,0,0)' -%}
+          color: {{ block.settings.revealed_code_text }};
+        {%- endif -%}
+        {%- if block.settings.revealed_code_border != 'rgba(0,0,0,0)' -%}
+          border: {{ block.settings.revealed_code_border_width }}px solid {{ block.settings.revealed_code_border }};
+        {%- endif -%}
+        border-radius: {{ block.settings.revealed_code_border_radius }}px;
+        padding: {{ block.settings.revealed_code_padding }}px;
+      }
+
+      #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-revealed-code h4,
+      #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-revealed-code p,
+      #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-revealed-code a {
+        {%- if block.settings.revealed_code_text != 'rgba(0,0,0,0)' -%}
+          color: {{ block.settings.revealed_code_text }};
+        {%- endif -%}
+      }
+
+      #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-disclaimer-text {
+        font-size: {{ block.settings.disclaimer_text_size }}px;
+        text-align: {{ block.settings.disclaimer_text_alignment }};
+      }
+
+      {%- if block.settings.disclaimer_text_bold -%}
+        #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-disclaimer-text {
+          font-weight: 700;
+        }
+      {%- endif -%}
+
+      {%- if block.settings.access_link_label_color != 'rgba(0,0,0,0)' -%}
+        #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-access-link-label {
+          color: {{ block.settings.access_link_label_color }};
+        }
+      {%- endif -%}
+
+      {%- if block.settings.access_link_text_color != 'rgba(0,0,0,0)' -%}
+        #shopify-section-{{ section.id }} [data-block-id="{{ block.id }}"] .troperks-access-link-text {
+          color: {{ block.settings.access_link_text_color }};
+        }
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endstyle -%}
+
+{{ 'section-image-with-text.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'component-troperks-button.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign has_media = false
+  if section.settings.image != blank
+    assign has_media = true
+  endif
+
+  assign grid_class = 'image-with-text__grid'
+  if section.settings.layout == 'text_first'
+    assign grid_class = grid_class | append: ' image-with-text__grid--reverse'
+  endif
+
+  if section.settings.mobile_layout == 'text_first'
+    assign grid_class = grid_class | append: ' image-with-text__grid-mobile--reverse'
+  endif
+
+  if section.settings.mobile_layout == 'no_image'
+    assign grid_class = grid_class | append: ' image-with-text__grid-mobile--no-image'
+  endif
+
+  if section.settings.mobile_layout == 'overlap'
+    assign grid_class = grid_class | append: ' image-with-text__grid-mobile--overlap'
+  endif
+
+  if has_media == false
+    assign grid_class = grid_class | append: ' flex-grid--1-col-tablet image-with-text__grid--content-only'
+  endif
+
+  if section.settings.image_behavior == 'ambient'
+    assign widths = '450, 900, 1320, 1800, 2136, 2400, 3600, 4680'
+    capture sizes
+      if section.settings.full_width
+        echo '(min-width: 1600px) '
+        echo section.settings.full_width_max_content_width | divided_by: 1.6667 | round
+        echo 'px, '
+      endif
+      echo '(min-width: '
+      echo settings.page_width
+      echo 'px) '
+      echo settings.page_width | minus: 100 | divided_by: 1.6667
+      echo 'px, (min-width: 750px) calc((100vw - 10rem) / 1.667), '
+      if section.settings.full_width
+        echo 'calc(100vw / 1.667)'
+      else
+        echo 'calc((100vw - 3rem) / 1.667)'
+      endif
+    endcapture
+  else
+    assign widths = '375, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+    capture sizes
+      if section.settings.full_width
+        echo '(min-width: 1600px) '
+        echo section.settings.full_width_max_content_width | divided_by: 2
+        echo 'px, '
+      endif
+      echo '(min-width: '
+      echo settings.page_width
+      echo 'px) '
+      echo settings.page_width | minus: 100 | divided_by: 2
+      echo 'px, (min-width: 750px) calc((100vw - 10rem) / 2), '
+      if section.settings.full_width
+        echo '50vw'
+      else
+        echo 'calc((100vw - 3rem) / 2)'
+      endif
+    endcapture
+  endif
+-%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="image-with-text{% if section.settings.use_custom_colors and section.settings.colors_background != settings.colors_background %} image-with-text--colored{% else %} image-with-text--alt{% endif %}{% if section.settings.enlarge_content %} image-with-text--enlarge{% endif %} page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <div class="{{ grid_class }} flex-grid flex-grid--gapless flex-grid--1-col flex-grid--2-col-tablet">
+      {%- if has_media -%}
+        <div class="flex-grid__item image-with-text__media-item">
+          <use-animate data-animate="zoom-fade" class="media-wrapper">
+            <div class="image-animate image-with-text__media-frame{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+              {%- if section.settings.image_mobile == blank -%}
+                {{ section.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', class: 'image-with-text__media-image', sizes: sizes, widths: widths, is: 'lazy-image' }}
+              {%- else -%}
+                {{ section.settings.image_mobile | image_url: width: 3840 | image_tag: loading: 'lazy', class: 'image-with-text__media-image medium-hide large-up-hide', sizes: sizes, widths: widths, is: 'lazy-image' }}
+                {{ section.settings.image | image_url: width: 3840 | image_tag: loading: 'lazy', class: 'image-with-text__media-image small-hide', sizes: sizes, widths: widths, is: 'lazy-image' }}
+              {%- endif -%}
+            </div>
+          </use-animate>
+        </div>
+      {%- endif -%}
+
+      <div class="flex-grid__item">
+        <div class="image-with-text__content {{ section.settings.text_box_position }} {{ section.settings.text_alignment }} mobile-{{ section.settings.mobile_text_alignment }}">
+          {%- for block in section.blocks -%}
+            {% case block.type %}
+              {%- when 'heading' -%}
+                <{{ block.settings.heading_tag }} class="image-with-text__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                  {%- render 'highlight-text',
+                    hl_input: block.settings.heading,
+                    hl_style: block.settings.highlight_style,
+                    hl_enable: block.settings.enable_highlight,
+                    hl_animateWrap: true
+                  -%}
+                </{{ block.settings.heading_tag }}>
+                {%- if block.settings.heading_subheading != blank -%}
+                  <p class="image-with-text__subheading {{ block.settings.heading_subheading_size }}">
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.heading_subheading,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
+                  </p>
+                {%- endif -%}
+
+              {%- when 'subheading' -%}
+                <p class="image-with-text__subheading{% if block.settings.secondary_color %} image-with-text__subheading--colored{% endif %} {{ block.settings.subheading_size }}" {{ block.shopify_attributes }}>
+                  {%- render 'highlight-text',
+                    hl_input: block.settings.subheading,
+                    hl_style: block.settings.highlight_style,
+                    hl_enable: block.settings.enable_highlight,
+                    hl_animateWrap: true
+                  -%}
+                </p>
+
+              {%- when 'text' -%}
+                <div class="image-with-text__text{% if block.settings.show_hanging_quotes != false %} image-with-text__text--hanging-quotes{% endif %}{% if block.settings.secondary_color %} image-with-text__text--colored{% endif %} {{ block.settings.text_size }} rte" style="margin-top: {{ block.settings.margin_top }}px;" {{ block.shopify_attributes }}>
+                  {%- render 'highlight-text',
+                    hl_input: block.settings.text,
+                    hl_style: block.settings.highlight_style,
+                    hl_enable: block.settings.enable_highlight,
+                    hl_animateWrap: true
+                  -%}
+                </div>
+
+              {%- when 'custom_liquid' -%}
+                <div class="image-with-text__text rte" {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+
+              {%- when 'button' -%}
+                <div class="troperks-action-button-wrapper" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+                  {%- liquid
+                    assign requires_subscription_reveal_setting = block.settings.requires_subscription_reveal
+                    if requires_subscription_reveal_setting == blank
+                      assign requires_subscription_reveal_setting = '1'
+                    endif
+                    if requires_subscription_reveal_setting == true or requires_subscription_reveal_setting == 'true'
+                      assign requires_subscription_reveal_setting = '1'
+                    elsif requires_subscription_reveal_setting == false or requires_subscription_reveal_setting == 'false'
+                      assign requires_subscription_reveal_setting = '0'
+                    endif
+                    assign requires_subscription_reveal_setting = requires_subscription_reveal_setting | strip | plus: 0
+                    assign show_free_reveal = false
+                    if requires_subscription_reveal_setting == 0 and block.settings.affiliate_link_value != blank
+                      assign show_free_reveal = true
+                    endif
+                    assign preview_reveal = false
+                    if requires_subscription_reveal_setting == 2
+                      assign preview_reveal = true
+                    endif
+
+                    assign troperks_button_class = 'button button--' | append: block.settings.button_size
+                    if block.settings.button_style_secondary
+                      assign troperks_button_class = troperks_button_class | append: ' button--cta'
+                    endif
+                  -%}
+
+                  {%- if show_free_reveal -%}
+                    <div class="troperks-revealed-code" style="display: block;">
+                      <h4>
+                        {%- if block.settings.affiliate_link_value contains 'http' -%}
+                          <span class="troperks-access-link-label">{{ block.settings.access_link_label | default: 'Access Link:' }}</span>
+                        {%- else -%}
+                          Your Discount Code:
+                        {%- endif -%}
+                      </h4>
+                      <p>
+                        {%- if block.settings.affiliate_link_value contains 'http' -%}
+                          <a href="{{ block.settings.affiliate_link_value }}" target="_blank" rel="noopener noreferrer">
+                            <span class="troperks-access-link-text">{{- block.settings.access_link_text | default: 'Access your perk' -}}</span>
+                          </a>
+                        {%- else -%}
+                          {{ block.settings.affiliate_link_value }}
+                        {%- endif -%}
+                      </p>
+                    </div>
+                  {%- else -%}
+                    {%- if requires_subscription_reveal_setting == 0 and request.design_mode -%}
+                      <div style="color: #d20000; margin-bottom: 10px; font-weight: bold;">
+                        Configuration Error: "Affiliate Link Value" is required for free reveal. Falling back to subscription mode.
+                      </div>
+                    {%- endif -%}
+
+                    <button
+                      type="button"
+                      class="{{ troperks_button_class }} troperks-action-button"
+                      data-success-modal-title="{{ block.settings.success_modal_title | escape }}"
+                      data-no-subscription-modal-title="{{ block.settings.no_subscription_modal_title | escape }}"
+                      data-logged-out-modal-title="{{ block.settings.logged_out_modal_title | escape }}"
+                      data-error-modal-title="{{ block.settings.error_modal_title | escape }}"
+                      {% if block.settings.perk_name != blank %}
+                        data-perk-name="{{ block.settings.perk_name | escape }}"
+                      {% endif %}
+                      {% if customer %}
+                        data-customer-id="{{ customer.id }}"
+                      {% endif %}
+                      {% if preview_reveal %}
+                        data-preview-reveal="true"
+                        data-preview-code="{{ block.settings.preview_sample_code | default: 'SAMPLECODE123' | strip | escape }}"
+                      {% endif %}
+                    >
+                      <span class="button__text">{{ block.settings.button_label }}</span>
+                      <span class="button__preloader" aria-hidden="true">
+                        <svg class="button__preloader-element" viewBox="25 25 50 50">
+                          <circle cx="50" cy="50" r="20" fill="none" stroke-width="4"></circle>
+                        </svg>
+                      </span>
+                    </button>
+
+                    {%- if block.settings.show_disclaimer_text -%}
+                      <div class="troperks-disclaimer-text rte" style="margin-top: {{ block.settings.disclaimer_text_spacing }}px;">
+                        {{ block.settings.disclaimer_text }}
+                      </div>
+                    {%- endif -%}
+
+                    <div class="troperks-final-message" style="display: none;"></div>
+
+                    <modal-dialog id="TroperksModal-{{ block.id }}" class="product-popup-modal troperks-theme-modal">
+                      <div role="dialog" aria-label="{{ block.settings.success_modal_title | default: 'Notice' | escape }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+                        <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
+                          <span class="icon icon-plus-alt"></span>
+                        </button>
+                        <div class="product-popup-modal__content-info">
+                          <div class="troperks-theme-modal__title h4"></div>
+                          <div class="troperks-theme-modal__body rte"></div>
+                        </div>
+                      </div>
+                    </modal-dialog>
+
+                    <div class="troperks-template troperks-success-template">
+                      {{ block.settings.success_message }}
+                    </div>
+                    <div class="troperks-template troperks-no-discount-template">
+                      {{ block.settings.no_discount_available_message }}
+                    </div>
+                    <div class="troperks-template troperks-logged-out-template">
+                      {{ block.settings.logged_out_message }}
+                    </div>
+                    <div class="troperks-template troperks-no-subscription-template">
+                      <div class="troperks-no-subscription-message rte">
+                        {{ block.settings.no_subscription_message }}
+                      </div>
+
+                      {%- if block.settings.subscription_collection != blank and block.settings.subscription_collection.products.size > 0 -%}
+                        <div class="troperks-subscription-products">
+                          {%- for product in block.settings.subscription_collection.products limit: 4 -%}
+                            <a class="troperks-subscription-product" href="{{ product.url }}">
+                              <div class="troperks-subscription-product-image">
+                                {%- if product.featured_image -%}
+                                  {%- liquid
+                                    assign product_image_alt = product.featured_image.alt | default: product.title | escape
+                                  -%}
+                                  {{ product.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 180, 240', sizes: '120px', alt: product_image_alt }}
+                                {%- else -%}
+                                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                                {%- endif -%}
+                              </div>
+                              <div class="troperks-subscription-product-copy">
+                                <div class="troperks-subscription-product-title">{{ product.title }}</div>
+                                <div class="troperks-subscription-product-price">
+                                  {%- liquid
+                                    assign current_variant = product.selected_or_first_available_variant
+                                    assign first_selling_plan_allocation = current_variant.selling_plan_allocations | first
+                                  -%}
+                                  {%- if first_selling_plan_allocation -%}
+                                    <span class="price">{{ first_selling_plan_allocation.price | money }}</span>
+                                    {%- if first_selling_plan_allocation.compare_at_price > first_selling_plan_allocation.price -%}
+                                      <s class="product-price--compare">{{ first_selling_plan_allocation.compare_at_price | money }}</s>
+                                    {%- endif -%}
+                                  {%- else -%}
+                                    {%- if product.compare_at_price > product.price -%}
+                                      <s class="product-price--compare">{{ product.compare_at_price | money }}</s>
+                                    {%- endif -%}
+                                    <span class="price">{{ product.price | money }}</span>
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            </a>
+                          {%- endfor -%}
+                        </div>
+                      {%- endif -%}
+
+                      {%- if block.settings.subscription_collection_link != blank -%}
+                        <div class="troperks-subscription-cta">
+                          <a href="{{ block.settings.subscription_collection_link }}" class="{{ troperks_button_class }}">
+                            {{ block.settings.subscription_button_label }}
+                          </a>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+              {%- when 'social_stat' -%}
+                {%- liquid
+                  assign previous_block_index = forloop.index0 | minus: 1
+                  assign previous_block_type = ''
+                  if previous_block_index >= 0
+                    assign previous_block_type = section.blocks[previous_block_index].type
+                  endif
+                -%}
+                {%- if previous_block_type != 'social_stat' -%}
+                  <div class="image-with-text__social-stats" style="--image-with-text-v2-social-stats-margin-top: {{ block.settings.margin_top }}px;">
+                    {%- for social_block in section.blocks offset: forloop.index0 -%}
+                      {%- if social_block.type != 'social_stat' -%}
+                        {% break %}
+                      {%- endif -%}
+                      {%- if social_block.settings.stat_value == blank and social_block.settings.stat_label == blank -%}
+                        {% continue %}
+                      {%- endif -%}
+                      {%- if social_block.settings.stat_link != blank -%}
+                        <a class="image-with-text__social-stat" href="{{ social_block.settings.stat_link }}" {{ social_block.shopify_attributes }}>
+                      {%- else -%}
+                        <div class="image-with-text__social-stat" {{ social_block.shopify_attributes }}>
+                      {%- endif -%}
+                        {%- if social_block.settings.platform != 'none' -%}
+                          <span class="image-with-text__social-stat-icon" aria-hidden="true">
+                            {% render 'icon-brand', icon: social_block.settings.platform %}
+                          </span>
+                        {%- endif -%}
+                        <span class="image-with-text__social-stat-text">
+                          {%- if social_block.settings.stat_value != blank -%}
+                            <span class="image-with-text__social-stat-value">{{ social_block.settings.stat_value | escape }}</span>
+                          {%- endif -%}
+                          {%- if social_block.settings.stat_label != blank -%}
+                            <span class="image-with-text__social-stat-label">{{ social_block.settings.stat_label | escape }}</span>
+                          {%- endif -%}
+                        </span>
+                      {%- if social_block.settings.stat_link != blank -%}
+                        </a>
+                      {%- else -%}
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image w text TroPerks",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.all.image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        { "value": "20% 0", "label": "t:sections.all.image_position.options__1.label" },
+        { "value": "top center", "label": "t:sections.all.image_position.options__2.label" },
+        { "value": "80% 0", "label": "t:sections.all.image_position.options__3.label" },
+        { "value": "20% 50%", "label": "t:sections.all.image_position.options__4.label" },
+        { "value": "center center", "label": "t:sections.all.image_position.options__5.label" },
+        { "value": "80% 50%", "label": "t:sections.all.image_position.options__6.label" },
+        { "value": "20% 100%", "label": "t:sections.all.image_position.options__7.label" },
+        { "value": "bottom center", "label": "t:sections.all.image_position.options__8.label" },
+        { "value": "80% 100%", "label": "t:sections.all.image_position.options__9.label" }
+      ],
+      "default": "center center",
+      "label": "t:sections.all.image_position.label",
+      "info": "t:sections.all.image_position.info"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "image_first", "label": "t:sections.image-with-text.settings.layout.options__1.label" },
+        { "value": "text_first", "label": "t:sections.image-with-text.settings.layout.options__2.label" }
+      ],
+      "default": "image_first",
+      "label": "t:sections.image-with-text.settings.layout.label"
+    },
+    {
+      "type": "select",
+      "id": "text_box_position",
+      "options": [
+        { "value": "top", "label": "t:sections.image-with-text.settings.text_box_position.options__1.label" },
+        { "value": "middle", "label": "t:sections.image-with-text.settings.text_box_position.options__2.label" },
+        { "value": "bottom", "label": "t:sections.image-with-text.settings.text_box_position.options__3.label" }
+      ],
+      "default": "middle",
+      "label": "t:sections.image-with-text.settings.text_box_position.label"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "t:sections.all.text_alignment.options__1.label" },
+        { "value": "center", "label": "t:sections.all.text_alignment.options__2.label" },
+        { "value": "right", "label": "t:sections.all.text_alignment.options__3.label" }
+      ],
+      "default": "left",
+      "label": "t:sections.all.text_alignment.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_text_gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Heading to text gap",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "label": "t:sections.all.image_ratio.options__1.label", "value": "adapt" },
+        { "label": "t:sections.all.image_ratio.options__2.label", "value": "400px" },
+        { "label": "t:sections.all.image_ratio.options__3.label", "value": "450px" },
+        { "label": "t:sections.all.image_ratio.options__4.label", "value": "500px" },
+        { "label": "t:sections.all.image_ratio.options__5.label", "value": "550px" },
+        { "label": "t:sections.all.image_ratio.options__6.label", "value": "600px" },
+        { "label": "t:sections.all.image_ratio.options__7.label", "value": "650px" },
+        { "label": "t:sections.all.image_ratio.options__8.label", "value": "700px" },
+        { "label": "t:sections.all.image_ratio.options__9.label", "value": "750px" }
+      ],
+      "default": "650px",
+      "label": "t:sections.all.image_ratio.label"
+    },
+    {
+      "type": "range",
+      "id": "image_corner_radius",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "min": 0,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Image max width (0 = full width)",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "enlarge_content",
+      "default": false,
+      "label": "t:sections.image-with-text.settings.enlarge_content.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "t:sections.all.full_width.label"
+    },
+    {
+      "type": "range",
+      "id": "full_width_max_content_width",
+      "min": 1200,
+      "max": 2800,
+      "step": 20,
+      "unit": "px",
+      "label": "Full width max content width",
+      "default": 1800
+    },
+    {
+      "type": "range",
+      "id": "full_width_image_padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Full width image frame padding",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "t:sections.all.show_divider.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.animation.content"
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "options": [
+        { "value": "none", "label": "t:sections.all.animation.image_behavior.options__1.label" },
+        { "value": "ambient", "label": "t:sections.all.animation.image_behavior.options__2.label" }
+      ],
+      "default": "none",
+      "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.mobile_layout.header.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:sections.all.image_mobile.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "options": [
+        { "value": "image_first", "label": "t:sections.image-with-text.settings.mobile_layout.options__1.label" },
+        { "value": "text_first", "label": "t:sections.image-with-text.settings.mobile_layout.options__2.label" },
+        { "value": "no_image", "label": "t:sections.image-with-text.settings.mobile_layout.options__3.label" },
+        { "value": "overlap", "label": "t:sections.image-with-text.settings.mobile_layout.options__4.label" }
+      ],
+      "default": "image_first",
+      "label": "t:sections.image-with-text.settings.mobile_layout.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "options": [
+        { "value": "left", "label": "t:sections.all.mobile_layout.mobile_text_alignment.options__1.label" },
+        { "value": "center", "label": "t:sections.all.mobile_layout.mobile_text_alignment.options__2.label" },
+        { "value": "right", "label": "t:sections.all.mobile_layout.mobile_text_alignment.options__3.label" }
+      ],
+      "default": "left",
+      "label": "t:sections.all.mobile_layout.mobile_text_alignment.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_ratio",
+      "options": [
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__1.label", "value": "auto" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__2.label", "value": "200px" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__3.label", "value": "250px" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__4.label", "value": "300px" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__5.label", "value": "400px" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__6.label", "value": "500px" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__7.label", "value": "600px" },
+        { "label": "t:sections.all.mobile_layout.mobile_image_ratio.options__8.label", "value": "adapt" }
+      ],
+      "default": "auto",
+      "label": "t:sections.all.mobile_layout.mobile_image_ratio.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_colors",
+      "default": false,
+      "label": "t:sections.all.colors.use_custom_colors.label"
+    },
+    {
+      "type": "color",
+      "id": "colors_button_label",
+      "label": "t:sections.all.colors.colors_button_label.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "colors_button_background",
+      "label": "t:sections.all.colors.colors_button_background.label",
+      "default": "#1a1b18"
+    },
+    {
+      "type": "color",
+      "id": "colors_text",
+      "label": "t:sections.all.colors.colors_text.label",
+      "default": "#212326"
+    },
+    {
+      "type": "color",
+      "id": "colors_background",
+      "label": "t:sections.all.colors.colors_background.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "gradient_background",
+      "label": "t:sections.all.colors.gradient_background.label"
+    },
+    {
+      "type": "color",
+      "id": "colors_highlight",
+      "label": "t:sections.all.colors.colors_highlight.label",
+      "default": "#ffb503"
+    },
+    {
+      "type": "color",
+      "id": "hanging_quote_color",
+      "label": "Hanging quote color",
+      "default": "#9ca3af"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.header.content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top.label",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom.label",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.image-with-text.blocks.heading.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Image with text",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+            { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+            { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "options": [
+            { "value": "h1", "label": "t:sections.all.heading_tag.options__1.label" },
+            { "value": "h2", "label": "t:sections.all.heading_tag.options__2.label" },
+            { "value": "h3", "label": "t:sections.all.heading_tag.options__3.label" },
+            { "value": "h4", "label": "t:sections.all.heading_tag.options__4.label" },
+            { "value": "h5", "label": "t:sections.all.heading_tag.options__5.label" },
+            { "value": "h6", "label": "t:sections.all.heading_tag.options__6.label" },
+            { "value": "div", "label": "t:sections.all.heading_tag.options__7.label" },
+            { "value": "span", "label": "t:sections.all.heading_tag.options__8.label" },
+            { "value": "p", "label": "t:sections.all.heading_tag.options__9.label" }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_tag.label",
+          "info": "t:sections.all.heading_tag.info"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading_subheading",
+          "label": "Subheading"
+        },
+        {
+          "type": "select",
+          "id": "heading_subheading_size",
+          "options": [
+            { "value": "h5", "label": "t:sections.all.subheading_size.options__1.label" },
+            { "value": "h4", "label": "t:sections.all.subheading_size.options__2.label" },
+            { "value": "h3", "label": "t:sections.all.subheading_size.options__3.label" }
+          ],
+          "default": "h5",
+          "label": "Subheading size"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.highlight.header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "t:sections.all.highlight.enable.label",
+          "info": "t:sections.all.highlight.enable.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            { "value": "marker", "label": "t:sections.all.highlight.style.options__1.label" },
+            { "value": "circle", "label": "t:sections.all.highlight.style.options__2.label" },
+            { "value": "underline", "label": "t:sections.all.highlight.style.options__3.label" },
+            { "value": "bold-underline", "label": "t:sections.all.highlight.style.options__4.label" },
+            { "value": "modern-underline", "label": "t:sections.all.highlight.style.options__5.label" },
+            { "value": "sketch-underline", "label": "t:sections.all.highlight.style.options__6.label" },
+            { "value": "squiggle", "label": "t:sections.all.highlight.style.options__7.label" },
+            { "value": "heavy-squiggle", "label": "t:sections.all.highlight.style.options__8.label" },
+            { "value": "solid-color", "label": "t:sections.all.highlight.style.options__9.label" }
+          ],
+          "default": "marker",
+          "label": "t:sections.all.highlight.style.label"
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "t:sections.image-with-text.blocks.subheading.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "default": "Add a tagline",
+          "label": "t:sections.all.subheading.label"
+        },
+        {
+          "type": "select",
+          "id": "subheading_size",
+          "options": [
+            { "value": "h5", "label": "t:sections.all.subheading_size.options__1.label" },
+            { "value": "h4", "label": "t:sections.all.subheading_size.options__2.label" },
+            { "value": "h3", "label": "t:sections.all.subheading_size.options__3.label" }
+          ],
+          "default": "h5",
+          "label": "t:sections.all.subheading_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "secondary_color",
+          "default": false,
+          "label": "t:sections.all.secondary_color.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.highlight.header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "t:sections.all.highlight.enable.label",
+          "info": "t:sections.all.highlight.enable.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            { "value": "marker", "label": "t:sections.all.highlight.style.options__1.label" },
+            { "value": "circle", "label": "t:sections.all.highlight.style.options__2.label" },
+            { "value": "underline", "label": "t:sections.all.highlight.style.options__3.label" },
+            { "value": "bold-underline", "label": "t:sections.all.highlight.style.options__4.label" },
+            { "value": "modern-underline", "label": "t:sections.all.highlight.style.options__5.label" },
+            { "value": "sketch-underline", "label": "t:sections.all.highlight.style.options__6.label" },
+            { "value": "squiggle", "label": "t:sections.all.highlight.style.options__7.label" },
+            { "value": "heavy-squiggle", "label": "t:sections.all.highlight.style.options__8.label" },
+            { "value": "solid-color", "label": "t:sections.all.highlight.style.options__9.label" }
+          ],
+          "default": "marker",
+          "label": "t:sections.all.highlight.style.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-with-text.blocks.text.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post.</p>",
+          "label": "t:sections.all.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            { "value": "typeset", "label": "t:sections.all.text_size.options__1.label" },
+            { "value": "typeset2", "label": "t:sections.all.text_size.options__2.label" },
+            { "value": "typeset3", "label": "t:sections.all.text_size.options__3.label" }
+          ],
+          "default": "typeset2",
+          "label": "t:sections.all.text_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "secondary_color",
+          "default": false,
+          "label": "t:sections.all.secondary_color.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_hanging_quotes",
+          "default": true,
+          "label": "Show hanging quotes"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Top margin",
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.highlight.header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "t:sections.all.highlight.enable.label",
+          "info": "t:sections.all.highlight.enable.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            { "value": "marker", "label": "t:sections.all.highlight.style.options__1.label" },
+            { "value": "circle", "label": "t:sections.all.highlight.style.options__2.label" },
+            { "value": "underline", "label": "t:sections.all.highlight.style.options__3.label" },
+            { "value": "bold-underline", "label": "t:sections.all.highlight.style.options__4.label" },
+            { "value": "modern-underline", "label": "t:sections.all.highlight.style.options__5.label" },
+            { "value": "sketch-underline", "label": "t:sections.all.highlight.style.options__6.label" },
+            { "value": "squiggle", "label": "t:sections.all.highlight.style.options__7.label" },
+            { "value": "heavy-squiggle", "label": "t:sections.all.highlight.style.options__8.label" },
+            { "value": "solid-color", "label": "t:sections.all.highlight.style.options__9.label" }
+          ],
+          "default": "marker",
+          "label": "t:sections.all.highlight.style.label"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "t:sections.custom-liquid.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+          "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "TroPerks button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "button_size",
+          "options": [
+            { "value": "small", "label": "t:sections.all.button_size.options__1.label" },
+            { "value": "medium", "label": "t:sections.all.button_size.options__2.label" },
+            { "value": "large", "label": "t:sections.all.button_size.options__3.label" }
+          ],
+          "default": "medium",
+          "label": "t:sections.all.button_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "t:sections.all.button_style_secondary.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Reveal Discount",
+          "label": "t:sections.all.button_label.label"
+        },
+        {
+          "type": "text",
+          "id": "perk_name",
+          "label": "Perk Name",
+          "info": "Internal identifier sent as perk_handle."
+        },
+        {
+          "type": "text",
+          "id": "requires_subscription_reveal",
+          "label": "Reveal mode",
+          "default": "1",
+          "info": "1 = subscription required, 0 = show affiliate link immediately, 2 = preview mode."
+        },
+        {
+          "type": "text",
+          "id": "affiliate_link_value",
+          "label": "Affiliate Link Value"
+        },
+        {
+          "type": "text",
+          "id": "access_link_label",
+          "label": "Access Link Label",
+          "default": "Access Link:"
+        },
+        {
+          "type": "text",
+          "id": "access_link_text",
+          "label": "Access Link Text",
+          "default": "Access your perk"
+        },
+        {
+          "type": "color",
+          "id": "access_link_label_color",
+          "label": "Access Link Label Color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "access_link_text_color",
+          "label": "Access Link Text Color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "text",
+          "id": "preview_sample_code",
+          "label": "Sample code (preview mode)",
+          "default": "SAMPLECODE123"
+        },
+        {
+          "type": "text",
+          "id": "success_modal_title",
+          "label": "Success Modal Title",
+          "default": "Success!"
+        },
+        {
+          "type": "richtext",
+          "id": "success_message",
+          "label": "Success Message",
+          "info": "Use {{ discount_code }} to insert the discount code.",
+          "default": "<p>Your discount code is: {{ discount_code }}</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "no_discount_available_message",
+          "label": "No Discount Available Message",
+          "default": "<p>No active discount code is available right now. Please try again later.</p>"
+        },
+        {
+          "type": "text",
+          "id": "no_subscription_modal_title",
+          "label": "No Subscription Modal Title",
+          "default": "Subscription Required"
+        },
+        {
+          "type": "richtext",
+          "id": "no_subscription_message",
+          "label": "No Subscription Message",
+          "default": "<p>You need an active subscription to reveal this discount.</p>"
+        },
+        {
+          "type": "collection",
+          "id": "subscription_collection",
+          "label": "Subscription Products Collection"
+        },
+        {
+          "type": "url",
+          "id": "subscription_collection_link",
+          "label": "Subscription Collection Link"
+        },
+        {
+          "type": "text",
+          "id": "subscription_button_label",
+          "label": "Subscription Button Label",
+          "default": "View All Subscriptions"
+        },
+        {
+          "type": "text",
+          "id": "logged_out_modal_title",
+          "label": "Logged Out Modal Title",
+          "default": "Login Required"
+        },
+        {
+          "type": "richtext",
+          "id": "logged_out_message",
+          "label": "Logged Out Message",
+          "default": "<p>Please log in to reveal your discount.</p>"
+        },
+        {
+          "type": "text",
+          "id": "error_modal_title",
+          "label": "Generic Error Modal Title",
+          "default": "Error"
+        },
+        {
+          "type": "range",
+          "id": "button_spacing_top",
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "unit": "px",
+          "label": "Spacing above button",
+          "default": 24
+        },
+        {
+          "type": "checkbox",
+          "id": "show_disclaimer_text",
+          "label": "Show disclaimer text",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "disclaimer_text",
+          "label": "Disclaimer text",
+          "default": "<p>Must be logged in and a current subscriber to reveal code.</p>"
+        },
+        {
+          "type": "range",
+          "id": "disclaimer_text_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "label": "Disclaimer text spacing",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "disclaimer_text_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Disclaimer text size",
+          "default": 14
+        },
+        {
+          "type": "checkbox",
+          "id": "disclaimer_text_bold",
+          "label": "Disclaimer text bold",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "disclaimer_text_alignment",
+          "label": "Disclaimer text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "revealed_code_background",
+          "label": "Revealed code background color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "revealed_code_text",
+          "label": "Revealed code text color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "revealed_code_border",
+          "label": "Revealed code border color",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "range",
+          "id": "revealed_code_border_width",
+          "min": 0,
+          "max": 6,
+          "step": 1,
+          "unit": "px",
+          "label": "Revealed code border width",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "revealed_code_border_radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Revealed code border radius",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "revealed_code_padding",
+          "min": 8,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Revealed code padding",
+          "default": 18
+        }
+      ]
+    },
+    {
+      "type": "social_stat",
+      "name": "Social media stat",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "platform",
+          "label": "Platform",
+          "default": "youtube",
+          "options": [
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "tiktok", "label": "TikTok" },
+            { "value": "facebook", "label": "Facebook" },
+            { "value": "linkedin", "label": "LinkedIn" },
+            { "value": "twitter", "label": "X" },
+            { "value": "none", "label": "No icon" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Value",
+          "default": "6M"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Label",
+          "default": "subscribers"
+        },
+        {
+          "type": "url",
+          "id": "stat_link",
+          "label": "Link"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Top margin",
+          "default": 20
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image w text TroPerks",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "text" },
+        { "type": "button" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  }
+}
+{% endschema %}

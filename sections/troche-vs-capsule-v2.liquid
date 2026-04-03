@@ -1,0 +1,607 @@
+{{ 'section-troche-vs-capsule-v2.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'component-troche-vs-capsule.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign troche_points_count = 0
+  assign capsule_points_count = 0
+  for block in section.blocks
+    if block.type == 'troche_point'
+      assign troche_points_count = troche_points_count | plus: 1
+    elsif block.type == 'capsule_point'
+      assign capsule_points_count = capsule_points_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --troche-diff-max-width: {{ section.settings.max_content_width | default: 1320 }}px;
+    --troche-diff-gap: {{ section.settings.grid_gap }}px;
+    --troche-diff-card-radius: {{ section.settings.card_radius }}px;
+    --troche-diff-card-bg: {{ section.settings.card_background_color }};
+    --troche-diff-card-border: {{ section.settings.card_border_color }};
+    --troche-diff-media-bg: {{ section.settings.media_background_color }};
+    --troche-diff-check-color: {{ section.settings.troche_icon_color }};
+    --troche-diff-x-color: {{ section.settings.capsule_icon_color }};
+    --troche-diff-card-heading-font-size: {{ section.settings.card_heading_font_size | default: 20 }}px;
+    --troche-diff-card-text-font-size: {{ section.settings.card_text_font_size | default: 16 }}px;
+    --troche-diff-subheading-font-size: {{ section.settings.subheading_font_size | default: 20 }}px;
+    --troche-diff-subheading-color: {{ section.settings.subheading_color | default: '#6b7280' }};
+  }
+{%- endstyle -%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="page-width">
+    <div class="troche-diff-v2">
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <div class="title-wrapper{% if section.settings.heading == blank %} title-wrapper--no-heading{% endif %} {{ section.settings.heading_alignment | default: 'center' }}">
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag | default: 'h2' }} class="title {{ section.settings.heading_size | default: 'h1' }}">
+              {%- render 'highlight-text',
+                hl_input: section.settings.heading,
+                hl_style: section.settings.highlight_style,
+                hl_enable: section.settings.enable_highlight,
+                hl_animateWrap: true
+              -%}
+            </{{ section.settings.heading_tag | default: 'h2' }}>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <{{ section.settings.subheading_tag | default: 'p' }} class="troche-diff-v2__subheading {{ section.settings.subheading_size | default: 'typeset2' }}">
+              {{ section.settings.subheading }}
+            </{{ section.settings.subheading_tag | default: 'p' }}>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="troche-diff-v2__grid">
+        <article id="element-{{ section.id }}-media" class="troche-diff-v2__card troche-diff-v2__card--media">
+          <div class="troche-diff-v2__media-inner">
+            {%- case section.settings.media_type -%}
+              {%- when 'youtube' -%}
+                {%- liquid
+                  assign video_url = section.settings.youtube_url
+                  assign video_id = null
+                  if video_url contains 'youtube.com/watch?v='
+                    assign video_id_temp = video_url | split: 'v=' | last
+                    assign video_id = video_id_temp | split: '&' | first
+                  elsif video_url contains 'youtu.be/'
+                    assign video_id_temp = video_url | split: 'youtu.be/' | last
+                    assign video_id = video_id_temp | split: '?' | first
+                  endif
+                -%}
+                {%- if video_id != null and video_id != blank -%}
+                  <div class="troche-diff-v2__responsive-video">
+                    <iframe
+                      src="https://www.youtube.com/embed/{{ video_id }}?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&autoplay=0&fs=0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      title="{{ section.settings.video_caption | default: 'Video' | escape }}"
+                    ></iframe>
+                  </div>
+                {%- else -%}
+                  <div class="troche-diff-v2__placeholder">{{ 'video' | placeholder_svg_tag }}</div>
+                {%- endif -%}
+              {%- when 'shopify' -%}
+                {%- assign uploaded_video = section.settings.uploaded_video -%}
+                {%- if uploaded_video != blank -%}
+                  <div class="troche-diff-v2__responsive-video">
+                    {%- liquid
+                      assign poster_img = section.settings.poster_image | default: uploaded_video.preview_image
+                    -%}
+                    <video
+                      class="troche-diff-v2__video"
+                      controls
+                      playsinline
+                      webkit-playsinline
+                      disablepictureinpicture
+                      controlslist="nodownload noplaybackrate noremoteplayback"
+                      preload="metadata"
+                      {% if poster_img %}
+                        poster="{{ poster_img | image_url: width: 1280 }}"
+                      {% endif %}
+                    >
+                      {%- for source in uploaded_video.sources -%}
+                        <source src="{{ source.url }}" type="{{ source.mime_type }}">
+                      {%- endfor -%}
+                    </video>
+                    {%- if section.settings.show_play_button -%}
+                      <div class="troche-diff-v2__play-overlay" data-video-play-button>
+                        <button class="troche-diff-v2__play-button" type="button" aria-label="Play video">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                          </svg>
+                        </button>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                {%- else -%}
+                  <div class="troche-diff-v2__placeholder">{{ 'video' | placeholder_svg_tag }}</div>
+                {%- endif -%}
+              {%- else -%}
+                {%- if section.settings.image != blank -%}
+                  {{
+                    section.settings.image
+                    | image_url: width: 1600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '320, 480, 640, 800, 1000, 1200, 1600',
+                      sizes: '(min-width: 990px) 30vw, 92vw',
+                      class: 'troche-diff-v2__image',
+                      alt: section.settings.video_caption | default: section.settings.heading
+                  }}
+                {%- else -%}
+                  <div class="troche-diff-v2__placeholder">{{ 'image' | placeholder_svg_tag }}</div>
+                {%- endif -%}
+            {%- endcase -%}
+
+            {%- if section.settings.video_caption != blank -%}
+              <div class="troche-diff-v2__media-overlay">
+                <span>{{ section.settings.video_caption }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </article>
+
+        <article id="element-{{ section.id }}-troche" class="troche-diff-v2__card troche-diff-v2__card--points">
+          <div class="troche-diff-v2__card-body">
+            <p class="troche-diff-v2__heading">{{ section.settings.troche_heading }}</p>
+            <ul class="troche-diff-v2__list troche-diff-v2__list--check" role="list">
+              {%- if troche_points_count > 0 -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'troche_point' -%}
+                    <li class="troche-diff-v2__list-item" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- else -%}
+                <li class="troche-diff-v2__list-item troche-diff-v2__list-item--empty">Add Troche point blocks to populate this card.</li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </article>
+
+        <article id="element-{{ section.id }}-capsule" class="troche-diff-v2__card troche-diff-v2__card--points">
+          <div class="troche-diff-v2__card-body">
+            <p class="troche-diff-v2__heading">{{ section.settings.capsule_heading }}</p>
+            <ul class="troche-diff-v2__list troche-diff-v2__list--x" role="list">
+              {%- if capsule_points_count > 0 -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'capsule_point' -%}
+                    <li class="troche-diff-v2__list-item" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- else -%}
+                <li class="troche-diff-v2__list-item troche-diff-v2__list-item--empty">Add Capsule point blocks to populate this card.</li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        {%- liquid
+          assign button_class = 'button'
+          if section.settings.button_style != 'primary'
+            assign button_class = button_class | append: ' button--' | append: section.settings.button_style
+          endif
+          if section.settings.button_size != 'default'
+            assign button_class = button_class | append: ' button--' | append: section.settings.button_size
+          endif
+        -%}
+        <div class="troche-diff-v2__button-wrap">
+          <a href="{{ section.settings.button_link }}" class="{{ button_class }}">
+            {{- section.settings.button_label -}}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.section_background_color != 'rgba(0,0,0,0)' -%}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      background-color: {{ section.settings.section_background_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+{%- if section.settings.section_background_gradient != blank -%}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      background: {{ section.settings.section_background_gradient }};
+    }
+  {% endstyle %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Troche vs capsule v2",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The buccal troche difference"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Watch our quick explainer"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "div", "label": "Div" },
+        { "value": "span", "label": "Span" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h2",
+      "label": "Heading tag"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center",
+      "label": "Heading alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable heading highlight",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "options": [
+        { "value": "marker", "label": "Marker" },
+        { "value": "circle", "label": "Circle" },
+        { "value": "underline", "label": "Underline" },
+        { "value": "bold-underline", "label": "Bold underline" },
+        { "value": "modern-underline", "label": "Modern underline" },
+        { "value": "sketch-underline", "label": "Sketch underline" },
+        { "value": "squiggle", "label": "Squiggle" },
+        { "value": "heavy-squiggle", "label": "Heavy squiggle" },
+        { "value": "solid-color", "label": "Solid color" }
+      ],
+      "default": "marker",
+      "label": "Highlight style"
+    },
+    {
+      "type": "select",
+      "id": "subheading_tag",
+      "label": "Subheading tag",
+      "options": [
+        { "value": "p", "label": "Paragraph" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "div", "label": "Div" },
+        { "value": "span", "label": "Span" }
+      ],
+      "default": "p"
+    },
+    {
+      "type": "select",
+      "id": "subheading_size",
+      "options": [
+        { "value": "typeset", "label": "Small" },
+        { "value": "typeset2", "label": "Medium" },
+        { "value": "typeset3", "label": "Large" }
+      ],
+      "default": "typeset2",
+      "label": "Subheading size"
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "min": 12,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "shopify", "label": "Shopify video" },
+        { "value": "youtube", "label": "YouTube" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "shopify"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "video",
+      "id": "uploaded_video",
+      "label": "Shopify-hosted video"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback image"
+    },
+    {
+      "type": "text",
+      "id": "video_caption",
+      "label": "Media caption",
+      "default": "WHAT IS A TROCHE"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_play_button",
+      "label": "Show play button overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "media_background_color",
+      "label": "Media background color",
+      "default": "#f5f6f7"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "text",
+      "id": "troche_heading",
+      "label": "Troche title",
+      "default": "TROCHE"
+    },
+    {
+      "type": "text",
+      "id": "capsule_heading",
+      "label": "Capsule title",
+      "default": "CAPSULE"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_heading_font_size",
+      "label": "Card heading font size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_text_font_size",
+      "label": "Card text font size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#e5e7eb"
+    },
+    {
+      "type": "color",
+      "id": "troche_icon_color",
+      "label": "Troche icon color",
+      "default": "#16a34a"
+    },
+    {
+      "type": "color",
+      "id": "capsule_icon_color",
+      "label": "Capsule icon color",
+      "default": "#ef4444"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button size",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "small", "label": "Small" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" },
+        { "value": "tertiary", "label": "Tertiary" }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 960,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1320,
+      "label": "Desktop content max width"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show section divider"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48,
+      "label": "Bottom padding"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Background color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color_background",
+      "id": "section_background_gradient",
+      "label": "Background gradient"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "troche_point",
+      "name": "Troche point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Fast onset"
+        }
+      ]
+    },
+    {
+      "type": "capsule_point",
+      "name": "Capsule point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Slow onset"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Troche vs capsule v2",
+      "blocks": [
+        { "type": "troche_point", "settings": { "text": "Fast onset" } },
+        { "type": "troche_point", "settings": { "text": "Higher bioavailability" } },
+        { "type": "troche_point", "settings": { "text": "Flexible dosing" } },
+        { "type": "capsule_point", "settings": { "text": "Slow onset" } },
+        { "type": "capsule_point", "settings": { "text": "Lower absorption" } },
+        { "type": "capsule_point", "settings": { "text": "Less flexible dosing" } }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}

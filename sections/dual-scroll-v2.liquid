@@ -1,0 +1,1076 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'section-dual-scroll-v2.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --color-text: {{ section.settings.text_color }};
+    --color-muted: {{ section.settings.description_color }};
+    --color-grey-100: {{ section.settings.panel_background_color }};
+    --color-grey-200: {{ section.settings.border_color }};
+    --color-foreground: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --color-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --color-button-background: {{ section.settings.button_background_color.red }}, {{ section.settings.button_background_color.green }}, {{ section.settings.button_background_color.blue }};
+    --color-button-text: {{ section.settings.button_text_color.red }}, {{ section.settings.button_text_color.green }}, {{ section.settings.button_text_color.blue }};
+    --color-highlight: {{ section.settings.highlight_color.red }}, {{ section.settings.highlight_color.green }}, {{ section.settings.highlight_color.blue }};
+    --panel-border-width: {% if section.settings.show_panel_borders %}1px{% else %}0px{% endif %};
+    --media-rotation: {{ section.settings.media_rotation | default: 0 }}deg;
+    --media-scale: {{ section.settings.media_scale | default: 100 | divided_by: 100.0 }};
+    --media-scale-mobile: {{ section.settings.media_scale_mobile | default: section.settings.media_scale | default: 100 | divided_by: 100.0 }};
+    --media-shadow: {% if section.settings.enable_media_shadow %}drop-shadow(0 24px 40px rgba(0,0,0,0.25)){% else %}none{% endif %};
+    --subheading-font-size: {{ section.settings.subheading_font_size | default: 20 }}px;
+    --subheading-color: {{ section.settings.subheading_color | default: section.settings.description_color }};
+    --dual-scroll-content-horizontal-padding: {{ section.settings.content_horizontal_padding | default: 50 }}px;
+    --dual-scroll-content-vertical-padding-mobile: {{ section.settings.content_vertical_padding_mobile | default: 48 }}px;
+    --dual-scroll-button-gap-top: {{ section.settings.buttons_spacing_top | default: 16 }}px;
+  }
+{%- endstyle -%}
+
+<script type='module'>
+  import 'dual-scroll-v2-component';
+</script>
+
+<div
+  class='section--padding dual-scroll-layout{% if section.settings.narrow %} dual-scroll-layout--narrow{% endif %}'
+  id='dual-scroll-{{ section.id }}'
+  is='dual-scroll-v2-component'
+  data-transition-type='{{ section.settings.transition_type | default: 'fade' }}'
+>
+  {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+    <div class='page-width{% if section.settings.narrow %} page-width--inner{% endif %}'>
+      <div class='title-wrapper{% if section.settings.heading == blank %} title-wrapper--no-heading{% endif %} {{ section.settings.heading_alignment | default: 'center' }}'>
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag | default: 'h2' }} class='title {{ section.settings.heading_size | default: 'h1' }}'>
+            {%- render 'highlight-text',
+              hl_input: section.settings.heading,
+              hl_style: section.settings.highlight_style,
+              hl_enable: section.settings.enable_highlight,
+              hl_animateWrap: true
+            -%}
+          </{{ section.settings.heading_tag | default: 'h2' }}>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <{{ section.settings.subheading_tag | default: 'p' }} class='dual-scroll-layout__subheading {{ section.settings.subheading_size | default: 'typeset2' }}'>
+            {{ section.settings.subheading }}
+          </{{ section.settings.subheading_tag | default: 'p' }}>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+  <div class='dual-scroll-layout__inner'>
+    <div class='dual-scroll-layout__left'>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign panel_id = 'panel-' | append: section.id | append: '-' | append: forloop.index
+          assign media_bg_color = block.settings.media_background_color | default: '#e9eaec'
+          assign section_bg_color = block.settings.background_color | default: section.settings.panel_background_color
+          assign panel_text_color = block.settings.text_color | default: section.settings.text_color
+          assign panel_description_color = block.settings.description_color | default: section.settings.description_color
+          assign highlight_color = block.settings.highlight_color | default: section.settings.highlight_color
+          assign panel_text_rgb = panel_text_color.red | append: ', ' | append: panel_text_color.green | append: ', ' | append: panel_text_color.blue
+        -%}
+        <section
+          class='dual-scroll-panel'
+          id='{{ panel_id }}'
+          data-key='{{ panel_id }}'
+          data-media-bg-color='{{ media_bg_color }}'
+          data-bg-color='{{ section_bg_color }}'
+          aria-labelledby='{{ panel_id }}-title'
+          style='--color-highlight: {{ highlight_color.red }}, {{ highlight_color.green }}, {{ highlight_color.blue }}; --panel-bg-color: {{ section_bg_color }}; --panel-text-color: {{ panel_text_color }}; --panel-text-rgb: {{ panel_text_rgb }}; --panel-muted-color: {{ panel_description_color }};'
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            <div class='dual-scroll-panel__media' style='background-color: {{ media_bg_color }};'>
+              {%- liquid
+                assign loading = 'lazy'
+                assign fetchpriority = 'low'
+                if forloop.first and section.index == 1
+                  assign loading = 'eager'
+                  assign fetchpriority = 'high'
+                endif
+              -%}
+              {{
+                block.settings.image
+                | image_url: width: 2000
+                | image_tag:
+                  loading: loading,
+                  fetchpriority: fetchpriority,
+                  class: 'dual-scroll-panel__media-image',
+                  alt: block.settings.title
+                | default: ''
+              }}
+            </div>
+          {%- endif -%}
+          <div class='dual-scroll-panel__text'>
+            {%- liquid
+              assign primary_button_product = block.settings.button_product
+              assign product_rating = blank
+              assign product_rating_count = blank
+              assign rating_text = block.settings.rating_text
+              assign show_rating_stars = false
+              assign show_rating_row = false
+
+              if primary_button_product != blank and primary_button_product.metafields.reviews.rating.value != blank
+                assign product_rating = primary_button_product.metafields.reviews.rating.value
+                assign product_rating_count = primary_button_product.metafields.reviews.rating_count
+
+                if block.settings.show_rating
+                  assign show_rating_stars = true
+                  assign show_rating_row = true
+                endif
+
+                if rating_text == blank
+                  assign rating_text = product_rating | append: ' | ' | append: product_rating_count | append: ' reviews'
+                endif
+              elsif block.settings.show_rating and rating_text != blank
+                assign show_rating_row = true
+              endif
+
+              assign price_note = block.settings.price_note
+              if price_note == blank and primary_button_product != blank
+                capture price_note
+                  echo block.settings.price_prefix | default: 'starting at'
+                  echo ' '
+                  echo primary_button_product.price_min | money
+                endcapture
+                assign price_note = price_note | strip
+              endif
+            -%}
+            {%- if block.settings.title != blank or block.settings.badge_text != blank or block.settings.badge_image != blank -%}
+              <div class='dual-scroll-panel__heading-row'>
+                {%- if block.settings.title != blank -%}
+                  <h2 class='banner__heading {{ block.settings.heading_size | default: 'h0' }}' id='{{ panel_id }}-title'>
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.title,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
+                  </h2>
+                {%- endif -%}
+                {%- if block.settings.badge_image != blank -%}
+                  <span class='dual-scroll-panel__badge dual-scroll-panel__badge--image'>
+                    {{
+                      block.settings.badge_image
+                      | image_url: width: 280
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'dual-scroll-panel__badge-image',
+                        alt: block.settings.badge_text
+                    }}
+                  </span>
+                {%- elsif block.settings.badge_text != blank -%}
+                  <span class='dual-scroll-panel__badge'>{{ block.settings.badge_text }}</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- if show_rating_row -%}
+              <div class='dual-scroll-panel__rating-row'>
+                {%- if show_rating_stars -%}
+                  <div
+                    class='dual-scroll-panel__stars'
+                    role='img'
+                    aria-label='{{ 'accessibility.star_reviews_info' | t: rating_value: product_rating, rating_max: product_rating.scale_max }}'
+                  >
+                    {%- for i in (1..5) -%}
+                      <span class='dual-scroll-panel__star' aria-hidden='true'>&#9733;</span>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+                {%- if rating_text != blank -%}
+                  <span class='dual-scroll-panel__rating-text'>{{ rating_text }}</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <div class='banner__text{% if block.settings.secondary_color %} banner__text--colored{% endif %} {{ block.settings.text_size | default: 'typeset2' }} rte'>
+                {%- render 'highlight-text',
+                  hl_input: block.settings.description,
+                  hl_style: block.settings.highlight_style,
+                  hl_enable: block.settings.enable_highlight,
+                  hl_animateWrap: true
+                -%}
+              </div>
+            {%- endif -%}
+            {%- liquid
+              assign has_primary_button = false
+              assign has_secondary_button = false
+              if block.settings.button_label != blank and primary_button_product != blank
+                assign has_primary_button = true
+              elsif block.settings.button_label != blank and block.settings.button_link != blank
+                assign has_primary_button = true
+              endif
+              if block.settings.button_label_2 != blank and block.settings.button_link_2 != blank
+                assign has_secondary_button = true
+              endif
+            -%}
+            {%- if has_primary_button or has_secondary_button -%}
+              <div class='dual-scroll-panel__buttons{% if has_primary_button and has_secondary_button %} dual-scroll-panel__buttons--two{% endif %}'>
+                {%- if has_primary_button -%}
+                  {%- liquid
+                    assign primary_button_style = block.settings.button_style | default: 'primary'
+                    assign primary_button_size = block.settings.button_size | default: 'medium'
+                    assign primary_button_class = 'button button--' | append: primary_button_size
+                    if primary_button_style == 'outline'
+                      assign primary_button_class = primary_button_class | append: ' button--secondary dual-scroll-button--outline-white'
+                    elsif primary_button_style != 'primary'
+                      assign primary_button_class = primary_button_class | append: ' button--' | append: primary_button_style
+                    endif
+                  -%}
+                  {%- if primary_button_product != blank -%}
+                    {%- liquid
+                      assign primary_variant = primary_button_product.selected_or_first_available_variant
+                      assign primary_form_id = 'dual-scroll-v2-atc-' | append: section.id | append: '-' | append: block.id
+                    -%}
+                    {%- form 'product', primary_button_product, id: primary_form_id, class: 'dual-scroll-panel__atc-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                      <input
+                        type='hidden'
+                        name='id'
+                        value='{{ primary_variant.id }}'
+                        {% unless primary_variant and primary_variant.available %}
+                          disabled='disabled'
+                        {% endunless %}
+                      >
+                      <button
+                        type='submit'
+                        class='{{ primary_button_class }}'
+                        aria-label='{{ block.settings.title | escape }}'
+                        {% unless primary_variant and primary_variant.available %}
+                          disabled
+                        {% endunless %}
+                      >
+                        {{ block.settings.button_label }}
+                      </button>
+                    {%- endform -%}
+                  {%- elsif block.settings.button_link != blank -%}
+                    <a
+                      class='{{ primary_button_class }}'
+                      href='{{ block.settings.button_link }}'
+                      aria-label='{{ block.settings.title | escape }}'
+                    >
+                      {{ block.settings.button_label }}
+                    </a>
+                  {%- endif -%}
+                {%- endif -%}
+                {%- if has_secondary_button -%}
+                  {%- liquid
+                    assign secondary_button_style = block.settings.button_style_2 | default: 'secondary'
+                    assign secondary_button_size = block.settings.button_size | default: 'medium'
+                    assign secondary_button_class = 'button button--' | append: secondary_button_size
+                    if secondary_button_style == 'outline'
+                      assign secondary_button_class = secondary_button_class | append: ' button--secondary dual-scroll-button--outline-white'
+                    elsif secondary_button_style != 'primary'
+                      assign secondary_button_class = secondary_button_class | append: ' button--' | append: secondary_button_style
+                    endif
+                  -%}
+                  <a
+                    class='{{ secondary_button_class }}'
+                    href='{{ block.settings.button_link_2 }}'
+                    aria-label='{{ block.settings.title | escape }}'
+                  >
+                    {{ block.settings.button_label_2 }}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- if price_note != blank -%}
+              <div class='dual-scroll-panel__price-note'>
+                {%- if block.settings.price_note == blank and primary_button_product != blank -%}
+                  <span class='dual-scroll-panel__price-prefix'>{{ block.settings.price_prefix | default: 'starting at' }}</span>
+                  <strong class='dual-scroll-panel__price-value'>{{ primary_button_product.price_min | money }}</strong>
+                {%- else -%}
+                  <strong class='dual-scroll-panel__price-value'>{{ price_note }}</strong>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </section>
+      {%- endfor -%}
+    </div>
+
+    <aside class='dual-scroll-layout__right' aria-hidden='true'>
+      <div class='dual-scroll-media-viewport'>
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign panel_key = 'panel-' | append: section.id | append: '-' | append: forloop.index
+            assign image = block.settings.image
+          -%}
+          {%- if image != blank -%}
+            {%- liquid
+              assign loading = 'lazy'
+              assign fetchpriority = 'low'
+              if forloop.first and section.index == 1
+                assign loading = 'eager'
+                assign fetchpriority = 'high'
+              endif
+            -%}
+            {{
+              image
+              | image_url: width: 2000
+              | image_tag:
+                loading: loading,
+                fetchpriority: fetchpriority,
+                class: 'dual-scroll-media-image',
+                data-key: panel_key,
+                alt: block.settings.title
+              | default: ''
+            }}
+          {% else %}
+            <div class='dual-scroll-media-image' data-key='{{ panel_key }}'>
+              {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Dual Scroll (v2)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:sections.all.heading.label",
+      "default": "Dual Scroll"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_tag.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_tag.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_tag.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_tag.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_tag.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_tag.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_tag.options__7.label"
+        },
+        {
+          "value": "span",
+          "label": "t:sections.all.heading_tag.options__8.label"
+        },
+        {
+          "value": "p",
+          "label": "t:sections.all.heading_tag.options__9.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_tag.label",
+      "info": "t:sections.all.heading_tag.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.all.heading_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.all.heading_alignment.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.all.heading_alignment.options__3.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.all.heading_alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "subheading_tag",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        },
+        {
+          "value": "span",
+          "label": "Span"
+        }
+      ],
+      "default": "p",
+      "label": "Subheading tag"
+    },
+    {
+      "type": "select",
+      "id": "subheading_size",
+      "options": [
+        {
+          "value": "typeset",
+          "label": "Small"
+        },
+        {
+          "value": "typeset2",
+          "label": "Medium"
+        },
+        {
+          "value": "typeset3",
+          "label": "Large"
+        }
+      ],
+      "default": "typeset2",
+      "label": "Subheading size style"
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "min": 12,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_horizontal_padding",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Content horizontal padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "content_vertical_padding_mobile",
+      "min": 16,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile content vertical padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "buttons_spacing_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap above buttons",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.highlight.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "t:sections.all.highlight.enable.label",
+      "info": "t:sections.all.highlight.enable.info",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "t:sections.all.highlight.style.options__1.label"
+        },
+        {
+          "value": "circle",
+          "label": "t:sections.all.highlight.style.options__2.label"
+        },
+        {
+          "value": "underline",
+          "label": "t:sections.all.highlight.style.options__3.label"
+        },
+        {
+          "value": "bold-underline",
+          "label": "t:sections.all.highlight.style.options__4.label"
+        },
+        {
+          "value": "modern-underline",
+          "label": "t:sections.all.highlight.style.options__5.label"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "t:sections.all.highlight.style.options__6.label"
+        },
+        {
+          "value": "squiggle",
+          "label": "t:sections.all.highlight.style.options__7.label"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "t:sections.all.highlight.style.options__8.label"
+        },
+        {
+          "value": "solid-color",
+          "label": "t:sections.all.highlight.style.options__9.label"
+        }
+      ],
+      "default": "marker",
+      "label": "t:sections.all.highlight.style.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "narrow",
+      "default": false,
+      "label": "t:sections.all.narrow.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.header.content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "t:sections.all.padding.padding_top.unit",
+      "label": "t:sections.all.padding.padding_top.label",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "t:sections.all.padding.padding_bottom.unit",
+      "label": "t:sections.all.padding.padding_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.header.content"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:sections.all.colors.colors_heading.label",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:sections.all.colors.colors_text.label",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "t:sections.all.colors.colors_description.label",
+      "default": "#6b7280"
+    },
+    {
+      "type": "color",
+      "id": "panel_background_color",
+      "label": "t:sections.all.colors.colors_background.label",
+      "default": "#f5f6f7"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:sections.all.colors.colors_border.label",
+      "default": "#eeeef0"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_panel_borders",
+      "label": "Show panel dividers",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:sections.all.colors.colors_button_background.label",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:sections.all.colors.colors_button_label.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "t:sections.all.colors.colors_highlight.label",
+      "default": "#ffb503"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.dual-scroll.settings.media.header"
+    },
+    {
+      "type": "select",
+      "id": "transition_type",
+      "options": [
+        {
+          "value": "fade",
+          "label": "t:sections.dual-scroll.settings.transition_type.options__1.label"
+        },
+        {
+          "value": "scroll",
+          "label": "t:sections.dual-scroll.settings.transition_type.options__2.label"
+        }
+      ],
+      "default": "scroll",
+      "label": "t:sections.dual-scroll.settings.transition_type.label",
+      "info": "t:sections.dual-scroll.settings.transition_type.info"
+    },
+    {
+      "type": "range",
+      "id": "media_rotation",
+      "min": -30,
+      "max": 30,
+      "step": 1,
+      "unit": "t:sections.dual-scroll.settings.media_rotation.unit",
+      "label": "t:sections.dual-scroll.settings.media_rotation.label",
+      "default": 0,
+      "info": "t:sections.dual-scroll.settings.media_rotation.info"
+    },
+    {
+      "type": "range",
+      "id": "media_scale",
+      "min": 50,
+      "max": 150,
+      "step": 1,
+      "label": "t:sections.dual-scroll.settings.media_scale.label",
+      "default": 100,
+      "info": "t:sections.dual-scroll.settings.media_scale.info"
+    },
+    {
+      "type": "range",
+      "id": "media_scale_mobile",
+      "min": 50,
+      "max": 150,
+      "step": 1,
+      "label": "Mobile media scale",
+      "default": 100,
+      "info": "Controls the media card image scale on mobile view only."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_media_shadow",
+      "label": "t:sections.dual-scroll.settings.enable_media_shadow.label",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.dual-scroll.blocks.slide.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:sections.all.heading.label",
+          "default": "Slide Title"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            }
+          ],
+          "default": "h0",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "t:sections.all.text.label",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            {
+              "value": "typeset",
+              "label": "t:sections.all.text_size.options__1.label"
+            },
+            {
+              "value": "typeset2",
+              "label": "t:sections.all.text_size.options__2.label"
+            },
+            {
+              "value": "typeset3",
+              "label": "t:sections.all.text_size.options__3.label"
+            }
+          ],
+          "default": "typeset2",
+          "label": "t:sections.all.text_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "secondary_color",
+          "default": false,
+          "label": "t:sections.all.secondary_color.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.highlight.header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "t:sections.all.highlight.enable.label",
+          "info": "t:sections.all.highlight.enable.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            {
+              "value": "marker",
+              "label": "t:sections.all.highlight.style.options__1.label"
+            },
+            {
+              "value": "circle",
+              "label": "t:sections.all.highlight.style.options__2.label"
+            },
+            {
+              "value": "underline",
+              "label": "t:sections.all.highlight.style.options__3.label"
+            },
+            {
+              "value": "bold-underline",
+              "label": "t:sections.all.highlight.style.options__4.label"
+            },
+            {
+              "value": "modern-underline",
+              "label": "t:sections.all.highlight.style.options__5.label"
+            },
+            {
+              "value": "sketch-underline",
+              "label": "t:sections.all.highlight.style.options__6.label"
+            },
+            {
+              "value": "squiggle",
+              "label": "t:sections.all.highlight.style.options__7.label"
+            },
+            {
+              "value": "heavy-squiggle",
+              "label": "t:sections.all.highlight.style.options__8.label"
+            },
+            {
+              "value": "solid-color",
+              "label": "t:sections.all.highlight.style.options__9.label"
+            }
+          ],
+          "default": "marker",
+          "label": "t:sections.all.highlight.style.label"
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "t:sections.all.colors.colors_highlight.label",
+          "default": "#ffb503",
+          "info": "Overrides section highlight color for this slide"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Slide heading color",
+          "default": "#0a0a0a",
+          "info": "Overrides section heading/text color for this slide"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Slide description color",
+          "default": "#6b7280",
+          "info": "Overrides section description color for this slide"
+        },
+        {
+          "type": "header",
+          "content": "Supporting details"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "info": "Optional small badge shown next to the slide heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "badge_image",
+          "label": "Badge image",
+          "info": "Optional uploaded badge shown next to the slide heading. Takes priority over badge text."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating",
+          "default": true,
+          "info": "Uses the selected primary button product review metafields when available"
+        },
+        {
+          "type": "text",
+          "id": "rating_text",
+          "label": "Rating text override",
+          "info": "Optional custom text shown next to the stars, for example: 4.3 | 1.9k reviews"
+        },
+        {
+          "type": "text",
+          "id": "price_note",
+          "label": "Price note override",
+          "info": "Optional text shown below the buttons. Leave blank to use the selected primary product price."
+        },
+        {
+          "type": "text",
+          "id": "price_prefix",
+          "label": "Auto price prefix",
+          "default": "starting at",
+          "info": "Used before the linked product price when no custom price note is set"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.all.button_label.label",
+          "info": "t:sections.all.button_label.info",
+          "default": "Shop Now"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "tertiary",
+              "label": "Tertiary"
+            },
+            {
+              "value": "outline",
+              "label": "White Outline"
+            }
+          ],
+          "default": "primary",
+          "label": "Primary button style"
+        },
+        {
+          "type": "select",
+          "id": "button_size",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.all.button_size.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.all.button_size.options__2.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.all.button_size.options__3.label"
+            }
+          ],
+          "default": "medium",
+          "label": "t:sections.all.button_size.label"
+        },
+        {
+          "type": "product",
+          "id": "button_product",
+          "label": "Primary button product",
+          "info": "When selected, the primary button adds this product to cart."
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Primary button link (fallback)"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Second button label",
+          "info": "Leave blank to hide the second button"
+        },
+        {
+          "type": "select",
+          "id": "button_style_2",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "outline",
+              "label": "White Outline"
+            }
+          ],
+          "default": "secondary",
+          "label": "Second button style"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Second button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.all.image.label"
+        },
+        {
+          "type": "color",
+          "id": "media_background_color",
+          "label": "t:sections.dual-scroll.settings.media_background_color.label",
+          "default": "#e9eaec",
+          "info": "t:sections.dual-scroll.settings.media_background_color.info"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Section background color",
+          "default": "#f5f6f7",
+          "info": "Changes the background color of the section when this slide is active"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dual Scroll (v2)",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "title": "First Slide",
+            "description": "<p>First slide description</p>",
+            "button_label": "Shop Now"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Second Slide",
+            "description": "<p>Second slide description</p>",
+            "button_label": "Shop Now"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Third Slide",
+            "description": "<p>Third slide description</p>",
+            "button_label": "Shop Now"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

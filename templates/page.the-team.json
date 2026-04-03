@@ -1,0 +1,928 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "image_trust_points_AJq6kA": {
+      "type": "image-trust-points",
+      "blocks": {
+        "point_DcNDiA": {
+          "type": "point",
+          "settings": {
+            "icon": "lab",
+            "custom_svg": "",
+            "text": "Formulated by doctors."
+          }
+        },
+        "point_agwjFJ": {
+          "type": "point",
+          "settings": {
+            "icon": "performance",
+            "custom_svg": "<svg width=\"86\" height=\"61\" viewBox=\"0 0 86 61\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M46.6875 1.41195C49.285 0.0569129 55.4746 -1.46966 60.8467 2.82796C66.7087 7.51753 73.753 13.4004 84.2422 27.9686L85.2363 29.3494L84.0332 30.5516C81.5443 33.0404 77.2306 35.6471 70.4707 45.7869C66.8869 51.1626 63.0521 54.8944 58.418 57.2508C53.7949 59.6015 48.5575 60.4901 42.3311 60.4901C36.1922 60.4901 31.0802 59.913 26.498 57.701C21.8854 55.4742 18.0397 51.7058 14.1797 45.7674C8.28175 36.6937 3.11454 31.9257 1.47266 30.7762L0 29.745L0.868164 28.1717C2.45675 25.2924 5.42568 20.6228 9.22754 15.8485C13.0101 11.0984 17.7041 6.1325 22.7725 2.74593C28.579 -1.45156 35.1962 0.070908 37.9424 1.40023C38.8597 1.76067 40.9036 2.3894 42.3311 2.38949C43.7419 2.38949 45.7551 1.77427 46.6875 1.41195ZM58.3486 5.95101C54.6065 2.95729 50.1761 4.06268 48.4688 4.99398L48.3643 5.05062L48.2539 5.09554C47.2274 5.50611 44.5613 6.38949 42.3311 6.38949C40.1011 6.3894 37.4358 5.50614 36.4092 5.09554L36.3311 5.06429L36.2568 5.02718C34.3384 4.06807 29.3314 2.92286 25.0908 6.00668L25.0576 6.03109L25.0234 6.05355C20.435 9.11253 16.0287 13.7292 12.3564 18.3407C9.29542 22.1847 6.80557 25.9481 5.20605 28.6473C7.90226 30.987 12.5233 35.8792 17.5332 43.5868C21.1551 49.1589 24.5047 52.2975 28.2373 54.0994C32.0002 55.9158 36.3842 56.4901 42.3311 56.4901C48.1908 56.4901 52.7384 55.6511 56.6045 53.6854C60.4593 51.7253 63.8201 48.551 67.1426 43.5672C73.0449 34.7139 77.434 31.0621 79.9492 28.867C70.2999 15.7116 63.8025 10.3141 58.3486 5.95101ZM33.123 16.202C34.4914 16.202 36.2879 16.5352 37.8535 16.8075C39.5445 17.1015 41.0962 17.3533 42.3311 17.3534C43.5339 17.3534 44.7816 17.1122 46.1641 16.8211C47.4483 16.5508 48.9808 16.202 50.3887 16.202C52.152 16.202 57.9349 16.7448 63.9688 20.1727C67.2026 22.0099 70.5173 24.681 73.3057 28.5418L74.1182 29.6678L73.3477 30.8221C71.9551 32.9109 61.6209 44.95 42.3311 44.95C26.8343 44.9499 15.3409 35.7135 11.4365 30.9871L10.5449 29.9071L11.2549 28.6991C11.8068 27.7608 12.6644 26.6201 13.8193 25.409V25.5994C13.8193 28.4523 15.5767 30.8936 18.0674 31.9032C23.0536 36.0464 31.667 40.9499 42.3311 40.95C57.4141 40.95 66.3536 32.832 69.1436 29.6873C67.29 27.4121 65.2274 25.6775 63.1582 24.3543C61.8707 25.2426 59.9812 26.1475 57.5078 26.9022C53.9287 27.9943 48.9433 28.8358 42.3311 28.8358C38.5505 28.8358 35.2986 28.5588 32.5352 28.119C32.8464 27.3395 33.0195 26.4899 33.0195 25.5994V24.1453C35.5847 24.5622 38.6721 24.8358 42.3311 24.8358C48.6107 24.8358 53.1951 24.0355 56.3398 23.076C57.3469 22.7687 58.1901 22.4494 58.8857 22.1434C54.8299 20.4843 51.3829 20.202 50.3887 20.202C49.4946 20.202 48.4375 20.4301 46.9883 20.7352C45.637 21.0197 44.0059 21.3534 42.3311 21.3534C40.6885 21.3533 38.787 21.0293 37.1689 20.7479C35.492 20.4562 34.1613 20.2225 33.2314 20.2049C33.1606 20.2137 33.09 20.223 33.0195 20.2323V19.9998C33.0195 18.6524 32.6264 17.3972 31.9502 16.3407C32.2584 16.2953 32.57 16.2544 32.8848 16.2166L33.0029 16.202H33.123ZM18.7051 26.1786C18.6929 26.1381 18.6825 26.097 18.6729 26.0555C18.6825 26.097 18.6929 26.1381 18.7051 26.1786ZM18.6191 25.5994C18.6191 25.7334 18.6331 25.8645 18.6582 25.9911C18.6331 25.8645 18.6191 25.7334 18.6191 25.5994Z\" fill=\"black\"/>\n<path d=\"M18.6191 20C18.6191 18.8954 19.5146 18 20.6191 18H26.2191C27.3237 18 28.2191 18.8954 28.2191 20V25.6C28.2191 26.7046 27.3237 27.6 26.2191 27.6H20.6191C19.5146 27.6 18.6191 26.7046 18.6191 25.6V20Z\" fill=\"#037178\"/>\n</svg>",
+            "text": "Built for real-world performance."
+          }
+        },
+        "point_LAh9Wm": {
+          "type": "point",
+          "settings": {
+            "icon": "clinic",
+            "custom_svg": "<svg width=\"17\" height=\"17\" viewBox=\"0 0 17 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0.5\" y=\"0.5\" width=\"16\" height=\"16\" rx=\"2.5\" stroke=\"black\"/>\n<line x1=\"8.55273\" x2=\"8.55273\" y2=\"17\" stroke=\"black\"/>\n<line x1=\"-4.37114e-08\" y1=\"8.44727\" x2=\"17\" y2=\"8.44726\" stroke=\"black\"/>\n</svg>",
+            "text": "Trusted by clinics world-wide."
+          }
+        }
+      },
+      "block_order": [
+        "point_DcNDiA",
+        "point_agwjFJ",
+        "point_LAh9Wm"
+      ],
+      "name": "Image trust points",
+      "settings": {
+        "image": "shopify://shop_images/Scott_holding_a_troche.jpg",
+        "image_ratio": "square",
+        "image_position": "center center",
+        "heading": "Troscriptions creates <em>practitioner-trusted solutions</em> for some of the most common health challenges.",
+        "heading_tag": "h2",
+        "heading_size": "medium",
+        "enable_highlight": true,
+        "highlight_style": "solid-color",
+        "show_divider": false,
+        "heading_color": "#242724",
+        "accent_color": "#087b78",
+        "text_color": "#2f342f",
+        "icon_background_color": "#e6faf1",
+        "icon_foreground_color": "#587166",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "image_with_text_v2_pFgwLJ": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_J7exaR": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Mission",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "heading_subheading_gap": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_faBpjr": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Democratize Enlightenment</strong></p><p>By removing the obstacles that prevent people from reaching optimal health and performance.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_J7exaR",
+        "text_faBpjr"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/About_Democratize_Enlightenment.png",
+        "image_position": "80% 50%",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_mobile_padding": true,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": true,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#ffffff",
+        "colors_background": "#037178",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "proof_results_rFiWrm": {
+      "type": "proof-results",
+      "blocks": {
+        "stat_dfenBB": {
+          "type": "stat",
+          "settings": {
+            "image": "shopify://shop_images/Blue_Cannatine-About_The_Proof.jpg",
+            "metric": "1.5 million hours",
+            "caption": "of additional focus"
+          }
+        },
+        "stat_3kDwjP": {
+          "type": "stat",
+          "settings": {
+            "image": "shopify://shop_images/Calm-About_The_Proof.jpg",
+            "metric": "700,000 hours",
+            "caption": "of \"no stress\""
+          }
+        },
+        "stat_HqKGpy": {
+          "type": "stat",
+          "settings": {
+            "image": "shopify://shop_images/Just_Blue-About_The_Proof.jpg",
+            "metric": "3.63 million hours",
+            "caption": "of increased energy"
+          }
+        },
+        "stat_bDxeLg": {
+          "type": "stat",
+          "settings": {
+            "image": "shopify://shop_images/Zzz-About_The_Proof.jpg",
+            "metric": "2.4 million hours",
+            "caption": "of better sleep"
+          }
+        },
+        "award_eU9ziJ": {
+          "type": "award",
+          "settings": {
+            "logo": "shopify://shop_images/INC_5000_logo_d10b1a80-5f16-417d-83bc-b30fdefbcf94.png",
+            "title": "Inc. 5000 Fastest Growing Companies",
+            "text": "<p>#99 Fastest Growing Healthcare & Medical Company (U.S.)</p>"
+          }
+        },
+        "logo_6eNgin": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/UCSF-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_AHGxrN": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/stanford-university-logo-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_mjxQDm": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/INC_5000_logo_d10b1a80-5f16-417d-83bc-b30fdefbcf94.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_Kp3rz4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Indepenent-logo-gray.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_pxnKjt": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/TEDX-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_A8pUAP": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/NYPost-logo-gray.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_3xfqpH": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/cnn_logo-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_MxGU9P": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Forbes-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_xd6cYw": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Interactive-Healthcare-Sym-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_WyAAkj": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Ben-Greenfield-Life-logo-gray-min_a1de96ed-0469-485a-8979-e5fcf93f7165.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_BNexht": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/The-Genius-Life-With-Max-Lugavere-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_nbR9x3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Kwik-Brain-Logo-gray-big.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_LUxKtF": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/The-Dr-Hyman-Show-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_qtXJDq": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/The-Dr-Gabrielle-Lyon-Show-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_ythFee": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Thomas-DeLauer-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_8ejx3U": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/The-Gabby-Reece-Show-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        },
+        "logo_b37JKR": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Mark-Bell-Power-Project-logo-gray-min.png",
+            "name": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "stat_dfenBB",
+        "stat_3kDwjP",
+        "stat_HqKGpy",
+        "stat_bDxeLg",
+        "award_eU9ziJ",
+        "logo_6eNgin",
+        "logo_AHGxrN",
+        "logo_mjxQDm",
+        "logo_Kp3rz4",
+        "logo_pxnKjt",
+        "logo_A8pUAP",
+        "logo_3xfqpH",
+        "logo_MxGU9P",
+        "logo_xd6cYw",
+        "logo_WyAAkj",
+        "logo_BNexht",
+        "logo_nbR9x3",
+        "logo_LUxKtF",
+        "logo_qtXJDq",
+        "logo_ythFee",
+        "logo_8ejx3U",
+        "logo_b37JKR"
+      ],
+      "name": "Proof results",
+      "settings": {
+        "heading": "The Proof",
+        "heading_tag": "h2",
+        "text": "<p>These aren't aspirations. At Troscriptions, we are truly moving the needle on health.</p>",
+        "stats_heading": "In 2025, Troscriptions customers experienced:",
+        "awards_heading": "Awards:",
+        "featured_heading": "Featured in:",
+        "enable_highlight": false,
+        "highlight_style": "solid-color",
+        "logo_direction": "left",
+        "logo_speed": 1.5,
+        "logo_height": 80,
+        "logo_gap": 54,
+        "heading_color": "#262626",
+        "text_color": "#2d2d2d",
+        "muted_color": "#5f5f5f",
+        "accent_color": "#111111",
+        "card_text_color": "#222222",
+        "card_overlay_color": "#f5efeb",
+        "card_overlay_opacity": 80,
+        "card_radius": 10,
+        "award_logo_width": 124,
+        "show_divider": false,
+        "padding_top": 92,
+        "padding_bottom": 92
+      }
+    },
+    "image_with_text_v2_mnFUNa": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_fb3tHx": {
+          "type": "heading",
+          "settings": {
+            "heading": "Founding Story",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "heading_subheading_gap": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_KF66pH": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "<strong>Built by Practitioners</strong>",
+            "subheading_size": "h3",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_ajxjJp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Troscriptions was <strong>founded in 2020 by five healthcare practitioners—four of them medical doctors—</strong>with a shared frustration:<br/>Patients were overwhelmed by modern life and help was needed now for:</p><ul><li>Chronic stress</li><li>Poor sleep</li><li>Brain fog</li><li>Pain</li><li>Low energy</li></ul><p>The issue wasn’t effort. </p><p>It wasn’t motivation. </p><p>It was delivery, dosing, and biology being ignored.</p><p><br/>So we built what didn’t exist.<br/><strong>Physician-formulated, precision-dosed buccal troches</strong>—designed for rapid, reliable absorption and consistent effects, without relying on a stressed gut or guesswork dosing.</p>",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fb3tHx",
+        "subheading_KF66pH",
+        "text_ajxjJp"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/About_Founding_Story.jpg",
+        "image_position": "top center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "content",
+        "fit_image_to_container": false,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": true,
+        "image_behavior": "none",
+        "image_mobile": "shopify://shop_images/About_Founding_Story_1.jpg",
+        "enable_mobile_image_position": true,
+        "mobile_image_position": "top center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "square",
+        "enable_mobile_padding": true,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_v2_xaFVRq": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_3PH9NB": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our First Product",
+            "heading_size": "h2",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "heading_subheading_gap": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_qMF3Le": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Blue Cannatine </strong>was created by <strong>Dr. Ted Achacoso</strong> to solve a real problem: staying sharp, focused, and resilient while traveling internationally and pushing performance without burnout.</p><p><br/>It worked.<br/>Not just for him—but for the people he cared for.</p><p><br/>Patients felt the difference.</p><p> Practitioners paid attention. </p><p>Clinics asked what was next.</p><p>What followed wasn’t a single product—it was momentum. A growing line of precision-dosed tools built around real physiological demands, not passing trends.</p>",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3PH9NB",
+        "text_qMF3Le"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/About_our_first_product.jpg",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "content",
+        "fit_image_to_container": false,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "image_mobile": "shopify://shop_images/About_our_first_product.jpg",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "landscape",
+        "enable_mobile_padding": true,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "how_we_operate_F4HLJL": {
+      "type": "how-we-operate",
+      "blocks": {
+        "principle_gzrDk3": {
+          "type": "principle",
+          "settings": {
+            "icon": "altruism",
+            "icon_image": "shopify://shop_images/Nonreciprocal_altruism_-_Careers_Values_bf575009-0dd6-4c25-bbd1-2af76cedd393.svg",
+            "icon_background": "#9a98df",
+            "title": "Non-reciprocal altruism",
+            "lead": "We give without expectation.",
+            "text": "<p>Through our deep relationship with <strong>Health Optimization Medicine and Practice</strong>, we support practitioner education, community impact, and the broader shift from disease management to proactive health optimization.</p><p>Our success fuels the ecosystem, not the other way around.</p>"
+          }
+        },
+        "principle_kKjMyd": {
+          "type": "principle",
+          "settings": {
+            "icon": "conscientiousness",
+            "icon_image": "shopify://shop_images/Conscientiousness_-_Careers_Values.svg",
+            "icon_background": "#f68d2e",
+            "title": "Conscientiousness",
+            "lead": "We care deeply about what goes into the body.",
+            "text": "<p>From ingredient sourcing to formulation, testing, and delivery, we operate with rigor, responsibility, and respect for the practitioner-patient relationship.</p>"
+          }
+        },
+        "principle_VTKm8B": {
+          "type": "principle",
+          "settings": {
+            "icon": "communication",
+            "icon_image": "shopify://shop_images/Communication_-_Careers_Values.svg",
+            "icon_background": "#0077c8",
+            "title": "Communication",
+            "lead": "Clarity builds trust.",
+            "text": "<p>We communicate openly with our customers, practitioners, and partners because informed people make better decisions, and better decisions lead to better outcomes.</p>"
+          }
+        },
+        "principle_6tcyc6": {
+          "type": "principle",
+          "settings": {
+            "icon": "agility",
+            "icon_image": "shopify://shop_images/Agility_-_Careers_Values.svg",
+            "icon_background": "#037178",
+            "title": "Agility",
+            "lead": "Health optimization evolves quickly.",
+            "text": "<p>We stay on the cutting edge by focusing on what actually works, adapting rapidly as new research emerges, and avoiding dogma in favor of results.</p>"
+          }
+        },
+        "principle_4KpkP8": {
+          "type": "principle",
+          "settings": {
+            "icon": "curiosity",
+            "icon_image": "shopify://shop_images/Curiosity_-_Careers_Values.svg",
+            "icon_background": "#1d428a",
+            "title": "Curiosity",
+            "lead": "Every breakthrough starts with a question.",
+            "text": "<p>We relentlessly search for more effective solutions to the most common obstacles on the path to optimal health.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "principle_gzrDk3",
+        "principle_kKjMyd",
+        "principle_VTKm8B",
+        "principle_6tcyc6",
+        "principle_4KpkP8"
+      ],
+      "name": "How we operate",
+      "settings": {
+        "heading": "How We Operate",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "intro": "<p>Principles that shape how we make decisions, communicate, and build.</p>",
+        "show_divider": false,
+        "background_color": "#f2f2f2",
+        "heading_color": "#1a1b18",
+        "text_color": "#1a1b18",
+        "icon_foreground_color": "#ffffff",
+        "max_content_width": 1120,
+        "icon_size": 36,
+        "icon_container_size": 70,
+        "icon_padding": 14,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "team_directory_mX79id": {
+      "type": "team-directory",
+      "name": "Team directory",
+      "settings": {
+        "heading": "The Team Behind the Work",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "intro": "<p>Faces matter. Credibility matters. This is where both live.</p>",
+        "science_heading": "Science Writers",
+        "empty_state": "<p>Add entries to the page metafields <strong>custom.team_members</strong> and <strong>custom.science_writers</strong> to populate this section.</p>",
+        "show_divider": false,
+        "background_color": "#ffffff",
+        "heading_color": "#232323",
+        "text_color": "#2c2c2c",
+        "muted_color": "#5e5e5e",
+        "card_surface": "#f3f3f3",
+        "detail_surface": "#f3f3f3",
+        "accent_color": "#4a6df0",
+        "max_content_width": 1120,
+        "main_first_row_items": 3,
+        "main_first_row_columns": 4,
+        "main_columns": 4,
+        "science_columns": 4,
+        "card_radius": 8,
+        "image_radius": 6,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "rich_text_v2_zk3FWN": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_gaNkBx": {
+          "type": "heading",
+          "settings": {
+            "heading": "Press, Trust & Transparency",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_gaNkBx"
+      ],
+      "name": "Rich text (v2)",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "stacked",
+        "content_max_width": 980,
+        "fill_content_width": false,
+        "content_horizontal_position": "match_alignment",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    },
+    "featured_blog_v2_rtaww4": {
+      "type": "featured-blog-v2",
+      "blocks": {
+        "title_mFHRaF": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_CTaNk3": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_wBf3rq": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_mFHRaF",
+        "summary_CTaNk3",
+        "read_more_wBf3rq"
+      ],
+      "name": "Featured blog (v2)",
+      "settings": {
+        "blog": "news",
+        "filter_tags": "",
+        "post_limit": 4,
+        "show_view_all": false,
+        "view_all_button_style": "primary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "View all",
+        "show_divider": false,
+        "heading": "Press releases",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "featured_blog_v2_mCCwJD": {
+      "type": "featured-blog-v2",
+      "blocks": {
+        "title_w47PE6": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_89qfCB": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_7p8cTL": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_w47PE6",
+        "summary_89qfCB",
+        "read_more_7p8cTL"
+      ],
+      "disabled": true,
+      "name": "Featured blog (v2)",
+      "settings": {
+        "blog": "news",
+        "filter_tags": "",
+        "post_limit": 4,
+        "show_view_all": false,
+        "view_all_button_style": "primary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "View all",
+        "show_divider": false,
+        "heading": "Media Features",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "rich_text_AxqBWw": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_bVEiKt": {
+          "type": "heading",
+          "settings": {
+            "heading": "Brand assets",
+            "heading_size": "h2",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_tVQTxk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>- <a href=\"https://drive.google.com/drive/folders/1ierjUDflWYB3YxNeIF4XV4zP7cFP_ozW\" title=\"https://drive.google.com/drive/folders/1ierjUDflWYB3YxNeIF4XV4zP7cFP_ozW\">Get it here</a></p>",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "heading_dFTiWC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Privacy & security links",
+            "heading_size": "h2",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_QzKWeK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>- <a href=\"/policies/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\">Privacy policy</a><br/>- <a href=\"/policies/terms-of-service\" target=\"_blank\" title=\"Terms of Service\">Terms of Service</a></p>",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bVEiKt",
+        "text_tVQTxk",
+        "heading_dFTiWC",
+        "text_QzKWeK"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "horizontal_content": false,
+        "narrow": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "next_step_banner_R4FtN9": {
+      "type": "next-step-banner",
+      "name": "Next step banner",
+      "settings": {
+        "heading": "Whether you're here to join us or try the products yourself, there's a next step.",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "body": "<p>Help us build the future of health optimization.</p>",
+        "primary_button_label": "Careers",
+        "primary_button_link": "shopify://pages/careers",
+        "secondary_link_text": "Experience the products trusted by practitioners worldwide.",
+        "secondary_link_url": "",
+        "secondary_button_label": "Shop Now",
+        "secondary_button_link": "shopify://collections/our-products",
+        "image": "shopify://shop_images/About-troches.png",
+        "show_divider": false,
+        "background_color": "#e7faf2",
+        "heading_color": "#1a1b18",
+        "text_color": "#23302b",
+        "link_color": "#1f3f35",
+        "heading_content_spacing": 12,
+        "image_scale": 85,
+        "image_offset_x": -12,
+        "image_offset_y": 72,
+        "max_content_width": 1440,
+        "image_width": 370,
+        "heading_content_spacing_mobile": 0,
+        "image_width_mobile": 150,
+        "image_scale_mobile": 200,
+        "image_offset_x_mobile": 54,
+        "image_offset_y_mobile": 36,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_trust_points_AJq6kA",
+    "image_with_text_v2_pFgwLJ",
+    "proof_results_rFiWrm",
+    "image_with_text_v2_mnFUNa",
+    "image_with_text_v2_xaFVRq",
+    "how_we_operate_F4HLJL",
+    "team_directory_mX79id",
+    "rich_text_v2_zk3FWN",
+    "featured_blog_v2_rtaww4",
+    "featured_blog_v2_mCCwJD",
+    "rich_text_AxqBWw",
+    "next_step_banner_R4FtN9"
+  ]
+}

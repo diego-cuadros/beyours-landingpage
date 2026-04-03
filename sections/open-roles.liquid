@@ -1,0 +1,546 @@
+{%- liquid
+  assign open_roles_items = blank
+
+  if page != blank and page.metafields.custom.open_roles != blank and page.metafields.custom.open_roles.value != blank
+    assign open_roles_items = page.metafields.custom.open_roles.value
+  else
+    assign open_roles_items = shop.metaobjects.career_opportunities.values | default: shop.metaobjects.job_opening.values
+  endif
+
+  assign has_roles = false
+  assign filter_tokens = '|'
+
+  for role in open_roles_items
+    assign role_title = role.name.value | default: role.name | default: role.title.value | default: role.title
+    assign role_apply_url = role.typeform_link.value | default: role.typeform_link | default: role.apply_url.value | default: role.apply_url | default: role.url.value | default: role.url
+
+    if role_title != blank and role_apply_url != blank
+      assign has_roles = true
+
+      assign role_team = role.department.value | default: role.department | default: role.team.value | default: role.team | default: role.category.value | default: role.category | default: role.department_name.value | default: role.department_name
+      if role_team == blank
+        assign role_team = 'General'
+      endif
+
+      assign role_team_handle = role_team | handleize
+      assign filter_token = role_team_handle | append: '::' | append: role_team
+      assign wrapped_filter_token = '|' | append: filter_token | append: '|'
+
+      unless filter_tokens contains wrapped_filter_token
+        assign filter_tokens = filter_tokens | append: filter_token | append: '|'
+      endunless
+    endif
+  endfor
+
+  assign filters = filter_tokens | split: '|'
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --open-roles-background: {{ section.settings.background_color }};
+    --open-roles-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --open-roles-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --open-roles-muted: {{ section.settings.muted_text_color.red }}, {{ section.settings.muted_text_color.green }}, {{ section.settings.muted_text_color.blue }};
+    --open-roles-border: {{ section.settings.border_color.red }}, {{ section.settings.border_color.green }}, {{ section.settings.border_color.blue }};
+    --open-roles-pill-active: {{ section.settings.active_pill_color.red }}, {{ section.settings.active_pill_color.green }}, {{ section.settings.active_pill_color.blue }};
+    --open-roles-pill-text: {{ section.settings.active_pill_text_color.red }}, {{ section.settings.active_pill_text_color.green }}, {{ section.settings.active_pill_text_color.blue }};
+    --open-roles-max-width: {{ section.settings.max_content_width }}px;
+    --open-roles-sticky-offset: {{ section.settings.sticky_offset }}px;
+  }
+
+  #{{ section.settings.anchor_id | default: 'open-roles' | handle }} {
+    scroll-margin-top: calc(max(var(--header-height, 0px), 8rem) + 2rem);
+  }
+{%- endstyle -%}
+
+{{ 'section-open-roles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'open-roles.js' | asset_url }}" defer="defer"></script>
+
+{%- assign open_roles_anchor_id = section.settings.anchor_id | default: 'open-roles' | handle -%}
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section id="{{ open_roles_anchor_id }}" class="open-roles section--padding">
+    {%- if section.blocks.size > 0 -%}
+      <div class="open-roles__accents" aria-hidden="true">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accent' -%}
+            <div
+              class="open-roles__accent{% if block.settings.hide_on_mobile %} open-roles__accent--hide-mobile{% endif %}"
+              style="
+                --accent-top: {{ block.settings.top }}%;
+                --accent-left: {{ block.settings.left }}%;
+                --accent-size: {{ block.settings.size_desktop }}px;
+                --accent-scale: {{ block.settings.scale_desktop | default: 125 | divided_by: 100.0 }};
+                --accent-rotation: {{ block.settings.rotation }}deg;
+                --accent-top-mobile: {{ block.settings.top_mobile }}%;
+                --accent-left-mobile: {{ block.settings.left_mobile }}%;
+                --accent-size-mobile: {{ block.settings.size_mobile }}px;
+                --accent-scale-mobile: {{ block.settings.scale_mobile | default: block.settings.scale_desktop | default: 100 | divided_by: 100.0 }};
+                --accent-tile: {{ block.settings.tile_color }};
+              "
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    widths: '120, 180, 240, 320, 480, 640, 800',
+                    sizes: '(max-width: 989px) 212px, 264px',
+                    class: 'open-roles__accent-image',
+                    alt: ''
+                }}
+              {%- else -%}
+                <span class="open-roles__accent-tile"></span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="page-width">
+      <open-roles-board class="open-roles__board">
+        <div class="open-roles__layout">
+          <div class="open-roles__intro-column">
+            <div class="open-roles__intro">
+              {%- if section.settings.heading != blank -%}
+                <{{ section.settings.heading_tag }} class="open-roles__heading {{ section.settings.heading_size }}">
+                  {{ section.settings.heading }}
+                </{{ section.settings.heading_tag }}>
+              {%- endif -%}
+
+              {%- if section.settings.subheading != blank -%}
+                <p class="open-roles__subheading">
+                  {{ section.settings.subheading }}
+                </p>
+              {%- endif -%}
+
+              {%- if section.settings.intro != blank -%}
+                <div class="open-roles__copy rte">
+                  {{ section.settings.intro }}
+                </div>
+              {%- endif -%}
+
+              {%- if has_roles -%}
+                <div class="open-roles__filters" role="toolbar" aria-label="Role filters">
+                  <button
+                    type="button"
+                    class="open-roles__filter button button--secondary button--small is-active"
+                    data-filter-trigger
+                    data-filter="all"
+                    aria-pressed="true"
+                  >
+                    All roles
+                  </button>
+
+                  {%- for filter_item in filters -%}
+                    {%- if filter_item != blank -%}
+                      {%- assign filter_parts = filter_item | split: '::' -%}
+                      {%- assign filter_value = filter_parts[0] | strip -%}
+                      {%- assign filter_label = filter_parts[1] | strip -%}
+
+                      {%- if filter_value != blank and filter_label != blank -%}
+                        <button
+                          type="button"
+                          class="open-roles__filter button button--secondary button--small"
+                          data-filter-trigger
+                          data-filter="{{ filter_value }}"
+                          aria-pressed="false"
+                        >
+                          {{ filter_label }}
+                        </button>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class="open-roles__roles-column">
+            {%- if has_roles -%}
+              <div class="open-roles__roles" role="list">
+                {%- for role in open_roles_items -%}
+                  {%- liquid
+                    assign role_title = role.name.value | default: role.name | default: role.title.value | default: role.title
+                    assign role_apply_url = role.typeform_link.value | default: role.typeform_link | default: role.apply_url.value | default: role.apply_url | default: role.url.value | default: role.url
+                    assign role_team = role.department.value | default: role.department | default: role.team.value | default: role.team | default: role.category.value | default: role.category | default: role.department_name.value | default: role.department_name
+                    assign role_location = role.location.value | default: role.location
+                    assign role_type = role.employment_type.value | default: role.employment_type | default: role.role_type.value | default: role.role_type
+                    assign role_summary_field = role.short_description | default: role.long_description | default: role.summary | default: role.description
+                    assign role_summary_value = role.short_description.value | default: role.long_description.value | default: role.summary.value | default: role.description.value | default: role.short_description | default: role.long_description | default: role.summary | default: role.description
+                  -%}
+
+                  {%- if role_title != blank and role_apply_url != blank -%}
+                    {%- if role_team == blank -%}
+                      {%- assign role_team = 'General' -%}
+                    {%- endif -%}
+
+                    <article class="open-roles__role" role="listitem" data-role-item data-filter-value="{{ role_team | handleize }}">
+                      {%- if role_location != blank or role_type != blank -%}
+                        <p class="open-roles__meta">
+                          {%- if role_location != blank -%}
+                            <span>{{ role_location }}</span>
+                          {%- endif -%}
+                          {%- if role_location != blank and role_type != blank -%}
+                            <span aria-hidden="true">/</span>
+                          {%- endif -%}
+                          {%- if role_type != blank -%}
+                            <span>{{ role_type }}</span>
+                          {%- endif -%}
+                        </p>
+                      {%- endif -%}
+
+                      <h3 class="open-roles__role-title">
+                        {{ role_title }}
+                      </h3>
+
+                      {%- if role_summary_value != blank -%}
+                        <div class="open-roles__role-summary rte">
+                          {%- if role_summary_field != blank -%}
+                            {{ role_summary_field | metafield_tag }}
+                          {%- else -%}
+                            <p>{{ role_summary_value }}</p>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+
+                      <a
+                        class="open-roles__cta button button--small"
+                        href="{{ role_apply_url }}"
+                        {% if section.settings.open_links_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                      >
+                        {{ section.settings.cta_label }}
+                      </a>
+                    </article>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+
+            <div class="open-roles__empty-state{% if has_roles %} hidden{% endif %}" data-empty-state{% if has_roles %} hidden{% endif %}>
+              {{ section.settings.empty_state }}
+            </div>
+          </div>
+        </div>
+      </open-roles-board>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Open roles",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section anchor id",
+      "default": "open-roles"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Open Roles"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Join the team shifting the world’s perspective from disease to health."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>We’re growing across operations and engineering. Current openings include:</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Role button label",
+      "default": "View role & apply"
+    },
+    {
+      "type": "richtext",
+      "id": "empty_state",
+      "label": "Empty state",
+      "default": "<p>There are no live openings right now.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_links_in_new_tab",
+      "label": "Open role links in a new tab",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 960,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop content max width",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "sticky_offset",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Sticky offset",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1d1b1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#3e3937"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Muted text color",
+      "default": "#6b655f"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#cfc6bd"
+    },
+    {
+      "type": "color",
+      "id": "active_pill_color",
+      "label": "Active pill background",
+      "default": "#1d1b1a"
+    },
+    {
+      "type": "color",
+      "id": "active_pill_text_color",
+      "label": "Active pill text",
+      "default": "#fffaf4"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 76
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accent",
+      "name": "Accent image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "tile_color",
+          "label": "Fallback tile color",
+          "default": "#e96c42"
+        },
+        {
+          "type": "range",
+          "id": "size_desktop",
+          "min": 32,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "label": "Desktop size",
+          "default": 56
+        },
+        {
+          "type": "range",
+          "id": "size_mobile",
+          "min": 24,
+          "max": 96,
+          "step": 4,
+          "unit": "px",
+          "label": "Mobile size",
+          "default": 48
+        },
+        {
+          "type": "range",
+          "id": "scale_desktop",
+          "min": 100,
+          "max": 220,
+          "step": 5,
+          "unit": "%",
+          "label": "Desktop scale",
+          "default": 125
+        },
+        {
+          "type": "range",
+          "id": "scale_mobile",
+          "min": 80,
+          "max": 220,
+          "step": 5,
+          "unit": "%",
+          "label": "Mobile scale",
+          "default": 100
+        },
+        {
+          "type": "range",
+          "id": "top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop top position",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop left position",
+          "default": 90
+        },
+        {
+          "type": "range",
+          "id": "top_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile top position",
+          "default": 7
+        },
+        {
+          "type": "range",
+          "id": "left_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile left position",
+          "default": 85
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "min": -45,
+          "max": 45,
+          "step": 1,
+          "unit": "deg",
+          "label": "Rotation",
+          "default": -12
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_on_mobile",
+          "label": "Hide on mobile",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Open roles"
+    }
+  ]
+}
+{% endschema %}

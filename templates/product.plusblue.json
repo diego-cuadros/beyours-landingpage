@@ -1,0 +1,711 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "content_scrollspy_KjGLRV": {
+      "type": "content-scrollspy",
+      "name": "t:sections.content_scrollspy.presets.name",
+      "settings": {
+        "heading_selector": ".product__heading, h2.title",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "active_color": "#1d428a",
+        "border_color": "#1d428a",
+        "enable_animations": true,
+        "animation_threshold": 0.6,
+        "hide_on_scroll_up": true,
+        "show_scroll_indicator": true
+      }
+    },
+    "main": {
+      "type": "main-product-v2",
+      "blocks": {
+        "c3859847-75da-421a-8890-a0b32e290e91": {
+          "type": "breadcrumb",
+          "disabled": true,
+          "settings": {
+            "text_style": "uppercase",
+            "show_divider": true
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "h0",
+            "show_price": false,
+            "price_size": "medium"
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": "medium",
+            "show_badges": true,
+            "sale_badge_basis": "auto",
+            "enable_checkout_discount": false,
+            "checkout_discount_percent": 15,
+            "checkout_discount_note": "Discount applied at checkout."
+          }
+        },
+        "countdown": {
+          "type": "countdown",
+          "settings": {
+            "heading": "Hurry up ! Sale end in:",
+            "number_size": "compact",
+            "colors_heading": "#da3f3f",
+            "colors_text": "#da3f3f",
+            "colors_background": "#ffeeee"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "show_variant_labels": true,
+            "picker_type": "button",
+            "swatch_source": "variant",
+            "swatch_type": "round",
+            "enable_swatch_unavailable_click": false,
+            "size_chart": ""
+          }
+        },
+        "trust_points_PBjkrL": {
+          "type": "trust_points",
+          "settings": {
+            "item_1_icon": "lab",
+            "item_1_text": "Third-Party Lab Tested",
+            "item_1_icon_size": 20,
+            "item_1_icon_size_mobile": 18,
+            "item_2_icon": "shield",
+            "item_2_text": "USP-Grade Purity",
+            "item_2_icon_size": 20,
+            "item_2_icon_size_mobile": 18,
+            "item_3_icon": "cgmp-logo",
+            "item_3_text": "cGMP Certified Facility",
+            "item_3_icon_size": 24,
+            "item_3_icon_size_mobile": 20,
+            "item_4_icon": "map_pin",
+            "item_4_text": "Made in USA",
+            "item_4_icon_size": 20,
+            "item_4_icon_size_mobile": 18,
+            "item_5_icon": "stethoscope",
+            "item_5_text": "Physician Formulated",
+            "item_5_icon_size": 20,
+            "item_5_icon_size_mobile": 18
+          }
+        },
+        "dose_highlight": {
+          "type": "dose_highlight",
+          "settings": {
+            "eyebrow": "Per pack",
+            "stat_1_value": "4",
+            "stat_1_label": "Troches / pack",
+            "stat_2_value": "Up to 16",
+            "stat_2_label": "Doses",
+            "note": ""
+          }
+        },
+        "b6e55313-9929-4132-a01e-2fdd52057e32": {
+          "type": "description",
+          "settings": {}
+        },
+        "link_button_HQJpqz": {
+          "type": "link_button",
+          "settings": {
+            "label": "Find a practitioner",
+            "link": "shopify://pages/practitioner-map",
+            "style": "secondary",
+            "full_width": true,
+            "open_in_new_tab": false
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "disabled": true,
+          "settings": {
+            "show_quantity_selector": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "inventory_status": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 20,
+            "show_inventory_transfer": true,
+            "color_scheme": "accent-3"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "sticky_cart": {
+          "type": "sticky_cart",
+          "disabled": true,
+          "settings": {
+            "show_quantity_selector": false
+          }
+        }
+      },
+      "block_order": [
+        "c3859847-75da-421a-8890-a0b32e290e91",
+        "title",
+        "rating",
+        "price",
+        "countdown",
+        "variant_picker",
+        "trust_points_PBjkrL",
+        "dose_highlight",
+        "b6e55313-9929-4132-a01e-2fdd52057e32",
+        "link_button_HQJpqz",
+        "buy_buttons",
+        "inventory_status",
+        "share",
+        "sticky_cart"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "media_position": "left",
+        "media_size": "medium",
+        "gallery_layout": "stacked",
+        "image_ratio": "square",
+        "show_featured_media": true,
+        "show_thumbnails": true,
+        "hide_variants": true,
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "mobile_image_ratio": "square",
+        "show_mobile_thumbnails": true,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "active_ingredients_v2_ndFjt3": {
+      "type": "active-ingredients-v2",
+      "name": "Active ingredients v2",
+      "settings": {
+        "product_source": "",
+        "ingredients_metafield_namespace": "custom",
+        "ingredients_metafield_key": "ingredients",
+        "link_label": "Learn more",
+        "layout": "default",
+        "column_alignment": "center",
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 4,
+        "content_image_ratio": "square",
+        "content_image_radius": 0,
+        "content_image_height": 200,
+        "content_image_background_color": "#ffffff",
+        "use_css_icon_grid": false,
+        "heading": "Active ingredients",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "enable_mobile_carousel": true,
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "image_with_text_overlay_v2_VWByXC": {
+      "type": "image-with-text-overlay-v3",
+      "blocks": {
+        "heading_d8MBcg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Every batch tested, see our results",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_7gdr4w": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Beyond USP",
+            "subheading_size": "h5",
+            "subheading_tag": "h3",
+            "subheading_color": "#1d428a",
+            "subheading_spacing_top": 30,
+            "subheading_spacing_bottom": 30,
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_fQUXzk": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Did you know many supplements on the market can be contaminated or inaccurately labeled? </strong>The U.S. Pharmacopeia (USP) sets the gold standard for testing and verifying pharmaceutical-grade ingredients.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_Pr4Nzd": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "2x Testing",
+            "subheading_size": "h5",
+            "subheading_tag": "h3",
+            "subheading_color": "#1d428a",
+            "subheading_spacing_top": 30,
+            "subheading_spacing_bottom": 30,
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_RPnc9N": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Did you know many supplements on the market can be contaminated or inaccurately labeled? </strong>The U.S. Pharmacopeia (USP) sets the gold standard for testing and verifying pharmaceutical-grade ingredients.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_wiqeGN": {
+          "type": "coa_button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "REQUEST CERTIFICATE OF ANALYSIS",
+            "button_style_secondary": false,
+            "modal_title": "Request Certificate of Analysis",
+            "modal_heading_size": "h3",
+            "modal_text": "<p>Submit the form below and our team will send you the latest Certificate of Analysis.</p>",
+            "gorgias_form_uid": "rwp4gxa5",
+            "fallback_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_d8MBcg",
+        "subheading_7gdr4w",
+        "text_fQUXzk",
+        "subheading_Pr4Nzd",
+        "text_RPnc9N",
+        "button_wiqeGN"
+      ],
+      "name": "t:sections.image-with-text-overlay.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Testing_-_Just_Blue.png",
+        "image_position": "center center",
+        "text_box_position": "flex-start",
+        "text_alignment": "left",
+        "content_width_desktop": 50,
+        "content_width_tablet": 60,
+        "content_width_mobile": 100,
+        "mobile_overlay_safe_mode": true,
+        "mobile_solid_content_background": false,
+        "colors_mobile_solid_background": "#f3f3f3",
+        "content_padding_mobile": 24,
+        "image_ratio": "content",
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_text_box_position": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "300px",
+        "video_url": "",
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_overlay": "#f3f3f3",
+        "colors_overlay_opacity": 92,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "active_ingredients_v2_yi6J7r": {
+      "type": "active-ingredients-v2",
+      "name": "Active ingredients v2",
+      "settings": {
+        "product_source": "",
+        "ingredients_metafield_namespace": "custom",
+        "ingredients_metafield_key": "steps_tutorial",
+        "link_label": "Learn more",
+        "layout": "default",
+        "column_alignment": "center",
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 5,
+        "content_image_ratio": "square",
+        "content_image_radius": 12,
+        "content_image_height": 0,
+        "content_image_background_color": "#ffffff",
+        "use_css_icon_grid": true,
+        "heading": "Calibrate your dose of Just Blue",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "subheading": "Follow these steps",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "enable_mobile_carousel": true,
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "tab_collage_v2_EPyxtq": {
+      "type": "tab-collage-v2",
+      "blocks": {
+        "image_RWFdiY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Just_Blue_Troche_No_Background_Cut.svg",
+            "image_position": "center center",
+            "heading": "Buccal troche delivery",
+            "description": "<p>Have you been swallowing your supplements up until now? At Troscriptions, we do things a little differently - we use buccal troches.</p><p>A buccal troche is a uniquely designed delivery system that enhances the absorption of active ingredients directly into your bloodstream. Traditional methods (like tablets or powders) must navigate the detours of your digestive system, but buccal troches allow for more rapid and effective absorption by skipping the digestive system. The result? A swift, potent effect for maximum benefits.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_size": "medium",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "image_8HtMLj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Troscriptions_Tro_Blue_Cannatine_Child_Resistant_Package_Open_Box_c396b491-b34e-4939-ad35-b7119df97d0e.jpg",
+            "image_position": "center center",
+            "heading": "Child-resistant packaging",
+            "description": "<p>Your safety and your family's safety is our top priority, which is why we've gone an extra mile to utilize child-resistant packaging for our products. We understand that this might make the packaging slightly more challenging to open, but it's a measure designed with the utmost safety in mind.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_size": "medium",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "image_xBXEPC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Scott_holding_a_troche.jpg",
+            "image_position": "center center",
+            "heading": "Recequiv™",
+            "description": "<p>A novel, patent-pending process of creating formulas with natural molecules that bind to the same receptor that a synthetic molecule would bind.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_size": "medium",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "image_RWFdiY",
+        "image_8HtMLj",
+        "image_xBXEPC"
+      ],
+      "name": "Tab collage v2",
+      "settings": {
+        "layout": "text_first",
+        "text_box_position": "top",
+        "text_alignment": "left",
+        "image_ratio": "500px",
+        "make_collapsible_rows": false,
+        "full_width": true,
+        "show_divider": false,
+        "heading": "Key features",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "ultrawide_heading_alignment": "center",
+        "heading_tag": "h2",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "300px",
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#1a1b18",
+        "colors_border": "#d2d5d9",
+        "colors_background": "#c2d4ff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "faq_v2_CjaHPh": {
+      "type": "faq-v2",
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "narrow": false,
+        "secondary_background": false,
+        "show_divider": false,
+        "heading": "FAQs",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "faq_content_source": "metafield",
+        "metafield_source_product": "",
+        "metafield_namespace": "custom",
+        "metafield_key": "frequently_asked_questions",
+        "icon_corner_radius": 5,
+        "use_custom_question_typography": true,
+        "question_heading_size": "h4",
+        "question_font_style": "normal",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "guarantees_6QwJRK": {
+      "type": "guarantees",
+      "blocks": {
+        "guarantee_Mttw3j": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "star",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "custom_icon": "",
+            "title": "Physician Formulated",
+            "title_size": "h4",
+            "text": "<p>Our team isn't just built on expertise - it's powered by real-world clinical application. We have 4 physicians on the team who use Troscriptions® in their practice.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_NFNy3J": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "globe",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "custom_icon": "",
+            "title": "Pharmaceutical Grade",
+            "title_size": "h4",
+            "text": "<p>We traverse the globe to create, craft and discover groundbreaking, effective ingredients, subjecting each one to rigorous testing for unparalleled purity and potency.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_XAjjf3": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "recycle",
+            "icon_size": "large",
+            "image": "shopify://shop_images/pharmaceutical_grade_aa8d1e27-f62e-4ac4-911c-df7fbbd6dd60.png",
+            "custom_icon": "",
+            "title": "Precision Dosed",
+            "title_size": "h4",
+            "text": "<p>All ingredients are evenly distributed and carefully calibrated into our formulas. Plus, our troches are scored to help you easily find your unique dosage.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_P6CFTU": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "map_pin",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Made in the USA",
+            "title_size": "h4",
+            "text": "<p>We ensure uncompromising standards and superior quality. Our products are meticulously created, clinically tested, and crafted with utmost care, right here in the USA.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_Mttw3j",
+        "guarantee_NFNy3J",
+        "guarantee_XAjjf3",
+        "guarantee_P6CFTU"
+      ],
+      "name": "Why Tro",
+      "settings": {
+        "layout": "default",
+        "column_alignment": "center",
+        "horizontal_content": false,
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 4,
+        "heading": "Why Troscriptions®?",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "product_list_limit": 4,
+        "show_divider": false,
+        "heading": "You May Also Like",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "image_ratio": "square",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "featured_blog_v2_manual_nbxaxF": {
+      "type": "featured-blog-v2-manual",
+      "blocks": {
+        "post_mUEcFD": {
+          "type": "post",
+          "settings": {
+            "article": "main/methyleneblue"
+          }
+        },
+        "post_Hrx9xC": {
+          "type": "post",
+          "settings": {
+            "article": "main/sorting-out-the-fishy-headlines-on-methylene-blue"
+          }
+        },
+        "post_fL6ny3": {
+          "type": "post",
+          "settings": {
+            "article": "main/polyethylene-glycol-peg"
+          }
+        },
+        "title_Twt6kd": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_Y73xdw": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_rYy3tE": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "post_mUEcFD",
+        "post_Hrx9xC",
+        "post_fL6ny3",
+        "title_Twt6kd",
+        "summary_Y73xdw",
+        "read_more_rYy3tE"
+      ],
+      "name": "Featured blog (v2 manual)",
+      "settings": {
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "read_more",
+        "view_all_inline_with_header": true,
+        "view_all_label": "Visit the blog",
+        "view_all_link": "shopify://blogs/main",
+        "show_divider": false,
+        "heading": "Learn more",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "content_scrollspy_KjGLRV",
+    "main",
+    "active_ingredients_v2_ndFjt3",
+    "image_with_text_overlay_v2_VWByXC",
+    "active_ingredients_v2_yi6J7r",
+    "tab_collage_v2_EPyxtq",
+    "faq_v2_CjaHPh",
+    "guarantees_6QwJRK",
+    "product-recommendations",
+    "featured_blog_v2_manual_nbxaxF"
+  ]
+}

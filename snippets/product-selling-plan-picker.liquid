@@ -1,0 +1,214 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign selling_plan_allocations = current_variant.selling_plan_allocations
+  assign first_allocation = selling_plan_allocations | first
+  assign bundle_subscription_fallback = false
+  if product.template_suffix == 'bundles'
+    assign bundle_subscription_fallback = true
+  endif
+  assign default_subscription = false
+  if block.settings.default_mode == 'subscription' and first_allocation != blank
+    assign default_subscription = true
+  endif
+
+  assign one_time_price = current_variant.price
+  assign display_one_time_price = one_time_price
+  if bundle_subscription_fallback
+    assign display_one_time_price = one_time_price | times: 90.0 | divided_by: 100.0 | round
+  endif
+  assign one_time_price_formatted = display_one_time_price | money
+  if settings.currency_code_enabled
+    assign one_time_price_formatted = display_one_time_price | money_with_currency
+  endif
+
+  assign subscription_price_formatted = ''
+  assign subscription_compare_price_formatted = ''
+  assign subscription_badge_text = ''
+  if first_allocation != blank
+    assign compare_price = first_allocation.compare_at_price | default: one_time_price
+    assign display_subscription_price = first_allocation.price
+
+    if bundle_subscription_fallback and compare_price <= first_allocation.price
+      assign compare_price = one_time_price
+      assign display_subscription_price = one_time_price | times: 90.0 | divided_by: 100.0 | round
+      assign subscription_badge_text = '10% off'
+    elsif compare_price > first_allocation.price
+      assign subscription_discount = compare_price | minus: first_allocation.price | times: 100.0 | divided_by: compare_price | round
+      assign subscription_badge_text = subscription_discount | append: '% off'
+    endif
+
+    assign subscription_price_formatted = display_subscription_price | money
+    assign subscription_compare_price_formatted = compare_price | money
+    if settings.currency_code_enabled
+      assign subscription_price_formatted = display_subscription_price | money_with_currency
+      assign subscription_compare_price_formatted = compare_price | money_with_currency
+    endif
+  endif
+
+  assign hidden_value = ''
+  if default_subscription and first_allocation != blank
+    assign hidden_value = first_allocation.selling_plan.id
+  endif
+
+  assign benefits = block.settings.subscription_benefits | newline_to_br | split: '<br />'
+-%}
+
+<div
+  id="SellingPlanPicker-{{ section_id }}"
+  class="product-selling-plan-wrapper{% if selling_plan_allocations == blank %} hidden{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  {%- if selling_plan_allocations != blank -%}
+    <selling-plan-picker class="product-selling-plan" data-section-id="{{ section_id }}">
+      <div class="product-selling-plan__tabs" role="tablist" aria-label="Purchase options">
+        <label
+          class="product-selling-plan__tab{% if default_subscription %} is-active{% endif %}"
+          for="SellingPlanMode-{{ section_id }}-subscription"
+          data-mode-tab="subscription"
+          role="tab"
+          aria-selected="{% if default_subscription %}true{% else %}false{% endif %}"
+        >
+          {{ block.settings.subscription_label }}
+        </label>
+        <label
+          class="product-selling-plan__tab{% unless default_subscription %} is-active{% endunless %}"
+          for="SellingPlanMode-{{ section_id }}-one-time"
+          data-mode-tab="one-time"
+          role="tab"
+          aria-selected="{% unless default_subscription %}true{% else %}false{% endunless %}"
+        >
+          {{ block.settings.one_time_label }}
+        </label>
+      </div>
+
+      <input
+        type="hidden"
+        name="selling_plan"
+        form="{{ product_form_id }}"
+        value="{{ hidden_value }}"
+        class="product-selling-plan__hidden-input"
+        {% unless default_subscription %}disabled{% endunless %}
+      >
+      <input
+        type="hidden"
+        name="selling_plan"
+        form="{{ product_form_id }}--alt"
+        value="{{ hidden_value }}"
+        class="product-selling-plan__hidden-input"
+        {% unless default_subscription %}disabled{% endunless %}
+      >
+
+      <input
+        id="SellingPlanMode-{{ section_id }}-subscription"
+        type="radio"
+        name="purchase_option_{{ section_id }}"
+        value="subscription"
+        class="product-selling-plan__mode-input visually-hidden"
+        {% if default_subscription %}checked{% endif %}
+      >
+      <input
+        id="SellingPlanMode-{{ section_id }}-one-time"
+        type="radio"
+        name="purchase_option_{{ section_id }}"
+        value="one-time"
+        class="product-selling-plan__mode-input visually-hidden"
+        {% unless default_subscription %}checked{% endunless %}
+      >
+
+      <div class="product-selling-plan__panel{% if default_subscription %} is-active{% endif %}" data-mode-panel="subscription" role="tabpanel">
+        <div class="product-selling-plan__summary">
+          <div class="product-selling-plan__summary-head">
+            <div class="product-selling-plan__summary-title-group">
+              <span class="product-selling-plan__summary-title">{{ block.settings.subscription_label }}</span>
+              <span class="product-selling-plan__plan-badge{% if subscription_badge_text == blank %} hidden{% endif %}" data-selling-plan-badge>
+                {{ subscription_badge_text }}
+              </span>
+            </div>
+            <span class="product-selling-plan__price-group">
+              <s
+                class="product-selling-plan__compare-price{% if subscription_badge_text == blank %} hidden{% endif %}"
+                data-selling-plan-compare-price
+              >
+                {{ subscription_compare_price_formatted }}
+              </s>
+              <span class="product-selling-plan__price" data-selling-plan-price>
+                {{ subscription_price_formatted }}
+              </span>
+            </span>
+          </div>
+        </div>
+
+        {%- if block.settings.subscription_benefits != blank -%}
+          <ul class="product-selling-plan__benefits" role="list">
+            {%- for benefit in benefits -%}
+              {%- assign benefit_text = benefit | strip -%}
+              {%- if benefit_text != blank -%}
+                <li class="product-selling-plan__benefit">
+                  <span class="product-selling-plan__benefit-icon" aria-hidden="true">✓</span>
+                  <span>{{ benefit_text }}</span>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="product-selling-plan__select-wrap">
+          <label class="product-selling-plan__select-label" for="SellingPlanSelect-{{ section_id }}">
+            {{ block.settings.delivery_label }}
+          </label>
+          <div class="select">
+            <select
+              id="SellingPlanSelect-{{ section_id }}"
+              class="select__select"
+              data-selling-plan-select
+              {% unless default_subscription %}disabled{% endunless %}
+            >
+              {%- for allocation in selling_plan_allocations -%}
+              {%- liquid
+                  assign option_compare_price = allocation.compare_at_price | default: one_time_price
+                  assign display_option_price = allocation.price
+                  assign option_badge_text = ''
+
+                  if bundle_subscription_fallback and option_compare_price <= allocation.price
+                    assign option_compare_price = one_time_price
+                    assign display_option_price = one_time_price | times: 90.0 | divided_by: 100.0 | round
+                    assign option_badge_text = '10% off'
+                  elsif option_compare_price > allocation.price
+                    assign option_discount = option_compare_price | minus: allocation.price | times: 100.0 | divided_by: option_compare_price | round
+                    assign option_badge_text = option_discount | append: '% off'
+                  endif
+
+                  assign option_price_formatted = display_option_price | money
+                  assign option_compare_price_formatted = option_compare_price | money
+                  if settings.currency_code_enabled
+                    assign option_price_formatted = display_option_price | money_with_currency
+                    assign option_compare_price_formatted = option_compare_price | money_with_currency
+                  endif
+                -%}
+                <option
+                  value="{{ allocation.selling_plan.id }}"
+                  data-formatted-price="{{ option_price_formatted | escape }}"
+                  data-formatted-compare-price="{{ option_compare_price_formatted | escape }}"
+                  data-badge="{{ option_badge_text | escape }}"
+                  {% if forloop.first %}selected{% endif %}
+                >
+                  {{ allocation.selling_plan.name }}
+                </option>
+              {%- endfor -%}
+            </select>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+        </div>
+      </div>
+
+      <div class="product-selling-plan__panel{% unless default_subscription %} is-active{% endunless %}" data-mode-panel="one-time" role="tabpanel">
+        <div class="product-selling-plan__one-time-row">
+          <span class="product-selling-plan__one-time-title">{{ block.settings.one_time_label }}</span>
+          <span class="product-selling-plan__price-group">
+            <span class="product-selling-plan__price">{{ one_time_price_formatted }}</span>
+          </span>
+        </div>
+      </div>
+    </selling-plan-picker>
+  {%- endif -%}
+</div>

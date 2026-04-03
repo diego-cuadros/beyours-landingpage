@@ -1,0 +1,688 @@
+{{ 'section-delivery-difference-v2.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'component-delivery-difference-v2.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign feature_count = 0
+  assign step_count = 0
+
+  for block in section.blocks
+    if block.type == 'feature'
+      assign feature_count = feature_count | plus: 1
+    elsif block.type == 'step'
+      assign step_count = step_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --delivery-box-width-desktop: {{ section.settings.box_width_desktop }}%;
+    --delivery-box-width-mobile: {{ section.settings.box_width_mobile }}%;
+    --delivery-contents-width-desktop: {{ section.settings.contents_width_desktop }}%;
+    --delivery-contents-width-mobile: {{ section.settings.contents_width_mobile }}%;
+    --delivery-box-focus-shift-desktop: -72px;
+    --delivery-box-focus-shift-mobile: -28px;
+    --delivery-contents-reveal-desktop: 232px;
+    --delivery-contents-reveal-mobile: 116px;
+    --delivery-hero-to-steps-spacing-desktop: {{ section.settings.hero_to_steps_spacing_desktop }}px;
+    --delivery-hero-to-steps-spacing-mobile: {{ section.settings.hero_to_steps_spacing_mobile }}px;
+    --delivery-steps-to-button-spacing-desktop: {{ section.settings.steps_to_button_spacing_desktop }}px;
+    --delivery-steps-to-button-spacing-mobile: {{ section.settings.steps_to_button_spacing_mobile }}px;
+    --delivery-box-offset-x-desktop: {{ section.settings.box_offset_x_desktop }}px;
+    --delivery-box-offset-y-desktop: {{ section.settings.box_offset_y_desktop }}px;
+    --delivery-contents-offset-x-desktop: {{ section.settings.contents_offset_x_desktop }}px;
+    --delivery-contents-offset-y-desktop: {{ section.settings.contents_offset_y_desktop }}px;
+    --delivery-contents-offset-x-ultrawide: {{ section.settings.contents_offset_x_ultrawide }}px;
+    --delivery-box-offset-x-mobile: {{ section.settings.box_offset_x_mobile }}px;
+    --delivery-box-offset-y-mobile: {{ section.settings.box_offset_y_mobile }}px;
+    --delivery-contents-offset-x-mobile: {{ section.settings.contents_offset_x_mobile }}px;
+    --delivery-contents-offset-y-mobile: {{ section.settings.contents_offset_y_mobile }}px;
+    --delivery-background: {{ section.settings.background_color.red }}, {{ section.settings.background_color.green }}, {{ section.settings.background_color.blue }};
+    --delivery-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --delivery-muted: {{ section.settings.muted_text_color.red }}, {{ section.settings.muted_text_color.green }}, {{ section.settings.muted_text_color.blue }};
+    --delivery-card-background: {{ section.settings.card_background.red }}, {{ section.settings.card_background.green }}, {{ section.settings.card_background.blue }};
+    --delivery-card-shadow: {{ section.settings.card_shadow.red }}, {{ section.settings.card_shadow.green }}, {{ section.settings.card_shadow.blue }};
+    --delivery-accent: {{ section.settings.accent_color.red }}, {{ section.settings.accent_color.green }}, {{ section.settings.accent_color.blue }};
+    --delivery-check: {{ section.settings.check_color.red }}, {{ section.settings.check_color.green }}, {{ section.settings.check_color.blue }};
+    --delivery-progress: 0;
+  }
+{%- endstyle -%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="page-width page-width--full-width">
+    <section
+      class="delivery-difference-v2"
+      data-delivery-difference
+      data-section-id="{{ section.id }}"
+      aria-labelledby="DeliveryDifferenceHeading-{{ section.id }}"
+    >
+      <div class="delivery-difference-v2__hero">
+        <div class="delivery-difference-v2__visual-column">
+          <div class="delivery-difference-v2__visual-frame">
+            <div class="delivery-difference-v2__visual" aria-hidden="true">
+              <div class="delivery-difference-v2__contents-wrap">
+                {%- if section.settings.contents_image != blank -%}
+                  {{
+                    section.settings.contents_image
+                    | image_url: width: 1800
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '320, 480, 640, 800, 1000, 1200, 1600, 1800',
+                      sizes: '(min-width: 990px) 38vw, 88vw',
+                      class: 'delivery-difference-v2__contents-image',
+                      alt: section.settings.contents_image.alt
+                  }}
+                {%- else -%}
+                  <div class="delivery-difference-v2__visual-placeholder delivery-difference-v2__visual-placeholder--contents">
+                    <span>Upload contents image</span>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="delivery-difference-v2__box-wrap">
+                {%- if section.settings.box_image != blank -%}
+                  {{
+                    section.settings.box_image
+                    | image_url: width: 1800
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '320, 480, 640, 800, 1000, 1200, 1600, 1800',
+                      sizes: '(min-width: 990px) 34vw, 80vw',
+                      class: 'delivery-difference-v2__box-image',
+                      alt: section.settings.box_image.alt
+                  }}
+                {%- else -%}
+                  <div class="delivery-difference-v2__visual-placeholder delivery-difference-v2__visual-placeholder--box">
+                    <span>Upload box image</span>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="delivery-difference-v2__copy">
+          {%- if section.settings.heading != blank -%}
+            <h2 id="DeliveryDifferenceHeading-{{ section.id }}" class="delivery-difference-v2__heading" data-animate-item>
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.settings.text != blank -%}
+            <div class="delivery-difference-v2__text rte" data-animate-item>
+              {{ section.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if feature_count > 0 -%}
+            <ul class="delivery-difference-v2__feature-list" role="list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'feature' -%}
+                  <li class="delivery-difference-v2__feature-item" data-animate-item {{ block.shopify_attributes }}>
+                    <span class="delivery-difference-v2__feature-icon" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" focusable="false">
+                        <path d="M13.4 3.6a.75.75 0 0 1 0 1.06L6.8 11.25a.75.75 0 0 1-1.08-.02L2.6 7.98a.75.75 0 1 1 1.08-1.04l2.57 2.67 6.1-6.01a.75.75 0 0 1 1.06 0Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <span>{{ block.settings.text }}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if step_count > 0 -%}
+        <div class="delivery-difference-v2__steps" role="list">
+          {%- liquid
+            assign step_index = 0
+          -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'step' -%}
+              {%- liquid
+                assign step_index = step_index | plus: 1
+                assign step_image = block.settings.image | default: section.settings.step_accent_image
+              -%}
+              <article
+                class="delivery-difference-v2__step"
+                data-delivery-card
+                style="
+                  --card-index: {{ step_index }};
+                  --step-accent-rotate-adjust: {{ block.settings.image_rotation }}deg;
+                  --step-accent-offset-x: {{ block.settings.image_offset_x }}px;
+                  --step-accent-offset-y: {{ block.settings.image_offset_y }}px;
+                  --step-accent-scale: {{ block.settings.image_scale | divided_by: 100.0 }};
+                "
+                {{ block.shopify_attributes }}
+              >
+                {%- if step_image != blank -%}
+                  <div class="delivery-difference-v2__step-accent" aria-hidden="true">
+                    {{
+                      step_image
+                      | image_url: width: 320
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '96, 160, 240, 320',
+                        sizes: '72px',
+                        class: 'delivery-difference-v2__step-accent-image',
+                        alt: ''
+                    }}
+                  </div>
+                {%- endif -%}
+
+                <div class="delivery-difference-v2__step-card">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="delivery-difference-v2__step-title">{{ block.settings.title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <div class="delivery-difference-v2__step-text rte">
+                      {{ block.settings.text }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </article>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        {%- liquid
+          assign button_class = 'button'
+          if section.settings.button_style != 'primary'
+            assign button_class = button_class | append: ' button--' | append: section.settings.button_style
+          endif
+          if section.settings.button_size != 'default'
+            assign button_class = button_class | append: ' button--' | append: section.settings.button_size
+          endif
+        -%}
+        <div class="delivery-difference-v2__button-wrap" data-animate-item>
+          {%- if section.settings.button_style == 'cta' -%}
+            <a
+              class="{{ button_class }}"
+              {% if section.settings.button_link != blank %}
+                href="{{ section.settings.button_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
+              <span class="label">{{ section.settings.button_label | escape }}</span>
+              {% render 'icon', icon: 'arrow' %}
+            </a>
+          {%- else -%}
+            <a
+              class="{{ button_class }}"
+              {% if section.settings.button_link != blank %}
+                href="{{ section.settings.button_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+            >
+              {{ section.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </section>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Delivery difference v2",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 9,
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "box_image",
+      "label": "Box image"
+    },
+    {
+      "type": "image_picker",
+      "id": "contents_image",
+      "label": "Contents image"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_accent_image",
+      "label": "Default step accent image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The difference is in the <u>delivery</u>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>A buccal troche is a small lozenge that dissolves between your upper cheek and gums.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "See how troches outperform capsules"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "default": "secondary",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" },
+        { "value": "cta", "label": "CTA link" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button size",
+      "default": "large",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "small", "label": "Small" },
+        { "value": "large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f8f5f0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "muted_text_color",
+      "label": "Muted text color",
+      "default": "#5d5d5d"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ececeb"
+    },
+    {
+      "type": "color",
+      "id": "card_shadow",
+      "label": "Card shadow color",
+      "default": "#182847"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#2e7bdc"
+    },
+    {
+      "type": "color",
+      "id": "check_color",
+      "label": "Check icon color",
+      "default": "#31c45d"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "box_width_desktop",
+      "label": "Box size on desktop",
+      "min": 45,
+      "max": 90,
+      "step": 1,
+      "unit": "%",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "box_width_mobile",
+      "label": "Box size on mobile",
+      "min": 55,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "contents_width_desktop",
+      "label": "Contents size on desktop",
+      "min": 35,
+      "max": 80,
+      "step": 1,
+      "unit": "%",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "contents_width_mobile",
+      "label": "Contents size on mobile",
+      "min": 40,
+      "max": 85,
+      "step": 1,
+      "unit": "%",
+      "default": 66
+    },
+    {
+      "type": "header",
+      "content": "Image alignment"
+    },
+    {
+      "type": "range",
+      "id": "box_offset_x_desktop",
+      "label": "Box horizontal offset (desktop)",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "box_offset_y_desktop",
+      "label": "Box vertical offset (desktop)",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "contents_offset_x_desktop",
+      "label": "Contents horizontal offset (desktop)",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "contents_offset_y_desktop",
+      "label": "Contents vertical offset (desktop)",
+      "min": -200,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "contents_offset_x_ultrawide",
+      "label": "Contents horizontal offset (ultrawide)",
+      "min": -320,
+      "max": 320,
+      "step": 8,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "hero_to_steps_spacing_desktop",
+      "label": "Hero to step cards spacing (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "hero_to_steps_spacing_mobile",
+      "label": "Hero to step cards spacing (mobile)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "steps_to_button_spacing_desktop",
+      "label": "Step cards to button spacing (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "steps_to_button_spacing_mobile",
+      "label": "Step cards to button spacing (mobile)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "box_offset_x_mobile",
+      "label": "Box horizontal offset (mobile)",
+      "min": -160,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "box_offset_y_mobile",
+      "label": "Box vertical offset (mobile)",
+      "min": -160,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "contents_offset_x_mobile",
+      "label": "Contents horizontal offset (mobile)",
+      "min": -160,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "contents_offset_y_mobile",
+      "label": "Contents vertical offset (mobile)",
+      "min": -160,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature bullet",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Fast acting, effects in 15 minutes"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Step card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step image"
+        },
+        {
+          "type": "range",
+          "id": "image_rotation",
+          "label": "Image rotation",
+          "min": -180,
+          "max": 180,
+          "step": 4,
+          "unit": "deg",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "image_scale",
+          "label": "Image scale",
+          "min": 50,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 100
+        },
+        {
+          "type": "range",
+          "id": "image_offset_x",
+          "label": "Image horizontal offset",
+          "min": -80,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "image_offset_y",
+          "label": "Image vertical offset",
+          "min": -80,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Choose your starting point"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Decide on your starting dose and, if needed, cut the troche accordingly.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Delivery difference v2",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Fast acting, effects in 15 minutes"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Higher bioavailability of ingredients"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "text": "Direct access to the brain, more reliable effect"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Choose your starting point",
+            "text": "<p>Decide on your starting dose and, if needed, cut the troche accordingly.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Find the sweet spot",
+            "text": "<p>Gently place the troche between your gum and upper cheek. Alternatively, because Methylene Blue is highly bioavailable, you can also swallow it on an empty stomach.</p>"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Patience is key",
+            "text": "<p>Allow the troche to dissolve completely. Onset will be 15 to 20 minutes if used as a buccal troche and 60 to 90 minutes if swallowed.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

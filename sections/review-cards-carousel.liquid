@@ -1,0 +1,724 @@
+{{ 'section-review-cards-carousel.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'section-review-cards-carousel.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --review-cards-carousel-columns-desktop: {{ section.settings.columns_desktop }};
+    --review-cards-carousel-gap: {{ section.settings.card_gap }}px;
+    --review-cards-carousel-card-radius: {{ section.settings.card_radius }}px;
+    --review-cards-carousel-media-radius: {{ section.settings.media_radius }}px;
+    --review-cards-carousel-card-padding-mobile: {{ section.settings.card_padding_mobile | default: 18 }}px;
+    --review-cards-carousel-background: {{ section.settings.background_color.red }}, {{ section.settings.background_color.green }}, {{ section.settings.background_color.blue }};
+    --review-cards-carousel-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --review-cards-carousel-subheading: {{ section.settings.subheading_color.red }}, {{ section.settings.subheading_color.green }}, {{ section.settings.subheading_color.blue }};
+    --review-cards-carousel-stars: {{ section.settings.stars_color.red }}, {{ section.settings.stars_color.green }}, {{ section.settings.stars_color.blue }};
+    --review-cards-carousel-star-size: {{ section.settings.star_size }}px;
+    --review-cards-carousel-dot: {{ section.settings.dot_color.red }}, {{ section.settings.dot_color.green }}, {{ section.settings.dot_color.blue }};
+    --review-cards-carousel-dots-gap-mobile: {{ section.settings.mobile_indicator_gap | default: 12 }}px;
+    --color-highlight: {{ section.settings.colors_highlight.red }}, {{ section.settings.colors_highlight.green }}, {{ section.settings.colors_highlight.blue }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign enable_mobile_carousel = false
+  if section.blocks.size > 1
+    assign enable_mobile_carousel = true
+  endif
+
+  assign has_header_content = false
+  if section.settings.rating_text != blank or section.settings.stars_count > 0 or section.settings.heading != blank or section.settings.subheading != blank
+    assign has_header_content = true
+  endif
+-%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <section class="review-cards-carousel-section" aria-label="{{ section.settings.accessibility_label | default: section.settings.heading | strip_html | escape }}">
+    <div class="page-width">
+      <review-cards-carousel class="review-cards-carousel{% if enable_mobile_carousel %} review-cards-carousel--has-mobile-slider{% endif %}" data-match-card-heights-mobile="{{ section.settings.match_card_heights_mobile }}">
+        <div class="review-cards-carousel__header{% unless has_header_content %} review-cards-carousel__header--empty{% endunless %} {{ section.settings.heading_alignment }}">
+          {%- if section.settings.rating_text != blank or section.settings.stars_count > 0 -%}
+            <div class="review-cards-carousel__rating">
+              {%- if section.settings.stars_count > 0 -%}
+                <div class="review-cards-carousel__stars" role="img" aria-label="{{ section.settings.stars_count }} out of 5 stars">
+                  {%- for index in (1..section.settings.stars_count) -%}
+                    <span class="review-cards-carousel__star" aria-hidden="true">★</span>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+              {%- if section.settings.rating_text != blank -%}
+                <p class="review-cards-carousel__rating-text">{{ section.settings.rating_text }}</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag }} class="title {{ section.settings.heading_size }} review-cards-carousel__heading">
+              {%- render 'highlight-text',
+                hl_input: section.settings.heading,
+                hl_phrases: section.settings.highlight_phrases,
+                hl_style: section.settings.highlight_style,
+                hl_enable: section.settings.enable_highlight,
+                hl_animateWrap: true
+              -%}
+            </{{ section.settings.heading_tag }}>
+          {%- endif -%}
+
+          {%- if section.settings.subheading != blank -%}
+            <div class="review-cards-carousel__subheading rte">
+              {{ section.settings.subheading }}
+            </div>
+          {%- endif -%}
+
+        </div>
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="review-cards-carousel__track-wrapper">
+            <ul
+              id="Slider-{{ section.id }}"
+              class="review-cards-carousel__list{% if enable_mobile_carousel %} slider slider--mobile{% endif %}"
+              role="list"
+            >
+              {%- for block in section.blocks -%}
+                <li
+                  id="Slide-{{ section.id }}-{{ forloop.index }}"
+                  class="review-cards-carousel__item{% if enable_mobile_carousel %} slider__slide{% endif %}{% if forloop.first %} is-selected{% endif %}"
+                  style="
+                    --review-card-background: {{ block.settings.card_background.red }}, {{ block.settings.card_background.green }}, {{ block.settings.card_background.blue }};
+                    --review-card-text: {{ block.settings.text_color.red }}, {{ block.settings.text_color.green }}, {{ block.settings.text_color.blue }};
+                    --review-card-muted: {{ block.settings.meta_color.red }}, {{ block.settings.meta_color.green }}, {{ block.settings.meta_color.blue }};
+                    --review-card-accent: {{ block.settings.accent_color.red }}, {{ block.settings.accent_color.green }}, {{ block.settings.accent_color.blue }};
+                    --review-card-caption-bg: {{ block.settings.caption_background.red }}, {{ block.settings.caption_background.green }}, {{ block.settings.caption_background.blue }};
+                  "
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="review-cards-carousel__item-stack">
+                    {%- if block.settings.product_label != blank -%}
+                      <div class="review-cards-carousel__label">
+                        <span class="review-cards-carousel__label-dot" aria-hidden="true"></span>
+                        <span>{{ block.settings.product_label | escape }}</span>
+                      </div>
+                    {%- endif -%}
+
+                    {%- liquid
+                      assign has_media = false
+                      if block.settings.video != blank or block.settings.image != blank
+                        assign has_media = true
+                      endif
+                    -%}
+                    <article
+                      class="review-cards-carousel__card{% if has_media %} review-cards-carousel__card--has-media{% endif %}"
+                    >
+                      {%- if block.settings.video != blank or block.settings.image != blank -%}
+                        <div class="review-cards-carousel__media">
+                          {%- if block.settings.video != blank -%}
+                            {%- assign review_card_poster = block.settings.video.preview_image | image_url: width: 1200 -%}
+                            <div class="review-cards-carousel__video-wrapper">
+                              {{
+                                block.settings.video
+                                | video_tag:
+                                  image_size: '900x',
+                                  controls: false,
+                                  muted: true,
+                                  loop: false,
+                                  playsinline: true,
+                                  preload: 'metadata',
+                                  poster: review_card_poster,
+                                  class: 'review-cards-carousel__video'
+                              }}
+                              <button type="button" class="review-cards-carousel__play-button" aria-label="{{ 'accessibility.play_video' | t }}">
+                                <span class="review-cards-carousel__play-icon" aria-hidden="true">{% render 'icon', icon: 'play-alt' %}</span>
+                                <span class="review-cards-carousel__pause-icon" aria-hidden="true">{% render 'icon', icon: 'pause' %}</span>
+                              </button>
+                            </div>
+                          {%- else -%}
+                            {{
+                              block.settings.image
+                              | image_url: width: 1200
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '240, 320, 400, 520, 640, 760, 900, 1200',
+                                sizes: '(min-width: 990px) calc((100vw - 140px) / 5), (min-width: 750px) calc((100vw - 80px) / 3), calc(100vw - 90px)',
+                                class: 'review-cards-carousel__image',
+                                is: 'lazy-image',
+                                alt: block.settings.image.alt | default: block.settings.author_name | escape
+                            }}
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+
+                      {%- if block.settings.media_caption != blank -%}
+                        <p class="review-cards-carousel__media-caption">{{ block.settings.media_caption | escape }}</p>
+                      {%- endif -%}
+
+                      <div class="review-cards-carousel__content">
+                        {%- if block.settings.quote != blank -%}
+                          <div class="review-cards-carousel__quote rte">
+                            {{ block.settings.quote }}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </article>
+
+                    {%- if block.settings.author_name != blank or block.settings.author_meta != blank -%}
+                      <footer class="review-cards-carousel__footer">
+                        {%- if block.settings.author_name != blank -%}
+                          <p class="review-cards-carousel__author">{{ block.settings.author_name | escape }}</p>
+                        {%- endif -%}
+                        {%- if block.settings.author_meta != blank -%}
+                          <p class="review-cards-carousel__author-meta">{{ block.settings.author_meta | escape }}</p>
+                        {%- endif -%}
+                      </footer>
+                    {%- endif -%}
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+
+          {%- if enable_mobile_carousel -%}
+            <div class="slider-buttons review-cards-carousel__sr-controls no-js-hidden medium-hide large-up-hide">
+              <div class="slider-counter caption">
+                <span class="slider-counter--current">1</span>
+                <span aria-hidden="true"> / </span>
+                <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+                <span class="slider-counter--total">{{ section.blocks.size }}</span>
+              </div>
+              <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
+                {% render 'icon', icon: 'arrow' %}
+              </button>
+              <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
+                {% render 'icon', icon: 'arrow' %}
+              </button>
+            </div>
+
+            <div class="review-cards-carousel__dots no-js-hidden medium-hide large-up-hide" aria-label="Review slide indicators">
+              {%- for block in section.blocks -%}
+                <button
+                  type="button"
+                  class="review-cards-carousel__dot{% if forloop.first %} is-active{% endif %}"
+                  data-slide-index="{{ forloop.index0 }}"
+                  aria-label="Go to review {{ forloop.index }}"
+                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                ></button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- elsif request.design_mode -%}
+          <div class="review-cards-carousel__empty">
+            Add review blocks to populate this section.
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank -%}
+          <div class="review-cards-carousel__action">
+            <a{% if section.settings.button_link != blank %} href="{{ section.settings.button_link }}"{% else %} role="link" aria-disabled="true"{% endif %} class="button button--secondary">
+              {{ section.settings.button_label | escape }}
+            </a>
+          </div>
+        {%- endif -%}
+      </review-cards-carousel>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Review cards carousel",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 10,
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Customer review cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Rating"
+    },
+    {
+      "type": "range",
+      "id": "stars_count",
+      "label": "Stars count",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "label": "Star size",
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 23
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating text",
+      "default": "10,000+ verified 5-star reviews for Troscriptions products"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Real reviews from customers using our most-loved formulas"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "See all reviews"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 8,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "media_radius",
+      "label": "Media corner radius",
+      "min": 8,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Mobile card padding",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "checkbox",
+      "id": "match_card_heights_mobile",
+      "label": "Match card heights on mobile",
+      "default": false,
+      "info": "When enabled, all carousel cards share the same height on mobile. When off, the carousel adapts to each card's content."
+    },
+    {
+      "type": "range",
+      "id": "mobile_indicator_gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile indicator gap",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1f1f1f"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Body color",
+      "default": "#585858"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Stars color",
+      "default": "#f39a2f"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dots color",
+      "default": "#1f1f1f"
+    },
+    {
+      "type": "color",
+      "id": "colors_highlight",
+      "label": "Highlight color",
+      "default": "#cfeee7"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "header",
+      "content": "Highlight"
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_phrases",
+      "label": "Heading highlight text",
+      "info": "Add one phrase per line.",
+      "default": "most-loved formulas"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable heading highlight",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "label": "Highlight style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "Marker"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "bold-underline",
+          "label": "Bold underline"
+        },
+        {
+          "value": "modern-underline",
+          "label": "Modern underline"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "Sketch underline"
+        },
+        {
+          "value": "squiggle",
+          "label": "Squiggle"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "Heavy squiggle"
+        },
+        {
+          "value": "solid-color",
+          "label": "Solid color"
+        }
+      ],
+      "default": "marker"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_label",
+          "label": "Product label",
+          "default": "Tro Calm"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "media_caption",
+          "label": "Media caption"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote",
+          "default": "<p>Feeling calmer, less stress, clearer thoughts with less wondering. Fast acting and very helpful.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Cheri H."
+        },
+        {
+          "type": "text",
+          "id": "author_meta",
+          "label": "Author meta",
+          "default": "Nurse"
+        },
+        {
+          "type": "header",
+          "content": "Card colors"
+        },
+        {
+          "type": "color",
+          "id": "card_background",
+          "label": "Card background",
+          "default": "#fde1a4"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#1f1f1f"
+        },
+        {
+          "type": "color",
+          "id": "meta_color",
+          "label": "Meta color",
+          "default": "#5e5e5e"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Label accent",
+          "default": "#f39a2f"
+        },
+        {
+          "type": "color",
+          "id": "caption_background",
+          "label": "Caption background",
+          "default": "#d8e7ff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review cards carousel",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "product_label": "Tro Calm",
+            "quote": "<p>Feeling calmer, <strong>less stress, clearer</strong> thoughts with less wondering. Fast acting and very helpful.</p>",
+            "author_name": "Cheri H.",
+            "author_meta": "Nurse",
+            "card_background": "#fde1a4",
+            "accent_color": "#f39a2f",
+            "caption_background": "#f6d6a9"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "product_label": "Blue Cannatine",
+            "media_caption": "Helps me focus and energizes",
+            "quote": "<p>A quick go-to when I want clean focus without feeling over-stimulated.</p>",
+            "author_name": "Genevieve W.",
+            "author_meta": "---",
+            "card_background": "#d9ecff",
+            "accent_color": "#1578d1",
+            "caption_background": "#d8e7ff"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "product_label": "Tro Mune",
+            "quote": "<p>Three times I thought I felt a sore throat with aches and twiggy sinuses. I take 1/4 troche at night before bed and in the morning, <strong>all symptoms gone!</strong></p>",
+            "author_name": "Lauren S.",
+            "author_meta": "Age 70",
+            "card_background": "#d7f4eb",
+            "accent_color": "#118a87",
+            "caption_background": "#d7f4eb"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "product_label": "Just Blue",
+            "media_caption": "Changed my life",
+            "quote": "<p>Easy to use and the effects were smooth and reliable every time.</p>",
+            "author_name": "Stormy R.",
+            "author_meta": "---",
+            "card_background": "#bcd3f0",
+            "accent_color": "#274f9f",
+            "caption_background": "#d8e7ff"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "product_label": "Tro Zzz",
+            "quote": "<p>One of the most unique formulations I’ve come across that <strong>works incredibly well</strong> without the morning lag time after effects. A must try!</p>",
+            "author_name": "Ross A.",
+            "author_meta": "---",
+            "card_background": "#e3d5f6",
+            "accent_color": "#938bd8",
+            "caption_background": "#d8e7ff"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

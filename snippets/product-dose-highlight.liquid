@@ -1,0 +1,23 @@
+<div class="product__dose-highlight" {{ block.shopify_attributes }}>
+  {%- if block.settings.eyebrow != blank -%}
+    <p class="product__dose-highlight-eyebrow">
+      {%- render 'icon-guarantee', icon: 'package' -%}
+      <span>{{ block.settings.eyebrow }}</span>
+    </p>
+  {%- endif -%}
+
+  <div class="product__dose-highlight-grid">
+    <div class="product__dose-highlight-stat">
+      <p class="product__dose-highlight-value">{{ block.settings.stat_1_value }}</p>
+      <p class="product__dose-highlight-label">{{ block.settings.stat_1_label }}</p>
+    </div>
+    <div class="product__dose-highlight-stat">
+      <p class="product__dose-highlight-value">{{ block.settings.stat_2_value }}</p>
+      <p class="product__dose-highlight-label">{{ block.settings.stat_2_label }}</p>
+    </div>
+  </div>
+
+  {%- if block.settings.note != blank -%}
+    <p class="product__dose-highlight-note">{{ block.settings.note }}</p>
+  {%- endif -%}
+</div>

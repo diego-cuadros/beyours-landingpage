@@ -1,0 +1,12 @@
+.faq--v2 details summary {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.faq--v2 details summary .icon {
+  border-radius: var(--faq-v2-icon-corner-radius, 17px);
+}
+
+.faq--v2.faq--v2-custom-question-typography .faq-v2__question-text--custom {
+  font-style: var(--faq-v2-question-font-style, normal);
+}

@@ -1,0 +1,759 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "video_hero_4rDRKG": {
+      "type": "video-hero-v2",
+      "blocks": {
+        "heading_3KCrff": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Buccal troche</strong>",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_WrUP4d": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>noun</em>buc·​cal TROH-kee<br/><br/>A small lozenge that dissolves between your upper cheek and gums</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3KCrff",
+        "text_WrUP4d"
+      ],
+      "name": "t:sections.video-hero.presets.name",
+      "settings": {
+        "video": "shopify://files/videos/Troche video loop -compressed.mov",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "text_box_position": "middle-center",
+        "text_alignment": "left",
+        "image_ratio": "700px",
+        "show_text_box": true,
+        "full_width": true,
+        "show_divider": false,
+        "mobile_text_alignment": "center",
+        "mobile_image_ratio": "600px",
+        "show_text_below": false,
+        "colors_button_label": "#1a1b18",
+        "colors_button_background": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_overlay": "#ffffff",
+        "colors_overlay_opacity": 24,
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "video_PkjWx8": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=FIRDMVrPZaQ",
+        "cover_image": "shopify://shop_images/What_s_a_Buccal_Troche_thumbnail.jpg",
+        "description": "Behind the science",
+        "full_width": false,
+        "show_divider": false,
+        "heading": "Behind the science",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "rich_text_UtKrqp": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_pi6rbr": {
+          "type": "heading",
+          "settings": {
+            "heading": "What's a buccal troche?",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_fPjWGm": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Troscriptions®, we use one of the most unique drug/supplement delivery methods on the planet: the buccal troche. A buccal troche is a small lozenge that dissolves between your upper cheek and gums. It has been used for decades by compounding pharmacists for drugs like oxytocin, ketamine, hormone replacement, and others.<br/><br/>Dr. Ted and the physicians on the Troscriptions® team have used buccal troches for years in this context and, due to their many advantages, decided to be the first company ever to scale their production for the non-prescription market. </p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pi6rbr",
+        "text_fPjWGm"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "horizontal",
+        "narrow": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    },
+    "newsletter_alt_zLXHeq": {
+      "type": "newsletter-alt",
+      "blocks": {
+        "heading_N9QtN3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get weekly health optimization tips and a free masterclass",
+            "heading_tag": "h2",
+            "heading_size": "h1",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "email_form_6gDh4g": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_N9QtN3",
+        "email_form_6gDh4g"
+      ],
+      "name": "Newsletter alt",
+      "settings": {
+        "return_url": "",
+        "background_color": "#037178",
+        "text_color": "#faf8f4",
+        "subtext_color": "#ebe8ff",
+        "form_background": "#ffffff",
+        "form_border": "#716e8d",
+        "form_text": "#707074",
+        "accent_line_color": "#0a7cd7",
+        "visual_image": "shopify://shop_images/Email_home.png",
+        "visual_scale": 105,
+        "visual_offset_x": 0,
+        "visual_offset_y": -42,
+        "visual_scale_mobile": 100,
+        "visual_offset_x_mobile": 0,
+        "visual_offset_y_mobile": 0,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "image_with_text_v3_LtydMN": {
+      "type": "image-with-text-v3",
+      "blocks": {
+        "heading_4qHT6W": {
+          "type": "heading",
+          "settings": {
+            "heading": "Key benefits",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_wyfgJc": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li>Easy to use</li><li>Rapid-acting</li><li>Preserve bioavailability</li><li>Have a direct route to the brain via cheek mucosa</li><li>Have been used safely and effectively by compounding pharmacists for decades (i.e., hormone replacement and ketamine troches)</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 0,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_mnYDb8": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "In addition, buccal troches at Troscriptions® are:",
+            "subheading_size": "h3",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_kBm6Kb": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li>Precision dosed </li><li>Pharmaceutical-grade</li><li>Physician formulated </li><li>Made in a GMP-compliant facility </li><li>Scored into quarters (so each troche can be easily cut into four individual doses for easy titration)</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 0,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4qHT6W",
+        "text_wyfgJc",
+        "subheading_mnYDb8",
+        "text_kBm6Kb"
+      ],
+      "name": "Image with text (v3)",
+      "settings": {
+        "image": "shopify://shop_images/Troscriptions_Tro_Blue_Cannatine_Child_Resistant_Package_Open_Box_c396b491-b34e-4939-ad35-b7119df97d0e.jpg",
+        "image_2": "shopify://shop_images/Troscriptions_Step_2_Guy_Buccal_Troche_Cheek_Gum.jpg",
+        "image_3": "shopify://shop_images/Troscriptions_Step_1_Guy_Smiling_Holding_Troche_1.jpg",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "top",
+        "text_alignment": "left",
+        "heading_text_gap": 16,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "ambient",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 100,
+        "padding_bottom": 60
+      }
+    },
+    "troche_vs_capsule_v2_qhQeXW": {
+      "type": "troche-vs-capsule-v2",
+      "blocks": {
+        "troche_point_Vj4z69": {
+          "type": "troche_point",
+          "settings": {
+            "text": "Fast onset"
+          }
+        },
+        "troche_point_qTwCAg": {
+          "type": "troche_point",
+          "settings": {
+            "text": "Higher bioavailability"
+          }
+        },
+        "troche_point_eKha3a": {
+          "type": "troche_point",
+          "settings": {
+            "text": "Flexible dosing"
+          }
+        },
+        "capsule_point_i4Fd9c": {
+          "type": "capsule_point",
+          "settings": {
+            "text": "Slow onset"
+          }
+        },
+        "capsule_point_7HLrLC": {
+          "type": "capsule_point",
+          "settings": {
+            "text": "Lower absorption"
+          }
+        },
+        "capsule_point_ReizJk": {
+          "type": "capsule_point",
+          "settings": {
+            "text": "Less flexible dosing"
+          }
+        }
+      },
+      "block_order": [
+        "troche_point_Vj4z69",
+        "troche_point_qTwCAg",
+        "troche_point_eKha3a",
+        "capsule_point_i4Fd9c",
+        "capsule_point_7HLrLC",
+        "capsule_point_ReizJk"
+      ],
+      "name": "Troche vs capsule v2",
+      "settings": {
+        "heading": "The buccal troche difference",
+        "subheading": "Watch our quick explainer",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "heading_alignment": "center",
+        "enable_highlight": false,
+        "highlight_style": "marker",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 24,
+        "subheading_color": "#6b7280",
+        "media_type": "shopify",
+        "youtube_url": "",
+        "uploaded_video": "shopify://files/videos/Troches vs Capsules - square.mp4",
+        "poster_image": "shopify://shop_images/Troche_vs_capsule_explainer_video.png",
+        "video_caption": "WHAT IS A TROCHE",
+        "show_play_button": false,
+        "media_background_color": "#f5f6f7",
+        "troche_heading": "TROCHE",
+        "capsule_heading": "CAPSULE",
+        "grid_gap": 20,
+        "card_radius": 16,
+        "card_background_color": "#ffffff",
+        "card_border_color": "#e5e7eb",
+        "troche_icon_color": "#16a34a",
+        "capsule_icon_color": "#ef4444",
+        "button_label": "Learn more",
+        "button_link": "",
+        "button_size": "large",
+        "button_style": "primary",
+        "show_divider": false,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_background_gradient": ""
+      }
+    },
+    "active_ingredients_v2_RtfW7x": {
+      "type": "active-ingredients-v2",
+      "name": "Active ingredients v2",
+      "settings": {
+        "product_source": "justblue",
+        "ingredients_metafield_namespace": "custom",
+        "ingredients_metafield_key": "steps_tutorial",
+        "link_label": "Learn more",
+        "layout": "default",
+        "column_alignment": "center",
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 5,
+        "content_image_ratio": "square",
+        "content_image_radius": 12,
+        "content_image_height": 0,
+        "content_image_background_color": "#ffffff",
+        "use_css_icon_grid": true,
+        "heading": "Calibrate your dose of Just Blue",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "subheading": "Follow these steps",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "enable_mobile_carousel": true,
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "faq_v2_dy7bQ4": {
+      "type": "faq-v2",
+      "blocks": {
+        "question_jbKaKd": {
+          "type": "question",
+          "settings": {
+            "title": "Troche medications and lozenges: the history and differences",
+            "text": "<p>The earliest precursor to lozenges dates back to as early as 1000 BC in Egypt. These ancient cough drop candies were made from honey, herbs, and spices to help soothe the throat. During the 19th century, heroin and morphine were added to suppress coughing (we are not kidding!). There have been many evolutions of the lozenge since then, including the famed Swiss selling Ricola to the masses (while yodeling).Troche medications were developed from lozenges in the 20th century for more rapid onset and more precise and reliable dosing. They remain in use today by compounding pharmacies worldwide.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "question_JUmTBp": {
+          "type": "question",
+          "settings": {
+            "title": "Don't swallow your drugs! (if there's a buccal troche for it).",
+            "text": "<p>When you swallow your supplements or drugs, they are digested in the stomach and small intestines, absorbed through the lining of the gut, and then pass through the liver in a process called first-pass metabolism.<br/><br/>First of all, this process takes a while. For most people, this will take at least 30 minutes but can be delayed up to 2 hours.<br/><br/>Second of all, first-pass metabolism decreases compound bioavailability (i.e. the proportion of a drug or other substance that enters the circulation when introduced into the body that has an active effect), often dramatically.<br/><br/>Buccal troches, in contrast, bypass first-pass metabolism and directly infuse their ingredients into the bloodstream via the highly vascular cheek mucosa. This means you’ll have a reliable onset of action in 15 to 30 minutes (not up to 2 hours when ingested) and none of the troche ingredients will lose their potency.<br/><br/>Plus, as a bonus, troche ingredients have a quick path to the brain given their proximity. This is game-changing for nootropics that turn your brain on and just as beneficial for troches that help you relax and sleep.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "question_jbKaKd",
+        "question_JUmTBp"
+      ],
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "narrow": false,
+        "secondary_background": false,
+        "show_divider": false,
+        "heading": "Learn more about troches",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "faq_content_source": "manual",
+        "metafield_source_product": "",
+        "metafield_namespace": "custom",
+        "metafield_key": "faqs",
+        "icon_corner_radius": 8,
+        "use_custom_question_typography": true,
+        "question_heading_size": "h4",
+        "question_font_style": "normal",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "image_banner_ce9btY": {
+      "type": "image-banner-v2-alt",
+      "blocks": {
+        "heading_zdTAdG": {
+          "type": "heading",
+          "settings": {
+            "heading": "You can always swallow your buccal troche",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_AQ7GNP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>You can always swallow your buccal troche. Although our products are formulated as buccal troches, they can also be swallowed. However, if swallowed, the onset will be slower and, due to first-pass metabolism, all but Just Blue (as methylene blue is 100% bioavailable no matter the route of administration) may require higher dosing to ensure the intended therapeutic effect.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zdTAdG",
+        "text_AQ7GNP"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/yes_1.png",
+        "image_position": "center center",
+        "text_box_position": "middle-right",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "show_text_box": true,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_text_alignment": "center",
+        "mobile_image_ratio": "auto",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "colors_button_label": "#1a1b18",
+        "colors_button_background": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_overlay": "#ffffff",
+        "colors_overlay_opacity": 60,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_v2_AAqDV6": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_WJTBXG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Find the perfect troche for you",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_jjwMzr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover the ideal troche to support you. Whether you need a boost for productivity, mental clarity, or relaxation, we have the formula for you.<br/>Take our quick quiz to find your perfect match!</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_YbXm7n": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_alt_label": "Find my troche now",
+            "button_alt_link": "shopify://pages/product-quiz",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_WJTBXG",
+        "text_jjwMzr",
+        "button_YbXm7n"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/Subscribe_save_-_smallest_1.png",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "adapt",
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": true,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#f3f3f3",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "newsletter_alt_efLdrf": {
+      "type": "newsletter-alt",
+      "blocks": {
+        "heading_tQLAGe": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get weekly health optimization tips and a free masterclass",
+            "heading_tag": "h2",
+            "heading_size": "h1",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "email_form_83qma6": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_tQLAGe",
+        "email_form_83qma6"
+      ],
+      "name": "Newsletter alt",
+      "settings": {
+        "return_url": "",
+        "background_color": "#037178",
+        "text_color": "#faf8f4",
+        "subtext_color": "#ebe8ff",
+        "form_background": "#ffffff",
+        "form_border": "#716e8d",
+        "form_text": "#707074",
+        "accent_line_color": "#0a7cd7",
+        "visual_image": "shopify://shop_images/Email_home.png",
+        "visual_scale": 105,
+        "visual_offset_x": 0,
+        "visual_offset_y": -42,
+        "visual_scale_mobile": 100,
+        "visual_offset_x_mobile": 0,
+        "visual_offset_y_mobile": 0,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "professional_endorsements_7RxFQf": {
+      "type": "professional-endorsements",
+      "blocks": {
+        "endorsement_NdUjih": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/dr_amie_hornaman.jpg",
+            "background_color": "",
+            "name": "Dr. Alicia Morgan",
+            "role": "Functional medicine physician",
+            "quote": "This product has become one of the easiest recommendations in my practice because patients feel the difference quickly."
+          }
+        },
+        "endorsement_MAWhPp": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/scott_porter_2x_ff6470e9-7512-4085-9794-f9527bcc68d4.png",
+            "background_color": "",
+            "name": "Scott Porter, PharmD",
+            "role": "Clinical pharmacist and wellness educator",
+            "quote": "When I tried it myself, the result was immediate enough that I started sharing it with patients who needed steadier support."
+          }
+        },
+        "endorsement_DFzYq8": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/dr_rimka_hd.png",
+            "background_color": "",
+            "name": "Dr. Stephanie Rivera, DC",
+            "role": "Brain optimization specialist",
+            "quote": "I appreciate products that fit into complex care plans cleanly, and this one has delivered dependable outcomes across a wide range of patients."
+          }
+        },
+        "endorsement_bXAAhF": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/Dr_Ashley_Beckman.jpg",
+            "background_color": "",
+            "name": "Dr. Ashley Beckman",
+            "role": "Doctor of acupuncture and integrative medicine",
+            "quote": "After testing many products in clinic, this is the one that consistently earns positive feedback from patients within days."
+          }
+        }
+      },
+      "block_order": [
+        "endorsement_NdUjih",
+        "endorsement_MAWhPp",
+        "endorsement_DFzYq8",
+        "endorsement_bXAAhF"
+      ],
+      "name": "Professional endorsements",
+      "settings": {
+        "accessibility_label": "Professional endorsements",
+        "show_divider": false,
+        "eyebrow": "",
+        "heading": "Endorsed by <em>leading healthcare professionals</em>",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "heading_alignment": "left",
+        "mobile_text_alignment": "center",
+        "enable_highlight": true,
+        "highlight_style": "underline",
+        "background_color": "#ffffff",
+        "card_surface": "#f2f2f2",
+        "card_border_color": "#ffffff",
+        "heading_color": "#222222",
+        "eyebrow_color": "#5f6c67",
+        "name_color": "#0e7e8f",
+        "role_color": "#59625e",
+        "text_color": "#222222",
+        "colors_highlight": "#6fc5c1",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "image_ratio": "portrait",
+        "image_position": "top center",
+        "max_content_width": 1220,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "card_gap": 14,
+        "card_padding": 20,
+        "card_radius": 18,
+        "image_radius": 14,
+        "padding_top": 140,
+        "padding_bottom": 72
+      }
+    },
+    "featured_collection_baVFHP": {
+      "type": "featured-collection-v2",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "b2b-dtc-options",
+        "products_to_show": 5,
+        "horizontal_scroll": true,
+        "show_view_all": false,
+        "show_divider": false,
+        "enable_drag": false,
+        "heading": "Our products",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "image_ratio": "adapt",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": false,
+        "secondary_image_max": 1,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_hero_4rDRKG",
+    "video_PkjWx8",
+    "rich_text_UtKrqp",
+    "newsletter_alt_zLXHeq",
+    "image_with_text_v3_LtydMN",
+    "troche_vs_capsule_v2_qhQeXW",
+    "active_ingredients_v2_RtfW7x",
+    "faq_v2_dy7bQ4",
+    "image_banner_ce9btY",
+    "image_with_text_v2_AAqDV6",
+    "newsletter_alt_efLdrf",
+    "professional_endorsements_7RxFQf",
+    "featured_collection_baVFHP"
+  ]
+}

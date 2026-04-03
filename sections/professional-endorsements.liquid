@@ -1,0 +1,783 @@
+{{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
+{{ 'section-professional-endorsements.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'section-multicolumn-review.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --professional-endorsements-background: {{ section.settings.background_color.red }}, {{ section.settings.background_color.green }}, {{ section.settings.background_color.blue }};
+    --professional-endorsements-card-surface: {{ section.settings.card_surface.red }}, {{ section.settings.card_surface.green }}, {{ section.settings.card_surface.blue }};
+    --professional-endorsements-card-border: {{ section.settings.card_border_color.red }}, {{ section.settings.card_border_color.green }}, {{ section.settings.card_border_color.blue }};
+    --professional-endorsements-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --professional-endorsements-eyebrow: {{ section.settings.eyebrow_color.red }}, {{ section.settings.eyebrow_color.green }}, {{ section.settings.eyebrow_color.blue }};
+    --professional-endorsements-name: {{ section.settings.name_color.red }}, {{ section.settings.name_color.green }}, {{ section.settings.name_color.blue }};
+    --professional-endorsements-role: {{ section.settings.role_color.red }}, {{ section.settings.role_color.green }}, {{ section.settings.role_color.blue }};
+    --professional-endorsements-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --professional-endorsements-max-width: {{ section.settings.max_content_width }}px;
+    --professional-endorsements-card-gap: {{ section.settings.card_gap }}px;
+    --professional-endorsements-card-radius: {{ section.settings.card_radius }}px;
+    --professional-endorsements-image-radius: {{ section.settings.image_radius }}px;
+    --professional-endorsements-card-padding: {{ section.settings.card_padding }}px;
+    --professional-endorsements-subheading-font-size: {{ section.settings.subheading_font_size | default: 20 }}px;
+    --professional-endorsements-subheading-color: {{ section.settings.subheading_color | default: '#6b7280' }};
+    --card-border-radius: {{ section.settings.card_radius }}px;
+    --image-position: {{ section.settings.image_position }};
+    --professional-endorsements-dots-gap-mobile: {{ section.settings.mobile_indicator_gap | default: 12 }}px;
+    --color-highlight: {{ section.settings.colors_highlight.red }}, {{ section.settings.colors_highlight.green }}, {{ section.settings.colors_highlight.blue }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign enable_mobile_carousel = false
+  if section.blocks.size > 1
+    assign enable_mobile_carousel = true
+  endif
+
+  if section.settings.image_ratio == 'adapt'
+    assign highest_ratio = 0
+    for block in section.blocks
+      if block.settings.image != blank and block.settings.image.aspect_ratio > highest_ratio
+        assign highest_ratio = block.settings.image.aspect_ratio
+      endif
+    endfor
+  endif
+-%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <section
+    class="multicolumn professional-endorsements page-width"
+    aria-label="{{ section.settings.accessibility_label | default: section.settings.heading | strip_html | escape }}"
+  >
+    <div class="professional-endorsements__inner">
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+        <div class="title-wrapper professional-endorsements__header{% if section.settings.heading == blank %} title-wrapper--no-heading{% endif %} mobile-{{ section.settings.mobile_text_alignment }} {{ section.settings.heading_alignment }}">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="professional-endorsements__eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag }} class="title {{ section.settings.heading_size }} professional-endorsements__heading">
+              {%- render 'highlight-text',
+                hl_input: section.settings.heading,
+                hl_style: section.settings.highlight_style,
+                hl_enable: section.settings.enable_highlight,
+                hl_animateWrap: true
+              -%}
+            </{{ section.settings.heading_tag }}>
+          {%- endif -%}
+
+          {%- if section.settings.subheading != blank -%}
+            <{{ section.settings.subheading_tag }} class="professional-endorsements__subheading {{ section.settings.subheading_size }}">
+              {{ section.settings.subheading }}
+            </{{ section.settings.subheading_tag }}>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <multicolumn-review-component class="slider-mobile-gutter professional-endorsements__component" data-match-card-heights-mobile="{{ section.settings.match_card_heights_mobile }}">
+          <div class="professional-endorsements__track-wrapper">
+            <ul
+              id="Slider-{{ section.id }}"
+              class="multicolumn-list professional-endorsements__grid flex-grid flex-grid--2-col{% if section.settings.columns_mobile == '1' %} flex-grid--1-col-mobile{% endif %} flex-grid--rigid flex-grid--{{ section.settings.columns_desktop }}-col-desktop{% if enable_mobile_carousel %} slider slider--mobile{% endif %}"
+              role="list"
+            >
+              {%- for block in section.blocks -%}
+                {%- liquid
+                  assign number_of_columns = section.settings.columns_desktop
+                  assign number_of_columns_mobile = section.settings.columns_mobile
+                  assign desktop_gap_space = number_of_columns | minus: 1 | times: section.settings.card_gap
+                  assign tablet_gap_space = number_of_columns_mobile | minus: 1 | times: section.settings.card_gap
+                  assign grid_space_desktop = desktop_gap_space | plus: 100 | append: 'px'
+                  assign grid_space_tablet = tablet_gap_space | plus: 100 | append: 'px'
+                  assign grid_space_mobile = 30 | append: 'px'
+                -%}
+                {% capture sizes %}
+                  (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width }}px - {{ grid_space_desktop }}) / {{ number_of_columns }}),
+                  (min-width: 990px) calc((100vw - {{ grid_space_desktop }}) / {{ number_of_columns }}),
+                  (min-width: 750px) calc((100vw - {{ grid_space_tablet }}) / {{ number_of_columns_mobile }}),
+                  calc(100vw - {{ grid_space_mobile }})
+                {% endcapture %}
+                <li
+                  id="Slide-{{ section.id }}-{{ forloop.index }}"
+                  class="multicolumn-list__item professional-endorsements__item flex-grid__item left{% if enable_mobile_carousel %} slider__slide{% endif %}{% if forloop.first %} is-selected{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  <article
+                    class="multicolumn-card professional-endorsements__card"
+                    {% if block.settings.background_color != blank %}style="background-color: {{ block.settings.background_color }};"{% endif %}
+                  >
+                    <use-animate
+                      data-animate="zoom-fade"
+                      class="media-wrapper multicolumn-card__image-wrapper multicolumn-card__image-wrapper--full-width professional-endorsements__media-wrapper"
+                    >
+                      <div
+                        class="image-animate media media--{{ section.settings.image_ratio }} professional-endorsements__media"
+                        {%- if section.settings.image_ratio == 'adapt' and highest_ratio > 0 %} style="--image-ratio-percent: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"{% endif -%}
+                      >
+                        {%- if block.settings.image != blank -%}
+                          {%- liquid
+                            if forloop.first
+                              assign img_loading = 'eager'
+                              assign img_fetchpriority = 'auto'
+                            else
+                              assign img_loading = 'lazy'
+                              assign img_fetchpriority = nil
+                            endif
+                          -%}
+                          {{
+                            block.settings.image
+                            | image_url: width: 1600
+                            | image_tag:
+                              loading: img_loading,
+                              fetchpriority: img_fetchpriority,
+                              widths: '240, 320, 400, 520, 640, 760, 900, 1100, 1400, 1600',
+                              sizes: sizes,
+                              class: 'multicolumn-card__image professional-endorsements__image',
+                              is: 'lazy-image',
+                              alt: block.settings.image.alt | default: block.settings.name | escape
+                          }}
+                        {%- else -%}
+                          {{ 'image' | placeholder_svg_tag: 'multicolumn-card__image professional-endorsements__image professional-endorsements__image--placeholder placeholder-svg' }}
+                        {%- endif -%}
+                      </div>
+                    </use-animate>
+
+                    <div class="multicolumn-card__info professional-endorsements__content">
+                      {%- if block.settings.name != blank -%}
+                        <p class="multicolumn-card__title professional-endorsements__name h4">{{ block.settings.name | escape }}</p>
+                      {%- endif -%}
+
+                      {%- if block.settings.role != blank -%}
+                        <div class="professional-endorsements__role">{{ block.settings.role | escape | newline_to_br }}</div>
+                      {%- endif -%}
+
+                      {%- if block.settings.quote != blank -%}
+                        <blockquote class="professional-endorsements__quote">{{ block.settings.quote | escape | newline_to_br }}</blockquote>
+                      {%- endif -%}
+                    </div>
+                  </article>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+
+          {%- if enable_mobile_carousel -%}
+            <div
+              class="professional-endorsements__dots no-js-hidden medium-hide large-up-hide"
+              role="tablist"
+              aria-label="{{ section.settings.accessibility_label | default: section.settings.heading | strip_html | escape }}"
+            >
+              {%- for block in section.blocks -%}
+                <button
+                  type="button"
+                  role="tab"
+                  class="multicolumn-review__dot{% if forloop.first %} is-active{% endif %}"
+                  data-slide-index="{{ forloop.index }}"
+                  aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ section.blocks.size }}"
+                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                ></button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </multicolumn-review-component>
+      {%- elsif request.design_mode -%}
+        <div class="professional-endorsements__empty">
+          Add endorsement blocks to populate this section.
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Professional endorsements",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "Professional endorsements"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Endorsed by <em>leading healthcare professionals</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "subheading_tag",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        },
+        {
+          "value": "span",
+          "label": "Span"
+        }
+      ],
+      "default": "p",
+      "label": "Subheading tag"
+    },
+    {
+      "type": "select",
+      "id": "subheading_size",
+      "options": [
+        {
+          "value": "typeset",
+          "label": "Small"
+        },
+        {
+          "value": "typeset2",
+          "label": "Medium"
+        },
+        {
+          "value": "typeset3",
+          "label": "Large"
+        }
+      ],
+      "default": "typeset2",
+      "label": "Subheading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_alignment",
+      "label": "Mobile heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Highlight"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable heading highlight",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "label": "Highlight style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "Marker"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "bold-underline",
+          "label": "Bold underline"
+        },
+        {
+          "value": "modern-underline",
+          "label": "Modern underline"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "Sketch underline"
+        },
+        {
+          "value": "squiggle",
+          "label": "Squiggle"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "Heavy squiggle"
+        },
+        {
+          "value": "solid-color",
+          "label": "Solid color"
+        }
+      ],
+      "default": "modern-underline"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_surface",
+      "label": "Card background",
+      "default": "#f7f6f2"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#e8e4dc"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#5f6c67"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name color",
+      "default": "#0e7e8f"
+    },
+    {
+      "type": "color",
+      "id": "role_color",
+      "label": "Role color",
+      "default": "#59625e"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Quote color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "colors_highlight",
+      "label": "Highlight color",
+      "default": "#6fc5c1"
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "min": 12,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "20% 0",
+          "label": "Left top"
+        },
+        {
+          "value": "top center",
+          "label": "Center top"
+        },
+        {
+          "value": "80% 0",
+          "label": "Right top"
+        },
+        {
+          "value": "20% 50%",
+          "label": "Left center"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "80% 50%",
+          "label": "Right center"
+        },
+        {
+          "value": "20% 100%",
+          "label": "Left bottom"
+        },
+        {
+          "value": "bottom center",
+          "label": "Center bottom"
+        },
+        {
+          "value": "80% 100%",
+          "label": "Right bottom"
+        }
+      ],
+      "default": "top center"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "label": "Max content width",
+      "min": 900,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 1220
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "checkbox",
+      "id": "match_card_heights_mobile",
+      "label": "Match card heights on mobile",
+      "default": false,
+      "info": "When enabled, all carousel cards share the same height on mobile. When off, the carousel adapts to each card's content."
+    },
+    {
+      "type": "range",
+      "id": "mobile_indicator_gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile indicator gap",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "label": "Card gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 8,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image corner radius",
+      "min": 8,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "endorsement",
+      "name": "Endorsement",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Portrait"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Card background"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Dr. Alicia Morgan"
+        },
+        {
+          "type": "textarea",
+          "id": "role",
+          "label": "Role",
+          "default": "Functional medicine physician"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This product has become one of the easiest recommendations in my practice because patients feel the difference quickly."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Professional endorsements",
+      "blocks": [
+        {
+          "type": "endorsement",
+          "settings": {
+            "name": "Dr. Alicia Morgan",
+            "role": "Functional medicine physician",
+            "quote": "This product has become one of the easiest recommendations in my practice because patients feel the difference quickly."
+          }
+        },
+        {
+          "type": "endorsement",
+          "settings": {
+            "name": "Scott Porter, PharmD",
+            "role": "Clinical pharmacist and wellness educator",
+            "quote": "When I tried it myself, the result was immediate enough that I started sharing it with patients who needed steadier support."
+          }
+        },
+        {
+          "type": "endorsement",
+          "settings": {
+            "name": "Dr. Stephanie Rivera, DC",
+            "role": "Brain optimization specialist",
+            "quote": "I appreciate products that fit into complex care plans cleanly, and this one has delivered dependable outcomes across a wide range of patients."
+          }
+        },
+        {
+          "type": "endorsement",
+          "settings": {
+            "name": "Dr. Ashley Beckman",
+            "role": "Doctor of acupuncture and integrative medicine",
+            "quote": "After testing many products in clinic, this is the one that consistently earns positive feedback from patients within days."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

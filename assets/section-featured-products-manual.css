@@ -1,0 +1,51 @@
+.featured-products-manual__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 72rem;
+}
+
+.featured-products-manual__subheading {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.65);
+  font-family: var(--font-heading-family);
+  font-size: calc(var(--font-heading-scale) * 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.18rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.featured-products-manual__description {
+  margin-top: 0;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+.featured-products-manual__description p {
+  margin-top: 0;
+}
+
+.featured-products-manual__description p:last-child {
+  margin-bottom: 0;
+}
+
+.featured-products-manual__grid {
+  align-items: flex-start;
+}
+
+.title-wrapper.center .featured-products-manual__intro {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.title-wrapper.right .featured-products-manual__intro {
+  margin-inline-start: auto;
+  text-align: right;
+}
+
+@media screen and (min-width: 750px) {
+  .featured-products-manual__intro {
+    gap: 1.6rem;
+  }
+}

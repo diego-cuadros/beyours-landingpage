@@ -1,0 +1,303 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_w_text_troperks_Th7GqA": {
+      "type": "image-w-text-troperks",
+      "blocks": {
+        "heading_ApgGhg": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ metaobject.title.value }}",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_pjYzBq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ metaobject.short_description | metafield_tag }}</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_JGRXBD": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_style_secondary": false,
+            "button_label": "Reveal Discount",
+            "perk_name": "{{ metaobject.title.value }}",
+            "requires_subscription_reveal": "{{ metaobject.is_for_subscribers_only.value }}",
+            "affiliate_link_value": "{{ metaobject.affiliate_link.value }}",
+            "access_link_label": "Get Waking Up:",
+            "access_link_text": "Access your perk",
+            "access_link_label_color": "rgba(0,0,0,0)",
+            "access_link_text_color": "rgba(0,0,0,0)",
+            "preview_sample_code": "SAMPLECODE123",
+            "success_modal_title": "Success!",
+            "success_message": "<p>Your discount code is: </p>",
+            "no_discount_available_message": "<p>No active discount code is available right now. Please try again later.</p>",
+            "no_subscription_modal_title": "Subscription Required",
+            "no_subscription_message": "<p>You need an active subscription to reveal this discount.</p>",
+            "subscription_collection": "subscribe-save",
+            "subscription_collection_link": "shopify://collections/subscribe-save",
+            "subscription_button_label": "View All Subscriptions",
+            "logged_out_modal_title": "Login Required",
+            "logged_out_message": "<p>Please log in to reveal your discount.</p>",
+            "error_modal_title": "Error",
+            "button_spacing_top": 24,
+            "show_disclaimer_text": true,
+            "disclaimer_text": "<p><em>Must be logged in and a current subscriber to reveal code.</em></p>",
+            "disclaimer_text_spacing": 10,
+            "disclaimer_text_size": 11,
+            "disclaimer_text_bold": false,
+            "disclaimer_text_alignment": "left",
+            "revealed_code_background": "#e1e1e1",
+            "revealed_code_text": "#1a1b18",
+            "revealed_code_border": "rgba(0,0,0,0)",
+            "revealed_code_border_width": 0,
+            "revealed_code_border_radius": 12,
+            "revealed_code_padding": 18
+          }
+        }
+      },
+      "block_order": [
+        "heading_ApgGhg",
+        "text_pjYzBq",
+        "button_JGRXBD"
+      ],
+      "name": "Image w text TroPerks",
+      "settings": {
+        "image": "{{ metaobject.sample_troche_image.value }}",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "adapt",
+        "image_corner_radius": 0,
+        "image_max_width": 0,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "image_with_text_v2_yhmy7k": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_CbXAtB": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ metaobject.hero_text.value }}",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "heading_subheading_gap": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_94zjYy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ metaobject.hero_long_text | metafield_tag }}</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CbXAtB",
+        "text_94zjYy"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "{{ metaobject.hero_image.value }}",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_mobile_padding": true,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_w_text_troperks_FpX3jd": {
+      "type": "image-w-text-troperks",
+      "blocks": {
+        "heading_TQ9Lgh": {
+          "type": "heading",
+          "settings": {
+            "heading": "Special Partner Pricing",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_NKrw8q": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ metaobject.benefit.value }}</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_UpjrqV": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_style_secondary": false,
+            "button_label": "Reveal Discount",
+            "perk_name": "{{ block.settings.subscription_collection.title }}",
+            "requires_subscription_reveal": "{{ metaobject.is_for_subscribers_only.value }}",
+            "affiliate_link_value": "{{ metaobject.affiliate_link.value }}",
+            "access_link_label": "Get Waking Up:",
+            "access_link_text": "Access your perk",
+            "access_link_label_color": "rgba(0,0,0,0)",
+            "access_link_text_color": "rgba(0,0,0,0)",
+            "preview_sample_code": "SAMPLECODE123",
+            "success_modal_title": "Success!",
+            "success_message": "<p>Your discount code is: </p>",
+            "no_discount_available_message": "<p>No active discount code is available right now. Please try again later.</p>",
+            "no_subscription_modal_title": "Subscription Required",
+            "no_subscription_message": "<p>You need an active subscription to reveal this discount.</p>",
+            "subscription_collection": "",
+            "subscription_collection_link": "",
+            "subscription_button_label": "View All Subscriptions",
+            "logged_out_modal_title": "Login Required",
+            "logged_out_message": "<p>Please log in to reveal your discount.</p>",
+            "error_modal_title": "Error",
+            "button_spacing_top": 24,
+            "show_disclaimer_text": false,
+            "disclaimer_text": "<p>Must be logged in and a current subscriber to reveal code.</p>",
+            "disclaimer_text_spacing": 10,
+            "disclaimer_text_size": 14,
+            "disclaimer_text_bold": false,
+            "disclaimer_text_alignment": "center",
+            "revealed_code_background": "#ffffff",
+            "revealed_code_text": "#1a1b18",
+            "revealed_code_border": "rgba(0,0,0,0)",
+            "revealed_code_border_width": 0,
+            "revealed_code_border_radius": 12,
+            "revealed_code_padding": 18
+          }
+        }
+      },
+      "block_order": [
+        "heading_TQ9Lgh",
+        "text_NKrw8q",
+        "button_UpjrqV"
+      ],
+      "name": "Image w text TroPerks",
+      "settings": {
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "center",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "image_corner_radius": 0,
+        "image_max_width": 0,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "text_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "600px",
+        "use_custom_colors": true,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#ffffff",
+        "colors_background": "#037178",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 0,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    }
+  },
+  "order": [
+    "image_w_text_troperks_Th7GqA",
+    "image_with_text_v2_yhmy7k",
+    "image_w_text_troperks_FpX3jd"
+  ]
+}

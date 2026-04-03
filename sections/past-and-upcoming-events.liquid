@@ -1,0 +1,346 @@
+{%- liquid
+  assign upcoming_events = blank
+  assign past_events = blank
+
+  if page != blank and page.metafields.custom.events != blank and page.metafields.custom.events.value != blank
+    assign upcoming_events = page.metafields.custom.events.value
+  endif
+
+  if page != blank and page.metafields.custom.past_events != blank and page.metafields.custom.past_events.value != blank
+    assign past_events = page.metafields.custom.past_events.value
+  endif
+
+  assign upcoming_count = 0
+  for event in upcoming_events
+    assign event_title = event.name.value | default: event.name | default: event.title.value | default: event.title
+    if event_title != blank
+      assign upcoming_count = upcoming_count | plus: 1
+    endif
+  endfor
+
+  assign past_count = 0
+  for event in past_events
+    assign event_title = event.name.value | default: event.name | default: event.title.value | default: event.title
+    if event_title != blank
+      assign past_count = past_count | plus: 1
+    endif
+  endfor
+
+  assign show_section_header = false
+  if section.settings.heading != blank or section.settings.intro != blank
+    assign show_section_header = true
+  endif
+
+  assign group_heading_tag = 'h2'
+  if section.settings.heading != blank
+    case section.settings.heading_tag
+      when 'h1'
+        assign group_heading_tag = 'h2'
+      when 'h2'
+        assign group_heading_tag = 'h3'
+      when 'h3'
+        assign group_heading_tag = 'h4'
+    endcase
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --events-board-max-width: {{ section.settings.max_content_width }}px;
+    --events-board-columns: {{ section.settings.desktop_columns }};
+  }
+
+  #shopify-section-{{ section.id }} .page-width {
+    max-width: calc(var(--events-board-max-width) + 3rem);
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .page-width {
+      max-width: calc(var(--events-board-max-width) + 10rem);
+    }
+  }
+
+  #{{ section.settings.anchor_id | default: 'events' | handle }} {
+    scroll-margin-top: calc(max(var(--header-height, 0px), 8rem) + 2rem);
+  }
+{%- endstyle -%}
+
+{{ 'section-past-and-upcoming-events.css' | asset_url | stylesheet_tag }}
+
+{%- assign events_anchor_id = section.settings.anchor_id | default: 'events' | handle -%}
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section id="{{ events_anchor_id }}" class="events-board section--padding">
+    <div class="page-width">
+      <div class="events-board__shell">
+        {%- if show_section_header -%}
+          <div class="events-board__header">
+            <div class="title-wrapper left{% if section.settings.heading == blank %} title-wrapper--no-heading{% endif %}">
+              {%- if section.settings.heading != blank -%}
+                <{{ section.settings.heading_tag }} class="title {{ section.settings.heading_size }}">
+                  {{ section.settings.heading }}
+                </{{ section.settings.heading_tag }}>
+              {%- endif -%}
+            </div>
+
+            {%- if section.settings.intro != blank -%}
+              <div class="events-board__intro rte">
+                {{ section.settings.intro }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div class="events-board__groups">
+          <section class="events-board__group">
+            <div class="events-board__group-header">
+              <div>
+                <{{ group_heading_tag }} class="events-board__group-title h2">{{ section.settings.upcoming_heading }}</{{ group_heading_tag }}>
+                {%- if section.settings.upcoming_intro != blank -%}
+                  <p class="events-board__group-copy">{{ section.settings.upcoming_intro }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+
+            {%- if upcoming_count > 0 -%}
+              <div class="events-board__grid" role="list">
+                {%- for event in upcoming_events -%}
+                  {%- assign event_title = event.name.value | default: event.name | default: event.title.value | default: event.title -%}
+                  {%- if event_title != blank -%}
+                    {% render 'event-card',
+                      event: event,
+                      max_content_width: section.settings.max_content_width,
+                      desktop_columns: section.settings.desktop_columns,
+                      open_links_in_new_tab: section.settings.open_links_in_new_tab,
+                      cta_label: section.settings.cta_label
+                    %}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <div class="events-board__empty rte">
+                {{ section.settings.upcoming_empty_state }}
+              </div>
+            {%- endif -%}
+          </section>
+
+          <section class="events-board__group">
+            <div class="events-board__group-header">
+              <div>
+                <{{ group_heading_tag }} class="events-board__group-title h2">{{ section.settings.past_heading }}</{{ group_heading_tag }}>
+                {%- if section.settings.past_intro != blank -%}
+                  <p class="events-board__group-copy">{{ section.settings.past_intro }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+
+            {%- if past_count > 0 -%}
+              <div class="events-board__grid" role="list">
+                {%- for event in past_events -%}
+                  {%- assign event_title = event.name.value | default: event.name | default: event.title.value | default: event.title -%}
+                  {%- if event_title != blank -%}
+                    {% render 'event-card',
+                      event: event,
+                      max_content_width: section.settings.max_content_width,
+                      desktop_columns: section.settings.desktop_columns,
+                      open_links_in_new_tab: section.settings.open_links_in_new_tab,
+                      cta_label: section.settings.cta_label
+                    %}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <div class="events-board__empty rte">
+                {{ section.settings.past_empty_state }}
+              </div>
+            {%- endif -%}
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Past & upcoming events",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section anchor id",
+      "default": "events"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Events"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Use page metafields to highlight what’s coming next and preserve the archive of finished events.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Upcoming events"
+    },
+    {
+      "type": "text",
+      "id": "upcoming_heading",
+      "label": "Upcoming heading",
+      "default": "Upcoming Events"
+    },
+    {
+      "type": "text",
+      "id": "upcoming_intro",
+      "label": "Upcoming intro",
+      "default": "Current and scheduled appearances."
+    },
+    {
+      "type": "richtext",
+      "id": "upcoming_empty_state",
+      "label": "Upcoming empty state",
+      "default": "<p>There are no current upcoming events at this time.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Past events"
+    },
+    {
+      "type": "text",
+      "id": "past_heading",
+      "label": "Past heading",
+      "default": "Past Events"
+    },
+    {
+      "type": "text",
+      "id": "past_intro",
+      "label": "Past intro",
+      "default": "A running archive of completed appearances."
+    },
+    {
+      "type": "richtext",
+      "id": "past_empty_state",
+      "label": "Past empty state",
+      "default": "<p>No past events have been added yet.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Card button label",
+      "default": "Learn more"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_links_in_new_tab",
+      "label": "Open links in a new tab",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Desktop columns",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 960,
+      "max": 1800,
+      "step": 40,
+      "unit": "px",
+      "label": "Max content width",
+      "default": 1280
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Past & upcoming events"
+    }
+  ]
+}
+{% endschema %}

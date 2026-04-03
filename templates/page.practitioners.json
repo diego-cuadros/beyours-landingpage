@@ -1,0 +1,647 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "image_banner_q37iTE": {
+      "type": "image-banner",
+      "blocks": {
+        "subheading_7nf4nL": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "are you a health practitioner?",
+            "subheading_size": "h5",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "heading_gWyYmE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Introducing Tro+",
+            "heading_size": "h1",
+            "heading_tag": "h1",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_Mn9i3t": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our exclusive, practitioner-only line</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_tigih6": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "sign up",
+            "button_link": "https://hcp.troscriptions.com",
+            "button_style_secondary": false,
+            "button_alt_label": "login",
+            "button_alt_link": "https://hcp.troscriptions.com",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "subheading_7nf4nL",
+        "heading_gWyYmE",
+        "text_Mn9i3t",
+        "button_tigih6"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Troscriptions_Practitioner_Line_Tro_Plus_Blue_Holding_Box_in_Lab_Coat_Pocket.jpg",
+        "image_position": "80% 50%",
+        "text_box_position": "middle-left",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "show_text_box": false,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_image": "shopify://shop_images/Practitioner_Only_Mobile_ca5629ac-d148-487b-8a3f-3ea4f2918ea1.png",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "100vh",
+        "stack_images_on_mobile": true,
+        "show_text_below": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#ffffff",
+        "colors_overlay": "#000000",
+        "colors_overlay_opacity": 0,
+        "colors_highlight": "#1d428a",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "empty_space_8ebFHi": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 60,
+        "mobile_height": 60
+      }
+    },
+    "guarantees_zfG6k3": {
+      "type": "guarantees",
+      "blocks": {
+        "guarantee_Dta4iU": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shop",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Access to the Tro+ product line",
+            "title_size": "h4",
+            "text": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_x8wpwb": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "lock",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Exclusive practitioner only content",
+            "title_size": "h4",
+            "text": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_qyB43H": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "truck",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Wholesale pricing",
+            "title_size": "h4",
+            "text": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_TggLkG": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "clipboard",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Desk reference guides",
+            "title_size": "h4",
+            "text": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_Jfbpmy": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "headset",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Monthly webinars",
+            "title_size": "h4",
+            "text": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_r93h8C": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "map_pin",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Listing on the Troscriptions® website",
+            "title_size": "h4",
+            "text": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_Dta4iU",
+        "guarantee_x8wpwb",
+        "guarantee_qyB43H",
+        "guarantee_TggLkG",
+        "guarantee_Jfbpmy",
+        "guarantee_r93h8C"
+      ],
+      "name": "t:sections.guarantees.presets.name",
+      "settings": {
+        "layout": "default",
+        "column_alignment": "center",
+        "horizontal_content": false,
+        "full_width": true,
+        "show_divider": false,
+        "columns_desktop": 3,
+        "heading": "Benefits of becoming a Troscriptions® practitioner",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "empty_space_94CQzJ": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 60,
+        "mobile_height": 60
+      }
+    },
+    "image_with_text_WgNwwT": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_M4zQjX": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em>Tro+</em>",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "subheading_CLXYCV": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "our practitioner line",
+            "subheading_size": "h4",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_py8Ltw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We've engineered Tro+ for healthcare professionals who accept nothing less than transformative outcomes. Our commitment isn't just constant—it's evolving. With Tro+, we're not just supporting your practice; we're revolutionizing it. Experience healthcare solutions, tailored exclusively for the exceptional practitioner in you.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_cQneWy": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "sign up",
+            "button_link": "https://hcp.troscriptions.com",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_M4zQjX",
+        "subheading_CLXYCV",
+        "text_py8Ltw",
+        "button_cQneWy"
+      ],
+      "name": "Tro+",
+      "settings": {
+        "image": "shopify://shop_images/For_Practitioners_3_Square.jpg",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "enlarge_content": false,
+        "full_width": true,
+        "show_divider": true,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "adapt",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#1d428a",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "empty_space_hAGCfE": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 0,
+        "mobile_height": 40
+      }
+    },
+    "image_with_text_34wfQM": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_D9mwCd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Exclusive practitioner-only content",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_h9Fn6G": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our approved practitioners have access to physician's reference guides for all Troscriptions® and Tro+ products, as well as monthly webinars and practitioner case studies.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_D9mwCd",
+        "text_h9Fn6G"
+      ],
+      "name": "Exclusive content",
+      "settings": {
+        "image": "shopify://shop_images/Tro_Plus_Blue_4_Square.jpg",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "enlarge_content": false,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "adapt",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "empty_space_YEh6Br": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 0,
+        "mobile_height": 40
+      }
+    },
+    "image_with_text_9Pxj3X": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_KRVcbC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Made for practitioners <em>by practitioners</em>",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "text_8i6E4R": {
+          "type": "text",
+          "settings": {
+            "text": "<p>There are 4 practicing physicians on the Troscriptions® team. These physicians not only help design and test our products prior to release, but they also use them in professional practice with enthusiasm and confidence.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_KRVcbC",
+        "text_8i6E4R"
+      ],
+      "name": "Made by practitioners",
+      "settings": {
+        "image": "shopify://shop_images/Practitioner_Only_by_practitioners.png",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "enlarge_content": false,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "adapt",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#1d428a",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "empty_space_QanKkm": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 0,
+        "mobile_height": 40
+      }
+    },
+    "empty_space_iiCKaB": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 60,
+        "mobile_height": 60
+      }
+    },
+    "guarantees_CdpxpM": {
+      "type": "guarantees",
+      "blocks": {
+        "guarantee_gNngQM": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "star",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "custom_icon": "",
+            "title": "Physician formulated",
+            "title_size": "h4",
+            "text": "<p>Our team isn't just built on expertise - it's powered by real-world clinical application. We have 4 physicians on the team who use Troscriptions® in their practice.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_jyVnEE": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "globe",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "custom_icon": "",
+            "title": "Pharmaceutical grade",
+            "title_size": "h4",
+            "text": "<p>We traverse the globe to create, craft and discover groundbreaking, effective ingredients, subjecting each one to rigorous testing for unparalleled purity and potency.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_VU3QMi": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "recycle",
+            "icon_size": "large",
+            "image": "shopify://shop_images/pharmaceutical_grade_aa8d1e27-f62e-4ac4-911c-df7fbbd6dd60.png",
+            "custom_icon": "",
+            "title": "Precision dosed",
+            "title_size": "h4",
+            "text": "<p>All ingredients are evenly distributed and carefully calibrated into our formulas. Plus, our troches are scored to help you easily find your unique dosage.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_HqxAR3": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "map_pin",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Made in the USA",
+            "title_size": "h4",
+            "text": "<p>We ensure uncompromising standards and superior quality. Our products are meticulously created, clinically tested, and crafted with utmost care, right here in the USA.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_gNngQM",
+        "guarantee_jyVnEE",
+        "guarantee_VU3QMi",
+        "guarantee_HqxAR3"
+      ],
+      "name": "What makes Tro different",
+      "settings": {
+        "layout": "default",
+        "column_alignment": "center",
+        "horizontal_content": false,
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 4,
+        "heading": "What makes Troscriptions® different?",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "empty_space_CmykKA": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 60,
+        "mobile_height": 60
+      }
+    },
+    "image_with_text_overlay_M6rETq": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_Yrkjrh": {
+          "type": "heading",
+          "settings": {
+            "heading": "Interested in becoming a health optimization practitioner?",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "underline"
+          }
+        },
+        "text_8gjbJr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A portion of Troscriptions®’ proceeds supports <strong>Health Optimization Medicine and Practice (HOMeHOPe®)</strong>, a 501(c)3 nonprofit that is training physicians and healthcare practitioners on proactive health optimization principles, shifting focus from disease treatment to enhancing health.<br/><br/>Join us on a journey to bring medicine back to its roots – bringing health back \"<em>HOMe!</em>\"</p>",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "button_jxmmq3": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "Learn more",
+            "button_link": "https://homehope.org/pages/clinical-metabolomics-cohort-bundle",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_Yrkjrh",
+        "text_8gjbJr",
+        "button_jxmmq3"
+      ],
+      "name": "t:sections.image-with-text-overlay.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/health_optimization_practitioner.png",
+        "image_position": "center center",
+        "text_box_position": "flex-start",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "image_mobile": "shopify://shop_images/health_optimization_practitioner_-_mobile.png",
+        "mobile_text_box_position": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "adapt",
+        "video_url": "",
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_overlay": "#f3f3f3",
+        "colors_overlay_opacity": 92,
+        "colors_highlight": "#6c3076",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "empty_space_dUAKdr": {
+      "type": "empty-space",
+      "name": "t:sections.empty-space.presets.name",
+      "settings": {
+        "desktop_height": 0,
+        "mobile_height": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_q37iTE",
+    "empty_space_8ebFHi",
+    "guarantees_zfG6k3",
+    "empty_space_94CQzJ",
+    "image_with_text_WgNwwT",
+    "empty_space_hAGCfE",
+    "image_with_text_34wfQM",
+    "empty_space_YEh6Br",
+    "image_with_text_9Pxj3X",
+    "empty_space_QanKkm",
+    "empty_space_iiCKaB",
+    "guarantees_CdpxpM",
+    "empty_space_CmykKA",
+    "image_with_text_overlay_M6rETq",
+    "empty_space_dUAKdr"
+  ]
+}

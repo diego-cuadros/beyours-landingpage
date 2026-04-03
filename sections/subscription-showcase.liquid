@@ -1,0 +1,731 @@
+{%- liquid
+  assign desktop_image = section.settings.image
+  assign mobile_image = section.settings.mobile_image | default: desktop_image
+  assign loading = 'lazy'
+  assign fetchpriority = 'low'
+  assign sizes = '(max-width: 749px) 92vw, (max-width: 989px) 44vw, 620px'
+  assign widths = '360, 540, 720, 900, 1080, 1320'
+
+  if section.index == 1
+    assign loading = 'eager'
+    assign fetchpriority = 'high'
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile | default: section.settings.padding_top }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: section.settings.padding_bottom }}px;
+    --subscription-showcase-max-width: {{ section.settings.max_content_width }}px;
+    --subscription-showcase-background: {{ section.settings.background_color }};
+    --subscription-showcase-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --subscription-showcase-link: {{ section.settings.link_color.red }}, {{ section.settings.link_color.green }}, {{ section.settings.link_color.blue }};
+    --subscription-showcase-button-border: {{ section.settings.button_border_color.red }}, {{ section.settings.button_border_color.green }}, {{ section.settings.button_border_color.blue }};
+    --subscription-showcase-square-size: {{ section.settings.square_size }}px;
+    --subscription-showcase-square-opacity: {{ section.settings.square_opacity | divided_by: 100.0 }};
+    --subscription-showcase-square-1: {{ section.settings.square_1.red }}, {{ section.settings.square_1.green }}, {{ section.settings.square_1.blue }};
+    --subscription-showcase-square-2: {{ section.settings.square_2.red }}, {{ section.settings.square_2.green }}, {{ section.settings.square_2.blue }};
+    --subscription-showcase-square-3: {{ section.settings.square_3.red }}, {{ section.settings.square_3.green }}, {{ section.settings.square_3.blue }};
+    --subscription-showcase-square-4: {{ section.settings.square_4.red }}, {{ section.settings.square_4.green }}, {{ section.settings.square_4.blue }};
+    --subscription-showcase-image-width: {{ section.settings.image_width }}px;
+    --subscription-showcase-image-width-mobile: {{ section.settings.image_width_mobile }}px;
+    --subscription-showcase-popover-background: {{ section.settings.popover_background.red }}, {{ section.settings.popover_background.green }}, {{ section.settings.popover_background.blue }};
+    --subscription-showcase-popover-text: {{ section.settings.popover_text_color.red }}, {{ section.settings.popover_text_color.green }}, {{ section.settings.popover_text_color.blue }};
+    --subscription-showcase-popover-muted: {{ section.settings.popover_muted_color.red }}, {{ section.settings.popover_muted_color.green }}, {{ section.settings.popover_muted_color.blue }};
+    --subscription-showcase-popover-accent: {{ section.settings.popover_accent.red }}, {{ section.settings.popover_accent.green }}, {{ section.settings.popover_accent.blue }};
+    --color-link: var(--subscription-showcase-link);
+    --color-border: var(--subscription-showcase-link);
+    --color-heading: var(--subscription-showcase-text);
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --section-padding-top: var(--section-padding-top-mobile);
+      --section-padding-bottom: var(--section-padding-bottom-mobile);
+    }
+  }
+{%- endstyle -%}
+
+{{ 'section-subscription-showcase.css' | asset_url | stylesheet_tag }}
+
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+<section class="subscription-showcase section--padding">
+  <div class="subscription-showcase__shell">
+    <div class="subscription-showcase__grid">
+      <div class="subscription-showcase__content">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="subscription-showcase__heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="subscription-showcase__points" role="list">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'point' -%}
+                  {%- if block.settings.title == blank and block.settings.text == blank -%}
+                    {% continue %}
+                  {%- endif -%}
+                  <div class="subscription-showcase__point" role="listitem" {{ block.shopify_attributes }}>
+                    <span class="subscription-showcase__point-mark" aria-hidden="true">+</span>
+                    <div class="subscription-showcase__point-content subscription-showcase__point-content--legacy typeset2 rte">
+                      <p>
+                        {%- if block.settings.title != blank -%}
+                          <strong>{{ block.settings.title }}</strong>
+                        {%- endif -%}
+                        {%- if block.settings.text != blank -%}
+                          {{ block.settings.text | replace: '<p>', '' | replace: '</p>', '' }}
+                        {%- endif -%}
+                      </p>
+                    </div>
+                  </div>
+                {%- when 'text' -%}
+                  {%- if block.settings.text == blank -%}
+                    {% continue %}
+                  {%- endif -%}
+                  <div class="subscription-showcase__point" role="listitem">
+                    <span class="subscription-showcase__point-mark" aria-hidden="true">+</span>
+                    <div
+                      class="subscription-showcase__point-content{% if block.settings.secondary_color %} subscription-showcase__point-content--secondary{% endif %} {{ block.settings.text_size }} rte"
+                      style="margin-top: {{ block.settings.margin_top }}px;"
+                      {{ block.shopify_attributes }}
+                    >
+                      {%- render 'highlight-text',
+                        hl_input: block.settings.text,
+                        hl_style: block.settings.highlight_style,
+                        hl_enable: block.settings.enable_highlight,
+                        hl_animateWrap: true
+                      -%}
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank -%}
+          <div class="subscription-showcase__actions">
+            {%- if section.settings.primary_button_label != blank -%}
+              <a
+                class="subscription-showcase__button button"
+                {% if section.settings.primary_button_link != blank %}
+                  href="{{ section.settings.primary_button_link }}"
+                {% else %}
+                  role="link" aria-disabled="true"
+                {% endif %}
+              >
+                {{ section.settings.primary_button_label | escape }}
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.secondary_button_label != blank -%}
+              <div class="subscription-showcase__popover-trigger">
+                <a
+                  class="subscription-showcase__link button button--cta"
+                  {% if section.settings.secondary_button_link != blank %}
+                    href="{{ section.settings.secondary_button_link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                >
+                  <span class="label">{{ section.settings.secondary_button_label | escape }}</span>
+                  {% render 'icon', icon: 'arrow' %}
+                </a>
+
+                <div class="subscription-showcase__popover" role="tooltip">
+                  <div class="subscription-showcase__popover-media">
+                    {%- if section.settings.popover_image_1 != blank -%}
+                      {%- assign popover_image_1_alt = section.settings.popover_image_1.alt | default: section.settings.popover_heading | strip_html -%}
+                      <div class="subscription-showcase__popover-tile subscription-showcase__popover-tile--1">
+                        {{
+                          section.settings.popover_image_1
+                          | image_url: width: 600
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '220, 320, 440, 600',
+                            sizes: '(max-width: 749px) 40vw, 180px',
+                            class: 'subscription-showcase__popover-image',
+                            alt: popover_image_1_alt
+                        }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if section.settings.popover_image_2 != blank -%}
+                      {%- assign popover_image_2_alt = section.settings.popover_image_2.alt | default: section.settings.popover_heading | strip_html -%}
+                      <div class="subscription-showcase__popover-tile subscription-showcase__popover-tile--2">
+                        {{
+                          section.settings.popover_image_2
+                          | image_url: width: 600
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '220, 320, 440, 600',
+                            sizes: '(max-width: 749px) 40vw, 180px',
+                            class: 'subscription-showcase__popover-image',
+                            alt: popover_image_2_alt
+                        }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if section.settings.popover_image_3 != blank -%}
+                      {%- assign popover_image_3_alt = section.settings.popover_image_3.alt | default: section.settings.popover_heading | strip_html -%}
+                      <div class="subscription-showcase__popover-tile subscription-showcase__popover-tile--3">
+                        {{
+                          section.settings.popover_image_3
+                          | image_url: width: 800
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '320, 480, 640, 800',
+                            sizes: '(max-width: 749px) 58vw, 240px',
+                            class: 'subscription-showcase__popover-image',
+                            alt: popover_image_3_alt
+                        }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if section.settings.popover_image_4 != blank -%}
+                      {%- assign popover_image_4_alt = section.settings.popover_image_4.alt | default: section.settings.popover_heading | strip_html -%}
+                      <div class="subscription-showcase__popover-tile subscription-showcase__popover-tile--4">
+                        {{
+                          section.settings.popover_image_4
+                          | image_url: width: 600
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '220, 320, 440, 600',
+                            sizes: '(max-width: 749px) 32vw, 140px',
+                            class: 'subscription-showcase__popover-image',
+                            alt: popover_image_4_alt
+                        }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                  <div class="subscription-showcase__popover-body">
+                    {%- if section.settings.popover_heading != blank -%}
+                      <p class="subscription-showcase__popover-heading">{{ section.settings.popover_heading }}</p>
+                    {%- endif -%}
+
+                    {%- if section.settings.popover_text != blank -%}
+                      <div class="subscription-showcase__popover-text rte">
+                        {{ section.settings.popover_text }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if section.settings.popover_point_1 != blank or section.settings.popover_point_2 != blank or section.settings.popover_point_3 != blank -%}
+                      <div class="subscription-showcase__popover-points" role="list">
+                        {%- if section.settings.popover_point_1 != blank -%}
+                          <div class="subscription-showcase__popover-point" role="listitem">
+                            <span class="subscription-showcase__popover-point-icon" aria-hidden="true">
+                              <svg viewBox="0 0 20 20" class="subscription-showcase__popover-check" focusable="false">
+                                <circle cx="10" cy="10" r="10" />
+                                <path d="M8.6 13.2 5.9 10.4l1-1 1.7 1.8 4.5-4.5 1 1-5.5 5.5Z" />
+                              </svg>
+                            </span>
+                            <span>{{ section.settings.popover_point_1 }}</span>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.popover_point_2 != blank -%}
+                          <div class="subscription-showcase__popover-point" role="listitem">
+                            <span class="subscription-showcase__popover-point-icon" aria-hidden="true">
+                              <svg viewBox="0 0 20 20" class="subscription-showcase__popover-check" focusable="false">
+                                <circle cx="10" cy="10" r="10" />
+                                <path d="M8.6 13.2 5.9 10.4l1-1 1.7 1.8 4.5-4.5 1 1-5.5 5.5Z" />
+                              </svg>
+                            </span>
+                            <span>{{ section.settings.popover_point_2 }}</span>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.popover_point_3 != blank -%}
+                          <div class="subscription-showcase__popover-point" role="listitem">
+                            <span class="subscription-showcase__popover-point-icon" aria-hidden="true">
+                              <svg viewBox="0 0 20 20" class="subscription-showcase__popover-check" focusable="false">
+                                <circle cx="10" cy="10" r="10" />
+                                <path d="M8.6 13.2 5.9 10.4l1-1 1.7 1.8 4.5-4.5 1 1-5.5 5.5Z" />
+                              </svg>
+                            </span>
+                            <span>{{ section.settings.popover_point_3 }}</span>
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="subscription-showcase__visual">
+        <div class="subscription-showcase__pattern" aria-hidden="true">
+          {%- for i in (1..14) -%}
+            <span class="subscription-showcase__square subscription-showcase__square--{{ i }}"></span>
+          {%- endfor -%}
+        </div>
+
+        <div class="subscription-showcase__art{% if desktop_image != blank %} subscription-showcase__art--flush-bottom{% endif %}">
+          {%- if desktop_image != blank -%}
+            {%- assign showcase_image_alt = desktop_image.alt | default: section.settings.heading | strip_html -%}
+            <picture class="subscription-showcase__picture">
+              {%- if mobile_image != blank -%}
+                {%- liquid
+                  capture mobile_srcset
+                    assign mobile_tag = mobile_image | image_url: width: 1800 | image_tag: sizes: sizes
+                    assign mobile_srcset_parts = mobile_tag | split: 'srcset="'
+                    assign mobile_srcset = mobile_srcset_parts[1] | split: '"' | first
+                    echo mobile_srcset
+                  endcapture
+                -%}
+                <source media="(max-width: 749px)" srcset="{{ mobile_srcset }}" sizes="{{ sizes }}">
+              {%- endif -%}
+              {{
+                desktop_image
+                | image_url: width: 1800
+                | image_tag:
+                  loading: loading,
+                  widths: widths,
+                  sizes: sizes,
+                  class: 'subscription-showcase__image',
+                  alt: showcase_image_alt,
+                  fetchpriority: fetchpriority
+              }}
+            </picture>
+          {%- else -%}
+            <div class="subscription-showcase__placeholder" aria-hidden="true">
+              <div class="subscription-showcase__placeholder-stack">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p>Add the transparent product-stack image in the section settings.</p>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Subscription showcase",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Subscribe & save"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "div", "label": "Div" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "SUBSCRIBE NOW"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary link label",
+      "default": "Explore Tro Perks"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary link URL"
+    },
+    {
+      "type": "header",
+      "content": "Tro Perks popover"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "popover_heading",
+      "label": "Popover heading",
+      "default": "Tro Perks"
+    },
+    {
+      "type": "richtext",
+      "id": "popover_text",
+      "label": "Popover text",
+      "default": "<p>Our exclusive rewards program for active Troscriptions subscribers, offering insider-only discounts on trusted brands across tech, health, and more.</p>"
+    },
+    {
+      "type": "text",
+      "id": "popover_point_1",
+      "label": "Popover bullet 1",
+      "default": "Monthly Q&A sessions with health experts"
+    },
+    {
+      "type": "text",
+      "id": "popover_point_2",
+      "label": "Popover bullet 2",
+      "default": "Special offers from leading brands in health, wellness, and longevity"
+    },
+    {
+      "type": "text",
+      "id": "popover_point_3",
+      "label": "Popover bullet 3",
+      "default": "Early access to select partner perks and subscriber-only drops"
+    },
+    {
+      "type": "image_picker",
+      "id": "popover_image_1",
+      "label": "Popover image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "popover_image_2",
+      "label": "Popover image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "popover_image_3",
+      "label": "Popover image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "popover_image_4",
+      "label": "Popover image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop stack image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile stack image"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "label": "Max content width",
+      "min": 1200,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Desktop image width",
+      "min": 360,
+      "max": 760,
+      "step": 10,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "image_width_mobile",
+      "label": "Mobile image width",
+      "min": 240,
+      "max": 440,
+      "step": 10,
+      "unit": "px",
+      "default": 340
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#dff8ef"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1c2428"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#0f7f8f"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#2d383d"
+    },
+    {
+      "type": "color",
+      "id": "popover_background",
+      "label": "Popover background",
+      "default": "#f8f6f3"
+    },
+    {
+      "type": "color",
+      "id": "popover_text_color",
+      "label": "Popover text color",
+      "default": "#181818"
+    },
+    {
+      "type": "color",
+      "id": "popover_muted_color",
+      "label": "Popover muted text color",
+      "default": "#4d4d4d"
+    },
+    {
+      "type": "color",
+      "id": "popover_accent",
+      "label": "Popover accent color",
+      "default": "#0f7f8f"
+    },
+    {
+      "type": "header",
+      "content": "Square pattern"
+    },
+    {
+      "type": "range",
+      "id": "square_size",
+      "label": "Square size",
+      "min": 18,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "square_opacity",
+      "label": "Square opacity",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    },
+    {
+      "type": "color",
+      "id": "square_1",
+      "label": "Square color 1",
+      "default": "#a2c4f7"
+    },
+    {
+      "type": "color",
+      "id": "square_2",
+      "label": "Square color 2",
+      "default": "#acbaf5"
+    },
+    {
+      "type": "color",
+      "id": "square_3",
+      "label": "Square color 3",
+      "default": "#f8d48f"
+    },
+    {
+      "type": "color",
+      "id": "square_4",
+      "label": "Square color 4",
+      "default": "#dcc5f3"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Benefit point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Bold lead text",
+          "default": "Get 15% off"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Supporting text",
+          "default": "<p> every order</p>"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Benefit text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p><strong>Get 15% off</strong> every order</p>"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            {
+              "value": "typeset",
+              "label": "Small"
+            },
+            {
+              "value": "typeset2",
+              "label": "Medium"
+            },
+            {
+              "value": "typeset3",
+              "label": "Large"
+            }
+          ],
+          "default": "typeset2",
+          "label": "Text size"
+        },
+        {
+          "type": "checkbox",
+          "id": "secondary_color",
+          "default": false,
+          "label": "Use secondary color"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Top margin",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Highlight"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "Enable highlight",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            { "value": "marker", "label": "Marker" },
+            { "value": "circle", "label": "Circle" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "bold-underline", "label": "Bold underline" },
+            { "value": "modern-underline", "label": "Modern underline" },
+            { "value": "sketch-underline", "label": "Sketch underline" },
+            { "value": "squiggle", "label": "Squiggle" },
+            { "value": "heavy-squiggle", "label": "Heavy squiggle" },
+            { "value": "solid-color", "label": "Solid color" }
+          ],
+          "default": "marker",
+          "label": "Highlight style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription showcase",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Get 15% off</strong> every order</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Access to <a href=\"/pages/tro-perks\">Tro Perks</a>:</strong> our subscriber-only perks from top brands</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Modify</strong> your subscription at any time</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,359 @@
+.newsletter-alt-section {
+  position: relative;
+}
+
+.newsletter-alt {
+  position: relative;
+  overflow: hidden;
+  background: var(--newsletter-alt-background);
+  color: var(--newsletter-alt-text);
+}
+
+.newsletter-alt__inner {
+  position: relative;
+  display: grid;
+  gap: clamp(3rem, 5vw, 8rem);
+  align-items: stretch;
+  min-height: clamp(34rem, 44vw, 52rem);
+}
+
+.newsletter-alt__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: clamp(26rem, 34vw, 40rem);
+  overflow: visible;
+  isolation: isolate;
+}
+
+.newsletter-alt__visual-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  margin-inline: auto;
+}
+
+.newsletter-alt__visual-picture,
+.newsletter-alt__visual-image,
+.newsletter-alt__visual-placeholder {
+  display: block;
+}
+
+.newsletter-alt__visual-picture {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(
+      calc(-50% + var(--newsletter-alt-visual-offset-x)),
+      calc(-50% + var(--newsletter-alt-visual-offset-y))
+    )
+    scale(var(--newsletter-alt-visual-scale));
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.newsletter-alt__visual-image {
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+}
+
+.newsletter-alt__visual-media--placeholder {
+  width: 100%;
+}
+
+.newsletter-alt__visual-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.newsletter-alt__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  max-width: 53rem;
+  padding-top: max(clamp(2rem, 2vw, 4rem), calc(var(--section-padding-top) * 0.75));
+  padding-bottom: max(clamp(2rem, 2vw, 4rem), calc(var(--section-padding-bottom) * 0.75));
+}
+
+.newsletter-alt__content > * {
+  margin: 0;
+}
+
+.newsletter-alt__content > * + * {
+  margin-top: 1.8rem;
+}
+
+.newsletter-alt__heading {
+  width: 100%;
+  color: var(--newsletter-alt-text);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.newsletter-alt__subheading,
+.newsletter-alt__subheading p {
+  color: var(--newsletter-alt-subtext);
+  max-width: 42rem;
+  font-size: 1.6rem;
+  line-height: 1.55;
+}
+
+.newsletter-alt__subheading p {
+  margin: 0;
+}
+
+.newsletter-alt__form-wrap {
+  max-width: 58rem;
+  margin-top: 3rem;
+}
+
+.newsletter-alt__form,
+.newsletter-alt__form .newsletter-form__field-wrapper,
+.newsletter-alt__form .field,
+.newsletter-alt__form .field__input {
+  border-bottom: 0 !important;
+}
+
+.newsletter-alt__form .newsletter-form__field-wrapper {
+  width: 100%;
+}
+
+.newsletter-alt__form .field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 7.4rem;
+  padding-right: 1rem;
+  border-radius: 999px;
+  background: var(--newsletter-alt-form-background);
+  box-shadow: inset 0 0 0 0.15rem var(--newsletter-alt-form-border);
+  transition:
+    box-shadow var(--duration-default) ease,
+    background-color var(--duration-default) ease,
+    transform var(--duration-default) ease;
+}
+
+.newsletter-alt__form .field:focus-within {
+  box-shadow:
+    inset 0 0 0 0.15rem var(--newsletter-alt-form-border),
+    0 0 0 0.3rem color-mix(in srgb, var(--newsletter-alt-form-background) 76%, transparent);
+}
+
+.newsletter-alt__form .field.field--error {
+  box-shadow: inset 0 0 0 0.15rem var(--color-critical);
+}
+
+.newsletter-alt__form .field.field--error:focus-within {
+  box-shadow:
+    inset 0 0 0 0.15rem var(--color-critical),
+    0 0 0 0.3rem color-mix(in srgb, var(--color-critical) 16%, transparent);
+}
+
+.newsletter-alt__form .field:hover,
+.newsletter-alt__form .field:focus-within {
+  background: color-mix(in srgb, var(--newsletter-alt-form-background) 97%, #ffffff 3%);
+}
+
+@media screen and (hover: hover) {
+  .newsletter-alt__form .field:hover {
+    box-shadow: inset 0 0 0 0.15rem var(--newsletter-alt-form-border);
+  }
+
+  .newsletter-alt__form .field.field--error:hover {
+    box-shadow: inset 0 0 0 0.15rem var(--color-critical);
+  }
+}
+
+.newsletter-alt__form .field__input,
+.newsletter-alt__form .field__input:focus,
+.newsletter-alt__form .field__input:focus-visible {
+  height: 100%;
+  min-height: 7.4rem;
+  padding: 1.8rem 8rem 1.8rem 2.6rem;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+  color: var(--newsletter-alt-form-text);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  outline: none;
+  caret-color: var(--newsletter-alt-form-text);
+  transition: color var(--duration-default) ease;
+}
+
+.newsletter-alt__form .field__input::placeholder {
+  color: var(--newsletter-alt-form-text);
+  opacity: 0.88;
+  transition: opacity var(--duration-default) ease;
+}
+
+.newsletter-alt__form .field__input:focus::placeholder,
+.newsletter-alt__form .field__input:focus-visible::placeholder {
+  opacity: 0.62;
+}
+
+.newsletter-alt__form .field__input:-webkit-autofill,
+.newsletter-alt__form .field__input:-webkit-autofill:hover,
+.newsletter-alt__form .field__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--newsletter-alt-form-text);
+  transition: background-color 9999s ease-out 0s;
+  box-shadow: inset 0 0 0 10rem var(--newsletter-alt-form-background) !important;
+  border-radius: 999px;
+}
+
+.newsletter-alt__form .field__button {
+  position: absolute;
+  top: 50%;
+  right: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 100%;
+  transform: translateY(-50%);
+  padding-inline-end: 1.8rem;
+  border: 0;
+  color: var(--newsletter-alt-form-text);
+  opacity: 0.72;
+  background: transparent;
+  box-shadow: none;
+  transition:
+    color var(--duration-default) ease,
+    opacity var(--duration-default) ease,
+    transform var(--duration-default) ease;
+}
+
+.newsletter-alt__form .field__button:focus-visible {
+  outline: none;
+  opacity: 1;
+}
+
+.newsletter-alt__form .field__button[disabled] {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.newsletter-alt__form .field__button .icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+@media screen and (hover: hover) {
+  .newsletter-alt__form .field:hover .field__button,
+  .newsletter-alt__form .field__input:focus ~ .field__button,
+  .newsletter-alt__form .field__input:focus-visible ~ .field__button {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0.2rem);
+  }
+
+  .newsletter-alt__form .field__button:hover {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0.2rem);
+  }
+}
+
+.newsletter-alt__form .form__message {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+  color: var(--newsletter-alt-text);
+  font-size: 1.3rem;
+}
+
+@media screen and (min-width: 990px) {
+  .newsletter-alt__inner {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .newsletter-alt__content {
+    padding-top: max(clamp(2rem, 2vw, 4rem), var(--section-padding-top));
+    padding-bottom: max(clamp(2rem, 2vw, 4rem), var(--section-padding-bottom));
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .newsletter-alt__inner {
+    gap: 1rem;
+  }
+
+  .newsletter-alt__content {
+    max-width: 100%;
+    padding-bottom: 4rem;
+  }
+
+  .newsletter-alt__heading {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .newsletter-alt__inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .newsletter-alt__visual {
+    min-height: auto;
+    margin-inline: 0;
+  }
+
+  .newsletter-alt__visual-media {
+    min-height: 27rem;
+  }
+
+  .newsletter-alt__visual-picture {
+    transform: translate(
+        calc(-50% + var(--newsletter-alt-visual-offset-x-mobile)),
+        calc(-50% + var(--newsletter-alt-visual-offset-y-mobile))
+      )
+      scale(var(--newsletter-alt-visual-scale-mobile));
+  }
+
+  .newsletter-alt__form-wrap {
+    margin-top: 2.4rem;
+  }
+
+  .newsletter-alt__form .field {
+    min-height: 6.4rem;
+  }
+
+  .newsletter-alt__form .field__input,
+  .newsletter-alt__form .field__input:focus,
+  .newsletter-alt__form .field__input:focus-visible {
+    min-height: 6.4rem;
+    padding: 1.6rem 7rem 1.6rem 2rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.14em;
+  }
+
+  .newsletter-alt__form .field__button {
+    width: 4.6rem;
+    height: 100%;
+    right: 0.9rem;
+    padding-inline-end: 1.4rem;
+  }
+}

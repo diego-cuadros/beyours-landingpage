@@ -1,0 +1,512 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --trust-mini-banner-background: {{ section.settings.background_color.red }}, {{ section.settings.background_color.green }}, {{ section.settings.background_color.blue }};
+    --trust-mini-banner-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --color-background: var(--trust-mini-banner-background);
+    --color-foreground: var(--trust-mini-banner-text);
+    --gradient-background: rgb(var(--trust-mini-banner-background));
+    --trust-mini-banner-image-height-desktop: {{ section.settings.desktop_image_height }}px;
+    --trust-mini-banner-image-height-mobile: {{ section.settings.mobile_image_height }}px;
+    --trust-mini-banner-item-gap: {{ section.settings.item_gap }}px;
+    --trust-mini-banner-mobile-item-gap: {{ section.settings.mobile_item_gap }}px;
+    --trust-mini-banner-max-content-height: {{ section.settings.max_content_height }}px;
+    --trust-mini-banner-mobile-max-content-height: {{ section.settings.mobile_max_content_height }}px;
+    --trust-mini-banner-mobile-padding-x: {{ section.settings.mobile_padding_x }}px;
+    --trust-mini-banner-mobile-padding-y: {{ section.settings.mobile_padding_y }}px;
+    --trust-mini-banner-mobile-item-justify: {% if section.settings.mobile_left_align %}flex-start{% else %}center{% endif %};
+    --trust-mini-banner-mobile-item-text-align: {% if section.settings.mobile_left_align %}left{% else %}center{% endif %};
+    --trust-mini-banner-columns: {{ section.blocks.size | at_least: 1 }};
+  }
+{%- endstyle -%}
+
+{{ 'section-trust-mini-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <section class="trust-mini-banner" aria-label="Trust mini banner">
+    <div class="trust-mini-banner__inner page-width page-width--full-width">
+      {%- if section.blocks.size > 0 -%}
+        <div class="trust-mini-banner__list" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign desktop_image = block.settings.image | default: block.settings.mobile_image
+              assign mobile_image = block.settings.mobile_image | default: desktop_image
+              assign custom_icon = block.settings.custom_icon
+              assign selected_icon = block.settings.icon
+              assign desktop_height = section.settings.desktop_image_height
+              assign mobile_height = section.settings.mobile_image_height
+              assign desktop_icon_height = section.settings.desktop_image_height
+              assign desktop_height_2x = desktop_height | times: 2
+              assign desktop_width = desktop_height
+              assign mobile_height_2x = mobile_height | times: 2
+              assign mobile_icon_height = section.settings.mobile_image_height
+
+              if block.settings.desktop_icon_height > 0
+                assign desktop_icon_height = block.settings.desktop_icon_height
+              endif
+
+              if block.settings.mobile_icon_height > 0
+                assign mobile_icon_height = block.settings.mobile_icon_height
+              endif
+
+              if desktop_image != blank
+                assign desktop_width = desktop_height | times: desktop_image.aspect_ratio | round
+              endif
+            -%}
+            <div
+              class="trust-mini-banner__item"
+              role="listitem"
+              style="--trust-mini-banner-item-icon-height-desktop: {{ desktop_icon_height }}px; --trust-mini-banner-item-icon-height-mobile: {{ mobile_icon_height }}px;"
+              {{ block.shopify_attributes }}
+            >
+              <span class="trust-mini-banner__media" aria-hidden="true">
+                {%- if desktop_image != blank -%}
+                  <picture>
+                    {%- if mobile_image != blank -%}
+                      <source
+                        media="(max-width: 989px)"
+                        srcset="{{ mobile_image | image_url: height: mobile_height }} 1x, {{ mobile_image | image_url: height: mobile_height_2x }} 2x"
+                      >
+                    {%- endif -%}
+                    <img
+                      srcset="{{ desktop_image | image_url: height: desktop_height }} 1x, {{ desktop_image | image_url: height: desktop_height_2x }} 2x"
+                      src="{{ desktop_image | image_url: height: desktop_height }}"
+                      alt=""
+                      loading="lazy"
+                      width="{{ desktop_width }}"
+                      height="{{ desktop_height }}"
+                      class="trust-mini-banner__image"
+                    >
+                  </picture>
+                {%- elsif custom_icon != blank -%}
+                  <span class="trust-mini-banner__icon">{{ custom_icon }}</span>
+                {%- elsif selected_icon != blank and selected_icon != 'none' -%}
+                  <span class="trust-mini-banner__icon">
+                    {% render 'icon-guarantee', icon: selected_icon %}
+                  </span>
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'trust-mini-banner__placeholder placeholder-svg' }}
+                {%- endif -%}
+              </span>
+
+              {%- if block.settings.text != blank -%}
+                <span class="trust-mini-banner__text">{{ block.settings.text | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Trust mini banner",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#d7efe4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#244d45"
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_height",
+      "label": "Desktop image height",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile image height",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Item gap",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "max_content_height",
+      "label": "Max content height",
+      "min": 44,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 66
+    },
+    {
+      "type": "range",
+      "id": "mobile_max_content_height",
+      "label": "Mobile banner height",
+      "min": 32,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 66
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_left_align",
+      "label": "Left align items on mobile",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "mobile_item_gap",
+      "label": "Mobile item gap",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_x",
+      "label": "Mobile content padding X",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_y",
+      "label": "Mobile content padding Y",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Default icon",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "apple",
+              "label": "Apple"
+            },
+            {
+              "value": "banana",
+              "label": "Banana"
+            },
+            {
+              "value": "bottle",
+              "label": "Bottle"
+            },
+            {
+              "value": "carrot",
+              "label": "Carrot"
+            },
+            {
+              "value": "chat_bubble",
+              "label": "Chat bubble"
+            },
+            {
+              "value": "check_mark",
+              "label": "Check mark"
+            },
+            {
+              "value": "clipboard",
+              "label": "Clipboard"
+            },
+            {
+              "value": "dolly",
+              "label": "Dolly"
+            },
+            {
+              "value": "download",
+              "label": "Download"
+            },
+            {
+              "value": "dryer",
+              "label": "Dryer"
+            },
+            {
+              "value": "eye",
+              "label": "Eye"
+            },
+            {
+              "value": "fire",
+              "label": "Fire"
+            },
+            {
+              "value": "globe",
+              "label": "Globe"
+            },
+            {
+              "value": "gluten_free",
+              "label": "Gluten free"
+            },
+            {
+              "value": "headset",
+              "label": "Headset"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            },
+            {
+              "value": "leaf",
+              "label": "Leaf"
+            },
+            {
+              "value": "light",
+              "label": "Light"
+            },
+            {
+              "value": "lightning_bolt",
+              "label": "Lightning bolt"
+            },
+            {
+              "value": "link",
+              "label": "Link"
+            },
+            {
+              "value": "lock",
+              "label": "Lock"
+            },
+            {
+              "value": "map_pin",
+              "label": "Map pin"
+            },
+            {
+              "value": "music",
+              "label": "Music"
+            },
+            {
+              "value": "package",
+              "label": "Package"
+            },
+            {
+              "value": "paw_print",
+              "label": "Paw print"
+            },
+            {
+              "value": "pepper",
+              "label": "Pepper"
+            },
+            {
+              "value": "phone",
+              "label": "Phone"
+            },
+            {
+              "value": "plane",
+              "label": "Plane"
+            },
+            {
+              "value": "plant",
+              "label": "Plant"
+            },
+            {
+              "value": "price_tag",
+              "label": "Price tag"
+            },
+            {
+              "value": "question_mark",
+              "label": "Question mark"
+            },
+            {
+              "value": "recycle",
+              "label": "Recycle"
+            },
+            {
+              "value": "return",
+              "label": "Return"
+            },
+            {
+              "value": "ruler",
+              "label": "Ruler"
+            },
+            {
+              "value": "shield",
+              "label": "Shield"
+            },
+            {
+              "value": "ship",
+              "label": "Ship"
+            },
+            {
+              "value": "shop",
+              "label": "Shop"
+            },
+            {
+              "value": "silhouette",
+              "label": "Silhouette"
+            },
+            {
+              "value": "snowflake",
+              "label": "Snowflake"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            },
+            {
+              "value": "stopwatch",
+              "label": "Stopwatch"
+            },
+            {
+              "value": "truck",
+              "label": "Truck"
+            },
+            {
+              "value": "washing",
+              "label": "Washing"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "html",
+          "id": "custom_icon",
+          "label": "Custom SVG / HTML",
+          "info": "Paste inline SVG markup here. Uploaded images take priority over this field."
+        },
+        {
+          "type": "range",
+          "id": "desktop_icon_height",
+          "label": "Desktop icon height override",
+          "min": 0,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 0,
+          "info": "Set to 0 to use the section desktop image height."
+        },
+        {
+          "type": "range",
+          "id": "mobile_icon_height",
+          "label": "Mobile icon height override",
+          "min": 0,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 0,
+          "info": "Set to 0 to use the section mobile image height."
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Trust point"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust mini banner",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "text": "Physician-formulated"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Pharmaceutical grade"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Precision dosed"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "text": "Made in USA"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

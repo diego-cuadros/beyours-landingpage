@@ -1,0 +1,409 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_with_text_v2_qwMqgi": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_zFir86": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recommended by {{ metaobject.full_name.value }}",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_p7R8xP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ metaobject.hero_description | metafield_tag }}</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_daCCJj": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "try now get 10% off",
+            "button_link": "#buy",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_zFir86",
+        "text_p7R8xP",
+        "button_daCCJj"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "{{ metaobject.hero_image.value }}",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 10,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_mobile_padding": false,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "video_v2_QE3dMb": {
+      "type": "video-v2",
+      "name": "Video v2",
+      "settings": {
+        "enable_video_looping": false,
+        "enable_video_autoplay": false,
+        "dynamic_video_url": "{{ metaobject.video_url.value }}",
+        "video_url": "",
+        "cover_image": "{{ metaobject.promotional_video_background.value }}",
+        "description": "",
+        "full_width": false,
+        "show_divider": false,
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "column_perks_custom_jfnbLr": {
+      "type": "column-perks-custom",
+      "blocks": {
+        "perk_rVbYFj": {
+          "type": "perk",
+          "settings": {
+            "icon": "compensation",
+            "icon_color": "#1d4da1",
+            "image": "shopify://shop_images/Improve_Focus_Icon_9bec2205-727d-4393-854a-c92145a3c4a2.svg",
+            "custom_icon": "",
+            "title": "Improve focus",
+            "title_size": "h3",
+            "text": "<p>Blue Cannatine delivers focus and flow state on command.</p>"
+          }
+        },
+        "perk_EiUG7i": {
+          "type": "perk",
+          "settings": {
+            "icon": "recharge",
+            "icon_color": "#9898de",
+            "image": "shopify://shop_images/Sustained_Performance_Icon_c18a97aa-f346-4411-b5d8-cfe6551ca691.svg",
+            "custom_icon": "",
+            "title": "Boost energy",
+            "title_size": "h3",
+            "text": "<p>Just Blue gives you clean, sustained energy and builds endurance.</p>"
+          }
+        },
+        "perk_6yApaH": {
+          "type": "perk",
+          "settings": {
+            "icon": "wellbeing",
+            "icon_color": "#ff8a21",
+            "image": "shopify://shop_images/Relieve_Stress_Icon_3aa46f4f-bc64-4461-9dd8-822b91ea4042.svg",
+            "custom_icon": "",
+            "title": "Calm",
+            "title_size": "h3",
+            "text": "<p>Tro Calm descreases anxiousness, quites your mind, and helps you fall asleep.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "perk_rVbYFj",
+        "perk_EiUG7i",
+        "perk_6yApaH"
+      ],
+      "name": "Column perks custom",
+      "settings": {
+        "heading": "Benefits of daily use",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "intro": "",
+        "show_divider": false,
+        "background_color": "#ddf7ee",
+        "heading_color": "#1a1b18",
+        "text_color": "#1a1b18",
+        "icon_card_color": "#ffffff",
+        "max_content_width": 1600,
+        "icon_size": 48,
+        "icon_container_size": 76,
+        "icon_padding": 14,
+        "padding_top": 76,
+        "padding_bottom": 76
+      }
+    },
+    "featured_products_manual_XRPBBV": {
+      "type": "featured-products-manual",
+      "name": "Featured products",
+      "settings": {
+        "products": [
+          "the-tx-fourmula",
+          "the-gabamic-duo",
+          "justblue"
+        ],
+        "show_divider": false,
+        "section_id": "",
+        "subheading": "",
+        "heading": "Try Troscriptions and Get 10% Off Using Code {{ metaobject.discount_code.value }}",
+        "description": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "show_dtc_discount_price": true,
+        "dtc_discount_percentage": 15,
+        "show_bundle_discount_price": true,
+        "bundle_discount_percentage": 10,
+        "image_ratio": "adapt",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "guarantees_pEDrQQ": {
+      "type": "guarantees",
+      "blocks": {
+        "guarantee_L9nVi9": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "star",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "custom_icon": "",
+            "title": "Physician formulated",
+            "title_size": "h4",
+            "text": "<p>Our team isn't just built on expertise - it's powered by real-world clinical application. We have 4 physicians on the team who use Troscriptions® in their practice.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_KVbLC8": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "globe",
+            "icon_size": "large",
+            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "custom_icon": "",
+            "title": "Pharmaceutical grade",
+            "title_size": "h4",
+            "text": "<p>We traverse the globe to create, craft and discover groundbreaking, effective ingredients, subjecting each one to rigorous testing for unparalleled purity and potency.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_EmifxN": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "recycle",
+            "icon_size": "large",
+            "image": "shopify://shop_images/pharmaceutical_grade_aa8d1e27-f62e-4ac4-911c-df7fbbd6dd60.png",
+            "custom_icon": "",
+            "title": "Precision dosed",
+            "title_size": "h4",
+            "text": "<p>All ingredients are evenly distributed and carefully calibrated into our formulas. Plus, our troches are scored to help you easily find your unique dosage.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "guarantee_hyNQ8T": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "map_pin",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "Made in the USA",
+            "title_size": "h4",
+            "text": "<p>We ensure uncompromising standards and superior quality. Our products are meticulously created, clinically tested, and crafted with utmost care, right here in the USA.</p>",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_L9nVi9",
+        "guarantee_KVbLC8",
+        "guarantee_EmifxN",
+        "guarantee_hyNQ8T"
+      ],
+      "name": "What makes Tro different",
+      "settings": {
+        "layout": "default",
+        "column_alignment": "center",
+        "horizontal_content": false,
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 4,
+        "heading": "What makes Troscriptions® different?",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "professional_endorsements_HxjLME": {
+      "type": "professional-endorsements",
+      "blocks": {
+        "endorsement_4UL3DE": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/dr_amie_hornaman.jpg",
+            "background_color": "",
+            "name": "Dr. Alicia Morgan",
+            "role": "Functional medicine physician",
+            "quote": "This product has become one of the easiest recommendations in my practice because patients feel the difference quickly."
+          }
+        },
+        "endorsement_LhqfMh": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/scott_porter_2x_ff6470e9-7512-4085-9794-f9527bcc68d4.png",
+            "background_color": "",
+            "name": "Scott Porter, PharmD",
+            "role": "Clinical pharmacist and wellness educator",
+            "quote": "When I tried it myself, the result was immediate enough that I started sharing it with patients who needed steadier support."
+          }
+        },
+        "endorsement_CGrU3b": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/dr_rimka_hd.png",
+            "background_color": "",
+            "name": "Dr. Stephanie Rivera, DC",
+            "role": "Brain optimization specialist",
+            "quote": "I appreciate products that fit into complex care plans cleanly, and this one has delivered dependable outcomes across a wide range of patients."
+          }
+        },
+        "endorsement_nxrP4K": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/Dr_Ashley_Beckman.jpg",
+            "background_color": "",
+            "name": "Dr. Ashley Beckman",
+            "role": "Doctor of acupuncture and integrative medicine",
+            "quote": "After testing many products in clinic, this is the one that consistently earns positive feedback from patients within days."
+          }
+        }
+      },
+      "block_order": [
+        "endorsement_4UL3DE",
+        "endorsement_LhqfMh",
+        "endorsement_CGrU3b",
+        "endorsement_nxrP4K"
+      ],
+      "name": "Professional endorsements",
+      "settings": {
+        "accessibility_label": "Professional endorsements",
+        "show_divider": false,
+        "eyebrow": "",
+        "heading": "Endorsed by leading healthcare professionals",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "heading_alignment": "left",
+        "mobile_text_alignment": "center",
+        "enable_highlight": true,
+        "highlight_style": "underline",
+        "background_color": "#ffffff",
+        "card_surface": "#f2f2f2",
+        "card_border_color": "#ffffff",
+        "heading_color": "#222222",
+        "eyebrow_color": "#5f6c67",
+        "name_color": "#0e7e8f",
+        "role_color": "#59625e",
+        "text_color": "#222222",
+        "colors_highlight": "#6fc5c1",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "image_ratio": "portrait",
+        "image_position": "top center",
+        "max_content_width": 1220,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "card_gap": 14,
+        "card_padding": 20,
+        "card_radius": 18,
+        "image_radius": 14,
+        "padding_top": 140,
+        "padding_bottom": 140
+      }
+    }
+  },
+  "order": [
+    "image_with_text_v2_qwMqgi",
+    "video_v2_QE3dMb",
+    "column_perks_custom_jfnbLr",
+    "featured_products_manual_XRPBBV",
+    "guarantees_pEDrQQ",
+    "professional_endorsements_HxjLME"
+  ]
+}

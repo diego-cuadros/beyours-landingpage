@@ -1,0 +1,547 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_v2_alt_YCH9gT": {
+      "type": "image-banner-v2-alt",
+      "blocks": {
+        "heading_LVpcj9": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ metaobject.headline.value }}",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_wzJFCY": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Please read the entire page before consuming {{ metaobject.sub_headline.value }}",
+            "subheading_size": "h3",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LVpcj9",
+        "subheading_wzJFCY"
+      ],
+      "name": "Image banner v2 alt",
+      "settings": {
+        "image": "{{ metaobject.hero_image.value }}",
+        "image_position": "center center",
+        "text_box_position": "bottom-left",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "show_text_box": false,
+        "overlay_border_radius": 0,
+        "restrict_overlay_max_width": false,
+        "overlay_max_width": 60,
+        "show_overlay": true,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_text_alignment": "center",
+        "mobile_image_ratio": "auto",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "colors_button_label": "#1a1b18",
+        "colors_button_background": "#ffffff",
+        "colors_text": "#ffffff",
+        "colors_overlay": "#000000",
+        "colors_overlay_opacity": 0,
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 36,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "multicolumn_v2_arhPdw": {
+      "type": "multicolumn-v2",
+      "blocks": {
+        "column_DwQnfX": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Ingredients",
+            "title_size": "h3",
+            "text": "{{ metaobject.ingredients_list | metafield_tag }}",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_yMiD8y": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Why use {{ metaobject.sub_headline.value }}",
+            "title_size": "h3",
+            "text": "{{ metaobject.why_use_text | metafield_tag }}",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_fmbwY9": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Potential Interactions",
+            "title_size": "h3",
+            "text": "{{ metaobject.potential_interactions_text | metafield_tag }}",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_mhTyAC": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Contraindications",
+            "title_size": "h3",
+            "text": "{{ metaobject.contraindications_text | metafield_tag }}",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "column_DwQnfX",
+        "column_yMiD8y",
+        "column_fmbwY9",
+        "column_mhTyAC"
+      ],
+      "name": "Multicolumn v2",
+      "settings": {
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "text_alignment": "center",
+        "show_divider": false,
+        "image_width": "full",
+        "icon_size": 44,
+        "card_min_height": 268,
+        "match_card_heights_desktop": true,
+        "square_cards_desktop": false,
+        "taller_media_desktop": false,
+        "heading_in_grid_desktop": false,
+        "columns_desktop": 2,
+        "open_in_new_tab": false,
+        "heading": "Meet Your Troscription (Tx)",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "mobile_text_alignment": "center",
+        "columns_mobile": "1",
+        "match_card_heights_mobile": false,
+        "square_cards_mobile": false,
+        "mobile_indicator_gap": 12,
+        "mobile_card_min_height": 0,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "card_border_radius": 12,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "rich_text_v2_EHjm9x": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_RbF9gw": {
+          "type": "heading",
+          "settings": {
+            "heading": "Possible Side Effects",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "text_RPq6Jc": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.possible_side_effects_text | metafield_tag }}",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_RbF9gw",
+        "text_RPq6Jc"
+      ],
+      "name": "Rich text (v2)",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "stacked",
+        "content_max_width": 980,
+        "fill_content_width": false,
+        "content_horizontal_position": "match_alignment",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "guarantees_BnUMBx": {
+      "type": "guarantees-v3",
+      "blocks": {
+        "guarantee_Q9RaKR": {
+          "type": "guarantee",
+          "repeater": "{{ metaobject.mechanism_of_action.value }}",
+          "settings": {
+            "icon": "truck",
+            "icon_size": "medium",
+            "custom_icon": "",
+            "title": "{{ block.repeater.headline.value }}",
+            "title_size": "h3",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_Q9RaKR"
+      ],
+      "name": "t:sections.guarantees.presets.name",
+      "settings": {
+        "layout": "default",
+        "column_alignment": "left",
+        "horizontal_content": true,
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 4,
+        "heading": "Mechanism of Action",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "rich_text_v2_yWjrHq": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_mEWDxT": {
+          "type": "heading",
+          "settings": {
+            "heading": "How to get started with {{ metaobject.sub_headline.value }}",
+            "heading_size": "h2",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "text_WjRfMj": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.how_to_get_started_text | metafield_tag }}",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_mEWDxT",
+        "text_WjRfMj"
+      ],
+      "name": "Rich text (v2)",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "horizontal",
+        "content_max_width": 1200,
+        "fill_content_width": true,
+        "content_horizontal_position": "left",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_v2_eQUxtC": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_rEPAFT": {
+          "type": "heading",
+          "settings": {
+            "heading": "Personalized Dosing",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "heading_subheading_gap": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_nHbpdt": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.dosing.value.richtext | metafield_tag }}",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rEPAFT",
+        "text_nHbpdt"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "{{ metaobject.dosing.value.image.value }}",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_mobile_padding": false,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "active_ingredients_v2_g6t6Fj": {
+      "type": "active-ingredients-v2",
+      "name": "Active ingredients v2",
+      "settings": {
+        "product_source": "{{ metaobject.product.value }}",
+        "ingredients_metafield_namespace": "custom",
+        "ingredients_metafield_key": "steps_tutorial",
+        "link_label": "Learn more",
+        "layout": "default",
+        "column_alignment": "center",
+        "full_width": false,
+        "show_divider": false,
+        "columns_desktop": 5,
+        "content_image_ratio": "square",
+        "content_image_radius": 12,
+        "content_image_height": 0,
+        "content_image_background_color": "#ffffff",
+        "use_css_icon_grid": true,
+        "heading": "Calibrate your dose of {{ metaobject.sub_headline.value }}",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "subheading": "Follow these steps",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "enable_mobile_carousel": true,
+        "swipe_on_mobile": true,
+        "use_custom_colors": false,
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "rich_text_v2_BENKyE": {
+      "type": "rich-text-v2",
+      "blocks": {
+        "heading_gJL7Xn": {
+          "type": "heading",
+          "settings": {
+            "heading": "Inactive Ingredients",
+            "heading_size": "h2",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        },
+        "text_9xYH6f": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.inactive_ingredients | metafield_tag }}",
+            "text_size": "typeset",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "horizontal_span": 1
+          }
+        }
+      },
+      "block_order": [
+        "heading_gJL7Xn",
+        "text_9xYH6f"
+      ],
+      "name": "Rich text (v2)",
+      "settings": {
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "layout": "horizontal",
+        "content_max_width": 1200,
+        "fill_content_width": true,
+        "content_horizontal_position": "left",
+        "horizontal_columns": 2,
+        "horizontal_gap": 24,
+        "vertical_gap": 20,
+        "section_min_height": 0,
+        "content_vertical_position": "top",
+        "narrow": false,
+        "full_width": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner_v2_alt_YCH9gT",
+    "multicolumn_v2_arhPdw",
+    "rich_text_v2_EHjm9x",
+    "guarantees_BnUMBx",
+    "rich_text_v2_yWjrHq",
+    "image_with_text_v2_eQUxtC",
+    "active_ingredients_v2_g6t6Fj",
+    "rich_text_v2_BENKyE"
+  ]
+}

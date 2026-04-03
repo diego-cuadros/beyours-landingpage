@@ -1,0 +1,7 @@
+{%- if icon == 'cgmp-logo' -%}
+  <img src="{{ 'cgmp-logo-1.svg' | asset_url }}" alt="">
+{%- elsif icon == 'lab' or icon == 'shield-check' or icon == 'pin' or icon == 'stethoscope' or icon == 'badge' -%}
+  {%- render 'icon-tested-trusted', icon: icon -%}
+{%- else -%}
+  {%- render 'icon-guarantee', icon: icon -%}
+{%- endif -%}

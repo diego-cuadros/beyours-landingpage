@@ -1,0 +1,182 @@
+{%- liquid
+  assign event_title = event.name.value | default: event.name | default: event.title.value | default: event.title
+  assign event_link = event.link.value | default: event.link | default: event.url.value | default: event.url
+  assign event_image_raw = event.hero_image.value | default: event.image.value | default: event.featured_image.value | default: event.cover_image.value | default: event.photo.value | default: event.thumbnail.value | default: event.picture.value
+  assign event_image_field = event.hero_image | default: event.image | default: event.featured_image | default: event.cover_image | default: event.photo | default: event.thumbnail | default: event.picture
+  assign event_image_url = blank
+  assign event_image_source = blank
+  assign event_image_alt = event_title
+  assign event_image_width = 1600
+  assign event_image_height = 900
+
+  if event_image_raw != blank
+    assign event_image_url = event_image_raw | image_url: width: 1600
+    assign event_image_source = event_image_raw
+
+    if event_image_url == blank
+      assign event_image_url = event_image_raw.preview_image | image_url: width: 1600
+      assign event_image_source = event_image_raw.preview_image
+      if event_image_raw.preview_image.alt != blank
+        assign event_image_alt = event_image_raw.preview_image.alt
+      elsif event_image_raw.alt != blank
+        assign event_image_alt = event_image_raw.alt
+      endif
+    else
+      if event_image_raw.alt != blank
+        assign event_image_alt = event_image_raw.alt
+      endif
+    endif
+
+    if event_image_url == blank
+      assign first_image = event_image_raw | first
+      if first_image != blank
+        assign event_image_url = first_image | image_url: width: 1600
+        assign event_image_source = first_image
+        if event_image_url == blank
+          assign event_image_url = first_image.preview_image | image_url: width: 1600
+          assign event_image_source = first_image.preview_image
+        endif
+        assign event_image_alt = first_image.alt | default: first_image.preview_image.alt | default: event_title
+      endif
+    endif
+  endif
+
+  if event_image_source != blank
+    if event_image_source.width != blank
+      assign event_image_width = event_image_source.width
+    endif
+
+    if event_image_source.height != blank
+      assign event_image_height = event_image_source.height
+    elsif event_image_source.aspect_ratio != blank and event_image_width != blank
+      assign event_image_height = event_image_width | divided_by: event_image_source.aspect_ratio | round
+    endif
+  endif
+  assign event_description_field = event.description | default: event.summary | default: event.body
+  assign event_description_value = event.description.value | default: event.summary.value | default: event.body.value | default: event.description | default: event.summary | default: event.body
+  assign event_start_field = event.start_date | default: event.date_start | default: event.event_start_date
+  assign event_end_field = event.end_date | default: event.date_end | default: event.event_end_date
+
+  assign event_start_text = blank
+  if event_start_field != blank
+    if event_start_field.value != blank
+      capture event_start_text
+        echo event_start_field | metafield_text
+      endcapture
+    else
+      assign event_start_text = event_start_field
+    endif
+  endif
+  assign event_start_text = event_start_text | strip
+
+  assign event_end_text = blank
+  if event_end_field != blank
+    if event_end_field.value != blank
+      capture event_end_text
+        echo event_end_field | metafield_text
+      endcapture
+    else
+      assign event_end_text = event_end_field
+    endif
+  endif
+  assign event_end_text = event_end_text | strip
+
+  assign event_date_range = blank
+  if event_start_text != blank and event_end_text != blank and event_start_text != event_end_text
+    assign event_date_range = event_start_text | append: ' - ' | append: event_end_text
+  elsif event_start_text != blank
+    assign event_date_range = event_start_text
+  elsif event_end_text != blank
+    assign event_date_range = event_end_text
+  endif
+
+-%}
+
+{%- if event_title != blank -%}
+  <article class="events-board__card" role="listitem">
+    {%- if event_image_url != blank -%}
+      {%- if event_link != blank -%}
+        <a
+          class="events-board__media-link"
+          href="{{ event_link }}"
+          {% if open_links_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          aria-label="{{ event_title | strip_html | escape }}"
+        >
+          <img
+            src="{{ event_image_url }}"
+            alt="{{ event_image_alt | strip_html | escape }}"
+            loading="lazy"
+            width="{{ event_image_width }}"
+            height="{{ event_image_height }}"
+          >
+        </a>
+      {%- else -%}
+        <div class="events-board__media-frame">
+          <img
+            src="{{ event_image_url }}"
+            alt="{{ event_image_alt | strip_html | escape }}"
+            loading="lazy"
+            width="{{ event_image_width }}"
+            height="{{ event_image_height }}"
+          >
+        </div>
+      {%- endif -%}
+    {%- elsif event_image_field != blank -%}
+      {%- if event_link != blank -%}
+        <a
+          class="events-board__media-link"
+          href="{{ event_link }}"
+          {% if open_links_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          aria-label="{{ event_title | strip_html | escape }}"
+        >
+          {{ event_image_field | metafield_tag }}
+        </a>
+      {%- else -%}
+        <div class="events-board__media-frame">
+          {{ event_image_field | metafield_tag }}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="events-board__card-body">
+      {%- if event_date_range != blank -%}
+        <p class="events-board__date">
+          {{ event_date_range }}
+        </p>
+      {%- endif -%}
+
+      <h3 class="events-board__card-title h3">
+        {%- if event_link != blank -%}
+          <a
+            href="{{ event_link }}"
+            {% if open_links_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ event_title }}
+          </a>
+        {%- else -%}
+          {{ event_title }}
+        {%- endif -%}
+      </h3>
+
+      {%- if event_description_value != blank -%}
+        <div class="events-board__description rte">
+          {%- if event_description_field != blank and event_description_field.value != blank -%}
+            {{ event_description_field | metafield_tag }}
+          {%- else -%}
+            <p>{{ event_description_value }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if event_link != blank and cta_label != blank -%}
+        <a
+          class="button button--tertiary events-board__cta"
+          href="{{ event_link }}"
+          {% if open_links_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+        >
+          {{ cta_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </article>
+{%- endif -%}

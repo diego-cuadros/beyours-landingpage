@@ -1,0 +1,684 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --guarantees-v2-image-radius: {{ section.settings.content_image_radius }}px;
+    --guarantees-v2-image-height: {{ section.settings.content_image_height }}px;
+    --guarantees-v2-image-background: {{ section.settings.content_image_background_color | default: '#ffffff' }};
+    --guarantees-v2-subheading-font-size: {{ section.settings.subheading_font_size | default: 20 }}px;
+    --guarantees-v2-subheading-color: {{ section.settings.subheading_color | default: '#6b7280' }};
+    --active-ingredients-v2-mobile-card-width: calc(100% - 3rem);
+    --active-ingredients-v2-mask-width: 3.6rem;
+    --active-ingredients-v2-mobile-track-offset: 4rem;
+    --active-ingredients-v2-side-opacity-mobile: 0.55;
+    {%- if section.settings.use_custom_colors %}
+      --gradient-background: {% if section.settings.gradient_background != blank %}{{ section.settings.gradient_background }}{% else %}{{ section.settings.colors_background }}{% endif %};
+      --color-background: {{ section.settings.colors_background.red }}, {{ section.settings.colors_background.green }}, {{ section.settings.colors_background.blue }};
+      --color-foreground: {{ section.settings.colors_text.red }}, {{ section.settings.colors_text.green }}, {{ section.settings.colors_text.blue }};
+      --color-heading: var(--color-foreground);
+      --color-highlight: {{ section.settings.colors_highlight.red }}, {{ section.settings.colors_highlight.green }}, {{ section.settings.colors_highlight.blue }};
+    {% endif -%}
+  }
+{%- endstyle -%}
+
+{{ 'section-guarantees.css' | asset_url | stylesheet_tag }}
+{{ 'section-guarantees-v2.css' | asset_url | stylesheet_tag }}
+{{ 'section-active-ingredients-v2.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'section-active-ingredients-v2.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign custom_class = ''
+  if section.settings.use_custom_colors
+    if section.settings.colors_background != settings.colors_background
+      assign custom_class = custom_class | append: ' guarantees--colored'
+    endif
+  endif
+
+  if section.settings.content_image_height > 0
+    assign custom_class = custom_class | append: ' guarantees--v2-fixed-image-height'
+  endif
+
+  assign ingredient_product = section.settings.product_source
+  if ingredient_product == blank and product != blank
+    assign ingredient_product = product
+  endif
+
+  assign ingredients_namespace = section.settings.ingredients_metafield_namespace | default: 'custom' | strip
+  assign ingredients_key = section.settings.ingredients_metafield_key | default: 'ingredients' | strip
+
+  assign ingredients_list = blank
+  if ingredient_product != blank and ingredients_namespace != blank and ingredients_key != blank
+    assign ingredients_list = ingredient_product.metafields[ingredients_namespace][ingredients_key].value
+  endif
+
+  assign ingredients_count = 0
+  if ingredients_list != blank
+    assign ingredients_count = ingredients_list.count | default: ingredients_list.size | default: 0
+  endif
+
+  assign center_items_desktop = false
+  if section.settings.layout == 'default' and ingredients_count > 0 and ingredients_count < section.settings.columns_desktop
+    assign center_items_desktop = true
+  endif
+
+  assign enable_mobile_swipe = false
+  if section.settings.swipe_on_mobile and ingredients_count > 1
+    assign enable_mobile_swipe = true
+  endif
+
+  assign enable_mobile_carousel = false
+  if section.settings.enable_mobile_carousel and ingredients_count > 1
+    assign enable_mobile_carousel = true
+  endif
+-%}
+
+{%- if section.settings.show_divider %}<div class="section--divider">{% endif -%}
+  <div class="page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <div class="guarantees guarantees--v2 active-ingredients--v2 section--padding{{ custom_class }}">
+      {%- if section.settings.heading != blank and section.settings.layout == 'default' -%}
+        <div class="title-wrapper{% if section.settings.heading == blank %} title-wrapper--no-heading{% endif %} {{ section.settings.column_alignment }}">
+          <{{ section.settings.heading_tag }} class="title {{ section.settings.heading_size }}">
+            {%- render 'highlight-text',
+              hl_input: section.settings.heading,
+              hl_style: section.settings.highlight_style,
+              hl_enable: section.settings.enable_highlight,
+              hl_animateWrap: true -%}
+          </{{ section.settings.heading_tag }}>
+          {%- if section.settings.subheading != blank -%}
+            <{{ section.settings.subheading_tag }} class="guarantees__subheading {{ section.settings.subheading_size }}">
+              {{ section.settings.subheading }}
+            </{{ section.settings.subheading_tag }}>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="flex-grid flex-grid--2-col-mobile">
+        {%- if section.settings.heading != blank and section.settings.layout == 'sidebar' -%}
+          <div class="flex-grid__item flex-grid__item--one-quarter">
+            <div class="guarantees__title-wrap">
+              <{{ section.settings.heading_tag }} class="guarantees__title {{ section.settings.heading_size }}">
+                {%- render 'highlight-text',
+                  hl_input: section.settings.heading,
+                  hl_style: section.settings.highlight_style,
+                  hl_enable: section.settings.enable_highlight,
+                  hl_animateWrap: true -%}
+              </{{ section.settings.heading_tag }}>
+              {%- if section.settings.subheading != blank -%}
+                <{{ section.settings.subheading_tag }} class="guarantees__subheading {{ section.settings.subheading_size }}">
+                  {{ section.settings.subheading }}
+                </{{ section.settings.subheading_tag }}>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if ingredients_count > 0 -%}
+          <active-ingredients-v2-component
+            class="slider-mobile-gutter active-ingredients-v2__component flex-grid__item{% if section.settings.heading == blank or section.settings.layout == 'default' %} flex-grid__item--full-width{% else %} flex-grid__item--three-quarter{% endif %}"
+            data-mobile-carousel="{{ enable_mobile_carousel }}"
+          >
+            <div class="active-ingredients-v2__track-wrapper">
+              <ul
+                id="ActiveIngredients-{{ section.id }}"
+                class="active-ingredients-v2__list flex-grid flex-grid--2-col{% if section.settings.columns_mobile == '1' %} flex-grid--1-col-mobile{% endif %}{% if section.settings.heading == blank or section.settings.layout == 'default' %}{% if ingredients_count == 4 %} flex-grid--2-col-tablet{% else %} flex-grid--3-col-tablet{% endif %} flex-grid--rigid flex-grid--{{ section.settings.columns_desktop }}-col-desktop{% else %} flex-grid--2-col-tablet{% endif %}{% if center_items_desktop %} active-ingredients-v2__list--center-desktop{% endif %}{% if enable_mobile_swipe or enable_mobile_carousel %} slider slider--mobile{% endif %}"
+                role="list"
+                tabindex="0"
+                aria-label="Active ingredients list"
+              >
+              {%- for ingredient_item in ingredients_list -%}
+                {%- liquid
+                  assign ingredient_name = ingredient_item.name.value | default: ingredient_item.name | default: ingredient_item.title.value | default: ingredient_item.title
+                  assign ingredient_description = ingredient_item.description.value | default: ingredient_item.description
+                  assign ingredient_image = ingredient_item.image.value | default: ingredient_item.image
+                  assign ingredient_fill_count = ingredient_item.troche_fill.value | default: ingredient_item.troche_fill | default: ingredient_item.fill_count.value | default: ingredient_item.fill_count | default: ingredient_item.icon_fill.value | default: ingredient_item.icon_fill | default: 0
+                  assign ingredient_fill_count = ingredient_fill_count | plus: 0 | at_least: 0 | at_most: 4
+                  assign ingredient_url = ingredient_item.url.value | default: ingredient_item.url
+                  if ingredient_url != blank and ingredient_url.url != blank
+                    assign ingredient_url = ingredient_url.url
+                  endif
+                  assign ingredient_has_visual = false
+                  if ingredient_image != blank or section.settings.use_css_icon_grid
+                    assign ingredient_has_visual = true
+                  endif
+                -%}
+                <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="flex-grid__item{% if enable_mobile_swipe or enable_mobile_carousel %} slider__slide{% endif %}{% if enable_mobile_carousel and forloop.first %} is-selected{% endif %}">
+                  <use-animate data-animate="zoom-fade" class="guarantee__item {{ section.settings.column_alignment }}{% if ingredient_has_visual %} guarantee__item--has-content-image{% endif %}">
+                    {%- if section.settings.use_css_icon_grid -%}
+                      <div class="image-animate guarantee__media active-ingredients-v2__icon-media">
+                        <div class="active-ingredients-v2__dose-grid" aria-hidden="true">
+                          <span class="active-ingredients-v2__dose-square{% if ingredient_fill_count < 1 %} active-ingredients-v2__dose-square--empty{% else %} active-ingredients-v2__dose-square--filled{% endif %}"></span>
+                          <span class="active-ingredients-v2__dose-square{% if ingredient_fill_count < 2 %} active-ingredients-v2__dose-square--empty{% else %} active-ingredients-v2__dose-square--filled{% endif %}"></span>
+                          <span class="active-ingredients-v2__dose-square{% if ingredient_fill_count < 3 %} active-ingredients-v2__dose-square--empty{% else %} active-ingredients-v2__dose-square--filled{% endif %}"></span>
+                          <span class="active-ingredients-v2__dose-square{% if ingredient_fill_count < 4 %} active-ingredients-v2__dose-square--empty{% else %} active-ingredients-v2__dose-square--filled{% endif %}"></span>
+                        </div>
+                      </div>
+                    {%- elsif ingredient_image != blank -%}
+                      <div class="image-animate guarantee__media media-wrapper">
+                        <div class="media media--{{ section.settings.content_image_ratio }}"{% if section.settings.content_image_ratio == 'adapt' %} style="--image-ratio-percent: {{ 1 | divided_by: ingredient_image.aspect_ratio | times: 100 }}%; --active-ingredients-image-aspect-ratio: {{ ingredient_image.aspect_ratio }};"{% endif %}>
+                          {{
+                            ingredient_image
+                            | image_url: width: 1600
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '320, 480, 640, 800, 1000, 1200, 1600',
+                              sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 40vw, 92vw',
+                              class: 'image-fit',
+                              alt: ingredient_image.alt | default: ingredient_name,
+                              is: 'lazy-image'
+                          }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    <div class="active-ingredients-v2__content">
+                      {%- if ingredient_name != blank -%}
+                        <p class="h3">{{ ingredient_name }}</p>
+                      {%- endif -%}
+                      {%- if ingredient_description != blank -%}
+                        <div class="rte typeset">{{ ingredient_description }}</div>
+                      {%- endif -%}
+                      {%- if ingredient_url != blank -%}
+                        <p class="active-ingredients-v2__link">
+                          <a href="{{ ingredient_url }}">{{ section.settings.link_label | default: 'Learn more' | escape }}</a>
+                        </p>
+                      {%- endif -%}
+                    </div>
+                  </use-animate>
+                </li>
+              {%- endfor -%}
+              </ul>
+            </div>
+            {%- if enable_mobile_carousel -%}
+              <div class="active-ingredients-v2__dots no-js-hidden medium-hide large-up-hide" aria-label="Active ingredient slide indicators">
+                {%- for ingredient_item in ingredients_list -%}
+                  <button
+                    type="button"
+                    class="active-ingredients-v2__dot{% if forloop.first %} is-active{% endif %}"
+                    data-slide-index="{{ forloop.index0 }}"
+                    aria-label="Go to ingredient {{ forloop.index }}"
+                    aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                  ></button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </active-ingredients-v2-component>
+        {%- else -%}
+          <div class="flex-grid__item{% if section.settings.heading == blank or section.settings.layout == 'default' %} flex-grid__item--full-width{% else %} flex-grid__item--three-quarter{% endif %}">
+            <div class="active-ingredients-v2__empty rte">
+              {%- if ingredient_product == blank -%}
+                <p>Select a source product, or use this section on a product template.</p>
+              {%- else -%}
+                <p>No items found in metafield <strong>{{ ingredients_namespace }}.{{ ingredients_key }}</strong>.</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- if section.settings.show_divider %}</div>{% endif -%}
+
+{% schema %}
+{
+  "name": "Active ingredients v2",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_source",
+      "label": "Source product",
+      "info": "If empty, uses current product."
+    },
+    {
+      "type": "text",
+      "id": "ingredients_metafield_namespace",
+      "label": "Ingredients metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "ingredients_metafield_key",
+      "label": "Ingredients metafield key",
+      "default": "ingredients"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Ingredient link label",
+      "default": "Learn more"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "sidebar",
+          "label": "Sidebar"
+        }
+      ],
+      "default": "default",
+      "label": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Column alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "t:sections.all.full_width.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "t:sections.all.show_divider.label"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.multicolumn.settings.columns_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "select",
+      "id": "content_image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ],
+      "default": "landscape",
+      "label": "Image ratio"
+    },
+    {
+      "type": "range",
+      "id": "content_image_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 12,
+      "label": "Image corner radius"
+    },
+    {
+      "type": "range",
+      "id": "content_image_height",
+      "min": 0,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 0,
+      "label": "Image height (0 = auto)"
+    },
+    {
+      "type": "color",
+      "id": "content_image_background_color",
+      "label": "Image background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_css_icon_grid",
+      "label": "Use CSS icon grid instead of image",
+      "default": false,
+      "info": "When enabled, each card renders a 2x2 icon grid and ignores metafield images."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.heading.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Active ingredients",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_tag.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_tag.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_tag.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_tag.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_tag.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_tag.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_tag.options__7.label"
+        },
+        {
+          "value": "span",
+          "label": "t:sections.all.heading_tag.options__8.label"
+        },
+        {
+          "value": "p",
+          "label": "t:sections.all.heading_tag.options__9.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_tag.label",
+      "info": "t:sections.all.heading_tag.info"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "subheading_tag",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        },
+        {
+          "value": "span",
+          "label": "Span"
+        }
+      ],
+      "default": "p",
+      "label": "Subheading tag"
+    },
+    {
+      "type": "select",
+      "id": "subheading_size",
+      "options": [
+        {
+          "value": "typeset",
+          "label": "Small"
+        },
+        {
+          "value": "typeset2",
+          "label": "Medium"
+        },
+        {
+          "value": "typeset3",
+          "label": "Large"
+        }
+      ],
+      "default": "typeset2",
+      "label": "Subheading size style"
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "min": 12,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.mobile_layout.header.content"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.all.mobile_layout.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.all.mobile_layout.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "1",
+      "label": "t:sections.all.mobile_layout.columns_mobile.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_carousel",
+      "default": false,
+      "label": "Enable carousel mode on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": true,
+      "label": "t:sections.all.mobile_layout.swipe_on_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_colors",
+      "default": false,
+      "label": "t:sections.all.colors.use_custom_colors.label"
+    },
+    {
+      "type": "color",
+      "id": "colors_text",
+      "label": "t:sections.all.colors.colors_text.label",
+      "default": "#1a1b18"
+    },
+    {
+      "type": "color",
+      "id": "colors_background",
+      "label": "t:sections.all.colors.colors_background.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "gradient_background",
+      "label": "t:sections.all.colors.gradient_background.label"
+    },
+    {
+      "type": "color",
+      "id": "colors_highlight",
+      "label": "t:sections.all.colors.colors_highlight.label",
+      "default": "#ffb503"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.header.content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "t:sections.all.padding.padding_top.unit",
+      "label": "t:sections.all.padding.padding_top.label",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "t:sections.all.padding.padding_bottom.unit",
+      "label": "t:sections.all.padding.padding_bottom.label",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.highlight.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "t:sections.all.highlight.enable.label",
+      "info": "t:sections.all.highlight.enable.info",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "t:sections.all.highlight.style.options__1.label"
+        },
+        {
+          "value": "circle",
+          "label": "t:sections.all.highlight.style.options__2.label"
+        },
+        {
+          "value": "underline",
+          "label": "t:sections.all.highlight.style.options__3.label"
+        },
+        {
+          "value": "bold-underline",
+          "label": "t:sections.all.highlight.style.options__4.label"
+        },
+        {
+          "value": "modern-underline",
+          "label": "t:sections.all.highlight.style.options__5.label"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "t:sections.all.highlight.style.options__6.label"
+        },
+        {
+          "value": "squiggle",
+          "label": "t:sections.all.highlight.style.options__7.label"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "t:sections.all.highlight.style.options__8.label"
+        },
+        {
+          "value": "solid-color",
+          "label": "t:sections.all.highlight.style.options__9.label"
+        }
+      ],
+      "default": "marker",
+      "label": "t:sections.all.highlight.style.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Active ingredients v2"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  }
+}
+{% endschema %}

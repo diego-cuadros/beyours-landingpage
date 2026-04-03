@@ -1,0 +1,552 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "narrow": true,
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "video_hero_4rDRKG": {
+      "type": "video-hero-v2",
+      "blocks": {
+        "heading_3KCrff": {
+          "type": "heading",
+          "settings": {
+            "heading": "Where science meets precision",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_WrUP4d": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This isn’t wellness by wishful thinking. We combine rigorous science, pharmaceutical-grade ingredients, and precision dosing to create formulas that work—as designed. Every time.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3KCrff",
+        "text_WrUP4d"
+      ],
+      "name": "t:sections.video-hero.presets.name",
+      "settings": {
+        "video": "shopify://files/videos/Our formulation process hero - Trim.mp4",
+        "mobile_video": "shopify://files/videos/Our formulation process hero - Mobile.mov",
+        "dynamic_video_url": "",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "text_box_position": "middle-center",
+        "text_alignment": "center",
+        "image_ratio": "700px",
+        "show_text_box": true,
+        "overlay_border_radius": 16,
+        "restrict_overlay_max_width": true,
+        "overlay_max_width": 75,
+        "full_width": true,
+        "show_divider": false,
+        "mobile_text_alignment": "center",
+        "mobile_content_position": "middle",
+        "mobile_image_ratio": "auto",
+        "show_text_below": false,
+        "colors_button_label": "#1a1b18",
+        "colors_button_background": "#ffffff",
+        "colors_text": "#ffffff",
+        "colors_overlay": "#000000",
+        "colors_overlay_opacity": 24,
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "video_PkjWx8": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=riQt7eYS4o8",
+        "cover_image": "shopify://shop_images/BTF_Thumbnail-2.1.png",
+        "description": "Behind The Formulation: The Science Behind Every Troche",
+        "full_width": false,
+        "show_divider": false,
+        "heading": "Take a tour of how each troche is made",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "featured_collection_baVFHP": {
+      "type": "featured-collection-v2",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "b2b-dtc-options",
+        "products_to_show": 5,
+        "horizontal_scroll": true,
+        "show_view_all": false,
+        "show_divider": false,
+        "enable_drag": false,
+        "heading": "Our products",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "show_dtc_discount_price": true,
+        "dtc_discount_percentage": 15,
+        "show_bundle_discount_price": true,
+        "bundle_discount_percentage": 10,
+        "image_ratio": "adapt",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": false,
+        "secondary_image_max": 1,
+        "show_vendor": false,
+        "product_title_size": 16,
+        "show_rating": false,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "multicolumn_v2_eqdLRD": {
+      "type": "multicolumn-v2",
+      "blocks": {
+        "column_4d3DQY": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/1-image-process.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Identifying the health focus",
+            "title_size": "h3",
+            "text": "<p>We start by pinpointing key health bottlenecks — focus, energy, calm, and sleep — based on real-world clinical experience.</p>",
+            "show_popup": false,
+            "popup_image_position": "left",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_kWeiC4": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/2-image-process.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Research and chemistry",
+            "title_size": "h3",
+            "text": "<p>Dr. Ted Achacoso leads a deep dive into pharmacology and systems biology to select proven, high-impact ingredients.</p>",
+            "show_popup": false,
+            "popup_image_position": "left",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_KqDgip": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/3-process-image.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Built on innovation",
+            "title_size": "h3",
+            "text": "<p>Beyond our buccal troche delivery, we source unique compounds globally — each third-party tested for purity and potency.</p>",
+            "show_popup": false,
+            "popup_image_position": "left",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_AyBM3z": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/4-image-process.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Clinical testing",
+            "title_size": "h3",
+            "text": "<p>Every formulation is tested, refined, and validated through feedback from clinicians and early users.</p>",
+            "show_popup": false,
+            "popup_image_position": "left",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_zG8dki": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/5-image-process.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Highest manufacturing standards",
+            "title_size": "h3",
+            "text": "<p>Produced in FDA-registered, GMP-compliant facilities under licensed pharmacist supervision.</p>",
+            "show_popup": false,
+            "popup_image_position": "left",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "column_6zb7Jy": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/6-image-process.jpg",
+            "uploaded_image_display": "auto",
+            "uploaded_image_ratio": "inherit",
+            "custom_icon": "",
+            "title": "Delivered with intention",
+            "title_size": "h3",
+            "text": "<p>Available through trusted practitioners or directly from us — pharmaceutical-grade quality, every time.</p>",
+            "show_popup": false,
+            "popup_image_position": "left",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "column_4d3DQY",
+        "column_kWeiC4",
+        "column_KqDgip",
+        "column_AyBM3z",
+        "column_zG8dki",
+        "column_6zb7Jy"
+      ],
+      "name": "Multicolumn v2",
+      "settings": {
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "text_alignment": "left",
+        "show_divider": false,
+        "image_width": "full",
+        "icon_size": 32,
+        "card_min_height": 252,
+        "match_card_heights_desktop": false,
+        "taller_media_desktop": false,
+        "heading_in_grid_desktop": false,
+        "columns_desktop": 6,
+        "open_in_new_tab": false,
+        "heading": "How each troche is made",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "mobile_text_alignment": "center",
+        "columns_mobile": "1",
+        "mobile_indicator_gap": 12,
+        "mobile_card_min_height": 0,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "card_border_radius": 12,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "image_with_text_overlay_v3_ydXCdt": {
+      "type": "image-with-text-overlay-v3",
+      "blocks": {
+        "heading_KAQqNp": {
+          "type": "heading",
+          "settings": {
+            "heading": "Every batch tested, see our results",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_cr6qCN": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "<strong>Beyond USP</strong>",
+            "subheading_size": "h5",
+            "subheading_tag": "p",
+            "subheading_color": "#212326",
+            "subheading_spacing_top": 16,
+            "subheading_spacing_bottom": 12,
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_8y69dj": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Did you know many supplements on the market can be contaminated or inaccurately labeled, even if their Certificate of Analysis (CoAs) says otherwise? The U.S. Pharmacopoeia (USP) sets the gold standard for testing and verifying pharmaceutical-grade ingredients.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "subheading_Rf6NBR": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "<strong>Trust, But Verify</strong>",
+            "subheading_size": "h5",
+            "subheading_tag": "p",
+            "subheading_color": "#212326",
+            "subheading_spacing_top": 16,
+            "subheading_spacing_bottom": 12,
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_QtFnPQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Troscriptions, every ingredient we use arrives with its own Certificate of Analysis—but we don’t take anyone’s word for it. We send each ingredient to an independent, third-party lab for confirmatory testing before formulation.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "coa_button_z6UkYq": {
+          "type": "coa_button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "Request Certificate of Analysis",
+            "button_style_secondary": false,
+            "modal_title": "Request Certificate of Analysis",
+            "modal_heading_size": "h3",
+            "modal_text": "<p>Submit the form below and our team will send you the latest Certificate of Analysis.</p>",
+            "gorgias_form_uid": "rwp4gxa5",
+            "fallback_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_KAQqNp",
+        "subheading_cr6qCN",
+        "text_8y69dj",
+        "subheading_Rf6NBR",
+        "text_QtFnPQ",
+        "coa_button_z6UkYq"
+      ],
+      "name": "Image text overlay v3",
+      "settings": {
+        "image": "shopify://shop_images/Trifecta_Landscape.jpg",
+        "image_position": "center center",
+        "text_box_position": "flex-start",
+        "text_alignment": "left",
+        "content_width_desktop": 50,
+        "content_width_tablet": 62,
+        "content_width_mobile": 100,
+        "mobile_overlay_safe_mode": true,
+        "mobile_solid_content_background": false,
+        "colors_mobile_solid_background": "#f3f3f3",
+        "content_padding_mobile": 24,
+        "image_ratio": "content",
+        "full_width": false,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_text_box_position": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "video_url": "",
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_overlay": "#f3f3f3",
+        "colors_overlay_opacity": 92,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "image_banner_YCqrKq": {
+      "type": "image-banner-v2-alt",
+      "blocks": {
+        "heading_GPK7mt": {
+          "type": "heading",
+          "settings": {
+            "heading": "Beyond supplements — this Is precision in practice",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_g4hnH6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every formulation is a bridge between data and daily life. We don’t guess. We measure, test, and refine until results speak for themselves. Our goal isn’t to fill shelves — it’s to raise the standard for what goes into your body. Because when precision meets transparency, performance becomes consistently (and awesomely) next level.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_GPK7mt",
+        "text_g4hnH6"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/byeond_supplements.png",
+        "image_position": "center center",
+        "text_box_position": "middle-right",
+        "text_alignment": "left",
+        "image_ratio": "650px",
+        "show_text_box": true,
+        "overlay_border_radius": 16,
+        "restrict_overlay_max_width": true,
+        "overlay_max_width": 75,
+        "show_overlay": true,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_image": "shopify://shop_images/Scott_holding_a_troche.jpg",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "adapt",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "colors_button_label": "#1a1b18",
+        "colors_button_background": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_overlay": "#ffffff",
+        "colors_overlay_opacity": 60,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60
+      }
+    },
+    "image_banner_v2_eQrCLz": {
+      "type": "image-banner-v2",
+      "name": "Image banner v2",
+      "settings": {
+        "image": "shopify://shop_images/Tro_Calm_hand.png",
+        "mobile_image": "shopify://shop_images/tro_calm_hand_mobile_b9931680-2d02-43a9-82df-4b32b62c821f.png",
+        "image_position": "center center",
+        "flip_image_horizontal": false,
+        "subheading": "Explore the troches built from this process — tested, trusted, and precision by design",
+        "heading": "Experience the science",
+        "heading_tag": "h2",
+        "desktop_height_mode": "fixed",
+        "desktop_height": 640,
+        "mobile_height": 760,
+        "mobile_content_position": "",
+        "content_max_width": 40,
+        "text_color": "#161616",
+        "tint_color": "#f7f2ed",
+        "tint_opacity": 100,
+        "show_overlay": true,
+        "primary_button_label": "Shop Troches",
+        "primary_button_link": "shopify://collections/our-products",
+        "primary_button_size": "large",
+        "button_background": "#222222",
+        "button_text": "#ffffff",
+        "secondary_button_label": "What's a troche?",
+        "secondary_button_link": "shopify://pages/whats-a-troche",
+        "show_squares": false,
+        "square_size": 32,
+        "square_gap": 6,
+        "square_1": "#117d87",
+        "square_2": "#9998d9",
+        "square_3": "#ff962e",
+        "square_4": "#0b82d4",
+        "full_width": true,
+        "show_divider": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_hero_4rDRKG",
+    "video_PkjWx8",
+    "featured_collection_baVFHP",
+    "multicolumn_v2_eqdLRD",
+    "image_with_text_overlay_v3_ydXCdt",
+    "image_banner_YCqrKq",
+    "image_banner_v2_eQrCLz"
+  ]
+}

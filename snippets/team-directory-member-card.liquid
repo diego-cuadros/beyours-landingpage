@@ -1,0 +1,138 @@
+{%- liquid
+  assign member_full_name = member.full_name.value | default: member.full_name | default: member.name.value | default: member.name
+  assign member_short_name = member.short_name.value | default: member.short_name | default: member_full_name
+  assign member_blurb = member.blurb.value | default: member.blurb
+  assign member_portrait = member.portrtait.value | default: member.portrait.value | default: member.image.value | default: member.photo.value | default: member.headshot.value | default: member.profile_image.value | default: member.profile_photo.value | default: member.avatar.value | default: member.featured_image.value | default: member.picture.value | default: member.thumbnail.value
+  assign member_portrait_field = member.portrtait | default: member.portrait | default: member.image | default: member.photo | default: member.headshot | default: member.profile_image | default: member.profile_photo | default: member.avatar | default: member.featured_image | default: member.picture | default: member.thumbnail
+  assign member_portrait_alt = member_portrait.alt | default: member_full_name
+  assign member_portrait_focal_point = member_portrait.presentation.focal_point | default: 'center 20%'
+  assign member_portrait_style = '--team-directory-member-image-position: ' | append: member_portrait_focal_point | append: ';'
+  assign member_position = member.position.value | default: member.position
+  assign member_bio = member.bio.value | default: member.bio
+  assign member_linked_in = member.linked_in.value | default: member.linked_in | default: member.linkedin.value | default: member.linkedin
+  assign member_product = member.favorite_product.value | default: member.favorite_product
+  assign show_role = show_role | default: false
+-%}
+
+<div class="team-directory__cell" data-member-cell role="listitem">
+  <button
+    type="button"
+    class="team-directory__card"
+    data-member-trigger
+    data-member-id="{{ member_id }}"
+    aria-expanded="false"
+  >
+    <span class="team-directory__card-media" style="{{ member_portrait_style }}">
+      {%- if member_portrait != blank -%}
+        {{
+          member_portrait
+          | image_url: width: 720
+          | image_tag:
+            loading: 'lazy',
+            widths: '180, 240, 360, 540, 720',
+            sizes: card_sizes,
+            class: 'team-directory__card-image',
+            alt: member_portrait_alt
+        }}
+      {%- elsif member_portrait_field != blank -%}
+        {{ member_portrait_field | metafield_tag }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </span>
+
+    <span class="team-directory__card-copy">
+      <span class="team-directory__card-name">{{ member_full_name }}</span>
+      {%- if show_role and member_position != blank -%}
+        <span class="team-directory__card-role">{{ member_position }}</span>
+      {%- endif -%}
+    </span>
+  </button>
+
+  <template data-member-template>
+    <article class="team-directory__detail-card" data-member-detail-panel>
+      <button type="button" class="team-directory__detail-close" data-team-close aria-label="Close team member details">×</button>
+
+      <div class="team-directory__detail-layout">
+        <div class="team-directory__detail-media" style="{{ member_portrait_style }}">
+          {%- if member_portrait != blank -%}
+            {{
+              member_portrait
+              | image_url: width: 720
+              | image_tag:
+                loading: 'lazy',
+                widths: '180, 240, 360, 540, 720',
+                sizes: '(min-width: 750px) 12rem, 8.5rem',
+                class: 'team-directory__detail-image',
+                alt: member_portrait_alt
+            }}
+          {%- elsif member_portrait_field != blank -%}
+            {{ member_portrait_field | metafield_tag }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+
+        <div class="team-directory__detail-copy">
+          <h3 class="team-directory__detail-name">{{ member_full_name }}</h3>
+
+          {%- if member_position != blank -%}
+            <p class="team-directory__detail-role">{{ member_position }}</p>
+          {%- endif -%}
+
+          {%- if member_blurb != blank -%}
+            <p class="team-directory__detail-blurb">{{ member_blurb }}</p>
+          {%- endif -%}
+
+          {%- if member_bio != blank -%}
+            <div class="team-directory__detail-bio rte">
+              <p>{{ member_bio | escape | newline_to_br }}</p>
+            </div>
+          {%- endif -%}
+
+          {%- if member_linked_in != blank -%}
+            <p class="team-directory__detail-link">
+              <a href="{{ member_linked_in }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </p>
+          {%- endif -%}
+
+          {%- if member_product != blank -%}
+            {%- liquid
+              assign favorite_variant = member_product.selected_or_first_available_variant
+              assign favorite_image = member_product.featured_media
+            -%}
+            <div class="team-directory__favorite">
+              {%- if favorite_image != blank -%}
+                <a class="team-directory__favorite-image-link" href="{{ member_product.url }}">
+                  {{
+                    favorite_image
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '72, 120, 180, 240',
+                      sizes: '72px',
+                      class: 'team-directory__favorite-image',
+                      alt: member_product.title,
+                      is: 'lazy-image'
+                  }}
+                </a>
+              {%- endif -%}
+
+              <div class="team-directory__favorite-copy">
+                <p class="team-directory__favorite-label">{{ member_short_name }}'s favorite: {{ member_product.title }}</p>
+                {%- if favorite_variant != blank and member_product.available -%}
+                  <form method="post" action="{{ routes.cart_add_url }}" class="team-directory__favorite-form">
+                    <input type="hidden" name="id" value="{{ favorite_variant.id }}">
+                    <button type="submit" class="button button--small">Add to cart</button>
+                  </form>
+                {%- else -%}
+                  <a href="{{ member_product.url }}" class="button button--small">View product</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </article>
+  </template>
+</div>

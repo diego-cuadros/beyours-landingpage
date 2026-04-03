@@ -1,0 +1,401 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --careers-benefits-background: {{ section.settings.background_color }};
+    --careers-benefits-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --careers-benefits-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --careers-benefits-card-background: {{ section.settings.icon_card_color }};
+    --careers-benefits-pill-background: {{ section.settings.pill_background_color }};
+    --careers-benefits-max-width: {{ section.settings.max_content_width }}px;
+    --careers-benefits-icon-size: {{ section.settings.icon_size }}px;
+    --careers-benefits-icon-container-size: {{ section.settings.icon_container_size }}px;
+    --careers-benefits-icon-padding: {{ section.settings.icon_padding }}px;
+  }
+{%- endstyle -%}
+
+{{ 'section-careers-benefits.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section class="careers-benefits section--padding">
+    <div class="page-width">
+      <div class="careers-benefits__inner">
+        {%- if section.settings.heading != blank or section.settings.intro != blank -%}
+          <div class="careers-benefits__header">
+            {%- if section.settings.heading != blank -%}
+              <{{ section.settings.heading_tag }} class="careers-benefits__heading {{ section.settings.heading_size }}">
+                {{ section.settings.heading }}
+              </{{ section.settings.heading_tag }}>
+            {%- endif -%}
+
+            {%- if section.settings.intro != blank -%}
+              <div class="careers-benefits__intro typeset2 rte">
+                {{ section.settings.intro }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="careers-benefits__grid" role="list">
+            {%- for block in section.blocks -%}
+              <article class="careers-benefits__item" role="listitem" {{ block.shopify_attributes }}>
+                <div class="careers-benefits__icon-box" style="--careers-benefits-icon-color: {{ block.settings.icon_color }};">
+                  <span class="visually-hidden">{{ block.settings.title | strip_html }}</span>
+                  {%- if block.settings.image != blank -%}
+                    {%- liquid
+                      assign perk_image_alt = block.settings.image.alt | default: block.settings.title | strip_html
+                      assign perk_image_width_2x = section.settings.icon_size | times: 2
+                      assign perk_image_width_3x = section.settings.icon_size | times: 3
+                      capture perk_image_widths
+                        echo section.settings.icon_size
+                        echo ', '
+                        echo perk_image_width_2x
+                        echo ', '
+                        echo perk_image_width_3x
+                      endcapture
+                      capture perk_image_sizes
+                        echo section.settings.icon_size
+                        echo 'px'
+                      endcapture
+                      echo block.settings.image | image_url: width: perk_image_width_3x | image_tag: loading: 'lazy', widths: perk_image_widths, sizes: perk_image_sizes, class: 'careers-benefits__icon-image', alt: perk_image_alt, is: 'lazy-image'
+                    -%}
+                  {%- elsif block.settings.custom_icon != blank -%}
+                    <span class="careers-benefits__icon-custom">
+                      {{ block.settings.custom_icon }}
+                    </span>
+                  {%- else -%}
+                    {%- render 'careers-benefits-icon', icon: block.settings.icon -%}
+                  {%- endif -%}
+                </div>
+
+                <div class="careers-benefits__copy">
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="careers-benefits__item-title {{ block.settings.title_size }}">
+                      {{ block.settings.title }}
+                    </h3>
+                  {%- endif -%}
+
+                  {%- if block.settings.text != blank -%}
+                    <div class="careers-benefits__item-text rte">
+                      {{ block.settings.text }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </article>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.footnote != blank -%}
+          <div class="careers-benefits__footnote-wrap">
+            <p class="careers-benefits__footnote">
+              {{ section.settings.footnote }}
+            </p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Careers benefits",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Benefits & Perks",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading tag"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "default": "<p>Working at Troscriptions is designed to support the same things our products do: <strong>clarity, energy, and resilience.</strong></p>",
+      "label": "Intro"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "footnote",
+      "default": "Health Insurance, Vision and Dental, 401K, and others",
+      "label": "Footnote"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#ddf7ee",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#1a1b18",
+      "label": "Heading color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#1a1b18",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "icon_card_color",
+      "default": "#fffaf7",
+      "label": "Icon card background"
+    },
+    {
+      "type": "color",
+      "id": "pill_background_color",
+      "default": "#fff8f5",
+      "label": "Footnote background"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 960,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1320,
+      "label": "Desktop content max width"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48,
+      "label": "Icon size"
+    },
+    {
+      "type": "range",
+      "id": "icon_container_size",
+      "min": 48,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 76,
+      "label": "Icon container size"
+    },
+    {
+      "type": "range",
+      "id": "icon_padding",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 14,
+      "label": "Icon padding"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 76,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 76,
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "compensation",
+              "label": "Compensation"
+            },
+            {
+              "value": "recharge",
+              "label": "Recharge"
+            },
+            {
+              "value": "wellbeing",
+              "label": "Wellbeing"
+            },
+            {
+              "value": "growth",
+              "label": "Growth"
+            }
+          ],
+          "default": "compensation",
+          "label": "Icon"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "default": "#1d4da1",
+          "label": "Icon color"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image"
+        },
+        {
+          "type": "html",
+          "id": "custom_icon",
+          "label": "Custom icon markup",
+          "info": "Used when no custom image is selected. Paste SVG markup here to replace the built-in icon."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "Compensation that respects your craft",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "h4",
+              "label": "Small"
+            },
+            {
+              "value": "h3",
+              "label": "Medium"
+            },
+            {
+              "value": "h2",
+              "label": "Large"
+            }
+          ],
+          "default": "h3",
+          "label": "Title size"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Competitive pay with meaningful upside as we grow.</p>",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Careers benefits",
+      "blocks": [
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "compensation",
+            "icon_color": "#1d4da1",
+            "title": "Compensation that respects your craft",
+            "text": "<p>Competitive pay with meaningful upside as we grow.</p>"
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "recharge",
+            "icon_color": "#9898de",
+            "title": "Time to recharge",
+            "text": "<p>A healthy amount of paid time off and company holidays.</p>"
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "wellbeing",
+            "icon_color": "#ff8a21",
+            "title": "Health &amp; wellbeing",
+            "text": "<p>Access to our troches, educational resources from the Troscriptions ecosystem, and support for your own health optimization journey.</p>"
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "growth",
+            "icon_color": "#1473e6",
+            "title": "Growth &amp; learning",
+            "text": "<p>Exposure to world-class clinicians, entrepreneurs, and researchers through our podcast, events, and HOMeHOPe network.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

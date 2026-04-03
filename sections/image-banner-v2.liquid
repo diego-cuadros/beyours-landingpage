@@ -1,0 +1,486 @@
+{%- liquid
+  assign desktop_image = section.settings.image
+  assign mobile_image = section.settings.mobile_image | default: desktop_image
+  assign loading = 'lazy'
+  assign fetchpriority = 'low'
+  assign sizes = '100vw'
+  assign widths = '750, 1100, 1500, 2000, 2600, 3200, 3840'
+
+  if section.index == 1
+    assign loading = 'eager'
+    assign fetchpriority = 'high'
+  endif
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --section-padding-top-mobile: {{ section.settings.padding_top_mobile | default: section.settings.padding_top }}px;
+    --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: section.settings.padding_bottom }}px;
+    --image-banner-v2-height-desktop: {{ section.settings.desktop_height }}px;
+    --image-banner-v2-height-mobile: {{ section.settings.mobile_height }}px;
+    --image-banner-v2-content-max-width: {{ section.settings.content_max_width }}rem;
+    --image-banner-v2-content-position-mobile: {{ section.settings.mobile_content_position }};
+    --image-banner-v2-square-size: {{ section.settings.square_size }}px;
+    --image-banner-v2-square-gap: {{ section.settings.square_gap }}px;
+    --image-banner-v2-image-position: {{ section.settings.image_position }};
+    --image-banner-v2-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --image-banner-v2-tint: {{ section.settings.tint_color.red }}, {{ section.settings.tint_color.green }}, {{ section.settings.tint_color.blue }};
+    --image-banner-v2-tint-opacity: {{ section.settings.tint_opacity | divided_by: 100.0 }};
+    --color-link: var(--image-banner-v2-text);
+    --color-border: var(--image-banner-v2-text);
+    --color-heading: var(--image-banner-v2-text);
+    --color-button-background: {{ section.settings.button_background.red }}, {{ section.settings.button_background.green }}, {{ section.settings.button_background.blue }};
+    --color-button-text: {{ section.settings.button_text.red }}, {{ section.settings.button_text.green }}, {{ section.settings.button_text.blue }};
+    --color-button-border: var(--color-button-background);
+    {%- case section.settings.primary_button_size -%}
+      {%- when 'small' -%}
+        --image-banner-v2-button-padding-top: 0.6rem;
+        --image-banner-v2-button-padding-inline: 2rem;
+        --image-banner-v2-button-min-height: 4rem;
+        --image-banner-v2-button-min-height-desktop: 4rem;
+      {%- when 'large' -%}
+        --image-banner-v2-button-padding-top: 1.5rem;
+        --image-banner-v2-button-padding-inline: 3rem;
+        --image-banner-v2-button-min-height: 6rem;
+        --image-banner-v2-button-min-height-desktop: 6rem;
+      {%- else -%}
+        --image-banner-v2-button-padding-top: 1rem;
+        --image-banner-v2-button-padding-inline: 3rem;
+        --image-banner-v2-button-min-height: 4.6rem;
+        --image-banner-v2-button-min-height-desktop: 5rem;
+    {%- endcase -%}
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --section-padding-top: var(--section-padding-top-mobile);
+      --section-padding-bottom: var(--section-padding-bottom-mobile);
+    }
+
+    #shopify-section-{{ section.id }} .image-banner-v2 {
+      background: transparent;
+    }
+  }
+{%- endstyle -%}
+
+{{ 'section-image-banner-v2.css' | asset_url | stylesheet_tag }}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <div class="image-banner-v2{% unless section.settings.show_squares %} image-banner-v2--without-squares{% endunless %}{% if section.settings.flip_image_horizontal %} image-banner-v2--flip-image{% endif %}{% if section.settings.desktop_height_mode == 'screen' %} image-banner-v2--desktop-screen{% endif %}" data-animate-image>
+      <use-animate data-animate="zoom-fade" class="image-banner-v2__media-wrap">
+        <div class="image-banner-v2__media image-animate{% if desktop_image == blank %} image-banner-v2__placeholder{% endif %}">
+          {%- if desktop_image != blank -%}
+            <picture class="motion-reduce">
+              {%- if mobile_image != blank -%}
+                {%- liquid
+                  capture mobile_srcset
+                    assign mobile_tag = mobile_image | image_url: width: 2400 | image_tag: sizes: sizes
+                    assign mobile_srcset_parts = mobile_tag | split: 'srcset="'
+                    assign mobile_srcset = mobile_srcset_parts[1] | split: '"' | first
+                    echo mobile_srcset
+                  endcapture
+                -%}
+                <source media="(max-width: 749px)" srcset="{{ mobile_srcset }}" sizes="{{ sizes }}">
+              {%- endif -%}
+              {{ desktop_image | image_url: width: 3840 | image_tag: loading: loading, class: 'image-fit', sizes: sizes, widths: widths, is: 'lazy-image', fetchpriority: fetchpriority, alt: desktop_image.alt | escape }}
+            </picture>
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </use-animate>
+
+      {%- if section.settings.show_overlay -%}
+        <div class="image-banner-v2__tint"></div>
+      {%- endif -%}
+
+      <div class="image-banner-v2__inner">
+        <div class="image-banner-v2__content">
+          {%- if section.settings.show_squares -%}
+            <div class="image-banner-v2__squares" aria-hidden="true">
+              <span class="image-banner-v2__square" style="--square-color: {{ section.settings.square_1.red }}, {{ section.settings.square_1.green }}, {{ section.settings.square_1.blue }};"></span>
+              <span class="image-banner-v2__square" style="--square-color: {{ section.settings.square_2.red }}, {{ section.settings.square_2.green }}, {{ section.settings.square_2.blue }};"></span>
+              <span class="image-banner-v2__square" style="--square-color: {{ section.settings.square_3.red }}, {{ section.settings.square_3.green }}, {{ section.settings.square_3.blue }};"></span>
+              <span class="image-banner-v2__square" style="--square-color: {{ section.settings.square_4.red }}, {{ section.settings.square_4.green }}, {{ section.settings.square_4.blue }};"></span>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.subheading != blank -%}
+            <p class="image-banner-v2__eyebrow">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.heading_tag }} class="image-banner-v2__heading">
+              {{ section.settings.heading }}
+            </{{ section.settings.heading_tag }}>
+          {%- endif -%}
+
+          {%- if section.settings.primary_button_label != blank or section.settings.secondary_button_label != blank -%}
+            <div class="image-banner-v2__actions{% if section.settings.mobile_button_text_alignment != blank %} image-banner-v2__actions--mobile-align-{{ section.settings.mobile_button_text_alignment }}{% endif %}">
+              {%- if section.settings.primary_button_label != blank -%}
+                <a
+                  class="button button--{{ section.settings.primary_button_size }}"
+                  {% if section.settings.primary_button_link != blank %}
+                    href="{{ section.settings.primary_button_link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                >
+                  {{ section.settings.primary_button_label | escape }}
+                </a>
+              {%- endif -%}
+
+              {%- if section.settings.secondary_button_label != blank -%}
+                <a
+                  class="button button--{{ section.settings.primary_button_size }} button--cta image-banner-v2__button-secondary"
+                  {% if section.settings.secondary_button_link != blank %}
+                    href="{{ section.settings.secondary_button_link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                >
+                  <span class="label">{{ section.settings.secondary_button_label | escape }}</span>
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image banner v2",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "20% 0", "label": "Top left" },
+        { "value": "top center", "label": "Top center" },
+        { "value": "80% 0", "label": "Top right" },
+        { "value": "20% 50%", "label": "Middle left" },
+        { "value": "center center", "label": "Middle center" },
+        { "value": "80% 50%", "label": "Middle right" },
+        { "value": "20% 100%", "label": "Bottom left" },
+        { "value": "bottom center", "label": "Bottom center" },
+        { "value": "80% 100%", "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "flip_image_horizontal",
+      "label": "Flip image horizontally",
+      "default": false
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Physician-formulated Solutions for Energy, Stress, Focus & Sleep"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Feel the difference in 15 minutes"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "div", "label": "Div" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop height behavior",
+      "default": "fixed",
+      "options": [
+        { "value": "fixed", "label": "Fixed height" },
+        { "value": "screen", "label": "Screen height" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop height",
+      "min": 360,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 460
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile height",
+      "min": 380,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 520
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_position",
+      "label": "Mobile content vertical position",
+      "default": "",
+      "options": [
+        { "value": "", "label": "Default" },
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Bottom" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "min": 28,
+      "max": 60,
+      "step": 1,
+      "unit": "rem",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#161616"
+    },
+    {
+      "type": "color",
+      "id": "tint_color",
+      "label": "Tint color",
+      "default": "#f7f2ed"
+    },
+    {
+      "type": "range",
+      "id": "tint_opacity",
+      "label": "Tint opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Solid button"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Label",
+      "default": "Take the 60-second quiz"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "primary_button_size",
+      "label": "Size",
+      "default": "large",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Underline button"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Label",
+      "default": "Or browse all products"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "mobile_button_text_alignment",
+      "label": "Mobile button text alignment",
+      "default": "",
+      "options": [
+        { "value": "", "label": "Default" },
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Squares"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_squares",
+      "label": "Show squares",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "square_size",
+      "label": "Square size",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "square_gap",
+      "label": "Square gap",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "square_1",
+      "label": "Square 1",
+      "default": "#117d87"
+    },
+    {
+      "type": "color",
+      "id": "square_2",
+      "label": "Square 2",
+      "default": "#9998d9"
+    },
+    {
+      "type": "color",
+      "id": "square_3",
+      "label": "Square 3",
+      "default": "#ff962e"
+    },
+    {
+      "type": "color",
+      "id": "square_4",
+      "label": "Square 4",
+      "default": "#0b82d4"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image banner v2"
+    }
+  ]
+}
+{% endschema %}

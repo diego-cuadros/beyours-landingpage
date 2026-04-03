@@ -1,0 +1,423 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --how-we-operate-background: {{ section.settings.background_color }};
+    --how-we-operate-heading: {{ section.settings.heading_color.red }}, {{ section.settings.heading_color.green }}, {{ section.settings.heading_color.blue }};
+    --how-we-operate-text: {{ section.settings.text_color.red }}, {{ section.settings.text_color.green }}, {{ section.settings.text_color.blue }};
+    --how-we-operate-icon-foreground: {{ section.settings.icon_foreground_color }};
+    --how-we-operate-max-width: {{ section.settings.max_content_width }}px;
+    --how-we-operate-icon-size: {{ section.settings.icon_size }}px;
+    --how-we-operate-icon-container-size: {{ section.settings.icon_container_size }}px;
+    --how-we-operate-icon-padding: {{ section.settings.icon_padding }}px;
+  }
+{%- endstyle -%}
+
+{{ 'section-how-we-operate.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.show_divider -%}<div class="section--divider">{%- endif -%}
+  <section class="how-we-operate section--padding">
+    <div class="page-width">
+      <div class="how-we-operate__inner">
+        {%- if section.settings.heading != blank or section.settings.intro != blank -%}
+          <div class="how-we-operate__header">
+            {%- if section.settings.heading != blank -%}
+              <{{ section.settings.heading_tag }} class="how-we-operate__heading {{ section.settings.heading_size }}">
+                {{ section.settings.heading }}
+              </{{ section.settings.heading_tag }}>
+            {%- endif -%}
+
+            {%- if section.settings.intro != blank -%}
+              <div class="how-we-operate__intro rte">
+                {{ section.settings.intro }}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          {%- assign block_heading_level = section.settings.heading_tag | remove: 'h' | plus: 1 -%}
+          {%- assign block_heading_tag = 'h' | append: block_heading_level -%}
+
+          <ul class="how-we-operate__list">
+            {%- for block in section.blocks -%}
+              <li>
+                <article
+                  class="how-we-operate__item"
+                  style="--how-we-operate-accent: {{ block.settings.icon_background }};"
+                  {{ block.shopify_attributes }}
+                >
+                  <div class="how-we-operate__icon-box">
+                    {%- if block.settings.icon_image != blank -%}
+                      {%- liquid
+                        assign icon_alt = block.settings.title | default: block.settings.lead | strip_html
+                        assign icon_image_width_2x = section.settings.icon_size | times: 2
+                        assign icon_image_width_3x = section.settings.icon_size | times: 3
+                        capture icon_image_widths
+                          echo section.settings.icon_size
+                          echo ', '
+                          echo icon_image_width_2x
+                          echo ', '
+                          echo icon_image_width_3x
+                        endcapture
+                        capture icon_image_sizes
+                          echo section.settings.icon_size
+                          echo 'px'
+                        endcapture
+                        echo block.settings.icon_image | image_url: width: icon_image_width_3x | image_tag: loading: 'lazy', widths: icon_image_widths, sizes: icon_image_sizes, class: 'how-we-operate__icon-image', alt: icon_alt
+                      -%}
+                    {%- else -%}
+                    {%- case block.settings.icon -%}
+                      {%- when 'altruism' -%}
+                        <svg class="how-we-operate__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                          <path d="M5.5 12.5V14.5C5.5 16.7091 7.29086 18.5 9.5 18.5H13.25C14.2165 18.5 15 17.7165 15 16.75C15 15.7835 14.2165 15 13.25 15H11.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M5.5 12.5H8.3C9.20876 12.5 10.0803 12.8612 10.723 13.504L11.5 14.281" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M13.0874 6.46793C13.8817 5.67367 15.1695 5.67367 15.9637 6.46793L16.0019 6.50609L16.0401 6.46793C16.8344 5.67367 18.1222 5.67367 18.9164 6.46793C19.7107 7.26219 19.7107 8.54997 18.9164 9.34423L18.8783 9.38239L16.0019 12.2587L13.1256 9.38239L13.0874 9.34423C12.2932 8.54997 12.2932 7.26219 13.0874 6.46793Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      {%- when 'conscientiousness' -%}
+                        <svg class="how-we-operate__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                          <path d="M12 5.5L13.7 7.1L16 6.5L16.6 8.8L18.5 10L16.6 11.2L16 13.5L13.7 12.9L12 14.5L10.3 12.9L8 13.5L7.4 11.2L5.5 10L7.4 8.8L8 6.5L10.3 7.1L12 5.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                          <circle cx="12" cy="10" r="2.2" stroke="currentColor" stroke-width="1.7"/>
+                          <path d="M12 14.8V18.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                        </svg>
+                      {%- when 'communication' -%}
+                        <svg class="how-we-operate__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                          <path d="M6.5 8.5H17.5C18.6046 8.5 19.5 9.39543 19.5 10.5V14.5C19.5 15.6046 18.6046 16.5 17.5 16.5H11.4L8.1 18.8V16.5H6.5C5.39543 16.5 4.5 15.6046 4.5 14.5V10.5C4.5 9.39543 5.39543 8.5 6.5 8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                          <path d="M8.5 12.5H8.51M12 12.5H12.01M15.5 12.5H15.51" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      {%- when 'agility' -%}
+                        <svg class="how-we-operate__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                          <path d="M6 8.5H17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                          <path d="M14.5 6L17 8.5L14.5 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M18 15.5H7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                          <path d="M9.5 13L7 15.5L9.5 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      {%- when 'curiosity' -%}
+                        <svg class="how-we-operate__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                          <path d="M9.5 14.5C8.57434 13.8155 8 12.7164 8 11.5C8 9.29086 9.79086 7.5 12 7.5C14.2091 7.5 16 9.29086 16 11.5C16 12.7164 15.4257 13.8155 14.5 14.5V16.5H9.5V14.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                          <path d="M10 18.5H14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                          <path d="M10.5 20.5H13.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                        </svg>
+                      {%- else -%}
+                        <svg class="how-we-operate__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                          <circle cx="12" cy="12" r="6.5" stroke="currentColor" stroke-width="1.7"/>
+                        </svg>
+                    {%- endcase -%}
+                  {%- endif -%}
+                </div>
+
+                <div class="how-we-operate__content">
+                  {%- if block.settings.title != blank -%}
+                    <{{ block_heading_tag }} class="how-we-operate__title">
+                      {{ block.settings.title }}
+                    </{{ block_heading_tag }}>
+                  {%- endif -%}
+
+                  {%- if block.settings.lead != blank -%}
+                    <p class="how-we-operate__lead">
+                      {{ block.settings.lead }}
+                    </p>
+                  {%- endif -%}
+
+                  {%- if block.settings.text != blank -%}
+                    <div class="how-we-operate__text rte">
+                      {{ block.settings.text }}
+                    </div>
+                  {%- endif -%}
+                </div>
+                </article>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- if section.settings.show_divider -%}</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "How we operate",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "How We Operate",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading tag"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "default": "<p>Principles that shape how we make decisions, communicate, and build.</p>",
+      "label": "Intro"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#ffffff",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#1a1b18",
+      "label": "Heading color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#1a1b18",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "icon_foreground_color",
+      "default": "#ffffff",
+      "label": "Icon color"
+    },
+    {
+      "type": "range",
+      "id": "max_content_width",
+      "min": 840,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 1120,
+      "label": "Desktop content max width"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 16,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 30,
+      "label": "Icon size"
+    },
+    {
+      "type": "range",
+      "id": "icon_container_size",
+      "min": 40,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 60,
+      "label": "Icon container size"
+    },
+    {
+      "type": "range",
+      "id": "icon_padding",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 14,
+      "label": "Icon padding"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 72,
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "principle",
+      "name": "Principle",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "altruism",
+              "label": "Altruism"
+            },
+            {
+              "value": "conscientiousness",
+              "label": "Conscientiousness"
+            },
+            {
+              "value": "communication",
+              "label": "Communication"
+            },
+            {
+              "value": "agility",
+              "label": "Agility"
+            },
+            {
+              "value": "curiosity",
+              "label": "Curiosity"
+            }
+          ],
+          "default": "altruism",
+          "label": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom icon image"
+        },
+        {
+          "type": "color",
+          "id": "icon_background",
+          "default": "#9a98df",
+          "label": "Icon background"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "Non-reciprocal altruism",
+          "label": "Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "lead",
+          "default": "We give without expectation.",
+          "label": "Lead"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Explain how this principle shapes the work, the decisions, and the outcomes.</p>",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How we operate",
+      "blocks": [
+        {
+          "type": "principle",
+          "settings": {
+            "icon": "altruism",
+            "icon_background": "#9a98df",
+            "title": "Non-reciprocal altruism",
+            "lead": "We give without expectation.",
+            "text": "<p>Through our deep relationship with <strong>Health Optimization Medicine and Practice</strong>, we support practitioner education, community impact, and the broader shift from disease management to proactive health optimization.</p><p>Our success fuels the ecosystem, not the other way around.</p>"
+          }
+        },
+        {
+          "type": "principle",
+          "settings": {
+            "icon": "conscientiousness",
+            "icon_background": "#f68d2e",
+            "title": "Conscientiousness",
+            "lead": "We care deeply about what goes into the body.",
+            "text": "<p>From ingredient sourcing to formulation, testing, and delivery, we operate with rigor, responsibility, and respect for the practitioner-patient relationship.</p>"
+          }
+        },
+        {
+          "type": "principle",
+          "settings": {
+            "icon": "communication",
+            "icon_background": "#0077c8",
+            "title": "Communication",
+            "lead": "Clarity builds trust.",
+            "text": "<p>We communicate openly with our customers, practitioners, and partners because informed people make better decisions, and better decisions lead to better outcomes.</p>"
+          }
+        },
+        {
+          "type": "principle",
+          "settings": {
+            "icon": "agility",
+            "icon_background": "#037178",
+            "title": "Agility",
+            "lead": "Health optimization evolves quickly.",
+            "text": "<p>We stay on the cutting edge by focusing on what actually works, adapting rapidly as new research emerges, and avoiding dogma in favor of results.</p>"
+          }
+        },
+        {
+          "type": "principle",
+          "settings": {
+            "icon": "curiosity",
+            "icon_background": "#1d428a",
+            "title": "Curiosity",
+            "lead": "Every breakthrough starts with a question.",
+            "text": "<p>We relentlessly search for more effective solutions to the most common obstacles on the path to optimal health.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

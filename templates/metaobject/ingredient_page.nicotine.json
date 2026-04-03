@@ -1,0 +1,211 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_with_text_v2_QXT9Mx": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_rhDnVY": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ metaobject.name.value }}",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_pELrYj": {
+          "type": "text",
+          "settings": {
+            "text": "{{ metaobject.description | metafield_tag }}",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rhDnVY",
+        "text_pELrYj"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "{{ metaobject.image.value }}",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "image_corner_radius": 0,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_yTnEbE": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_M4VrPc": {
+          "type": "column",
+          "settings": {
+            "background_color": "#f2f2f2",
+            "heading_color": "#000000",
+            "text_color": "#333333",
+            "image": "shopify://shop_images/TroBlueCannatineProductPhoto1_68041550-f4ea-4187-8e2e-cbfc24322281.jpg",
+            "title": "Blue Cannatine",
+            "title_size": "h3",
+            "text": "",
+            "show_popup": false,
+            "popup_image_position": "top",
+            "justify_text": false,
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "column_M4VrPc"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "image_ratio": "square",
+        "image_position": "center center",
+        "text_alignment": "left",
+        "show_divider": false,
+        "image_width": "full",
+        "columns_desktop": 3,
+        "open_in_new_tab": false,
+        "heading": "Used in",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "mobile_text_alignment": "left",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "card_border_radius": 10,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "featured_blog_v2_manual_eDArGN": {
+      "type": "featured-blog-v2-manual",
+      "blocks": {
+        "post_exaAXr": {
+          "type": "post",
+          "settings": {
+            "article": "main/nicotine"
+          }
+        },
+        "post_YHFQgL": {
+          "type": "post",
+          "settings": {
+            "article": "main/nicotine-for-cognitive-enhancement"
+          }
+        },
+        "post_JtB36F": {
+          "type": "post",
+          "settings": {
+            "article": "main/performance-optimization-nootropics-pons"
+          }
+        },
+        "title_UxYaQJ": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_api38e": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_BPw6cH": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "post_exaAXr",
+        "post_YHFQgL",
+        "post_JtB36F",
+        "title_UxYaQJ",
+        "summary_api38e",
+        "read_more_BPw6cH"
+      ],
+      "name": "Featured blog (v2 manual)",
+      "settings": {
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "primary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "View all",
+        "view_all_link": "",
+        "show_divider": false,
+        "heading": "Learn more from our blogs",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "image_with_text_v2_QXT9Mx",
+    "multicolumn_yTnEbE",
+    "featured_blog_v2_manual_eDArGN"
+  ]
+}

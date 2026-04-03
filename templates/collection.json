@@ -1,0 +1,293 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_UeTytQ": {
+      "type": "image-banner-v2-alt",
+      "blocks": {
+        "heading_PGA8YL": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Formulations that meet you where you are</strong>",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_wRbggk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Designed by physicians. Delivered with precision. Crafted to help you focus, calm down, or rest—exactly when you need it.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_Xh8cwc": {
+          "type": "button",
+          "settings": {
+            "button_size": "large",
+            "button_label": "Find your troche",
+            "button_link": "shopify://pages/product-quiz",
+            "button_style_secondary": false,
+            "button_alt_label": "",
+            "button_alt_link": "",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_PGA8YL",
+        "text_wRbggk",
+        "button_Xh8cwc"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Our_Products_hero_better_res_aa0f5c68-b021-46bb-b3f5-4144130f74f1.png",
+        "image_position": "center center",
+        "text_box_position": "top-center",
+        "text_alignment": "center",
+        "image_ratio": "650px",
+        "show_text_box": false,
+        "overlay_border_radius": 0,
+        "restrict_overlay_max_width": true,
+        "overlay_max_width": 75,
+        "show_overlay": true,
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_image": "shopify://shop_images/Group_2.png",
+        "mobile_text_alignment": "center",
+        "mobile_image_ratio": "adapt",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#1a1b18",
+        "colors_overlay": "#000000",
+        "colors_overlay_opacity": 0,
+        "colors_highlight": "#ffb503",
+        "padding_top": 0,
+        "padding_bottom": 36,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "heading_size": "h0",
+        "show_description": true,
+        "show_image": true,
+        "apply_overlay": true,
+        "image_position": "center center",
+        "image_ratio": "550px",
+        "text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "250px",
+        "show_text_below": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "subs": {
+      "type": "main-collection-subs",
+      "disabled": true,
+      "settings": {
+        "menu": "",
+        "per_row": 5,
+        "columns_mobile": "1",
+        "horizontal_on_mobile": true,
+        "grid_image": "product",
+        "image_ratio": "adapt",
+        "image_position": "center center",
+        "apply_overlay": true,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid-v2",
+      "settings": {
+        "products_per_row": 4,
+        "rows_per_page": 5,
+        "columns_mobile": "2",
+        "pagination": "paginated",
+        "enable_sticky_facet": true,
+        "enable_sorting": true,
+        "enable_viewing": true,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_filtering_color_swatches": false,
+        "filtering_color_swatches_add_label": false,
+        "filtering_max_items": 7,
+        "image_ratio": "square",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "product_title_size": 16,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "show_dtc_discount_price": true,
+        "dtc_discount_percentage": 15,
+        "show_bundle_discount_price": true,
+        "bundle_discount_percentage": 10,
+        "padding_top": 0,
+        "padding_bottom": 72
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "show_divider": true,
+        "heading": "Recently viewed",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "image_ratio": "portrait",
+        "image_position": "center center",
+        "enable_image_fill": true,
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "show_quick_buy": true,
+        "enable_quick_view": true,
+        "enable_color_swatches": true,
+        "enable_countdown": true,
+        "padding_top": 60,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_v2_alt_73rw69": {
+      "type": "image-with-text-v2-alt",
+      "blocks": {
+        "item_6RbgYD": {
+          "type": "item",
+          "settings": {
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "text": "<p>Each Troscriptions formula is delivered as a buccal troche — a small, precision-scored square that dissolves between your cheek and gum.<br/><br/>This route bypasses the digestive system, sending active ingredients directly into circulation for faster, smoother, and more predictable effects.<br/><br/>Every troche is clinician-formulated and pharmaceutical-grade, ensuring tested purity, balanced neurotransmitter support, and measurable performance.</p>",
+            "text_size": "typeset2",
+            "enable_highlight": false,
+            "highlight_style": "circle"
+          }
+        }
+      },
+      "block_order": [
+        "item_6RbgYD"
+      ],
+      "name": "Image with text v2 alt",
+      "settings": {
+        "heading": "How the buccal troche works",
+        "heading_tag": "h2",
+        "heading_size": "h1",
+        "panel_text": "",
+        "layout": "image_first",
+        "image": "shopify://shop_images/How_it_works.png",
+        "panel_background": "#a8e8e2",
+        "panel_text_color": "#111111",
+        "panel_radius": 16,
+        "panel_height_desktop": 420,
+        "panel_height_mobile": 360,
+        "collage_width_desktop": 80,
+        "collage_width_mobile": 82,
+        "collage_overlap_desktop": 48,
+        "collage_overlap_mobile": 34,
+        "collage_offset_horizontal": -20,
+        "collage_position_mobile": "right",
+        "collage_offset_horizontal_mobile": 12,
+        "item_heading_color": "#111111",
+        "item_text_color": "#303030",
+        "desktop_gap": 56,
+        "item_gap": 28,
+        "full_width": false,
+        "show_divider": false,
+        "enable_highlight": false,
+        "highlight_style": "circle",
+        "colors_highlight": "#ffb503",
+        "padding_top": 40,
+        "padding_bottom": 60
+      }
+    },
+    "image_with_text_overlay_DWRkfa": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_KrCKNa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Find balance in motion",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_cJLfWp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our formulas aren’t about sedation or stimulation — they’re about clarity, calm, and recovery when life demands more of you.<br/><br/>Designed to help you move through your day with focus, composure, and ease.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_KrCKNa",
+        "text_cJLfWp"
+      ],
+      "name": "t:sections.image-with-text-overlay.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/About_Democratize_Enlightenment.png",
+        "image_position": "80% 50%",
+        "text_box_position": "flex-start",
+        "text_alignment": "left",
+        "image_ratio": "700px",
+        "full_width": true,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_text_box_position": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "video_url": "",
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#1a1b18",
+        "colors_overlay": "#ffffff",
+        "colors_overlay_opacity": 64,
+        "colors_highlight": "#ffb503",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    }
+  },
+  "order": [
+    "image_banner_UeTytQ",
+    "banner",
+    "subs",
+    "product-grid",
+    "recently-viewed",
+    "image_with_text_v2_alt_73rw69",
+    "image_with_text_overlay_DWRkfa"
+  ]
+}

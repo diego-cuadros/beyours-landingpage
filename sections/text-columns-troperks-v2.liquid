@@ -1,0 +1,1798 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --troperks-columns-grid-gap: {{ section.settings.grid_gap }}px;
+    --troperks-columns-card-min-width: {{ section.settings.card_min_width }}px;
+    --troperks-columns-card-radius: {{ section.settings.card_border_radius }}px;
+    --troperks-columns-card-border-color: rgba(var(--color-foreground), 0.12);
+    --troperks-columns-card-shadow: 0 1.6rem 3.6rem rgba(0, 0, 0, 0.08);
+    --troperks-columns-card-shadow-hover: 0 2.2rem 4.8rem rgba(0, 0, 0, 0.12);
+    --troperks-columns-heading-font-size: {{ section.settings.heading_font_size }}px;
+    --troperks-columns-heading-font-weight: {{ section.settings.heading_font_weight }};
+    --troperks-columns-accent: {{ section.settings.accent_color }};
+    --troperks-columns-subheading-color: {{ section.settings.subheading_color }};
+    --troperks-columns-card-background: {{ section.settings.card_background }};
+    --troperks-columns-card-link-color: {{ section.settings.card_link_color }};
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.4rem, 4vw, 3.6rem);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__header {
+    max-width: 82rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__header.section-heading--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__title {
+    margin: 0;
+    font-size: var(--troperks-columns-heading-font-size);
+    font-weight: var(--troperks-columns-heading-font-weight);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__subheading {
+    margin-top: 1.2rem;
+    color: var(--troperks-columns-subheading-color);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--troperks-columns-card-min-width)), 1fr));
+    gap: var(--troperks-columns-grid-gap);
+    align-items: start;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__grid > [data-block-kind='text'],
+  #shopify-section-{{ section.id }} .troperks-columns__grid > [data-block-kind='dynamic'] {
+    grid-column: 1 / -1;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__text-block {
+    max-width: 84rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__header.section-heading--center + .troperks-columns__grid > [data-block-kind='text'] .troperks-columns__text-block {
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card,
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2 {
+    position: relative;
+    background: var(--troperks-columns-card-background);
+    border: 0.1rem solid var(--troperks-columns-card-border-color);
+    border-radius: var(--troperks-columns-card-radius);
+    overflow: hidden;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: transform var(--duration-default), box-shadow var(--duration-default), border-color var(--duration-default);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card:hover,
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image:hover,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2:hover,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.is-active {
+    transform: translateY(-0.2rem);
+    box-shadow: var(--troperks-columns-card-shadow-hover);
+    border-color: rgba(var(--color-foreground), 0.18);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-inner,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.2rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-logo,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-logo {
+    height: 4.2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-logo img,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-logo img {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-title,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-title,
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-title {
+    margin: 0;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-title,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-title {
+    font-size: clamp(2.2rem, 2vw, 2.8rem);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-title .text-underline,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-title .text-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-decoration-color: rgba(var(--color-foreground), 0.18);
+    text-underline-offset: 0.18em;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid .troperks-columns__card-v2-title--small {
+    font-size: clamp(1.9rem, 1.8vw, 2.3rem);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid .troperks-columns__card-v2-title--medium {
+    font-size: clamp(2.2rem, 2vw, 2.8rem);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid .troperks-columns__card-v2-title--large {
+    font-size: clamp(2.6rem, 2.4vw, 3.3rem);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-caption,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-caption,
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-caption {
+    flex-grow: 1;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid .troperks-columns__card-v2-caption--small {
+    font-size: 1.4rem;
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid .troperks-columns__card-v2-caption--medium {
+    font-size: 1.6rem;
+    line-height: 1.65;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid .troperks-columns__card-v2-caption--large {
+    font-size: 1.8rem;
+    line-height: 1.7;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card.center,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.center {
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card.right,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.right {
+    text-align: right;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card.center .troperks-columns__card-inner,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.center .troperks-columns__card-v2-inner {
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card.right .troperks-columns__card-inner,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.right .troperks-columns__card-v2-inner {
+    align-items: flex-end;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__text-link {
+    color: rgb(var(--color-link));
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card .troperks-columns__text-link,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2 .troperks-columns__text-link,
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image .troperks-columns__text-link {
+    margin-top: auto;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card.center .troperks-columns__text-link,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.center .troperks-columns__text-link {
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card.right .troperks-columns__text-link,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.right .troperks-columns__text-link,
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-copy.horizontal-right .troperks-columns__text-link {
+    margin-left: auto;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-copy.horizontal-center .troperks-columns__text-link {
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2 {
+    max-height: var(--card-collapsed-height, none);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-inner {
+    padding-top: var(--card-collapsed-padding-top, var(--card-expanded-padding-top, 24px));
+    padding-bottom: var(--card-collapsed-padding-bottom, var(--card-expanded-padding-bottom, 24px));
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.is-active,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2:focus-within {
+    max-height: none;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.is-active .troperks-columns__card-v2-details,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2:focus-within .troperks-columns__card-v2-details {
+    max-height: 80rem;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2.is-active .troperks-columns__card-v2-inner,
+  #shopify-section-{{ section.id }} .troperks-columns__card-v2:focus-within .troperks-columns__card-v2-inner {
+    padding-top: var(--card-expanded-padding-top, 24px);
+    padding-bottom: var(--card-expanded-padding-bottom, 24px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    #shopify-section-{{ section.id }} .troperks-columns__card-v2:hover {
+      max-height: none;
+    }
+
+    #shopify-section-{{ section.id }} .troperks-columns__card-v2:hover .troperks-columns__card-v2-details {
+      max-height: 80rem;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #shopify-section-{{ section.id }} .troperks-columns__card-v2:hover .troperks-columns__card-v2-inner {
+      padding-top: var(--card-expanded-padding-top, 24px);
+      padding-bottom: var(--card-expanded-padding-bottom, 24px);
+    }
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image {
+    display: grid;
+    min-height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-grid {
+    display: grid;
+    min-height: 100%;
+    gap: var(--troperks-columns-card-with-image-gap, 3rem);
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-grid--left {
+    grid-template-columns: minmax(0, var(--troperks-columns-card-with-image-media-width, 40fr)) minmax(0, var(--troperks-columns-card-with-image-content-width, 60fr));
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-grid--right {
+    grid-template-columns: minmax(0, var(--troperks-columns-card-with-image-content-width, 60fr)) minmax(0, var(--troperks-columns-card-with-image-media-width, 40fr));
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-grid--no-image {
+    grid-template-columns: 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-media {
+    height: 100%;
+    min-height: 22rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-media .media-wrapper {
+    height: 100%;
+    border-radius: calc(var(--troperks-columns-card-radius) - 0.4rem);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-content {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-copy {
+    width: 100%;
+    padding: 2.4rem;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-copy.horizontal-center {
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__card-with-image-copy.horizontal-right {
+    text-align: right;
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid {
+    display: grid;
+    gap: var(--dynamic-grid-gap, 3rem);
+    grid-template-columns: repeat(var(--dynamic-grid-columns-mobile, 1), minmax(0, 1fr));
+  }
+
+  #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid > * {
+    min-width: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid {
+      grid-template-columns: repeat(var(--dynamic-grid-columns-tablet, 2), minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid {
+      grid-template-columns: repeat(var(--dynamic-grid-columns-desktop, 3), minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    #shopify-section-{{ section.id }} .troperks-columns__dynamic-grid {
+      grid-template-columns: repeat(var(--dynamic-grid-columns-ultrawide, 4), minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .troperks-columns__card-with-image-grid--left,
+    #shopify-section-{{ section.id }} .troperks-columns__card-with-image-grid--right {
+      grid-template-columns: 1fr;
+      gap: var(--troperks-columns-card-with-image-gap-mobile, 2rem);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .troperks-columns__grid {
+      grid-template-columns: 1fr;
+    }
+
+    #shopify-section-{{ section.id }} .troperks-columns__title {
+      font-size: clamp(2.8rem, 8vw, var(--troperks-columns-heading-font-size));
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign header_layout_class = section.settings.section_heading_layout | default: 'section-heading--left'
+-%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="page-width">
+    <div class="troperks-columns">
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <div class="troperks-columns__header {{ header_layout_class }}">
+          {%- if section.settings.heading != blank -%}
+            <{{ section.settings.seo_h_tag }} class="troperks-columns__title">{{ section.settings.heading | escape }}</{{ section.settings.seo_h_tag }}>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <div class="troperks-columns__subheading rte">{{ section.settings.subheading }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="troperks-columns__grid">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'text_block' -%}
+              {%- capture text_style -%}
+                font-size: {{ block.settings.text_font_size }}px;
+                text-align: {{ block.settings.text_alignment }};
+                margin-top: {{ block.settings.text_top_spacing }}px;
+                margin-bottom: {{ block.settings.text_spacing }}px;
+                {%- if block.settings.text_font_weight_bold -%} font-weight: 700; {%- endif -%}
+              {%- endcapture -%}
+              <div data-block-kind="text" {{ block.shopify_attributes }}>
+                <div class="troperks-columns__text-block rte" style="{{ text_style }}">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+
+            {%- when 'offer_card' -%}
+              {%- liquid
+                assign gap_above_logo = 0
+                assign gap_below_logo = 24
+                assign gap_below_title = 16
+                assign gap_below_caption = 24
+                assign gap_below_link = 0
+
+                if block.settings.override_spacing
+                  assign gap_above_logo = block.settings.gap_above_logo
+                  assign gap_below_logo = block.settings.gap_below_logo
+                  assign gap_below_title = block.settings.gap_below_title
+                  assign gap_below_caption = block.settings.gap_below_caption
+                  assign gap_below_link = block.settings.gap_below_link
+                endif
+              -%}
+              <div data-block-kind="card">
+                <article class="troperks-columns__card {{ section.settings.block_text_alignment }}" {{ block.shopify_attributes }}>
+                  <div class="troperks-columns__card-inner" style="padding-top: {{ 22 | plus: gap_above_logo }}px; padding-bottom: {{ 22 | plus: gap_below_link }}px;">
+                    {%- if block.settings.logo != blank -%}
+                      <div class="troperks-columns__card-logo" style="margin-bottom: {{ gap_below_logo }}px;">
+                        {%- liquid
+                          assign offer_card_logo_alt = block.settings.title | escape
+                        -%}
+                        {{
+                          block.settings.logo
+                          | image_url: width: 240
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '120, 180, 240',
+                            sizes: '240px',
+                            alt: offer_card_logo_alt
+                        }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.title != blank -%}
+                      <{{ block.settings.seo_h_tag }} class="troperks-columns__card-title h4" style="margin-bottom: {{ gap_below_title }}px;">
+                        <span class="text-underline">{{ block.settings.title | escape }}</span>
+                      </{{ block.settings.seo_h_tag }}>
+                    {%- endif -%}
+
+                    {%- if block.settings.caption != blank -%}
+                      <div class="troperks-columns__card-caption rte" style="margin-bottom: {{ gap_below_caption }}px;">
+                        {{ block.settings.caption }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.link_text != blank and block.settings.link_url != blank -%}
+                      <a
+                        class="troperks-columns__text-link button button--cta button--small"
+                        href="{{ block.settings.link_url }}"
+                        style="--color-link: {{ block.settings.link_color.red }}, {{ block.settings.link_color.green }}, {{ block.settings.link_color.blue }}; --color-border: {{ block.settings.link_color.red }}, {{ block.settings.link_color.green }}, {{ block.settings.link_color.blue }};"
+                      >
+                        <span class="label">{{ block.settings.link_text }}</span>
+                        {% render 'icon', icon: 'arrow' %}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                </article>
+              </div>
+
+            {%- when 'offer_card_v2' -%}
+              {%- liquid
+                assign gap_above_logo = 0
+                assign gap_below_logo = 24
+                assign gap_below_title = 16
+                assign gap_below_caption = 24
+                assign gap_below_link = 0
+                if block.settings.override_spacing
+                  assign gap_above_logo = block.settings.gap_above_logo
+                  assign gap_below_logo = block.settings.gap_below_logo
+                  assign gap_below_title = block.settings.gap_below_title
+                  assign gap_below_caption = block.settings.gap_below_caption
+                  assign gap_below_link = block.settings.gap_below_link
+                endif
+
+                assign content_padding_top = section.settings.content_padding_top | default: 24
+                assign content_padding_bottom = section.settings.content_padding_bottom | default: 24
+                assign details_margin_top = section.settings.details_margin_top | default: 0
+                assign details_margin_bottom = section.settings.details_margin_bottom | default: 0
+                assign card_max_height = section.settings.card_max_height | default: 0
+                assign collapsed_padding_top = section.settings.collapsed_padding_top | default: content_padding_top
+                assign collapsed_padding_bottom = section.settings.collapsed_padding_bottom | default: content_padding_bottom
+
+                if block.settings.content_padding_top != blank
+                  assign content_padding_top = block.settings.content_padding_top
+                endif
+                if block.settings.content_padding_bottom != blank
+                  assign content_padding_bottom = block.settings.content_padding_bottom
+                endif
+                if block.settings.details_margin_top != blank
+                  assign details_margin_top = block.settings.details_margin_top
+                endif
+                if block.settings.details_margin_bottom != blank
+                  assign details_margin_bottom = block.settings.details_margin_bottom
+                endif
+                if block.settings.card_max_height != blank
+                  assign card_max_height = block.settings.card_max_height
+                endif
+                if block.settings.collapsed_padding_top != blank
+                  assign collapsed_padding_top = block.settings.collapsed_padding_top
+                endif
+                if block.settings.collapsed_padding_bottom != blank
+                  assign collapsed_padding_bottom = block.settings.collapsed_padding_bottom
+                endif
+
+                assign inner_padding_top = content_padding_top | plus: gap_above_logo
+                assign inner_padding_bottom = content_padding_bottom | plus: gap_below_link
+                assign collapsed_inner_padding_top = collapsed_padding_top | plus: gap_above_logo
+                assign collapsed_inner_padding_bottom = collapsed_padding_bottom | plus: gap_below_link
+
+                assign card_style_vars = '--card-expanded-padding-top:' | append: inner_padding_top | append: 'px;'
+                assign card_style_vars = card_style_vars | append: '--card-expanded-padding-bottom:' | append: inner_padding_bottom | append: 'px;'
+                assign card_style_vars = card_style_vars | append: '--card-collapsed-padding-top:' | append: collapsed_inner_padding_top | append: 'px;'
+                assign card_style_vars = card_style_vars | append: '--card-collapsed-padding-bottom:' | append: collapsed_inner_padding_bottom | append: 'px;'
+                if card_max_height != blank and card_max_height > 0
+                  assign card_style_vars = card_style_vars | append: '--card-collapsed-height:' | append: card_max_height | append: 'px;'
+                endif
+              -%}
+              <div data-block-kind="card">
+                <article class="troperks-columns__card-v2 {{ section.settings.block_text_alignment }}" data-troperks-offer-card-v2 tabindex="0" aria-expanded="false" style="{{ card_style_vars }}" {{ block.shopify_attributes }}>
+                  <div class="troperks-columns__card-v2-inner">
+                    {%- if block.settings.logo != blank -%}
+                      <div class="troperks-columns__card-v2-logo" style="margin-bottom: {{ gap_below_logo }}px;">
+                        {%- liquid
+                          assign offer_card_v2_logo_alt = block.settings.title | escape
+                        -%}
+                        {{
+                          block.settings.logo
+                          | image_url: width: 240
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '120, 180, 240',
+                            sizes: '240px',
+                            alt: offer_card_v2_logo_alt
+                        }}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.title != blank -%}
+                      <{{ block.settings.seo_h_tag }} class="troperks-columns__card-v2-title h4" style="margin-bottom: {{ gap_below_title }}px;">
+                        <span class="text-underline">{{ block.settings.title | escape }}</span>
+                      </{{ block.settings.seo_h_tag }}>
+                    {%- endif -%}
+
+                    <div class="troperks-columns__card-v2-details" data-troperks-offer-card-v2-details aria-hidden="true" style="margin-top: {{ details_margin_top }}px; margin-bottom: {{ details_margin_bottom }}px;">
+                      {%- if block.settings.caption != blank -%}
+                        <div class="troperks-columns__card-v2-caption rte" style="margin-bottom: {{ gap_below_caption }}px;">
+                          {{ block.settings.caption }}
+                        </div>
+                      {%- endif -%}
+
+                      {%- if block.settings.link_text != blank and block.settings.link_url != blank -%}
+                        <a
+                          class="troperks-columns__text-link button button--cta button--small"
+                          href="{{ block.settings.link_url }}"
+                          style="--color-link: {{ block.settings.link_color.red }}, {{ block.settings.link_color.green }}, {{ block.settings.link_color.blue }}; --color-border: {{ block.settings.link_color.red }}, {{ block.settings.link_color.green }}, {{ block.settings.link_color.blue }};"
+                        >
+                          <span class="label">{{ block.settings.link_text }}</span>
+                          {% render 'icon', icon: 'arrow' %}
+                        </a>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            {%- when 'offer_card_with_image' -%}
+              {%- liquid
+                assign gap_above_logo = 0
+                assign gap_below_logo = 24
+                assign gap_below_title = 16
+                assign gap_below_caption = 24
+                assign gap_below_link = 0
+                if block.settings.override_spacing
+                  assign gap_above_logo = block.settings.gap_above_logo
+                  assign gap_below_logo = block.settings.gap_below_logo
+                  assign gap_below_title = block.settings.gap_below_title
+                  assign gap_below_caption = block.settings.gap_below_caption
+                  assign gap_below_link = block.settings.gap_below_link
+                endif
+
+                assign media_ratio = block.settings.image_width_ratio | default: 40
+                assign content_ratio = 100 | minus: media_ratio
+                assign with_image_image_field = block.settings.image
+                assign with_image_image = block.settings.image.value | default: block.settings.image
+                assign with_image_image_url = blank
+                assign with_image_logo = block.settings.logo.value | default: block.settings.logo
+                assign with_image_logo_source = with_image_logo
+                assign with_image_logo_url = blank
+                assign with_image_title = block.settings.title.value | default: block.settings.title
+                assign with_image_caption_field = block.settings.caption
+                assign with_image_link_text = block.settings.link_text.value | default: block.settings.link_text
+                assign with_image_link_url = block.settings.link_url.value | default: block.settings.link_url
+                assign with_image_logo_width = block.settings.logo_width | times: 2
+                assign with_image_logo_style = 'max-width:' | append: block.settings.logo_width | append: 'px;height:auto;'
+                assign with_image_image_alt = with_image_title
+                assign with_image_logo_height = block.settings.logo_width
+
+                if with_image_image != blank
+                  assign with_image_image_url = with_image_image | image_url: width: 1800
+
+                  if with_image_image_url == blank
+                    assign with_image_image_url = with_image_image.preview_image | image_url: width: 1800
+                    if with_image_image.preview_image.alt != blank
+                      assign with_image_image_alt = with_image_image.preview_image.alt
+                    elsif with_image_image.alt != blank
+                      assign with_image_image_alt = with_image_image.alt
+                    endif
+                  else
+                    if with_image_image.alt != blank
+                      assign with_image_image_alt = with_image_image.alt
+                    endif
+                  endif
+
+                  if with_image_image_url == blank
+                    assign with_image_first_image = with_image_image | first
+                    if with_image_first_image != blank
+                      assign with_image_image_url = with_image_first_image | image_url: width: 1800
+                      if with_image_image_url == blank
+                        assign with_image_image_url = with_image_first_image.preview_image | image_url: width: 1800
+                      endif
+                      assign with_image_image_alt = with_image_first_image.alt | default: with_image_first_image.preview_image.alt | default: with_image_title
+                    endif
+                  endif
+                endif
+
+                if with_image_logo != blank
+                  assign with_image_logo_url = with_image_logo | image_url: width: with_image_logo_width
+
+                  if with_image_logo_url == blank
+                    assign with_image_logo_url = with_image_logo.preview_image | image_url: width: with_image_logo_width
+                  endif
+
+                  if with_image_logo_url == blank
+                    assign with_image_first_logo = with_image_logo | first
+                    if with_image_first_logo != blank
+                      assign with_image_logo_source = with_image_first_logo
+                      assign with_image_logo_url = with_image_first_logo | image_url: width: with_image_logo_width
+                      if with_image_logo_url == blank
+                        assign with_image_logo_url = with_image_first_logo.preview_image | image_url: width: with_image_logo_width
+                      endif
+                    endif
+                  endif
+
+                  if with_image_logo_source.aspect_ratio != blank
+                    assign with_image_logo_height = block.settings.logo_width | divided_by: with_image_logo_source.aspect_ratio | round
+                  elsif with_image_logo_source.preview_image.aspect_ratio != blank
+                    assign with_image_logo_height = block.settings.logo_width | divided_by: with_image_logo_source.preview_image.aspect_ratio | round
+                  endif
+                endif
+              -%}
+              <div data-block-kind="card" style="grid-column: 1 / -1;">
+                <article class="troperks-columns__card-with-image" {{ block.shopify_attributes }}>
+                  <div
+                    class="troperks-columns__card-with-image-grid troperks-columns__card-with-image-grid--{{ block.settings.image_position }}"
+                    style="--troperks-columns-card-with-image-gap: {{ block.settings.image_text_gap }}px; --troperks-columns-card-with-image-gap-mobile: {{ block.settings.image_text_gap_mobile }}px; --troperks-columns-card-with-image-media-width: {{ media_ratio }}fr; --troperks-columns-card-with-image-content-width: {{ content_ratio }}fr;"
+                  >
+                    {%- unless block.settings.image_position == 'no-image' -%}
+                      <div class="troperks-columns__card-with-image-media">
+                        <use-animate data-animate="zoom-fade" class="media-wrapper">
+                          {%- if with_image_image_url != blank -%}
+                            <img
+                              src="{{ with_image_image_url }}"
+                              alt="{{ with_image_image_alt | strip_html | escape }}"
+                              loading="lazy"
+                              class="troperks-columns__card-with-image-image"
+                              width="1800"
+                              height="1200"
+                            >
+                          {%- elsif with_image_image_field != blank and with_image_image_field.value != blank -%}
+                            {{ with_image_image_field | metafield_tag }}
+                          {%- else -%}
+                            {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+                          {%- endif -%}
+                        </use-animate>
+                      </div>
+                    {%- endunless -%}
+
+                    <div class="troperks-columns__card-with-image-content">
+                      <div class="troperks-columns__card-with-image-copy {{ block.settings.text_alignment }}">
+                        {%- if with_image_logo != blank -%}
+                          <div class="troperks-columns__card-logo" style="margin-top: {{ gap_above_logo }}px; margin-bottom: {{ gap_below_logo }}px;">
+                            {%- if with_image_logo_url != blank -%}
+                              <img
+                                src="{{ with_image_logo_url }}"
+                                alt="{{ with_image_title | strip_html | escape }}"
+                                loading="lazy"
+                                width="{{ block.settings.logo_width }}"
+                                height="{{ with_image_logo_height }}"
+                                style="{{ with_image_logo_style }}"
+                              >
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+
+                        {%- if with_image_title != blank -%}
+                          <{{ block.settings.seo_h_tag }} class="troperks-columns__card-with-image-title h4" style="margin-bottom: {{ gap_below_title }}px; font-size: {{ block.settings.title_font_size }}px; font-weight: {% if block.settings.title_font_weight_bold %}700{% else %}500{% endif %};">
+                            {{ with_image_title }}
+                          </{{ block.settings.seo_h_tag }}>
+                        {%- endif -%}
+
+                        {%- if with_image_caption_field != blank -%}
+                          <div class="troperks-columns__card-with-image-caption rte" style="margin-bottom: {{ gap_below_caption }}px; font-size: {{ block.settings.caption_font_size }}px; font-weight: {% if block.settings.caption_font_weight_bold %}700{% else %}400{% endif %};">
+                            {%- if with_image_caption_field.type == 'rich_text_field' -%}
+                              {{ with_image_caption_field | metafield_tag }}
+                            {%- elsif with_image_caption_field.value != blank -%}
+                              {{ with_image_caption_field.value }}
+                            {%- else -%}
+                              {{ with_image_caption_field }}
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+
+                        {%- if with_image_link_text != blank and with_image_link_url != blank -%}
+                          <a
+                            href="{{ with_image_link_url }}"
+                            class="troperks-columns__text-link button button--cta button--small"
+                            style="--color-link: {{ block.settings.link_color.red }}, {{ block.settings.link_color.green }}, {{ block.settings.link_color.blue }}; --color-border: {{ block.settings.link_color.red }}, {{ block.settings.link_color.green }}, {{ block.settings.link_color.blue }};"
+                          >
+                            <span class="label">{{ with_image_link_text }}</span>
+                            {% render 'icon', icon: 'arrow' %}
+                          </a>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            {%- when 'dynamic_offers_v2' -%}
+              <div data-block-kind="dynamic" {{ block.shopify_attributes }}>
+                {%- if block.settings.metaobject_definition != blank -%}
+                  {%- assign troperks_offers = shop.metaobjects[block.settings.metaobject_definition].values -%}
+                  {%- if troperks_offers != blank and troperks_offers.size > 0 -%}
+                    <div
+                      class="troperks-columns__dynamic-grid"
+                      style="--dynamic-grid-gap: {{ block.settings.column_gap }}px; --dynamic-grid-columns-mobile: {{ block.settings.columns_mobile }}; --dynamic-grid-columns-tablet: {{ block.settings.columns_tablet }}; --dynamic-grid-columns-desktop: {{ block.settings.columns_desktop }}; --dynamic-grid-columns-ultrawide: {{ block.settings.columns_ultrawide }};"
+                    >
+                      {%- for metaobject in troperks_offers -%}
+                        {%- liquid
+                          assign content_padding_top = section.settings.content_padding_top | default: 24
+                          assign content_padding_bottom = section.settings.content_padding_bottom | default: 24
+                          assign details_margin_top = section.settings.details_margin_top | default: 0
+                          assign details_margin_bottom = section.settings.details_margin_bottom | default: 0
+                          assign card_max_height = section.settings.card_max_height | default: 0
+                          assign collapsed_padding_top = section.settings.collapsed_padding_top | default: content_padding_top
+                          assign collapsed_padding_bottom = section.settings.collapsed_padding_bottom | default: content_padding_bottom
+                          assign inner_padding_top = content_padding_top
+                          assign inner_padding_bottom = content_padding_bottom
+                          assign collapsed_inner_padding_top = collapsed_padding_top
+                          assign collapsed_inner_padding_bottom = collapsed_padding_bottom
+
+                          assign dynamic_heading_tag = metaobject.seo_h_tag | default: 'h3'
+                          assign dynamic_title_size = block.settings.perk_name_size | default: 'medium'
+                          assign dynamic_description_size = block.settings.short_description_size | default: 'medium'
+                          assign dynamic_card_style_vars = '--card-expanded-padding-top:' | append: inner_padding_top | append: 'px;'
+                          assign dynamic_card_style_vars = dynamic_card_style_vars | append: '--card-expanded-padding-bottom:' | append: inner_padding_bottom | append: 'px;'
+                          assign dynamic_card_style_vars = dynamic_card_style_vars | append: '--card-collapsed-padding-top:' | append: collapsed_inner_padding_top | append: 'px;'
+                          assign dynamic_card_style_vars = dynamic_card_style_vars | append: '--card-collapsed-padding-bottom:' | append: collapsed_inner_padding_bottom | append: 'px;'
+                          if card_max_height != blank and card_max_height > 0
+                            assign dynamic_card_style_vars = dynamic_card_style_vars | append: '--card-collapsed-height:' | append: card_max_height | append: 'px;'
+                          endif
+                        -%}
+                        <article class="troperks-columns__card-v2 {{ section.settings.block_text_alignment }}" data-troperks-offer-card-v2 tabindex="0" aria-expanded="false" style="{{ dynamic_card_style_vars }}">
+                          <div class="troperks-columns__card-v2-inner">
+                            {%- if metaobject.logo != blank -%}
+                              <div class="troperks-columns__card-v2-logo" style="margin-bottom: 24px;">
+                                {%- liquid
+                                  assign dynamic_offer_logo_alt = metaobject.title | escape
+                                -%}
+                                {{
+                                  metaobject.logo
+                                  | image_url: width: 240
+                                  | image_tag:
+                                    loading: 'lazy',
+                                    widths: '120, 180, 240',
+                                    sizes: '240px',
+                                    alt: dynamic_offer_logo_alt
+                                }}
+                              </div>
+                            {%- endif -%}
+
+                            {%- if metaobject.title != blank -%}
+                              <{{ dynamic_heading_tag }} class="troperks-columns__card-v2-title troperks-columns__card-v2-title--{{ dynamic_title_size }} h4" style="margin-bottom: 16px;">
+                                <span class="text-underline">{{ metaobject.title | escape }}</span>
+                              </{{ dynamic_heading_tag }}>
+                            {%- endif -%}
+
+                            <div class="troperks-columns__card-v2-details" data-troperks-offer-card-v2-details aria-hidden="true" style="margin-top: {{ details_margin_top }}px; margin-bottom: {{ details_margin_bottom }}px;">
+                              {%- if metaobject.short_description != blank -%}
+                                <div class="troperks-columns__card-v2-caption troperks-columns__card-v2-caption--{{ dynamic_description_size }} rte" style="margin-bottom: 24px;">
+                                  {{ metaobject.short_description }}
+                                </div>
+                              {%- endif -%}
+
+                              {%- if metaobject.page_url != blank -%}
+                                <a
+                                  class="troperks-columns__text-link button button--cta button--small"
+                                  href="{{ metaobject.page_url }}"
+                                  style="--color-link: {{ block.settings.button_color.red }}, {{ block.settings.button_color.green }}, {{ block.settings.button_color.blue }}; --color-border: {{ block.settings.button_color.red }}, {{ block.settings.button_color.green }}, {{ block.settings.button_color.blue }};"
+                                >
+                                  <span class="label">Learn more</span>
+                                  {% render 'icon', icon: 'arrow' %}
+                                </a>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        </article>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    if (window.__TroperksColumnsOfferCardsV2) return;
+    window.__TroperksColumnsOfferCardsV2 = true;
+
+    const cardSelector = '[data-troperks-offer-card-v2]';
+    const detailsSelector = '[data-troperks-offer-card-v2-details]';
+
+    const setExpandedState = (card, expanded) => {
+      const details = card.querySelector(detailsSelector);
+      card.classList.toggle('is-active', expanded);
+      card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      if (details) {
+        details.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      }
+    };
+
+    const collapseOthers = (exceptCard) => {
+      document.querySelectorAll(`${cardSelector}.is-active`).forEach((card) => {
+        if (card !== exceptCard) {
+          setExpandedState(card, false);
+        }
+      });
+    };
+
+    document.addEventListener('click', (event) => {
+      const card = event.target.closest(cardSelector);
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      if (!card) {
+        collapseOthers(null);
+        return;
+      }
+
+      if (finePointer) {
+        return;
+      }
+
+      const clickedLink = event.target.closest('a');
+      const isExpanded = card.classList.contains('is-active');
+
+      if (!isExpanded) {
+        if (clickedLink) {
+          event.preventDefault();
+        }
+        collapseOthers(card);
+        setExpandedState(card, true);
+        return;
+      }
+
+      if (!clickedLink) {
+        setExpandedState(card, false);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "TroPerks Columns v2",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "TroPerks offers"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 16,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 40
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "select",
+      "id": "section_heading_layout",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "section-heading--left", "label": "Left" },
+        { "value": "section-heading--center", "label": "Center" }
+      ],
+      "default": "section-heading--left"
+    },
+    {
+      "type": "select",
+      "id": "seo_h_tag",
+      "label": "Heading tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "span", "label": "span" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Grid gap",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_min_width",
+      "min": 220,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "label": "Card minimum width",
+      "default": 280
+    },
+    {
+      "type": "select",
+      "id": "block_text_alignment",
+      "label": "Default card text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Expandable cards"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Content top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Content bottom padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "collapsed_padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Collapsed top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "collapsed_padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Collapsed bottom padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_max_height",
+      "min": 0,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Card max height (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "details_margin_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Details top margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "details_margin_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Details bottom margin",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_link_color",
+      "label": "Card link color",
+      "default": "#2d5bff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#ffb503"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#6b7280"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "default": false,
+      "label": "Show divider"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "TroPerks Text Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text content",
+          "default": "<p>Add your custom text here.</p>"
+        },
+        {
+          "type": "range",
+          "id": "text_font_size",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size",
+          "default": 16
+        },
+        {
+          "type": "checkbox",
+          "id": "text_font_weight_bold",
+          "label": "Bold text",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "text_top_spacing",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "label": "Top spacing",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "text_spacing",
+          "min": 0,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "label": "Bottom spacing",
+          "default": 20
+        }
+      ]
+    },
+    {
+      "type": "offer_card",
+      "name": "TroPerks Offer Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Offer name"
+        },
+        {
+          "type": "richtext",
+          "id": "caption",
+          "label": "Caption",
+          "default": "<p>Describe the offer in one or two short lines.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "override_spacing",
+          "label": "Override default spacing",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "gap_above_logo",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap above logo",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "gap_below_logo",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below logo",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap_below_title",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below title",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "gap_below_caption",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below caption",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap_below_link",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below link",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link color",
+          "default": "#2d5bff"
+        },
+        {
+          "type": "select",
+          "id": "seo_h_tag",
+          "label": "Heading tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "span", "label": "span" }
+          ],
+          "default": "h3"
+        }
+      ]
+    },
+    {
+      "type": "offer_card_v2",
+      "name": "TroPerks Offer Card V2",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Offer name"
+        },
+        {
+          "type": "richtext",
+          "id": "caption",
+          "label": "Caption",
+          "default": "<p>Describe the offer in more detail.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "override_spacing",
+          "label": "Override default spacing",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "gap_above_logo",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap above logo",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "gap_below_logo",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below logo",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap_below_title",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below title",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "gap_below_caption",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below caption",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap_below_link",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below link",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "content_padding_top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "Content top padding override",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "content_padding_bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "Content bottom padding override",
+          "default": 24
+        },
+        {
+          "type": "number",
+          "id": "collapsed_padding_top",
+          "label": "Collapsed top padding override"
+        },
+        {
+          "type": "number",
+          "id": "collapsed_padding_bottom",
+          "label": "Collapsed bottom padding override"
+        },
+        {
+          "type": "range",
+          "id": "card_max_height",
+          "min": 0,
+          "max": 800,
+          "step": 20,
+          "unit": "px",
+          "label": "Card max height override",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "details_margin_top",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "Details top margin override",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "details_margin_bottom",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "Details bottom margin override",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link color",
+          "default": "#2d5bff"
+        },
+        {
+          "type": "select",
+          "id": "seo_h_tag",
+          "label": "Heading tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "span", "label": "span" }
+          ],
+          "default": "h3"
+        }
+      ]
+    },
+    {
+      "type": "offer_card_with_image",
+      "name": "TroPerks Card + Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" },
+            { "value": "no-image", "label": "No image" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "range",
+          "id": "image_width_ratio",
+          "min": 20,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Image width ratio",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "image_text_gap",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap between image and text (desktop)",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "image_text_gap_mobile",
+          "min": 0,
+          "max": 60,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap between image and text (mobile)",
+          "default": 20
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            { "value": "horizontal-left", "label": "Left" },
+            { "value": "horizontal-center", "label": "Center" },
+            { "value": "horizontal-right", "label": "Right" }
+          ],
+          "default": "horizontal-left"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "min": 50,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "label": "Logo max width",
+          "default": 200
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "min": 16,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Title font size",
+          "default": 24
+        },
+        {
+          "type": "checkbox",
+          "id": "title_font_weight_bold",
+          "label": "Bold title",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "caption",
+          "label": "Caption",
+          "default": "<p>Describe the offer here.</p>"
+        },
+        {
+          "type": "range",
+          "id": "caption_font_size",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Caption font size",
+          "default": 16
+        },
+        {
+          "type": "checkbox",
+          "id": "caption_font_weight_bold",
+          "label": "Bold caption",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link color",
+          "default": "#2d5bff"
+        },
+        {
+          "type": "range",
+          "id": "link_font_size",
+          "min": 12,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Link font size",
+          "default": 16
+        },
+        {
+          "type": "checkbox",
+          "id": "link_font_weight_bold",
+          "label": "Bold link",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "override_spacing",
+          "label": "Override default spacing",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "gap_above_logo",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap above logo",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "gap_below_logo",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below logo",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap_below_title",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below title",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "gap_below_caption",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below caption",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap_below_link",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Gap below link",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "seo_h_tag",
+          "label": "Heading tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "span", "label": "span" }
+          ],
+          "default": "h3"
+        }
+      ]
+    },
+    {
+      "type": "dynamic_offers_v2",
+      "name": "Dynamic TroPerks Offers",
+      "settings": [
+        {
+          "type": "text",
+          "id": "metaobject_definition",
+          "label": "Metaobject definition handle",
+          "info": "Example: tro_perks_offer"
+        },
+        {
+          "type": "select",
+          "id": "perk_name_size",
+          "label": "Perk name size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "select",
+          "id": "short_description_size",
+          "label": "Short description size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button color",
+          "default": "#2d5bff"
+        },
+        {
+          "type": "range",
+          "id": "column_gap",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap between columns",
+          "default": 30
+        },
+        {
+          "type": "select",
+          "id": "columns_ultrawide",
+          "label": "Columns (ultrawide)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" },
+            { "value": "5", "label": "5" }
+          ],
+          "default": "4"
+        },
+        {
+          "type": "select",
+          "id": "columns_desktop",
+          "label": "Columns (desktop)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" },
+            { "value": "3", "label": "3" },
+            { "value": "4", "label": "4" }
+          ],
+          "default": "3"
+        },
+        {
+          "type": "select",
+          "id": "columns_tablet",
+          "label": "Columns (tablet)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" }
+          ],
+          "default": "2"
+        },
+        {
+          "type": "select",
+          "id": "columns_mobile",
+          "label": "Columns (mobile)",
+          "options": [
+            { "value": "1", "label": "1" },
+            { "value": "2", "label": "2" }
+          ],
+          "default": "1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TroPerks Columns v2",
+      "blocks": [
+        { "type": "text_block" },
+        { "type": "dynamic_offers_v2" },
+        { "type": "offer_card" },
+        { "type": "offer_card_v2" },
+        { "type": "offer_card_with_image" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  }
+}
+{% endschema %}

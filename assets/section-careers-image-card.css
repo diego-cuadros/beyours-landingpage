@@ -1,0 +1,179 @@
+.careers-image-card {
+  position: relative;
+  display: grid;
+  background: rgb(var(--careers-image-card-surface));
+  overflow: clip;
+}
+
+.careers-image-card__media {
+  position: relative;
+  grid-area: 1 / 1;
+  z-index: 0;
+}
+
+.careers-image-card__content {
+  position: relative;
+  grid-area: 1 / 1;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  padding-block: var(--careers-image-card-safe-padding-desktop);
+}
+
+.careers-image-card__content.page-width {
+  width: 100%;
+}
+
+.careers-image-card__inner {
+  width: min(100%, var(--careers-image-card-content-max-width));
+  margin-left: var(--careers-image-card-content-offset);
+  pointer-events: auto;
+}
+
+.careers-image-card__eyebrow {
+  margin: 0 0 1.4rem;
+  color: rgb(var(--careers-image-card-eyebrow));
+  font-size: var(--careers-image-card-eyebrow-size-desktop);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.careers-image-card__panel {
+  padding: clamp(2.2rem, 2.6vw, 3.2rem);
+  border-radius: 1.6rem;
+  background: rgba(var(--careers-image-card-panel-background), var(--careers-image-card-panel-opacity));
+  border: 0.1rem solid rgba(var(--careers-image-card-panel-border), 0.18);
+  box-shadow: 0 1.6rem 5rem rgba(24, 20, 16, 0.16);
+  backdrop-filter: blur(1.6rem);
+  -webkit-backdrop-filter: blur(1.6rem);
+}
+
+.careers-image-card__title {
+  margin: 0;
+  color: rgb(var(--careers-image-card-title));
+}
+
+.careers-image-card__body {
+  margin-top: 1.2rem;
+  color: rgb(var(--careers-image-card-text));
+}
+
+.careers-image-card__body,
+.careers-image-card__body p,
+.careers-image-card__body li {
+  font-size: clamp(1.55rem, 1.15vw, 1.85rem);
+  line-height: 1.42;
+}
+
+.careers-image-card__body > * {
+  margin: 0;
+}
+
+.careers-image-card__body p + p,
+.careers-image-card__body p + ul,
+.careers-image-card__body ul + p {
+  margin-top: 1rem;
+}
+
+.careers-image-card__body ul,
+.careers-image-card__body ol {
+  margin: 1rem 0 0;
+  padding-left: 1.9rem;
+}
+
+.careers-image-card__body li + li {
+  margin-top: 0.45rem;
+}
+
+.careers-image-card__button {
+  margin-top: 1.8rem;
+}
+
+@media screen and (min-width: 750px) {
+  .careers-image-card__content {
+    min-height: max(
+      var(--careers-image-card-min-height-desktop),
+      calc(var(--careers-image-card-safe-padding-desktop) * 2)
+    );
+  }
+
+  .careers-image-card__media {
+    min-height: var(--careers-image-card-min-height-desktop);
+  }
+
+  .careers-image-card__media,
+  .careers-image-card__media .media-wrapper,
+  .careers-image-card__media .media {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .careers-image-card__media .media--adapt {
+    height: 100%;
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 989px) and (min-width: 750px) {
+  .careers-image-card__inner {
+    margin-left: clamp(2.4rem, 5vw, 5rem);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .careers-image-card {
+    display: block;
+    background: rgb(var(--careers-image-card-surface-mobile));
+  }
+
+  .careers-image-card__content {
+    position: relative;
+    display: block;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .page-width--full-width .careers-image-card__content.page-width {
+    padding: 0;
+  }
+
+  .careers-image-card__inner {
+    width: 100%;
+    margin-left: 0;
+    padding: var(--careers-image-card-safe-padding-mobile) 1.6rem 0;
+  }
+
+  .careers-image-card__eyebrow {
+    margin-bottom: 1.6rem;
+    color: rgb(var(--careers-image-card-eyebrow-mobile));
+    font-size: var(--careers-image-card-eyebrow-size-mobile);
+  }
+
+  .careers-image-card__panel {
+    padding: 1.8rem 1.6rem;
+    background: rgb(var(--careers-image-card-panel-background-mobile));
+    border-color: rgba(var(--careers-image-card-panel-border-mobile), 1);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .careers-image-card__body,
+  .careers-image-card__body p,
+  .careers-image-card__body li {
+    font-size: 1.5rem;
+    line-height: 1.45;
+  }
+
+  .careers-image-card__button {
+    margin-top: 1.6rem;
+  }
+
+  .careers-image-card__media .media-mobile--auto {
+    height: auto;
+  }
+
+  .careers-image-card__media .media-mobile--auto .image-fit {
+    height: auto;
+  }
+}

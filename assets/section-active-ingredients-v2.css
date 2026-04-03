@@ -1,0 +1,219 @@
+.active-ingredients--v2 .active-ingredients-v2__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+
+.active-ingredients--v2 .guarantee__item {
+  height: auto;
+  min-height: 100%;
+}
+
+.active-ingredients--v2 .title-wrapper {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.active-ingredients--v2 .title-wrapper.center {
+  align-items: center;
+  text-align: center;
+}
+
+.active-ingredients--v2 .title-wrapper.right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.active-ingredients--v2 .guarantees__subheading {
+  margin: 0;
+}
+
+.active-ingredients--v2 .guarantee__media .media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-ingredients--v2:not(.guarantees--v2-fixed-image-height) .guarantee__media .media--square {
+  padding-bottom: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.active-ingredients--v2:not(.guarantees--v2-fixed-image-height) .guarantee__media .media--landscape {
+  padding-bottom: 0;
+  aspect-ratio: 3 / 2;
+}
+
+.active-ingredients--v2:not(.guarantees--v2-fixed-image-height) .guarantee__media .media--wide {
+  padding-bottom: 0;
+  aspect-ratio: 16 / 9;
+}
+
+.active-ingredients--v2:not(.guarantees--v2-fixed-image-height) .guarantee__media .media--adapt {
+  height: auto;
+  padding-bottom: 0;
+  aspect-ratio: var(--active-ingredients-image-aspect-ratio);
+}
+
+.active-ingredients--v2.guarantees--v2-fixed-image-height .guarantee__media .media {
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.active-ingredients--v2 .guarantee__media .image-fit {
+  object-fit: contain;
+  object-position: center center;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__icon-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__dose-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 22px);
+  grid-template-rows: repeat(2, 22px);
+  gap: 3px;
+  justify-content: center;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__dose-square {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  color: rgb(var(--color-foreground));
+  box-shadow: inset 0 0 0 1px currentColor;
+  background: transparent;
+  display: inline-block;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__dose-square--filled {
+  background: currentColor;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__dose-square--empty {
+  background: transparent;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__content .h3 {
+  margin: 0.7rem 0 0.5rem;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__link {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 1.2rem;
+}
+
+.active-ingredients--v2 .active-ingredients-v2__link a {
+  color: rgb(var(--color-link));
+}
+
+.active-ingredients--v2 .active-ingredients-v2__empty {
+  padding: 2rem 0;
+}
+
+@media screen and (max-width: 749px) {
+  .active-ingredients--v2 .active-ingredients-v2__track-wrapper {
+    position: relative;
+    padding-inline-start: 2rem;
+    padding-inline-end: 2rem;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide {
+    width: var(--active-ingredients-v2-mobile-card-width, calc(100% - 3rem));
+    max-width: var(--active-ingredients-v2-mobile-card-width, calc(100% - 3rem));
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__track-wrapper {
+    overflow: hidden;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile {
+    display: block;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding: 1rem 0 2rem;
+    margin-top: -1rem;
+    margin-inline: calc(var(--active-ingredients-v2-mobile-track-offset, 4rem) * -1);
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile .flickity-viewport {
+    overflow: visible;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide {
+    opacity: 0;
+    z-index: 1;
+    transition:
+      opacity var(--duration-default) ease,
+      transform var(--duration-default) ease;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .guarantee__item {
+    transform: scale(0.88);
+    transform-origin: center center;
+    transition: transform var(--duration-default) ease;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide.is-selected {
+    opacity: 1;
+    z-index: 3;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide.is-selected .guarantee__item {
+    transform: scale(1);
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide.is-next,
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide.is-previous {
+    opacity: var(--active-ingredients-v2-side-opacity-mobile, 0.55);
+    z-index: 2;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide.is-next .guarantee__item,
+  .active-ingredients--v2 .active-ingredients-v2__component.is-mobile-carousel .active-ingredients-v2__list.slider--mobile > .flex-grid__item.slider__slide.is-previous .guarantee__item {
+    transform: scale(0.95);
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 0;
+    padding: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    background-color: rgba(var(--color-foreground), 0.25);
+    opacity: 0.6;
+    transition:
+      opacity var(--duration-default) ease,
+      background-color var(--duration-default) ease;
+  }
+
+  .active-ingredients--v2 .active-ingredients-v2__dot.is-active {
+    opacity: 1;
+    background-color: rgb(var(--color-foreground));
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .active-ingredients--v2 .active-ingredients-v2__list--center-desktop {
+    justify-content: center;
+  }
+}

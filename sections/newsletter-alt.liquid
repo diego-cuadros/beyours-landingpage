@@ -1,0 +1,442 @@
+{%- liquid
+  assign visual_image = section.settings.visual_image
+  assign visual_image_mobile = section.settings.visual_image_mobile | default: visual_image
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --newsletter-alt-background: {{ section.settings.background_color }};
+    --newsletter-alt-text: {{ section.settings.text_color }};
+    --newsletter-alt-subtext: {{ section.settings.subtext_color }};
+    --newsletter-alt-form-background: {{ section.settings.form_background }};
+    --newsletter-alt-form-border: {{ section.settings.form_border }};
+    --newsletter-alt-form-text: {{ section.settings.form_text }};
+    --newsletter-alt-accent-line: {{ section.settings.accent_line_color }};
+    --newsletter-alt-visual-scale: {{ section.settings.visual_scale | divided_by: 100.0 }};
+    --newsletter-alt-visual-offset-x: {{ section.settings.visual_offset_x }}px;
+    --newsletter-alt-visual-offset-y: {{ section.settings.visual_offset_y }}px;
+    --newsletter-alt-visual-scale-mobile: {{ section.settings.visual_scale_mobile | divided_by: 100.0 }};
+    --newsletter-alt-visual-offset-x-mobile: {{ section.settings.visual_offset_x_mobile }}px;
+    --newsletter-alt-visual-offset-y-mobile: {{ section.settings.visual_offset_y_mobile }}px;
+  }
+{%- endstyle -%}
+
+{{ 'section-newsletter-alt.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-newsletter.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="newsletter-alt-section">
+  <div class="newsletter-alt">
+    <div class="newsletter-alt__inner page-width">
+      <div class="newsletter-alt__visual" aria-hidden="true">
+        <div class="newsletter-alt__visual-media{% if visual_image == blank and visual_image_mobile == blank %} newsletter-alt__visual-media--placeholder{% endif %}">
+          {%- if visual_image != blank or visual_image_mobile != blank -%}
+            <picture class="newsletter-alt__visual-picture">
+              {%- if visual_image_mobile != blank -%}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="
+                    {{ visual_image_mobile | image_url: width: 360 }} 360w,
+                    {{ visual_image_mobile | image_url: width: 540 }} 540w,
+                    {{ visual_image_mobile | image_url: width: 720 }} 720w,
+                    {{ visual_image_mobile | image_url: width: 900 }} 900w
+                  "
+                >
+              {%- endif -%}
+              {{
+                visual_image
+                | default: visual_image_mobile
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '360, 540, 720, 900, 1100, 1400',
+                  sizes: '(min-width: 1200px) 42vw, (min-width: 990px) 38vw, calc(100vw - 3rem)',
+                  class: 'newsletter-alt__visual-image',
+                  alt: ''
+              }}
+            </picture>
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'newsletter-alt__visual-placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="newsletter-alt__content">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              <{{ block.settings.heading_tag }} class="newsletter-alt__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                {%- render 'highlight-text',
+                  hl_input: block.settings.heading,
+                  hl_style: block.settings.highlight_style,
+                  hl_enable: block.settings.enable_highlight,
+                  hl_animateWrap: true
+                -%}
+              </{{ block.settings.heading_tag }}>
+            {%- when 'paragraph' -%}
+              <div class="newsletter-alt__subheading rte" {{ block.shopify_attributes }}>
+                {%- render 'highlight-text',
+                  hl_input: block.settings.paragraph,
+                  hl_style: block.settings.highlight_style,
+                  hl_enable: block.settings.enable_highlight,
+                  hl_animateWrap: true
+                -%}
+              </div>
+            {%- when 'email_form' -%}
+              <div class="newsletter-alt__form-wrap" {{ block.shopify_attributes }}>
+                {%- assign return_url = section.settings.return_url | default: 'back' | append: '' -%}
+                {% form 'customer', class: 'newsletter-form newsletter-alt__form', return_to: return_url %}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <div class="newsletter-form__field-wrapper">
+                    <div class="field{% if form.errors %} field--error{% endif %}">
+                      <input
+                        id="NewsletterAltForm--{{ section.id }}"
+                        type="email"
+                        name="contact[email]"
+                        class="field__input required{% if form.errors %} invalid{% endif %}"
+                        value="{{ form.email }}"
+                        aria-required="true"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="email"
+                        {% if form.errors %}
+                          autofocus
+                          aria-invalid="true"
+                          aria-describedby="NewsletterAlt-error--{{ section.id }}"
+                        {% elsif form.posted_successfully? %}
+                          aria-describedby="NewsletterAlt-success--{{ section.id }}"
+                        {% endif %}
+                        placeholder="{{ 'newsletter.label' | t }}"
+                        required
+                      >
+                      <label class="visually-hidden" for="NewsletterAltForm--{{ section.id }}">{{ 'newsletter.label' | t }}</label>
+                      <button type="submit" class="field__button" name="commit" aria-label="{{ 'newsletter.button_label' | t }}">
+                        {% render 'icon', icon: 'arrow' %}
+                      </button>
+                    </div>
+                    {%- if form.errors -%}
+                      <small class="form__message errors" id="NewsletterAlt-error--{{ section.id }}">
+                        {% render 'icon', icon: 'error' %}
+                        {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                      </small>
+                    {%- endif -%}
+                  </div>
+                  {%- if form.posted_successfully? -%}
+                    <p class="form__message" id="NewsletterAlt-success--{{ section.id }}" tabindex="-1" autofocus>
+                      {% render 'icon', icon: 'success' %}
+                      {{ 'newsletter.success' | t }}
+                    </p>
+                  {%- endif -%}
+                {% endform %}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter alt",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "return_url",
+      "label": "t:sections.all.form.return_url.label",
+      "info": "t:sections.all.form.return_url.info"
+    },
+    {
+      "type": "header",
+      "content": "Section styling"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#9792da"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading color",
+      "default": "#faf8f4"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Body color",
+      "default": "#ebe8ff"
+    },
+    {
+      "type": "color",
+      "id": "form_background",
+      "label": "Form background",
+      "default": "#f7f3ed"
+    },
+    {
+      "type": "color",
+      "id": "form_border",
+      "label": "Form border",
+      "default": "#716e8d"
+    },
+    {
+      "type": "color",
+      "id": "form_text",
+      "label": "Form text",
+      "default": "#707074"
+    },
+    {
+      "type": "color",
+      "id": "accent_line_color",
+      "label": "Bottom accent line",
+      "default": "#0a7cd7"
+    },
+    {
+      "type": "header",
+      "content": "Visual"
+    },
+    {
+      "type": "image_picker",
+      "id": "visual_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "visual_image_mobile",
+      "label": "Mobile image",
+      "info": "Optional. Uses the desktop image when left empty."
+    },
+    {
+      "type": "range",
+      "id": "visual_scale",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "label": "Image scale",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "visual_offset_x",
+      "min": -300,
+      "max": 300,
+      "step": 6,
+      "unit": "px",
+      "label": "Image X offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "visual_offset_y",
+      "min": -300,
+      "max": 300,
+      "step": 6,
+      "unit": "px",
+      "label": "Image Y offset",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Visual mobile"
+    },
+    {
+      "type": "range",
+      "id": "visual_scale_mobile",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "label": "Mobile image scale",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "visual_offset_x_mobile",
+      "min": -200,
+      "max": 200,
+      "step": 8,
+      "unit": "px",
+      "label": "Mobile image X offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "visual_offset_y_mobile",
+      "min": -200,
+      "max": 200,
+      "step": 8,
+      "unit": "px",
+      "label": "Mobile image Y offset",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.header.content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "t:sections.all.padding.padding_top.unit",
+      "label": "t:sections.all.padding.padding_top.label",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "t:sections.all.padding.padding_bottom.unit",
+      "label": "t:sections.all.padding.padding_bottom.label",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.newsletter.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Get weekly health optimization tips and a free masterclass",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "options": [
+            { "value": "h1", "label": "t:sections.all.heading_tag.options__1.label" },
+            { "value": "h2", "label": "t:sections.all.heading_tag.options__2.label" },
+            { "value": "h3", "label": "t:sections.all.heading_tag.options__3.label" },
+            { "value": "h4", "label": "t:sections.all.heading_tag.options__4.label" },
+            { "value": "h5", "label": "t:sections.all.heading_tag.options__5.label" },
+            { "value": "h6", "label": "t:sections.all.heading_tag.options__6.label" },
+            { "value": "div", "label": "t:sections.all.heading_tag.options__7.label" },
+            { "value": "span", "label": "t:sections.all.heading_tag.options__8.label" },
+            { "value": "p", "label": "t:sections.all.heading_tag.options__9.label" }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_tag.label",
+          "info": "t:sections.all.heading_tag.info"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "default": "h0",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.highlight.header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "t:sections.all.highlight.enable.label",
+          "info": "t:sections.all.highlight.enable.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            { "value": "marker", "label": "t:sections.all.highlight.style.options__1.label" },
+            { "value": "circle", "label": "t:sections.all.highlight.style.options__2.label" },
+            { "value": "underline", "label": "t:sections.all.highlight.style.options__3.label" },
+            { "value": "bold-underline", "label": "t:sections.all.highlight.style.options__4.label" },
+            { "value": "modern-underline", "label": "t:sections.all.highlight.style.options__5.label" },
+            { "value": "sketch-underline", "label": "t:sections.all.highlight.style.options__6.label" },
+            { "value": "squiggle", "label": "t:sections.all.highlight.style.options__7.label" },
+            { "value": "heavy-squiggle", "label": "t:sections.all.highlight.style.options__8.label" },
+            { "value": "solid-color", "label": "t:sections.all.highlight.style.options__9.label" }
+          ],
+          "default": "marker",
+          "label": "t:sections.all.highlight.style.label"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "t:sections.newsletter.blocks.text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "t:sections.all.text.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.highlight.header.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_highlight",
+          "label": "t:sections.all.highlight.enable.label",
+          "info": "t:sections.all.highlight.enable.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "highlight_style",
+          "options": [
+            { "value": "marker", "label": "t:sections.all.highlight.style.options__1.label" },
+            { "value": "circle", "label": "t:sections.all.highlight.style.options__2.label" },
+            { "value": "underline", "label": "t:sections.all.highlight.style.options__3.label" },
+            { "value": "bold-underline", "label": "t:sections.all.highlight.style.options__4.label" },
+            { "value": "modern-underline", "label": "t:sections.all.highlight.style.options__5.label" },
+            { "value": "sketch-underline", "label": "t:sections.all.highlight.style.options__6.label" },
+            { "value": "squiggle", "label": "t:sections.all.highlight.style.options__7.label" },
+            { "value": "heavy-squiggle", "label": "t:sections.all.highlight.style.options__8.label" },
+            { "value": "solid-color", "label": "t:sections.all.highlight.style.options__9.label" }
+          ],
+          "default": "marker",
+          "label": "t:sections.all.highlight.style.label"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "t:sections.newsletter.blocks.email_form.name",
+      "limit": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter alt",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "email_form" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  }
+}
+{% endschema %}

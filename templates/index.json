@@ -1,0 +1,1488 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_v2_R8gXd9": {
+      "type": "image-banner-v2",
+      "name": "Image banner v2",
+      "settings": {
+        "image": "shopify://shop_images/Hero-1-smallerer.png",
+        "mobile_image": "shopify://shop_images/Hero-1-mobile.png",
+        "image_position": "center center",
+        "flip_image_horizontal": false,
+        "subheading": "Physician-formulated Solutions for Energy, Stress, Focus & Sleep",
+        "heading": "Feel the difference in 15 minutes",
+        "heading_tag": "h2",
+        "desktop_height_mode": "fixed",
+        "desktop_height": 760,
+        "mobile_height": 760,
+        "mobile_content_position": "flex-end",
+        "content_max_width": 40,
+        "text_color": "#161616",
+        "tint_color": "#f7f2ed",
+        "tint_opacity": 90,
+        "show_overlay": true,
+        "primary_button_label": "Take the 60-second quiz",
+        "primary_button_link": "shopify://pages/product-quiz",
+        "primary_button_size": "large",
+        "button_background": "#222222",
+        "button_text": "#ffffff",
+        "secondary_button_label": "Or browse all products",
+        "secondary_button_link": "shopify://collections/all",
+        "mobile_button_text_alignment": "center",
+        "show_squares": true,
+        "square_size": 52,
+        "square_gap": 6,
+        "square_1": "#117d87",
+        "square_2": "#9998d9",
+        "square_3": "#ff962e",
+        "square_4": "#0b82d4",
+        "full_width": true,
+        "show_divider": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "trust_mini_banner_W6mAAG": {
+      "type": "trust-mini-banner",
+      "blocks": {
+        "item_iMpX8G": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "custom_icon": "",
+            "desktop_icon_height": 0,
+            "mobile_icon_height": 0,
+            "text": "Physician-formulated"
+          }
+        },
+        "item_YBacL8": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "custom_icon": "",
+            "desktop_icon_height": 0,
+            "mobile_icon_height": 0,
+            "text": "Pharmaceutical grade"
+          }
+        },
+        "item_XXy9nU": {
+          "type": "item",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/Precision_Dosed_c4edaba0-6765-4971-8755-ca3cc8342b98.png",
+            "custom_icon": "",
+            "desktop_icon_height": 0,
+            "mobile_icon_height": 0,
+            "text": "Precision dosed"
+          }
+        },
+        "item_UmPXRY": {
+          "type": "item",
+          "settings": {
+            "icon": "map_pin",
+            "custom_icon": "",
+            "desktop_icon_height": 0,
+            "mobile_icon_height": 0,
+            "text": "Made in USA"
+          }
+        }
+      },
+      "block_order": [
+        "item_iMpX8G",
+        "item_YBacL8",
+        "item_XXy9nU",
+        "item_UmPXRY"
+      ],
+      "name": "Trust mini banner",
+      "settings": {
+        "show_divider": false,
+        "background_color": "#d7efe4",
+        "text_color": "#000000",
+        "desktop_image_height": 18,
+        "mobile_image_height": 30,
+        "item_gap": 32,
+        "max_content_height": 66,
+        "mobile_max_content_height": 70,
+        "mobile_left_align": true,
+        "mobile_item_gap": 22,
+        "mobile_padding_x": 16,
+        "mobile_padding_y": 16,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "1657186368671b5306": {
+      "type": "scrolling-promotion",
+      "blocks": {
+        "image_nxL6UP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/UCSF-logo-gray-min.png",
+            "height": 80,
+            "link": ""
+          }
+        },
+        "image_QTKqQV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/stanford-university-logo.png",
+            "height": 40,
+            "link": ""
+          }
+        },
+        "6ea42339-eed6-4ca4-92ce-e5574685b25c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/INC_5000_logo.png",
+            "height": 60,
+            "link": ""
+          }
+        },
+        "image_3QyhiM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Indepenent-logo-gray.png",
+            "height": 32,
+            "link": ""
+          }
+        },
+        "image_yNCpbC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/TEDX-logo-gray.png",
+            "height": 32,
+            "link": ""
+          }
+        },
+        "image_kXDaPz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/NYPost-logo-gray.png",
+            "height": 24,
+            "link": ""
+          }
+        },
+        "1657186368977c9b66-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/CNN-logo-gray.png",
+            "height": 40,
+            "link": ""
+          }
+        },
+        "image_tYy8Ae": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Forbes-logo-gray-min.png",
+            "height": 100,
+            "link": ""
+          }
+        },
+        "1657186368977c9b66-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Interactive-Healthcare-Sym-logo-gray.png",
+            "height": 44,
+            "link": ""
+          }
+        },
+        "image_BhMptQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Kwik-Brain-Logo-gray-big.png",
+            "height": 32,
+            "link": ""
+          }
+        },
+        "1657186368977c9b66-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Ben-Greenfield-Life-logo-gray-min_a1de96ed-0469-485a-8979-e5fcf93f7165.png",
+            "height": 120,
+            "link": ""
+          }
+        },
+        "image_Vt7mxi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/The-Genius-Life-With-Max-Lugavere-logo-gray-min.png",
+            "height": 80,
+            "link": ""
+          }
+        },
+        "image_9PYgKH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/The-Dr-Hyman-Show-logo-gray-min.png",
+            "height": 100,
+            "link": ""
+          }
+        },
+        "image_htqW7D": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/The-Dr-Gabrielle-Lyon-Show-logo-gray-min.png",
+            "height": 80,
+            "link": ""
+          }
+        },
+        "0748c8b4-753f-48a8-9749-af0bbf7b605b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Thomas-DeLauer-logo-gray-min.png",
+            "height": 80,
+            "link": ""
+          }
+        },
+        "1657186368977c9b66-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/The-Gabby-Reece-Show-logo-gray-min.png",
+            "height": 72,
+            "link": ""
+          }
+        },
+        "image_WFhjjQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Mark-Bell-Power-Project-logo-gray-min.png",
+            "height": 72,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_nxL6UP",
+        "image_QTKqQV",
+        "6ea42339-eed6-4ca4-92ce-e5574685b25c",
+        "image_3QyhiM",
+        "image_yNCpbC",
+        "image_kXDaPz",
+        "1657186368977c9b66-3",
+        "image_tYy8Ae",
+        "1657186368977c9b66-1",
+        "image_BhMptQ",
+        "1657186368977c9b66-0",
+        "image_Vt7mxi",
+        "image_9PYgKH",
+        "image_htqW7D",
+        "0748c8b4-753f-48a8-9749-af0bbf7b605b",
+        "1657186368977c9b66-2",
+        "image_WFhjjQ"
+      ],
+      "name": "As seen in - logos",
+      "settings": {
+        "direction": "left",
+        "speed": 1.2,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_icon": "#ffffff",
+        "colors_text": "#1a1b18",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_v2_ycK6QT": {
+      "type": "image-with-text-v2",
+      "blocks": {
+        "heading_cUnm7a": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recommended by <em>Thomas DeLauer</em>",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "heading_subheading_gap": 20,
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "subheading_Pi87fb": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Nutrition and Business Performance Coach",
+            "subheading_size": "h4",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "social_stat_trwEeJ": {
+          "type": "social_stat",
+          "settings": {
+            "platform": "youtube",
+            "stat_value": "6M",
+            "stat_label": "subscribers",
+            "stat_link": "",
+            "margin_top": 20
+          }
+        },
+        "social_stat_FMC64f": {
+          "type": "social_stat",
+          "settings": {
+            "platform": "instagram",
+            "stat_value": "1M",
+            "stat_label": "followers",
+            "stat_link": "",
+            "margin_top": 20
+          }
+        },
+        "text_cTJxMY": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Don’t just get from Amazon. Don’t get one that has a bunch of heavy metals. Get one that actually does third-party testing, and doesn’t have that stuff. <strong>Personally, I use Troscriptions.</strong></p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": true,
+            "margin_top": 32,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cUnm7a",
+        "subheading_Pi87fb",
+        "social_stat_trwEeJ",
+        "social_stat_FMC64f",
+        "text_cTJxMY"
+      ],
+      "name": "Image with text (v2)",
+      "settings": {
+        "image": "shopify://shop_images/tom_delauer_closeup.jpg",
+        "image_position": "center center",
+        "layout": "text_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "fit_image_to_container": false,
+        "image_corner_radius": 16,
+        "enlarge_content": false,
+        "full_width": true,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 16,
+        "show_divider": false,
+        "image_behavior": "none",
+        "enable_mobile_image_position": false,
+        "mobile_image_position": "center center",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "enable_mobile_padding": false,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "enable_video_looping": false,
+        "video_url": "",
+        "use_custom_colors": true,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#f2f2f2",
+        "gradient_background": "",
+        "colors_highlight": "#037178",
+        "hanging_quote_color": "#037178",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "delivery_difference_v2_keXJzR": {
+      "type": "delivery-difference-v2",
+      "blocks": {
+        "feature_9fm4Bx": {
+          "type": "feature",
+          "settings": {
+            "text": "Fast acting, effects in 15 minutes"
+          }
+        },
+        "feature_7TyJrn": {
+          "type": "feature",
+          "settings": {
+            "text": "Higher bioavailability of ingredients"
+          }
+        },
+        "feature_gKC687": {
+          "type": "feature",
+          "settings": {
+            "text": "Direct access to the brain, more reliable effect"
+          }
+        },
+        "step_We9pdt": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/troche1_-_Home_delivery.png",
+            "image_rotation": 120,
+            "image_scale": 180,
+            "image_offset_x": 0,
+            "image_offset_y": -80,
+            "title": "Choose your starting point",
+            "text": "<p>Decide on your starting dose and, if needed, cut the troche accordingly.</p>"
+          }
+        },
+        "step_TpNDMX": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/troche2_-_Home_delivery.png",
+            "image_rotation": 0,
+            "image_scale": 160,
+            "image_offset_x": 0,
+            "image_offset_y": -58,
+            "title": "Find the sweet spot",
+            "text": "<p>Gently place the troche between your gum and upper cheek. Alternatively, because Methylene Blue is highly bioavailable, you can also swallow it on an empty stomach.</p>"
+          }
+        },
+        "step_qaziiJ": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/troche3_-_Home_delivery.png",
+            "image_rotation": 0,
+            "image_scale": 160,
+            "image_offset_x": 0,
+            "image_offset_y": -58,
+            "title": "Patience is key",
+            "text": "<p>Allow the troche to dissolve completely. Onset will be 15 to 20 minutes if used as a buccal troche and 60 to 90 minutes if swallowed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_9fm4Bx",
+        "feature_7TyJrn",
+        "feature_gKC687",
+        "step_We9pdt",
+        "step_TpNDMX",
+        "step_qaziiJ"
+      ],
+      "name": "Delivery difference v2",
+      "settings": {
+        "box_image": "shopify://shop_images/Blue_Cannatine_box_-_Home_delivery.png",
+        "contents_image": "shopify://shop_images/Troche_in_packaging_-_Home_delivery.png",
+        "heading": "The difference is in the delivery",
+        "text": "<p>A buccal troche is a small lozenge that dissolves between your upper cheek and gums.</p>",
+        "button_label": "See how troches outperform capsules",
+        "button_link": "shopify://pages/whats-a-troche",
+        "button_style": "secondary",
+        "button_size": "large",
+        "background_color": "#ffffff",
+        "text_color": "#171717",
+        "muted_text_color": "#5d5d5d",
+        "card_background": "#ececeb",
+        "card_shadow": "#182847",
+        "accent_color": "#2e7bdc",
+        "check_color": "#31c45d",
+        "box_width_desktop": 90,
+        "box_width_mobile": 90,
+        "contents_width_desktop": 48,
+        "contents_width_mobile": 47,
+        "box_offset_x_desktop": -72,
+        "box_offset_y_desktop": 0,
+        "contents_offset_x_desktop": 96,
+        "contents_offset_y_desktop": 0,
+        "contents_offset_x_ultrawide": 144,
+        "hero_to_steps_spacing_desktop": 84,
+        "hero_to_steps_spacing_mobile": 48,
+        "steps_to_button_spacing_desktop": 84,
+        "steps_to_button_spacing_mobile": 40,
+        "box_offset_x_mobile": -56,
+        "box_offset_y_mobile": 0,
+        "contents_offset_x_mobile": 80,
+        "contents_offset_y_mobile": 4,
+        "show_divider": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "dual_scroll_v2_4WKWx7": {
+      "type": "dual-scroll-v2",
+      "blocks": {
+        "slide_TntnXi": {
+          "type": "slide",
+          "settings": {
+            "title": "Need energy?",
+            "heading_size": "h1",
+            "description": "<ul><li>Pure cellular energy</li><li>Sharper thinking, lasting focus</li><li>Resilience and antioxidant power</li><li>Sustain peak performance</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "highlight_color": "#ffb503",
+            "text_color": "#ffffff",
+            "description_color": "#ffffff",
+            "badge_text": "",
+            "badge_image": "shopify://shop_images/best_seller.svg",
+            "show_rating": true,
+            "rating_text": "",
+            "price_note": "",
+            "price_prefix": "starting at",
+            "button_label": "SHOP ENERGY",
+            "button_style": "outline",
+            "button_size": "medium",
+            "button_product": "justblue",
+            "button_link": "shopify://products/justblue",
+            "button_label_2": "Learn More",
+            "button_style_2": "outline",
+            "button_link_2": "shopify://products/justblue",
+            "image": "shopify://shop_images/Just_Blue_-_Home_Our_Products.png",
+            "media_background_color": "#c2d4ff",
+            "background_color": "#1d428a"
+          }
+        },
+        "slide_WafRCV": {
+          "type": "slide",
+          "settings": {
+            "title": "Feeling stressed?",
+            "heading_size": "h1",
+            "description": "<ul><li>Decrease anxiousness</li><li>Quiet the mind</li><li>Calm focus and productivity</li><li>Feel zen, on demand</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "highlight_color": "#ffffff",
+            "text_color": "#ffffff",
+            "description_color": "#ffffff",
+            "badge_text": "",
+            "show_rating": true,
+            "rating_text": "",
+            "price_note": "",
+            "price_prefix": "starting at",
+            "button_label": "SHOP CALM",
+            "button_style": "outline",
+            "button_size": "medium",
+            "button_product": "trocalm",
+            "button_link": "",
+            "button_label_2": "Learn more",
+            "button_style_2": "outline",
+            "button_link_2": "shopify://products/trocalm",
+            "image": "shopify://shop_images/Calm_-_Home_Our_Products.png",
+            "media_background_color": "#ffe0a6",
+            "background_color": "#f68d2e"
+          }
+        },
+        "slide_jgprcD": {
+          "type": "slide",
+          "settings": {
+            "title": "Need to focus?",
+            "heading_size": "h1",
+            "description": "<ul><li>Sharper memory and recall</li><li>Massive productivity</li><li>Clean, jitter-free energy</li><li>Drop into flow</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "highlight_color": "#ffb503",
+            "text_color": "#ffffff",
+            "description_color": "#ffffff",
+            "badge_text": "",
+            "show_rating": true,
+            "rating_text": "",
+            "price_note": "",
+            "price_prefix": "starting at",
+            "button_label": "SHOP FOCUS",
+            "button_style": "outline",
+            "button_size": "medium",
+            "button_product": "bluecannatine",
+            "button_link": "",
+            "button_label_2": "Learn more",
+            "button_style_2": "outline",
+            "button_link_2": "shopify://products/bluecannatine",
+            "image": "shopify://shop_images/Blue_Cann_-_Home_Our_Products.png",
+            "media_background_color": "#c8ebff",
+            "background_color": "#0077c8"
+          }
+        },
+        "slide_9Wkmy7": {
+          "type": "slide",
+          "settings": {
+            "title": "Can't sleep?",
+            "heading_size": "h1",
+            "description": "<ul><li>Fall asleep fast</li><li>Sleep deeper, longer</li><li>Return to sleep effortlessly</li><li>Wake up clear, refreshed</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "highlight_color": "#ffb503",
+            "text_color": "#ffffff",
+            "description_color": "#ffffff",
+            "badge_text": "",
+            "badge_image": "shopify://shop_images/best_seller.svg",
+            "show_rating": true,
+            "rating_text": "",
+            "price_note": "",
+            "price_prefix": "starting at",
+            "button_label": "SHOP SLEEP",
+            "button_style": "outline",
+            "button_size": "medium",
+            "button_product": "tro-zzz",
+            "button_link": "",
+            "button_label_2": "Learn more",
+            "button_style_2": "outline",
+            "button_link_2": "shopify://products/tro-zzz",
+            "image": "shopify://shop_images/Zzz_-_Home_Our_Products.png",
+            "media_background_color": "#f0e4ff",
+            "background_color": "#9595d2"
+          }
+        },
+        "slide_XwJPwd": {
+          "type": "slide",
+          "settings": {
+            "title": "Keep getting sick?",
+            "heading_size": "h1",
+            "description": "<ul><li>Fight off infections</li><li>Build on immune shield</li><li>Decrease inflammation</li><li>Increase deep sleep</li></ul>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "enable_highlight": false,
+            "highlight_style": "marker",
+            "highlight_color": "#ffb503",
+            "text_color": "#ffffff",
+            "description_color": "#ffffff",
+            "badge_text": "",
+            "show_rating": true,
+            "rating_text": "",
+            "price_note": "",
+            "price_prefix": "starting at",
+            "button_label": "SHOP MUNE",
+            "button_style": "outline",
+            "button_size": "medium",
+            "button_product": "tro-plus-mune",
+            "button_link": "",
+            "button_label_2": "Learn More",
+            "button_style_2": "outline",
+            "button_link_2": "shopify://products/tro-mune",
+            "image": "shopify://shop_images/Mune_-_Home_Our_Products.png",
+            "media_background_color": "#ddfdf3",
+            "background_color": "#037178"
+          }
+        }
+      },
+      "block_order": [
+        "slide_TntnXi",
+        "slide_WafRCV",
+        "slide_jgprcD",
+        "slide_9Wkmy7",
+        "slide_XwJPwd"
+      ],
+      "name": "Dual Scroll (v2)",
+      "settings": {
+        "heading": "Our products",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "heading_alignment": "center",
+        "subheading": "Troscriptions®' revolutionary buccal troches",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "content_horizontal_padding": 70,
+        "content_vertical_padding_mobile": 48,
+        "buttons_spacing_top": 14,
+        "subheading_color": "#6b7280",
+        "enable_highlight": false,
+        "highlight_style": "marker",
+        "narrow": false,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading_color": "#0a0a0a",
+        "text_color": "#0a0a0a",
+        "description_color": "#6b7280",
+        "panel_background_color": "#f5f6f7",
+        "border_color": "#eeeef0",
+        "show_panel_borders": false,
+        "button_background_color": "#ffffff",
+        "button_text_color": "#1a1b18",
+        "highlight_color": "#ffb503",
+        "transition_type": "scroll",
+        "media_rotation": 0,
+        "media_scale": 80,
+        "media_scale_mobile": 120,
+        "enable_media_shadow": true
+      }
+    },
+    "review_cards_carousel_NMDwAB": {
+      "type": "review-cards-carousel",
+      "blocks": {
+        "review_CrkzwY": {
+          "type": "review",
+          "settings": {
+            "product_label": "Tro Calm",
+            "media_caption": "",
+            "quote": "<p>Feeling calmer, <strong>less stress, </strong>clearer thoughts with less wondering. Fast acting and very helpful.</p>",
+            "author_name": "Cheri H.",
+            "author_meta": "Nurse",
+            "card_background": "#fde1a4",
+            "text_color": "#1f1f1f",
+            "meta_color": "#5e5e5e",
+            "accent_color": "#f39a2f",
+            "caption_background": "#f6d6a9"
+          }
+        },
+        "review_aLypBy": {
+          "type": "review",
+          "settings": {
+            "product_label": "Blue Cannatine",
+            "video": "shopify://files/videos/genevieve - Home_Customer reviews.mp4",
+            "media_caption": "Helps me focus and energizes",
+            "quote": "",
+            "author_name": "Genevieve W.",
+            "author_meta": "",
+            "card_background": "#d9ecff",
+            "text_color": "#1f1f1f",
+            "meta_color": "#5e5e5e",
+            "accent_color": "#1578d1",
+            "caption_background": "#c8ebff"
+          }
+        },
+        "review_LLETTc": {
+          "type": "review",
+          "settings": {
+            "product_label": "Tro Mune",
+            "media_caption": "",
+            "quote": "<p>Three times I thought I felt a sore throat with aches and twiggy sinuses. I take 1/4 troche at night before bed and in the morning, <strong>all symptoms gone!</strong></p>",
+            "author_name": "Lauren S.",
+            "author_meta": "Age 70",
+            "card_background": "#d7f4eb",
+            "text_color": "#1f1f1f",
+            "meta_color": "#5e5e5e",
+            "accent_color": "#118a87",
+            "caption_background": "#d7f4eb"
+          }
+        },
+        "review_r8QAk7": {
+          "type": "review",
+          "settings": {
+            "product_label": "Just Blue",
+            "video": "shopify://files/videos/Stormy - Home_Customer reviews.mp4",
+            "media_caption": "Changed my life",
+            "quote": "",
+            "author_name": "Stormy R.",
+            "author_meta": "",
+            "card_background": "#bcd3f0",
+            "text_color": "#1f1f1f",
+            "meta_color": "#5e5e5e",
+            "accent_color": "#274f9f",
+            "caption_background": "#c2d4ff"
+          }
+        },
+        "review_64hiKT": {
+          "type": "review",
+          "settings": {
+            "product_label": "Tro Zzz",
+            "media_caption": "",
+            "quote": "<p>One of the most unique formulations I’ve come across that <strong>works incredibly well</strong> without the morning lag time after effects. A must try!</p>",
+            "author_name": "Ross A.",
+            "author_meta": "",
+            "card_background": "#e3d5f6",
+            "text_color": "#1f1f1f",
+            "meta_color": "#5e5e5e",
+            "accent_color": "#938bd8",
+            "caption_background": "#d8e7ff"
+          }
+        }
+      },
+      "block_order": [
+        "review_CrkzwY",
+        "review_aLypBy",
+        "review_LLETTc",
+        "review_r8QAk7",
+        "review_64hiKT"
+      ],
+      "name": "Review cards carousel",
+      "settings": {
+        "accessibility_label": "Customer review cards",
+        "show_divider": false,
+        "stars_count": 5,
+        "star_size": 23,
+        "rating_text": "",
+        "heading": "<em>10,000+ verified 5-star reviews</em> for Troscriptions products",
+        "subheading": "",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "heading_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 5,
+        "card_gap": 14,
+        "card_radius": 12,
+        "media_radius": 8,
+        "card_padding_mobile": 18,
+        "match_card_heights_mobile": true,
+        "mobile_indicator_gap": 12,
+        "background_color": "#ffffff",
+        "heading_color": "#1f1f1f",
+        "subheading_color": "#585858",
+        "stars_color": "#f39a2f",
+        "dot_color": "#1f1f1f",
+        "colors_highlight": "#037178",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "highlight_phrases": "most-loved formulas",
+        "enable_highlight": false,
+        "highlight_style": "underline"
+      }
+    },
+    "professional_endorsements_UPqCq7": {
+      "type": "professional-endorsements",
+      "blocks": {
+        "endorsement_mmzyXj": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/dr_amie_hornaman.jpg",
+            "background_color": "",
+            "name": "Dr. Alicia Morgan",
+            "role": "Functional medicine physician",
+            "quote": "This product has become one of the easiest recommendations in my practice because patients feel the difference quickly."
+          }
+        },
+        "endorsement_VtfCtg": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/scott_porter_2x_ff6470e9-7512-4085-9794-f9527bcc68d4.png",
+            "background_color": "",
+            "name": "Scott Porter, PharmD",
+            "role": "Clinical pharmacist and wellness educator",
+            "quote": "When I tried it myself, the result was immediate enough that I started sharing it with patients who needed steadier support."
+          }
+        },
+        "endorsement_AHt9Ui": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/dr_rimka_hd.png",
+            "background_color": "",
+            "name": "Dr. Stephanie Rivera, DC",
+            "role": "Brain optimization specialist",
+            "quote": "I appreciate products that fit into complex care plans cleanly, and this one has delivered dependable outcomes across a wide range of patients."
+          }
+        },
+        "endorsement_X6LK6Q": {
+          "type": "endorsement",
+          "settings": {
+            "image": "shopify://shop_images/Dr_Ashley_Beckman.jpg",
+            "background_color": "",
+            "name": "Dr. Ashley Beckman",
+            "role": "Doctor of acupuncture and integrative medicine",
+            "quote": "After testing many products in clinic, this is the one that consistently earns positive feedback from patients within days."
+          }
+        }
+      },
+      "block_order": [
+        "endorsement_mmzyXj",
+        "endorsement_VtfCtg",
+        "endorsement_AHt9Ui",
+        "endorsement_X6LK6Q"
+      ],
+      "name": "Professional endorsements",
+      "settings": {
+        "accessibility_label": "Professional endorsements",
+        "show_divider": false,
+        "eyebrow": "",
+        "heading": "Endorsed by leading healthcare professionals",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "heading_alignment": "left",
+        "mobile_text_alignment": "center",
+        "enable_highlight": true,
+        "highlight_style": "underline",
+        "background_color": "#ffffff",
+        "card_surface": "#f2f2f2",
+        "card_border_color": "#ffffff",
+        "heading_color": "#222222",
+        "eyebrow_color": "#5f6c67",
+        "name_color": "#0e7e8f",
+        "role_color": "#59625e",
+        "text_color": "#222222",
+        "colors_highlight": "#6fc5c1",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "image_ratio": "portrait",
+        "image_position": "top center",
+        "max_content_width": 1220,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "match_card_heights_mobile": true,
+        "mobile_indicator_gap": 0,
+        "card_gap": 14,
+        "card_padding": 20,
+        "card_radius": 18,
+        "image_radius": 14,
+        "padding_top": 140,
+        "padding_bottom": 140
+      }
+    },
+    "image_banner_v2_adFLgm": {
+      "type": "image-banner-v2",
+      "name": "Image banner v2",
+      "settings": {
+        "image": "shopify://shop_images/Not_sure_where_to_start_-_Home_quiz.png",
+        "image_position": "center center",
+        "flip_image_horizontal": true,
+        "subheading": "",
+        "heading": "Not sure where to start?",
+        "heading_tag": "h2",
+        "desktop_height_mode": "fixed",
+        "desktop_height": 460,
+        "mobile_height": 520,
+        "mobile_content_position": "center",
+        "content_max_width": 40,
+        "text_color": "#ffffff",
+        "tint_color": "#f7f2ed",
+        "tint_opacity": 90,
+        "show_overlay": true,
+        "primary_button_label": "Take the 60-second quiz",
+        "primary_button_link": "shopify://pages/product-quiz",
+        "primary_button_size": "large",
+        "button_background": "#222222",
+        "button_text": "#ffffff",
+        "secondary_button_label": "",
+        "secondary_button_link": "",
+        "mobile_button_text_alignment": "",
+        "show_squares": false,
+        "square_size": 32,
+        "square_gap": 6,
+        "square_1": "#117d87",
+        "square_2": "#9998d9",
+        "square_3": "#ff962e",
+        "square_4": "#0b82d4",
+        "full_width": true,
+        "show_divider": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "subscription_showcase_cdzqAE": {
+      "type": "subscription-showcase",
+      "blocks": {
+        "text_rP8gee": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Get </strong><em><strong>15% off</strong></em> every order</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "margin_top": 0,
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "text_Kg89Te": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Access to </strong><em><strong>Tro Perks</strong></em><strong>:</strong> our subscriber-only perks from top brands</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "margin_top": 0,
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "text_yhfKaF": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Modify</strong> your subscription at any time</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "margin_top": 0,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "text_rP8gee",
+        "text_Kg89Te",
+        "text_yhfKaF"
+      ],
+      "name": "Subscription showcase",
+      "settings": {
+        "heading": "Subscribe & save",
+        "heading_size": "h1",
+        "heading_tag": "h2",
+        "primary_button_label": "SUBSCRIBE NOW",
+        "primary_button_link": "shopify://collections/subscribe-save",
+        "secondary_button_label": "Explore Tro Perks",
+        "secondary_button_link": "shopify://pages/tro-perks",
+        "popover_heading": "Tro Perks",
+        "popover_text": "<p>Our exclusive rewards program for active Troscriptions subscribers, offering insider-only discounts on trusted brands across tech, health, and more.</p>",
+        "popover_point_1": "Monthly Q&A sessions with health experts",
+        "popover_point_2": "Special offers from leading brands in health, wellness, and longevity",
+        "popover_point_3": "Early access to select partner perks and subscriber-only drops",
+        "popover_image_1": "shopify://shop_images/image_31.png",
+        "popover_image_2": "shopify://shop_images/scott_ama_card.png",
+        "popover_image_3": "shopify://shop_images/yg_hero.png",
+        "popover_image_4": "shopify://shop_images/d284d40989d9b65659791a4afed35c44110f1b37.png",
+        "image": "shopify://shop_images/Subscribe_save_-_smallest_1.png",
+        "max_content_width": 1440,
+        "image_width": 400,
+        "image_width_mobile": 340,
+        "background_color": "#dff8ef",
+        "text_color": "#1c2428",
+        "link_color": "#0f7f8f",
+        "button_border_color": "#2d383d",
+        "popover_background": "#ffffff",
+        "popover_text_color": "#181818",
+        "popover_muted_color": "#4d4d4d",
+        "popover_accent": "#0f7f8f",
+        "square_size": 32,
+        "square_opacity": 85,
+        "square_1": "#a2c4f7",
+        "square_2": "#acbaf5",
+        "square_3": "#f8d48f",
+        "square_4": "#dcc5f3",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "video_with_text_Yw6hRi": {
+      "type": "video-with-text",
+      "blocks": {
+        "heading_L9PeLT": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em>Our Story</em>",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": true,
+            "highlight_style": "underline"
+          }
+        },
+        "text_x9pqF3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Watch <strong>Dr. Theodore Achacoso</strong> (Founder and Chief Science Officer) and <strong>Dr. Scott Sherr</strong> (Chief Medical and Health Education Officer) talk about how Troscriptions came to be.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_YeRYfV": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_alt_label": "Learn More",
+            "button_alt_link": "shopify://pages/about",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_L9PeLT",
+        "text_x9pqF3",
+        "button_YeRYfV"
+      ],
+      "name": "Video with text",
+      "settings": {
+        "video_url": "https://www.youtube.com/watch?v=E7Ra-aiXaEY",
+        "enable_video_looping": false,
+        "enable_hosted_video_autoplay": false,
+        "enable_hosted_video_autoplay_audio": false,
+        "description": "",
+        "cover_image": "shopify://shop_images/MB_Our_Story.jpg",
+        "use_hosted_video_preview_image": true,
+        "image_position": "center center",
+        "layout": "image_first",
+        "desktop_media_ratio": "standard",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "image_ratio": "650px",
+        "media_corner_radius": 0,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_media_padding": 0,
+        "show_divider": false,
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "mobile_image_ratio": "auto",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#037178",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "tested_trusted_6rxDfp": {
+      "type": "tested-trusted",
+      "blocks": {
+        "guarantee_EXar4G": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shield",
+            "custom_svg": "",
+            "icon_width": 30,
+            "icon_width_mobile": 30,
+            "text": "<p>30-day money-back guarantee</p>"
+          }
+        },
+        "guarantee_LQac7c": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "stethoscope",
+            "custom_icon": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "custom_svg": "",
+            "icon_width": 30,
+            "icon_width_mobile": 30,
+            "text": "<p>Formulated by Dr. Theodore Achacoso</p>"
+          }
+        },
+        "guarantee_eHQhaq": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "cgmp-logo",
+            "custom_svg": "<svg width=\"300\" height=\"300\" viewBox=\"0 0 300 300\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n<rect width=\"300\" height=\"300\" fill=\"url(#pattern0_827_141)\"/>\n<defs>\n<pattern id=\"pattern0_827_141\" patternContentUnits=\"objectBoundingBox\" width=\"1\" height=\"1\">\n<use xlink:href=\"#image0_827_141\" transform=\"scale(0.00333333)\"/>\n</pattern>\n<image id=\"image0_827_141\" width=\"300\" height=\"300\" preserveAspectRatio=\"none\" xlink:href=\"data:image/png;base64,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\"/>\n</defs>\n</svg>",
+            "icon_width": 30,
+            "icon_width_mobile": 30,
+            "text": "<p>cGMP certified</p>"
+          }
+        },
+        "guarantee_9Wt6NU": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "map_pin",
+            "custom_svg": "",
+            "icon_width": 30,
+            "icon_width_mobile": 30,
+            "text": "<p>Made in USA</p>"
+          }
+        },
+        "guarantee_J4wy6k": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "lab",
+            "custom_icon": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "custom_svg": "",
+            "icon_width": 30,
+            "icon_width_mobile": 30,
+            "text": "<p>3rd Party Tested: Purity, Potency, Heavy Metals, Microbial Analysis (on each manufacturing run)</p>"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_EXar4G",
+        "guarantee_LQac7c",
+        "guarantee_eHQhaq",
+        "guarantee_9Wt6NU",
+        "guarantee_J4wy6k"
+      ],
+      "name": "Tested & trusted",
+      "settings": {
+        "heading": "<em>Tested & trusted</em>",
+        "heading_tag": "h2",
+        "enable_highlight": true,
+        "highlight_style": "underline",
+        "body": "",
+        "image": "shopify://shop_images/Troche_-_tested_and_trusted_-_1.png",
+        "image_side": "right",
+        "image_fit": "cover",
+        "image_position": "center center",
+        "image_max_width": 960,
+        "image_height_desktop": 640,
+        "image_height_mobile": 260,
+        "image_radius": 0,
+        "content_max_width": 500,
+        "full_width": true,
+        "full_width_max_content_width": 1400,
+        "show_divider": false,
+        "background_color": "#d7e1ff",
+        "heading_color": "#20242b",
+        "accent_color": "#037178",
+        "text_color": "#20242b",
+        "subheading_color": "#4b5568",
+        "icon_color": "#20242b",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "featured_blog_v2_t798JP": {
+      "type": "featured-blog-v2",
+      "blocks": {
+        "title_kBHnzP": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_z6YWfK": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_gEDj4B": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_kBHnzP",
+        "summary_z6YWfK",
+        "read_more_gEDj4B"
+      ],
+      "name": "Featured blog (v2)",
+      "settings": {
+        "blog": "podcast",
+        "filter_tags": "",
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "secondary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "Visit the podcast",
+        "show_divider": false,
+        "heading": "The <em>Health Optimization Medicine</em> podcast",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "subheading": "Delivering pragmatic advice and actionable tips to empower your decision-making, elevate your consciousness, optimize health, and boost performance",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "2",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "wide",
+        "image_position": "center center",
+        "colors_highlight": "#6c3076",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": true,
+        "highlight_style": "solid-color"
+      }
+    },
+    "featured_blog_v2_bHjeYm": {
+      "type": "featured-blog-v2",
+      "blocks": {
+        "title_bNhXG7": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        },
+        "summary_FTTDbV": {
+          "type": "summary",
+          "settings": {}
+        },
+        "read_more_FLmBCq": {
+          "type": "read_more",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_bNhXG7",
+        "summary_FTTDbV",
+        "read_more_FLmBCq"
+      ],
+      "name": "Featured blog (v2)",
+      "settings": {
+        "blog": "main",
+        "filter_tags": "",
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "secondary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "Visit the blog",
+        "show_divider": false,
+        "heading": "The Troscriptions® blog",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "subheading": "A cadre of PhDs and clinicians diligently investigate and offer insightful advice on enhancing health",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "2",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "wide",
+        "image_position": "center center",
+        "colors_highlight": "#6c3076",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "enable_highlight": true,
+        "highlight_style": "underline"
+      }
+    },
+    "newsletter_alt_BF9mpY": {
+      "type": "newsletter-alt",
+      "blocks": {
+        "heading_ijUkMV": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get weekly health optimization tips and a free masterclass",
+            "heading_tag": "h2",
+            "heading_size": "h1",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "email_form_WzFrqn": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_ijUkMV",
+        "email_form_WzFrqn"
+      ],
+      "name": "Newsletter alt",
+      "settings": {
+        "return_url": "",
+        "background_color": "#9792da",
+        "text_color": "#faf8f4",
+        "subtext_color": "#ebe8ff",
+        "form_background": "#f3f3f3",
+        "form_border": "#716e8d",
+        "form_text": "#707074",
+        "accent_line_color": "#0a7cd7",
+        "visual_image": "shopify://shop_images/Email_home.png",
+        "visual_scale": 100,
+        "visual_offset_x": -72,
+        "visual_offset_y": -36,
+        "visual_scale_mobile": 130,
+        "visual_offset_x_mobile": -8,
+        "visual_offset_y_mobile": -32,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "image_with_text_v3_gdWa4e": {
+      "type": "image-with-text-v3",
+      "blocks": {
+        "heading_kE3NVa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Deep dive into the frontiers of health optimization",
+            "heading_size": "h1",
+            "heading_tag": "h2",
+            "heading_subheading": "",
+            "heading_subheading_size": "h5",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_RnQkU4": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>The 2026 HOMeHOPe Conference</strong> is an intimate in-person intensive for people who treat health as a craft. Join us as we learn more about health optimization topics including hormones, gut health, environmental toxins, and others.</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "text_TGcDVR": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>The 2026 HOMeHOPe Conference</strong><br/>Oct 2-3, 2026 | The Drake Hotel | Chicago, IL</p>",
+            "text_size": "typeset2",
+            "secondary_color": false,
+            "show_hanging_quotes": false,
+            "margin_top": 20,
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "button_QPLWjk": {
+          "type": "button",
+          "settings": {
+            "button_size": "medium",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_alt_label": "Reserve Your Seat",
+            "button_alt_link": "https://homehope.org/homehope-conference",
+            "button_alt_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_kE3NVa",
+        "text_RnQkU4",
+        "text_TGcDVR",
+        "button_QPLWjk"
+      ],
+      "name": "Image with text (v3)",
+      "settings": {
+        "image": "shopify://shop_images/HH_Conference_Boomer.png",
+        "image_2": "shopify://shop_images/Careers-impact_beyond_336e0f19-2559-4cdd-bc7d-74b2c8421a4c.png",
+        "image_3": "shopify://shop_images/HH_Conference_Chicago.jpg",
+        "image_position": "center center",
+        "layout": "image_first",
+        "text_box_position": "middle",
+        "text_alignment": "left",
+        "heading_text_gap": 20,
+        "enlarge_content": false,
+        "full_width": false,
+        "full_width_max_content_width": 1800,
+        "full_width_image_padding": 0,
+        "show_divider": false,
+        "image_behavior": "none",
+        "mobile_layout": "image_first",
+        "mobile_text_alignment": "left",
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "gradient_background": "",
+        "colors_highlight": "#ffb503",
+        "hanging_quote_color": "#9ca3af",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "image_banner_v2_R8gXd9",
+    "trust_mini_banner_W6mAAG",
+    "1657186368671b5306",
+    "image_with_text_v2_ycK6QT",
+    "delivery_difference_v2_keXJzR",
+    "dual_scroll_v2_4WKWx7",
+    "review_cards_carousel_NMDwAB",
+    "professional_endorsements_UPqCq7",
+    "image_banner_v2_adFLgm",
+    "subscription_showcase_cdzqAE",
+    "video_with_text_Yw6hRi",
+    "tested_trusted_6rxDfp",
+    "featured_blog_v2_t798JP",
+    "featured_blog_v2_bHjeYm",
+    "newsletter_alt_BF9mpY",
+    "image_with_text_v3_gdWa4e"
+  ]
+}

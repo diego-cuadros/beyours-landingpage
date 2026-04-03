@@ -1,0 +1,548 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --proof-results-heading-color: {{ section.settings.heading_color }};
+    --proof-results-text-color: {{ section.settings.text_color }};
+    --proof-results-muted-color: {{ section.settings.muted_color }};
+    --proof-results-card-text-color: {{ section.settings.card_text_color }};
+    --proof-results-card-overlay: rgba({{ section.settings.card_overlay_color.red }}, {{ section.settings.card_overlay_color.green }}, {{ section.settings.card_overlay_color.blue }}, {{ section.settings.card_overlay_opacity | divided_by: 100.0 }});
+    --proof-results-card-radius: {{ section.settings.card_radius }}px;
+    --proof-results-award-logo-width: {{ section.settings.award_logo_width }}px;
+    --proof-results-logo-height: {{ section.settings.logo_height }}px;
+    --proof-results-logo-gap: {{ section.settings.logo_gap }}px;
+    --color-highlight: {{ section.settings.accent_color.red }}, {{ section.settings.accent_color.green }}, {{ section.settings.accent_color.blue }};
+  }
+{%- endstyle -%}
+
+{{ 'section-proof-results.css' | asset_url | stylesheet_tag }}
+{{ 'section-scrolling-promotion.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign stat_blocks = section.blocks | where: 'type', 'stat'
+  assign award_blocks = section.blocks | where: 'type', 'award'
+  assign logo_blocks = section.blocks | where: 'type', 'logo'
+-%}
+
+<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="proof-results page-width">
+    <div class="proof-results__inner">
+      <header class="proof-results__intro">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="proof-results__title">
+            {%- render 'highlight-text',
+              hl_input: section.settings.heading,
+              hl_style: section.settings.highlight_style,
+              hl_enable: section.settings.enable_highlight,
+              hl_animateWrap: true
+            -%}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="proof-results__lede rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+      </header>
+
+      {%- if section.settings.stats_heading != blank -%}
+        <h3 class="proof-results__section-heading">{{ section.settings.stats_heading }}</h3>
+      {%- endif -%}
+
+      {%- if stat_blocks.size > 0 -%}
+        <div class="proof-results__stats" role="list">
+          {%- for block in stat_blocks -%}
+            <article class="proof-results__stat-card" role="listitem" {{ block.shopify_attributes }}>
+              <div class="proof-results__stat-media">
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 960
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '280, 420, 560, 720, 960',
+                      sizes: '(min-width: 990px) 23vw, (min-width: 750px) 40vw, 44vw',
+                      class: 'proof-results__stat-image image-fit',
+                      alt: block.settings.metric | default: block.settings.caption,
+                      is: 'lazy-image'
+                  }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+
+                <div class="proof-results__stat-overlay">
+                  {%- if block.settings.metric != blank -%}
+                    <p class="proof-results__stat-metric">{{ block.settings.metric }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.caption != blank -%}
+                    <p class="proof-results__stat-caption">{{ block.settings.caption }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.awards_heading != blank -%}
+        <h3 class="proof-results__section-heading proof-results__section-heading--awards">{{ section.settings.awards_heading }}</h3>
+      {%- endif -%}
+
+      {%- if award_blocks.size > 0 -%}
+        <div class="proof-results__awards" role="list">
+          {%- for block in award_blocks -%}
+            <article class="proof-results__award" role="listitem" {{ block.shopify_attributes }}>
+              {%- if block.settings.logo != blank -%}
+                <div class="proof-results__award-logo-wrap">
+                  {{
+                    block.settings.logo
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '140, 220, 320, 480, 600',
+                      sizes: '(min-width: 750px) 12rem, 10rem',
+                      class: 'proof-results__award-logo',
+                      alt: block.settings.title,
+                      is: 'lazy-image'
+                  }}
+                </div>
+              {%- endif -%}
+
+              <div class="proof-results__award-copy">
+                {%- if block.settings.title != blank -%}
+                  <p class="proof-results__award-title">{{ block.settings.title }}</p>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="proof-results__award-text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.featured_heading != blank -%}
+        <h3 class="proof-results__section-heading proof-results__section-heading--featured">{{ section.settings.featured_heading }}</h3>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if logo_blocks.size > 0 -%}
+    <div class="proof-results__marquee-wrap">
+      <scrolling-promotion data-speed="{{ section.settings.logo_speed }}" class="scrolling-promotion scrolling-promotion--{{ section.settings.logo_direction }} proof-results__marquee">
+        <div class="promotion">
+          {%- for block in logo_blocks -%}
+            {%- liquid
+              assign image_height = section.settings.logo_height
+              assign image_height_2x = section.settings.logo_height | times: 2
+            -%}
+            <div class="promotion__item media-wrapper media-wrapper--small proof-results__logo-item" style="--image-height: {{ image_height }}px" {{ block.shopify_attributes }}>
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}" class="promotion__link">
+              {%- endif -%}
+              {%- if block.settings.image != blank -%}
+                <div class="image-animate media">
+                  <img
+                    srcset="{{ block.settings.image | image_url: height: image_height }} 1x, {{ block.settings.image | image_url: height: image_height_2x }} 2x"
+                    src="{{ block.settings.image | image_url: height: image_height }}"
+                    alt="{{ block.settings.image.alt | default: block.settings.name | escape }}"
+                    loading="lazy"
+                    width="{{ image_height | times: block.settings.image.aspect_ratio }}"
+                    height="{{ image_height }}"
+                    class="proof-results__logo-image image-fit"
+                    is="lazy-image"
+                  >
+                </div>
+              {%- else -%}
+                {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+              {%- if block.settings.link != blank -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </scrolling-promotion>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Proof results",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat card",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "metric",
+          "label": "Metric",
+          "default": "1.5 million hours"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "of additional focus"
+        }
+      ]
+    },
+    {
+      "type": "award",
+      "name": "Award",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Inc. 5000 Fastest Growing Companies"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>#99 Fastest Growing Healthcare &amp; Medical Company (U.S.)</p>"
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Featured logo",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Proof"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text",
+      "default": "<p>These aren't aspirations. At Troscriptions, we are truly moving the needle on health.</p>"
+    },
+    {
+      "type": "text",
+      "id": "stats_heading",
+      "label": "Stats heading",
+      "default": "In 2025, Troscriptions customers experienced:"
+    },
+    {
+      "type": "text",
+      "id": "awards_heading",
+      "label": "Awards heading",
+      "default": "Awards:"
+    },
+    {
+      "type": "text",
+      "id": "featured_heading",
+      "label": "Featured heading",
+      "default": "Featured in:"
+    },
+    {
+      "type": "header",
+      "content": "Highlight"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable highlight",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "label": "Highlight style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "Marker"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "bold-underline",
+          "label": "Bold underline"
+        },
+        {
+          "value": "modern-underline",
+          "label": "Modern underline"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "Sketch underline"
+        },
+        {
+          "value": "squiggle",
+          "label": "Squiggle"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "Heavy squiggle"
+        },
+        {
+          "value": "solid-color",
+          "label": "Solid color"
+        }
+      ],
+      "default": "solid-color"
+    },
+    {
+      "type": "header",
+      "content": "Featured logo marquee"
+    },
+    {
+      "type": "select",
+      "id": "logo_direction",
+      "label": "Logo direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "logo_speed",
+      "min": 0.5,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Logo speed",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 28,
+      "max": 90,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo height",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo gap",
+      "default": 44
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#262626"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2d2d2d"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted color",
+      "default": "#5f5f5f"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "card_overlay_color",
+      "label": "Card overlay color",
+      "default": "#f5efeb"
+    },
+    {
+      "type": "range",
+      "id": "card_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Card overlay opacity",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 8,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "award_logo_width",
+      "min": 80,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Award logo width",
+      "default": 124
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show top divider",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Proof results",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "metric": "1.5 million hours",
+            "caption": "of additional focus"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "metric": "700,000 hours",
+            "caption": "of \"no stress\""
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "metric": "3.63 million hours",
+            "caption": "of increased energy"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "metric": "2.4 million hours",
+            "caption": "of better sleep"
+          }
+        },
+        {
+          "type": "award",
+          "settings": {
+            "title": "Inc. 5000 Fastest Growing Companies",
+            "text": "<p>#99 Fastest Growing Healthcare &amp; Medical Company (U.S.)</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

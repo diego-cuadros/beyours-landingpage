@@ -1,0 +1,734 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --section-padding-top: {{ section.settings.padding_top }}px;
+    --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --tested-trusted-background: {{ section.settings.background_color }};
+    --tested-trusted-heading-color: {{ section.settings.heading_color }};
+    --tested-trusted-text-color: {{ section.settings.text_color }};
+    --tested-trusted-subheading-color: {{ section.settings.subheading_color }};
+    --color-highlight: {{ section.settings.accent_color.red }}, {{ section.settings.accent_color.green }}, {{ section.settings.accent_color.blue }};
+    --tested-trusted-icon-color: {{ section.settings.icon_color }};
+    --tested-trusted-content-width: {{ section.settings.content_max_width }}px;
+    --tested-trusted-media-width: {{ section.settings.image_max_width }}px;
+    --tested-trusted-full-width-max-content: {{ section.settings.full_width_max_content_width }}px;
+    --tested-trusted-media-height-mobile: {{ section.settings.image_height_mobile }}px;
+    --tested-trusted-media-height-desktop: {{ section.settings.image_height_desktop }}px;
+    --tested-trusted-image-radius: {{ section.settings.image_radius }}px;
+    --tested-trusted-image-fit: {{ section.settings.image_fit }};
+    --tested-trusted-image-position: {{ section.settings.image_position }};
+  }
+{%- endstyle -%}
+
+{{ 'section-tested-trusted.css' | asset_url | stylesheet_tag }}
+
+{%- capture sizes -%}
+  (min-width: {{ settings.page_width }}px) {{ section.settings.image_max_width }}px,
+  (min-width: 990px) 44vw,
+  100vw
+{%- endcapture -%}
+
+<div class="tested-trusted{% if section.settings.show_divider %} section--divider{% endif %}">
+  <div class="page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+    <div class="tested-trusted__inner tested-trusted__inner--image-{{ section.settings.image_side }} section--padding">
+      <div class="tested-trusted__content">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="tested-trusted__heading">
+            {%- render 'highlight-text',
+              hl_input: section.settings.heading,
+              hl_style: section.settings.highlight_style,
+              hl_enable: section.settings.enable_highlight,
+              hl_animateWrap: true
+            -%}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.settings.body != blank -%}
+          <div class="tested-trusted__body rte">
+            {{ section.settings.body }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="tested-trusted__list" role="list">
+            {%- for block in section.blocks -%}
+              <li
+                class="tested-trusted__item"
+                style="--tested-trusted-icon-width: {{ block.settings.icon_width }}px; --tested-trusted-icon-width-mobile: {{ block.settings.icon_width_mobile }}px;"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.custom_svg != blank or block.settings.custom_icon != blank or block.settings.icon != 'none' -%}
+                  <span class="tested-trusted__icon" aria-hidden="true">
+                    {%- if block.settings.custom_svg != blank -%}
+                      {{ block.settings.custom_svg }}
+                    {%- elsif block.settings.custom_icon != blank -%}
+                    {{
+                        block.settings.custom_icon
+                        | image_url: width: 240
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '80, 120, 160, 240',
+                          sizes: '80px',
+                          alt: ''
+                      }}
+                    {%- else -%}
+                      {%- render 'product-trust-point-icon', icon: block.settings.icon -%}
+                    {%- endif -%}
+                  </span>
+                {%- endif -%}
+
+                <div class="tested-trusted__copy rte">
+                  {{ block.settings.text }}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="tested-trusted__media">
+        <div class="tested-trusted__media-frame">
+          {%- if section.settings.image != blank -%}
+            {%- if section.settings.image_mobile != blank -%}
+              {{
+                section.settings.image_mobile
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'tested-trusted__image medium-hide large-up-hide',
+                  sizes: sizes,
+                  widths: '360, 540, 720, 960, 1200',
+                  is: 'lazy-image'
+              }}
+              {{
+                section.settings.image
+                | image_url: width: 1800
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'tested-trusted__image small-hide',
+                  sizes: sizes,
+                  widths: '540, 720, 960, 1200, 1500, 1800',
+                  is: 'lazy-image'
+              }}
+            {%- else -%}
+              {{
+                section.settings.image
+                | image_url: width: 1800
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'tested-trusted__image',
+                  sizes: sizes,
+                  widths: '540, 720, 960, 1200, 1500, 1800',
+                  is: 'lazy-image'
+              }}
+            {%- endif -%}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Tested & trusted",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<em>Tested & trusted</em>"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "header",
+      "content": "Highlight"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_highlight",
+      "label": "Enable highlight",
+      "info": "Wrap the highlighted words in <em> tags inside the heading.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "highlight_style",
+      "label": "Highlight style",
+      "options": [
+        {
+          "value": "marker",
+          "label": "Marker"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "bold-underline",
+          "label": "Bold underline"
+        },
+        {
+          "value": "modern-underline",
+          "label": "Modern underline"
+        },
+        {
+          "value": "sketch-underline",
+          "label": "Sketch underline"
+        },
+        {
+          "value": "squiggle",
+          "label": "Squiggle"
+        },
+        {
+          "value": "heavy-squiggle",
+          "label": "Heavy squiggle"
+        },
+        {
+          "value": "solid-color",
+          "label": "Solid color"
+        }
+      ],
+      "default": "underline"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>Add a short intro here or leave this blank.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "image_side",
+      "label": "Image side",
+      "options": [
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "label": "Image max width",
+      "min": 260,
+      "max": 960,
+      "step": 20,
+      "unit": "px",
+      "default": 760
+    },
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "label": "Desktop image height",
+      "min": 220,
+      "max": 720,
+      "step": 20,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "Mobile image height",
+      "min": 180,
+      "max": 520,
+      "step": 20,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "min": 320,
+      "max": 760,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "full_width_max_content_width",
+      "label": "Full width max content width",
+      "min": 1200,
+      "max": 2800,
+      "step": 20,
+      "unit": "px",
+      "default": 1800
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show top divider",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#d7e1ff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#20242b"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Heading underline color",
+      "default": "#20242b"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "List text color",
+      "default": "#20242b"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Body copy color",
+      "default": "#4b5568"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#20242b"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guarantee",
+      "name": "Guarantee",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Built-in icon",
+          "options": [
+            {
+              "value": "shield-check",
+              "label": "Shield check"
+            },
+            {
+              "value": "stethoscope",
+              "label": "Stethoscope"
+            },
+            {
+              "value": "badge",
+              "label": "Badge"
+            },
+            {
+              "value": "pin",
+              "label": "Pin"
+            },
+            {
+              "value": "lab",
+              "label": "Lab"
+            },
+            {
+              "value": "cgmp-logo",
+              "label": "cGMP logo"
+            },
+            {
+              "value": "apple",
+              "label": "Guarantee: Apple"
+            },
+            {
+              "value": "banana",
+              "label": "Guarantee: Banana"
+            },
+            {
+              "value": "bottle",
+              "label": "Guarantee: Bottle"
+            },
+            {
+              "value": "carrot",
+              "label": "Guarantee: Carrot"
+            },
+            {
+              "value": "chat_bubble",
+              "label": "Guarantee: Chat bubble"
+            },
+            {
+              "value": "check_mark",
+              "label": "Guarantee: Check mark"
+            },
+            {
+              "value": "clipboard",
+              "label": "Guarantee: Clipboard"
+            },
+            {
+              "value": "dolly",
+              "label": "Guarantee: Dolly"
+            },
+            {
+              "value": "download",
+              "label": "Guarantee: Download"
+            },
+            {
+              "value": "dryer",
+              "label": "Guarantee: Dryer"
+            },
+            {
+              "value": "eye",
+              "label": "Guarantee: Eye"
+            },
+            {
+              "value": "fire",
+              "label": "Guarantee: Fire"
+            },
+            {
+              "value": "globe",
+              "label": "Guarantee: Globe"
+            },
+            {
+              "value": "gluten_free",
+              "label": "Guarantee: Gluten free"
+            },
+            {
+              "value": "headset",
+              "label": "Guarantee: Headset"
+            },
+            {
+              "value": "heart",
+              "label": "Guarantee: Heart"
+            },
+            {
+              "value": "leaf",
+              "label": "Guarantee: Leaf"
+            },
+            {
+              "value": "light",
+              "label": "Guarantee: Light"
+            },
+            {
+              "value": "lightning_bolt",
+              "label": "Guarantee: Lightning bolt"
+            },
+            {
+              "value": "link",
+              "label": "Guarantee: Link"
+            },
+            {
+              "value": "lock",
+              "label": "Guarantee: Lock"
+            },
+            {
+              "value": "map_pin",
+              "label": "Guarantee: Map pin"
+            },
+            {
+              "value": "music",
+              "label": "Guarantee: Music"
+            },
+            {
+              "value": "package",
+              "label": "Guarantee: Package"
+            },
+            {
+              "value": "paw_print",
+              "label": "Guarantee: Paw print"
+            },
+            {
+              "value": "pepper",
+              "label": "Guarantee: Pepper"
+            },
+            {
+              "value": "phone",
+              "label": "Guarantee: Phone"
+            },
+            {
+              "value": "plane",
+              "label": "Guarantee: Plane"
+            },
+            {
+              "value": "plant",
+              "label": "Guarantee: Plant"
+            },
+            {
+              "value": "price_tag",
+              "label": "Guarantee: Price tag"
+            },
+            {
+              "value": "question_mark",
+              "label": "Guarantee: Question mark"
+            },
+            {
+              "value": "recycle",
+              "label": "Guarantee: Recycle"
+            },
+            {
+              "value": "return",
+              "label": "Guarantee: Return"
+            },
+            {
+              "value": "ruler",
+              "label": "Guarantee: Ruler"
+            },
+            {
+              "value": "shield",
+              "label": "Guarantee: Shield"
+            },
+            {
+              "value": "ship",
+              "label": "Guarantee: Ship"
+            },
+            {
+              "value": "shop",
+              "label": "Guarantee: Shop"
+            },
+            {
+              "value": "silhouette",
+              "label": "Guarantee: Silhouette"
+            },
+            {
+              "value": "snowflake",
+              "label": "Guarantee: Snowflake"
+            },
+            {
+              "value": "star",
+              "label": "Guarantee: Star"
+            },
+            {
+              "value": "stopwatch",
+              "label": "Guarantee: Stopwatch"
+            },
+            {
+              "value": "truck",
+              "label": "Guarantee: Truck"
+            },
+            {
+              "value": "washing",
+              "label": "Guarantee: Washing"
+            },
+            {
+              "value": "none",
+              "label": "None"
+            }
+          ],
+          "default": "shield-check"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon image"
+        },
+        {
+          "type": "liquid",
+          "id": "custom_svg",
+          "label": "Custom SVG markup",
+          "info": "Rendered instead of the built-in icon. Use this for inline SVG."
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "label": "Desktop icon width",
+          "min": 16,
+          "max": 96,
+          "step": 2,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "icon_width_mobile",
+          "label": "Mobile icon width",
+          "min": 14,
+          "max": 72,
+          "step": 2,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>30-day money-back guarantee</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tested & trusted",
+      "blocks": [
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shield-check",
+            "text": "<p>30-day money-back guarantee</p>"
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "stethoscope",
+            "text": "<p>Formulated by Dr. Theodore Achacoso</p>"
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "badge",
+            "text": "<p>cGMP certified</p>"
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "pin",
+            "text": "<p>Made in USA</p>"
+          }
+        },
+        {
+          "type": "guarantee",
+          "settings": {
+            "icon": "lab",
+            "text": "<p>3rd Party Tested: Purity, Potency, Heavy Metals, Microbial Analysis (on each manufacturing run)</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

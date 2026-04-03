@@ -1,0 +1,72 @@
+{%- liquid
+  assign horizontal_span = block.settings.horizontal_span | default: 1
+  if horizontal_span > section.settings.horizontal_columns
+    assign horizontal_span = section.settings.horizontal_columns
+  endif
+  capture horizontal_style
+    if section.settings.layout == 'horizontal'
+      echo ' style="--rich-text-v2-item-span: '
+      echo horizontal_span
+      echo ';"'
+    endif
+  endcapture
+-%}
+{%- case block.type -%}
+  {%- when 'heading' -%}
+    <{{ block.settings.heading_tag }} class="rich-text-v2__item rich-text-v2__heading {{ block.settings.heading_size }}"{{ horizontal_style }} {{ block.shopify_attributes }}>
+      {%- render 'highlight-text',
+        hl_input: block.settings.heading,
+        hl_style: block.settings.highlight_style,
+        hl_enable: block.settings.enable_highlight,
+        hl_animateWrap: true -%}
+    </{{ block.settings.heading_tag }}>
+  {%- when 'subheading' -%}
+    <p class="rich-text-v2__item rich-text-v2__subheading{% if block.settings.secondary_color %} rich-text-v2__subheading--colored{% endif %} {{ block.settings.subheading_size }}"{{ horizontal_style }} {{ block.shopify_attributes }}>
+      {%- render 'highlight-text',
+        hl_input: block.settings.subheading,
+        hl_style: block.settings.highlight_style,
+        hl_enable: block.settings.enable_highlight,
+        hl_animateWrap: true -%}
+    </p>
+  {%- when 'text' -%}
+    <div class="rich-text-v2__item rich-text-v2__text{% if block.settings.secondary_color %} rich-text-v2__text--colored{% endif %} {{ block.settings.text_size }} rte"{{ horizontal_style }} {{ block.shopify_attributes }}>
+      {%- render 'highlight-text',
+        hl_input: block.settings.text,
+        hl_style: block.settings.highlight_style,
+        hl_enable: block.settings.enable_highlight,
+        hl_animateWrap: true -%}
+    </div>
+  {%- when 'custom_liquid' -%}
+    <div class="rich-text-v2__item rich-text-v2__text rte"{{ horizontal_style }} {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+  {%- when 'button' -%}
+    <div class="rich-text-v2__item rich-text-v2__buttons"{{ horizontal_style }} {{ block.shopify_attributes }}>
+      {%- if block.settings.button_label != blank or block.settings.button_alt_label != blank -%}
+        {%- if block.settings.button_label != blank -%}
+          {%- if block.settings.button_style_secondary -%}
+            <a class="button button--cta button--{{ block.settings.button_size }}"{% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}"{% else %} role="link" aria-disabled="true"{% endif %}>
+              <span class="label">{{ block.settings.button_label | escape }}</span>
+              {% render 'icon', icon: 'arrow' %}
+            </a>
+          {%- else -%}
+            <a class="button button--{{ block.settings.button_size }}"{% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}"{% else %} role="link" aria-disabled="true"{% endif %}>
+              {{ block.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+        {%- endif -%}
+        {%- if block.settings.button_alt_label != blank -%}
+          {%- if block.settings.button_alt_style_secondary -%}
+            <a class="button button--cta button--{{ block.settings.button_size }}"{% if block.settings.button_alt_link != blank %} href="{{ block.settings.button_alt_link }}"{% else %} role="link" aria-disabled="true"{% endif %}>
+              <span class="label">{{ block.settings.button_alt_label | escape }}</span>
+              {% render 'icon', icon: 'arrow' %}
+            </a>
+          {%- else -%}
+            <a class="button button--secondary button--{{ block.settings.button_size }}"{% if block.settings.button_alt_link != blank %} href="{{ block.settings.button_alt_link }}"{% else %} role="link" aria-disabled="true"{% endif %}>
+              {{ block.settings.button_alt_label | escape }}
+            </a>
+          {%- endif -%}
+        {%- endif -%}
+      {%- elsif section.blocks.size == 1 and block.settings.button_link != blank -%}
+        <a class="full-unstyled-link" href="{{ block.settings.button_link }}" aria-label="{{ block.settings.button_label | default: block.settings.button_alt_label | escape }}"></a>
+      {%- endif -%}
+    </div>
+{%- endcase -%}
