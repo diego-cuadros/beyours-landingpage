@@ -12,7 +12,14 @@
   #shopify-section-{{ section.id }} .dc_tcwi__heading {
     font-size: 63px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    text-align: {{ section.settings.heading_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__subheading {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 8px 0 0px;
     text-align: {{ section.settings.heading_alignment }};
   }
 
@@ -28,7 +35,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    flex: 0 1 calc((100% - 60px) / 3);
+    flex: 0 1 calc((100% - 90px) / 4);
     min-width: 0;
   }
 
@@ -75,9 +82,23 @@
     margin: 0;
   }
 
+  {%- if section.blocks.size >= 4 -%}
+    #shopify-section-{{ section.id }} .dc_tcwi__title {
+      font-size: 25px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__text {
+      font-size: 16px;
+    }
+  {%- endif -%}
+
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .dc_tcwi__heading {
       font-size: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__subheading {
+      font-size: 15px;
     }
 
     #shopify-section-{{ section.id }} .dc_tcwi__block {
@@ -103,6 +124,9 @@
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
       <h2 class="dc_tcwi__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="dc_tcwi__subheading">{{ section.settings.subheading | escape }}</p>
     {%- endif -%}
 
     <div class="dc_tcwi__grid">
@@ -170,6 +194,11 @@
       "id": "heading",
       "default": "Active ingredients",
       "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
     },
     {
       "type": "select",
