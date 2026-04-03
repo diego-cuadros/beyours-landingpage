@@ -1,0 +1,239 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .dc_reviews-section {
+  	padding: 56px 0;
+  }
+
+  #shopify-section-{{ section.id }} .dc_reviews-shell {
+  	max-width: 1280px;
+  	margin: 0 auto;
+  	padding: 0 16px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_reviews-header {
+  	text-align: center;
+  	margin-bottom: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_reviews-title {
+  	margin: 0;
+  	font-size: 28px;
+  	line-height: 1.05;
+  	font-weight: 600;
+  	color: #1d1d1f;
+  }
+
+  #shopify-section-{{ section.id }} .dc_reviews-description {
+  	margin: 10px 0 0;
+  	font-size: 15px;
+  	line-height: 1.45;
+  	font-weight: 400;
+  	color: #444444;
+  }
+
+  #shopify-section-{{ section.id }} .dc_reviews-grid {
+  	display: grid;
+  	grid-template-columns: minmax(0, 1fr);
+  	gap: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_review-card {
+  	display: flex;
+  	flex-direction: column;
+  	gap: 14px;
+  	height: 100%;
+  	padding: 24px;
+  	border-radius: 8px;
+  	background-color: #f8f8f8;
+  }
+
+  #shopify-section-{{ section.id }} .dc_star-rating {
+  	display: flex;
+  	align-items: center;
+  	gap: 4px;
+  	line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .dc_star-icon {
+  	display: block;
+  	width: 16px;
+  	height: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_review-highlight {
+  	margin: 0;
+  	font-size: 15px;
+  	line-height: 1.3;
+  	font-weight: 600;
+  	color: #1d1d1f;
+  }
+
+  #shopify-section-{{ section.id }} .dc_review-body {
+  	margin: 0;
+  	font-size: 15px;
+  	line-height: 1.45;
+  	font-weight: 400;
+  	color: #4a4a4a;
+  }
+
+  #shopify-section-{{ section.id }} .dc_review-author {
+  	margin: auto 0 0;
+  	padding-top: 8px;
+  	font-size: 12px;
+  	line-height: 1.4;
+  	font-weight: 500;
+  	color: #666666;
+  }
+
+  @media screen and (min-width: 750px) {
+  	#shopify-section-{{ section.id }} .dc_reviews-section {
+  		padding: 96px 0;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_reviews-shell {
+  		padding: 0 24px;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_reviews-header {
+  		margin-bottom: 40px;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_reviews-title {
+  		font-size: 63px;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_reviews-description {
+  		font-size: 17px;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_reviews-grid {
+  		grid-template-columns: repeat(3, minmax(0, 1fr));
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_review-card {
+  		padding: 26px 24px 22px;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_review-highlight {
+  		font-size: 16px;
+  	}
+
+  	#shopify-section-{{ section.id }} .dc_review-body {
+  		font-size: 17px;
+  	}
+  }
+{%- endstyle -%}
+
+<section class="dc_reviews-section">
+  <div class="dc_reviews-shell">
+    {%- if section.settings.title != blank or section.settings.description != blank -%}
+      <div class="dc_reviews-header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="dc_reviews-title">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <p class="dc_reviews-description">{{ section.settings.description | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="dc_reviews-grid">
+        {%- for block in section.blocks -%}
+          <article class="dc_review-card" {{ block.shopify_attributes }}>
+            <div class="dc_star-rating" aria-label="{{ block.settings.star_score }} out of 5 stars">
+              {%- for star in (1..block.settings.star_score) -%}
+                {% render 'icon-star', class: 'dc_star-icon' %}
+              {%- endfor -%}
+            </div>
+
+            {%- if block.settings.highlight_text != blank -%}
+              <h3 class="dc_review-highlight">{{ block.settings.highlight_text | escape }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.review_text != blank -%}
+              <p class="dc_review-body">{{ block.settings.review_text | escape | newline_to_br }}</p>
+            {%- endif -%}
+
+            {%- if block.settings.author_info != blank -%}
+              <p class="dc_review-author">{{ block.settings.author_info | escape }}</p>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom reviews",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "See what our customers are saying"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review card",
+      "settings": [
+        {
+          "type": "range",
+          "id": "star_score",
+          "label": "Star score",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "highlight_text",
+          "label": "Highlighted text",
+          "default": "Love your product"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "Great product really helps me with jet lag. Thank you"
+        },
+        {
+          "type": "text",
+          "id": "author_info",
+          "label": "Author info",
+          "default": "Hope, 7/28/2025"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Custom reviews",
+      "blocks": [
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
