@@ -23,11 +23,27 @@
     text-align: {{ section.settings.heading_alignment }};
   }
 
-  #shopify-section-{{ section.id }} .dc_tcwi__grid {
+  #shopify-section-{{ section.id }} .dc_tcwi__grid,
+  #shopify-section-{{ section.id }} .dc_tcwi__track {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: {{ section.settings.grid_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__carousel-track-wrapper {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__track::-webkit-scrollbar {
+    display: none;
   }
 
   #shopify-section-{{ section.id }} .dc_tcwi__block {
@@ -82,6 +98,25 @@
     margin: 0;
   }
 
+  #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__indicators {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__indicator {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(var(--color-foreground), 0.25);
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__indicator.is-active {
+    background: rgb(var(--color-foreground));
+  }
+
   {%- if section.blocks.size >= 4 -%}
     #shopify-section-{{ section.id }} .dc_tcwi__title {
       font-size: 25px;
@@ -117,6 +152,43 @@
     #shopify-section-{{ section.id }} .dc_tcwi__text {
       font-size: 14px;
     }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel-component {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel-track-wrapper {
+      padding-inline: 1.5rem;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__track {
+      flex-wrap: nowrap;
+      gap: 0;
+      justify-content: flex-start;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__slide {
+      width: 100%;
+      flex: 0 0 100%;
+      padding: 0 1.2rem;
+      box-sizing: border-box;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel-track-wrapper {
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__indicators {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
   }
 {%- endstyle -%}
 
@@ -129,59 +201,211 @@
       <p class="dc_tcwi__subheading">{{ section.settings.subheading | escape }}</p>
     {%- endif -%}
 
-    <div class="dc_tcwi__grid">
-      {%- for block in section.blocks -%}
-        <div class="dc_tcwi__block" {{ block.shopify_attributes }}>
-          {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}" class="dc_tcwi__block-inner">
-          {%- else -%}
-            <div class="dc_tcwi__block-inner">
-          {%- endif -%}
-
-          {%- if block.settings.image != blank -%}
-            <div class="dc_tcwi__image-wrapper">
-              {{
-                block.settings.image
-                | image_url: width: 500
-                | image_tag:
-                  loading: 'lazy',
-                  widths: '120, 220, 440, 500',
-                  sizes: '(min-width: 750px) 220px, 120px',
-                  is: 'lazy-image'
-              }}
-            </div>
-          {%- else -%}
-            <div class="dc_tcwi__image-wrapper">
-              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
-
-          <div class="dc_tcwi__content">
-            {%- if block.settings.title != blank -%}
-              <p class="dc_tcwi__title">{{ block.settings.title | escape }}</p>
-            {%- endif -%}
-            {%- if block.settings.text != blank -%}
+    {%- if section.settings.enable_mobile_carousel -%}
+      <div class="dc_tcwi__carousel dc_tcwi__carousel-component carousel__component" data-section-id="{{ section.id }}">
+        <div class="dc_tcwi__carousel-track-wrapper">
+          <div
+            id="Carousel-{{ section.id }}"
+            class="dc_tcwi__track carousel__track"
+            role="list"
+            tabindex="0"
+            aria-roledescription="carousel"
+          >
+            {%- for block in section.blocks -%}
               <div
-                class="dc_tcwi__text"
-                {%- if block.settings.text_color != blank %}
-                  style="color: {{ block.settings.text_color }};"
-                {% endif %}
+                class="dc_tcwi__block carousel__slide{% if forloop.first %} is-selected{% endif %}"
+                role="listitem"
+                {{ block.shopify_attributes }}
               >
-                {{ block.settings.text }}
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" class="dc_tcwi__block-inner">
+                {%- else -%}
+                  <div class="dc_tcwi__block-inner">
+                {%- endif -%}
+
+                {%- if block.settings.image != blank -%}
+                  <div class="dc_tcwi__image-wrapper">
+                    {{
+                      block.settings.image
+                      | image_url: width: 500
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '120, 220, 440, 500',
+                        sizes: '(min-width: 750px) 220px, 120px',
+                        is: 'lazy-image'
+                    }}
+                  </div>
+                {%- else -%}
+                  <div class="dc_tcwi__image-wrapper">
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {%- endif -%}
+
+                <div class="dc_tcwi__content">
+                  {%- if block.settings.title != blank -%}
+                    <p class="dc_tcwi__title">{{ block.settings.title | escape }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <div
+                      class="dc_tcwi__text"
+                      {%- if block.settings.text_color != blank %}
+                        style="color: {{ block.settings.text_color }};"
+                      {% endif %}
+                    >
+                      {{ block.settings.text }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                {%- if block.settings.link != blank -%}
+                  </a>
+                {%- else -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        <p class="carousel__status visually-hidden" aria-live="polite" aria-atomic="true"></p>
+        {%- if section.blocks.size > 1 -%}
+          <div class="carousel__indicators" role="tablist">
+            {%- for block in section.blocks -%}
+              <button
+                class="carousel__indicator{% if forloop.first %} is-active{% endif %}"
+                data-carousel-indicator="{{ forloop.index0 }}"
+                aria-label="Go to slide {{ forloop.index }}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              ></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="dc_tcwi__grid">
+        {%- for block in section.blocks -%}
+          <div class="dc_tcwi__block" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="dc_tcwi__block-inner">
+            {%- else -%}
+              <div class="dc_tcwi__block-inner">
+            {%- endif -%}
+
+            {%- if block.settings.image != blank -%}
+              <div class="dc_tcwi__image-wrapper">
+                {{
+                  block.settings.image
+                  | image_url: width: 500
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '120, 220, 440, 500',
+                    sizes: '(min-width: 750px) 220px, 120px',
+                    is: 'lazy-image'
+                }}
+              </div>
+            {%- else -%}
+              <div class="dc_tcwi__image-wrapper">
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {%- endif -%}
+
+            <div class="dc_tcwi__content">
+              {%- if block.settings.title != blank -%}
+                <p class="dc_tcwi__title">{{ block.settings.title | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div
+                  class="dc_tcwi__text"
+                  {%- if block.settings.text_color != blank %}
+                    style="color: {{ block.settings.text_color }};"
+                  {% endif %}
+                >
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
               </div>
             {%- endif -%}
           </div>
-
-          {%- if block.settings.link != blank -%}
-            </a>
-          {%- else -%}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
-    </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </div>
 </div>
+
+{%- if section.settings.enable_mobile_carousel -%}
+  <script>
+    (() => {
+      const sectionEl = document.getElementById('shopify-section-{{ section.id }}');
+      if (!sectionEl) return;
+
+      const carousel = sectionEl.querySelector('.dc_tcwi__carousel-component');
+      const track = sectionEl.querySelector('#Carousel-{{ section.id }}');
+      const slides = track ? Array.from(track.querySelectorAll('.carousel__slide')) : [];
+      const dots = carousel ? Array.from(carousel.querySelectorAll('.carousel__indicator')) : [];
+      const isMobile = window.matchMedia('(max-width: 749px)');
+      let rafId = null;
+
+      if (!carousel || !track || !slides.length) return;
+
+      const setActive = (index) => {
+        dots.forEach((dot, dotIndex) => {
+          const isActive = dotIndex === index;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        const status = carousel.querySelector('.carousel__status');
+        if (status) {
+          status.textContent = `Slide ${index + 1} of ${slides.length}`;
+        }
+      };
+
+      const getClosestIndex = () => {
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+        const currentLeft = track.scrollLeft;
+
+        slides.forEach((slide, index) => {
+          const distance = Math.abs(slide.offsetLeft - currentLeft);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        return closestIndex;
+      };
+
+      const handleScroll = () => {
+        if (!isMobile.matches) return;
+        if (rafId) cancelAnimationFrame(rafId);
+
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          setActive(getClosestIndex());
+        });
+      };
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          if (!isMobile.matches) return;
+          const targetSlide = slides[index];
+          if (!targetSlide) return;
+          track.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
+          setActive(index);
+        });
+      });
+
+      track.addEventListener('scroll', handleScroll, { passive: true });
+      setActive(0);
+    })();
+  </script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -231,6 +455,12 @@
         { "value": "2", "label": "2 columns" }
       ],
       "default": "1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_carousel",
+      "label": "Enable mobile carousel",
+      "default": false
     },
     {
       "type": "range",
