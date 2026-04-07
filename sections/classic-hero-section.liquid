@@ -1,0 +1,221 @@
+<style>
+  #shopify-section-{{ section.id }} .dc_classic-hero-wrapper {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    max-width:1280px;
+    margin:auto;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero {
+    border: 2px solid {{ section.settings.border_color }};
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero__inner {
+    display: flex;
+    flex-direction: {% if section.settings.image_position == 'right' %}row-reverse{% else %}row{% endif %};
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero__image-wrap {
+    width: 50%;
+    flex-shrink: 0;
+    position: relative;
+    align-self: stretch;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero__image-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero__content {
+    width: 50%;
+    padding: 80px;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero__title {
+    font-size: 36px;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+  }
+
+  #shopify-section-{{ section.id }} .dc_classic-hero__text {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} .dc_classic-hero-wrapper {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_classic-hero__inner {
+      flex-direction: column;
+    }
+
+    #shopify-section-{{ section.id }} .dc_classic-hero__image-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      align-self: auto;
+    }
+
+    #shopify-section-{{ section.id }} .dc_classic-hero__content {
+      width: 100%;
+      padding: 25px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_classic-hero__title {
+      font-size: 36px;
+      font-weight: 500;
+    }
+
+    #shopify-section-{{ section.id }} .dc_classic-hero__text {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+</style>
+
+<div class="dc_classic-hero-wrapper page-width section--padding">
+  <div class="dc_classic-hero ">
+    <div class="dc_classic-hero__inner">
+      <div class="dc_classic-hero__image-wrap">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag: loading: 'lazy', alt: section.settings.image.alt
+          }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'dc_classic-hero__placeholder-img' }}
+        {%- endif -%}
+      </div>
+
+      <div class="dc_classic-hero__content">
+        {%- if section.settings.title != blank -%}
+          <h2 class="dc_classic-hero__title">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.content != blank -%}
+          <div class="dc_classic-hero__text">{{ section.settings.content }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "📼 Classic Hero",
+  "tag": "section",
+  "class": "dc_classic-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Child resistant packaging"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Your safety and your family's safety is our top priority, which is why we've gone an extra mile to utilize child-resistant packaging for our products.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 148,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 148,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "📼 Classic Hero"
+    }
+  ]
+}
+{% endschema %}
