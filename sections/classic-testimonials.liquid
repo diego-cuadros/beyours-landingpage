@@ -3,6 +3,7 @@
 
 <style>
   #shopify-section-{{ section.id }} .dc_ct-wrapper {
+    max-width: 1280px;
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
@@ -16,22 +17,28 @@
 
   #shopify-section-{{ section.id }} .dc_ct-heading {
     text-align: {{ section.settings.heading_alignment }};
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-size: {{ section.settings.heading_font_size_desktop }}px;
+    font-weight: 600;
     margin: 0 0 2.4rem 0;
     line-height: 1.2;
+  }
+
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} .dc_ct-heading {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
+    }
   }
 
   #shopify-section-{{ section.id }} .dc_ct-panel {
     border: 1px solid #e5e7eb;
     border-radius: 10px;
-    padding: 4rem;
+    padding: 80px 50px;
     overflow: hidden;
   }
 
   @media (max-width: 749px) {
     #shopify-section-{{ section.id }} .dc_ct-panel {
-      padding: 2.4rem;
+      padding: 40px 25px;
     }
   }
 
@@ -43,6 +50,7 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -92,33 +100,50 @@
 
   #shopify-section-{{ section.id }} .dc_ct-avatar__name {
     display: block;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 19px;
+    font-weight: 400;
     line-height: 1.3;
+  }
+
+  @media only screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .dc_ct-avatar__name {
+      font-size: 17px;
+    }
   }
 
   #shopify-section-{{ section.id }} .dc_ct-avatar__title {
     display: block;
-    font-size: 1.3rem;
-    color: #6b7280;
+    font-size: 14px;
+    color: #1d1d1d;
     line-height: 1.3;
     margin-top: 0.2rem;
+  }
+
+  @media only screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .dc_ct-avatar__title {
+      font-size: 13px;
+    }
   }
 
   /* Quote */
   #shopify-section-{{ section.id }} .dc_ct-quote {
     border-inline-start:none;
+    color: #1d1d1d;
     font-family: "New York", "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: 400;
     font-style: normal;
     font-size: {{ section.settings.quote_font_size }}px;
     line-height: {{ section.settings.quote_line_height }};
+    padding: 0px;
     margin: 0;
+    width:85%;
   }
 
   @media (max-width: 749px) {
     #shopify-section-{{ section.id }} .dc_ct-quote {
-      font-size: calc({{ section.settings.quote_font_size }}px * 0.75);
+      font-size: 22.5px;
+      hyphens: auto;
+      width:100%;
     }
   }
 
@@ -174,9 +199,7 @@
 
 <div class="dc_ct-wrapper page-width">
   {%- if section.settings.heading != blank -%}
-    <{{ section.settings.heading_tag }} class="dc_ct-heading">
-      {{- section.settings.heading | escape -}}
-    </{{ section.settings.heading_tag }}>
+    <h2 class="dc_ct-heading">{{ section.settings.heading | escape }}</h2>
   {%- endif -%}
 
   {%- if section.blocks.size > 0 -%}
@@ -276,22 +299,39 @@
 
     if (!slider || !quoteSlider) return;
 
-    function setSliderHeight(index) {
-      const slides = slider.querySelectorAll('[id^="Slide-"]');
-      if (!slides[index]) return;
-      const inner = slides[index].querySelector('.dc_ct-slide__inner');
+    let currentIndex = 0;
+    let observer = null;
+
+    function setSliderHeight(inner) {
       if (!inner) return;
       slider.style.height = inner.offsetHeight + 'px';
     }
 
-    // Wait for layout before measuring first slide
-    requestAnimationFrame(() => setSliderHeight(0));
+    function watchSlide(index) {
+      const slides = slider.querySelectorAll('[id^="Slide-"]');
+      if (!slides[index]) return;
+      const inner = slides[index].querySelector('.dc_ct-slide__inner');
+      if (!inner) return;
+
+      // Stop watching previous slide
+      if (observer) observer.disconnect();
+
+      // Immediately measure
+      setSliderHeight(inner);
+
+      // Re-measure automatically whenever content size changes (fonts, reflow)
+      observer = new ResizeObserver(() => setSliderHeight(inner));
+      observer.observe(inner);
+    }
+
+    // Start watching first slide
+    watchSlide(0);
 
     // Sync dots + height when slide changes
     quoteSlider.addEventListener('slideChanged', (e) => {
-      const current = e.detail.currentPage - 1;
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
-      setSliderHeight(current);
+      currentIndex = e.detail.currentPage - 1;
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentIndex));
+      watchSlide(currentIndex);
     });
 
     // Click dot to jump to slide
@@ -334,16 +374,16 @@
       "default": "center"
     },
     {
-      "type": "select",
-      "id": "heading_tag",
-      "label": "Heading tag",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "h4", "label": "H4" }
-      ],
-      "default": "h2"
+      "type": "number",
+      "id": "heading_font_size_desktop",
+      "label": "Heading font size — desktop (px)",
+      "default": 48
+    },
+    {
+      "type": "number",
+      "id": "heading_font_size_mobile",
+      "label": "Heading font size — mobile (px)",
+      "default": 28
     },
     {
       "type": "header",
