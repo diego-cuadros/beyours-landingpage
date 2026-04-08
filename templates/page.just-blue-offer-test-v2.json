@@ -23,13 +23,632 @@
       "name": "Just Blue Offer Test V2",
       "settings": {}
     },
+    "custom_reviews_YqGe3A": {
+      "type": "custom-reviews",
+      "blocks": {
+        "review_4G8iH4": {
+          "type": "review",
+          "settings": {
+            "star_score": 5,
+            "highlight_text": "Love your product",
+            "review_text": "\"Great product really helps me with jet lag. Thank you\"",
+            "author_info": "Hope, 7/28/2025"
+          }
+        },
+        "review_hFLWG4": {
+          "type": "review",
+          "settings": {
+            "star_score": 5,
+            "highlight_text": "ENERGY+CLARITY",
+            "review_text": "I am in my 70’s & have always been a very active type A multitasker. When I told my functional medicine doctor I was feeling depressed because of a lack of energy, he first adjusted thyroid medication & then recommended Methylene Blue. Combined, I feel like my former self again & any depression over a lack of energy is gone. I also win a lot more Mahjong games than I used to. Love the troche delivery system. Superior to other available options. Thanks, Troscriptions!!!!",
+            "author_info": "Christine E, 7/26/25"
+          }
+        },
+        "review_7Pfdpy": {
+          "type": "review",
+          "settings": {
+            "star_score": 5,
+            "highlight_text": "My tongue tic is gone!",
+            "review_text": "This cleared my brain fog and My memory is so much better! Plus, I wasn't expecting this as a benefit but after taking it two days I noticed my tongue was not moving on its own like it had been for years even though I had stopped taking the medicine that caused it many years ago.!",
+            "author_info": "Peggy, 7/28/25"
+          }
+        }
+      },
+      "block_order": [
+        "review_4G8iH4",
+        "review_hFLWG4",
+        "review_7Pfdpy"
+      ],
+      "custom_css": [
+        ".dc_review-body {font-style: italic;}"
+      ],
+      "name": "📼Custom reviews",
+      "settings": {
+        "title": "Customer Reviews",
+        "description": "See what our customers are saying"
+      }
+    },
+    "video_testimonial_BK4NWQ": {
+      "type": "video-testimonial",
+      "name": "📼Video testimonial",
+      "settings": {
+        "title": "Endorsed by Thomas DeLauer",
+        "show_title": true,
+        "title_tag": "h2",
+        "author_image": "shopify://shop_images/tom_delauer_closeup.jpg",
+        "author_name": "Thomas DeLauer",
+        "author_description": "Nutrition and Business Performance Coach",
+        "testimonial": "\"My eyes have been opened to methylene blue. I honestly was skeptical at first. That's the honest truth. I was skeptical because it kind of seemed a little bit too good to be true. I now take this at least a few times per week prior to my activities, prior to working out, prior to running.\"",
+        "thumbnail": "shopify://shop_images/thomas_delauer_2_smaller.jpg",
+        "video": "shopify://files/videos/763f5727d1dd40de932a06954707f833.mp4",
+        "show_controls": true
+      }
+    },
+    "text_columns_with_images_4qqWVG": {
+      "type": "text-columns-with-images",
+      "blocks": {
+        "column_dYUaYD": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Methylene_Blue.png",
+            "title": "Methylene Blue",
+            "text": "<p>16 mg. A powerful brain booster that increases energy production, decreases inflammation, and builds resilience</p>",
+            "text_color": "#7d7d7d",
+            "link": "https://troscriptions.com/blogs/main/methyleneblue"
+          }
+        },
+        "column_B96iVE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/troche_outline_-_smaller.png",
+            "title": "Other Ingredients",
+            "text": "<p>polyethylene glycol (PEG), stevia extract, lou han extract, peppermint, silica, Bitter-Bloc™</p>",
+            "text_color": "#7d7d7d",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_dYUaYD",
+        "column_B96iVE"
+      ],
+      "custom_css": [
+        "@media only screen and (min-width: 769px) {.dc_tcwi__title {margin-bottom: 0; } .dc_tcwi__text p {margin-top: 0; }}"
+      ],
+      "name": "📼 Columns with images",
+      "settings": {
+        "heading": "Active ingredients",
+        "subheading": "",
+        "heading_alignment": "center",
+        "grid_alignment": "flex-start",
+        "columns_mobile": "2",
+        "enable_mobile_carousel": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "trust_and_testing_PGz7pG": {
+      "type": "trust-and-testing",
+      "name": "📼 Trust & Testing",
+      "settings": {
+        "title": "Every batch tested, see our results",
+        "subtitle_1": "Beyond USP",
+        "content_1": "<p>Did you know many supplements on the market can be contaminated or inaccurately labeled? The U.S. Pharmacopeia (USP) sets the gold standard for testing and verifying pharmaceutical-grade ingredients.</p>",
+        "subtitle_2": "2x Testing",
+        "content_2": "<p>At Troscriptions, we go a step further. Every batch of ingredients is tested 2x for purity and safety. All our test results are publicly available.</p>",
+        "button_label": "Request Certificate of Analysis",
+        "button_link": "https://troscriptions.com/blogs/main/methyleneblue",
+        "button_bg_color": "#111111",
+        "button_text_color": "#ffffff",
+        "image": "shopify://shop_images/troche_closeup.png",
+        "image_position": "right",
+        "border_color": "#e2e2e2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "text_columns_with_images_QC3qNE": {
+      "type": "text-columns-with-images",
+      "blocks": {
+        "column_Y73fkM": {
+          "type": "column",
+          "settings": {
+            "title": "Choose your starting point",
+            "text": "<p>Decide on your starting dose and, if needed, cut the troche accordingly.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        },
+        "column_M3aazK": {
+          "type": "column",
+          "settings": {
+            "title": "Find the sweet spot",
+            "text": "<p>Gently place the troche between your gum and upper cheek. Alternatively, because Methylene Blue is highly bioavailable, you can also swallow it on an empty stomach.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        },
+        "column_GfaBed": {
+          "type": "column",
+          "settings": {
+            "title": "Patience is key",
+            "text": "<p>Allow the troche to dissolve completely. Onset will be 15 to 20 minutes if used as a buccal troche and 60 to 90 minutes if swallowed.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        },
+        "column_9AQh6W": {
+          "type": "column",
+          "settings": {
+            "title": "Feel the shift",
+            "text": "<p>Soon you'll feel methylene blue's transformational effects as it powers up your cells.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        },
+        "column_be7FBc": {
+          "type": "column",
+          "settings": {
+            "title": "Unlock energy and resilience",
+            "text": "<p>Just Blue will brighten your focus, boost your mood, your energy, and your endurance.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Y73fkM",
+        "column_M3aazK",
+        "column_GfaBed",
+        "column_9AQh6W",
+        "column_be7FBc"
+      ],
+      "name": "📼 Columns with images",
+      "settings": {
+        "heading": "Calibrate your dose of Just Blue",
+        "subheading": "Follow these steps",
+        "heading_alignment": "center",
+        "grid_alignment": "center",
+        "columns_mobile": "1",
+        "enable_mobile_carousel": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_cafXWK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_drVDYd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Key features",
+            "heading_size": "h0",
+            "heading_tag": "h2",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "heading_drVDYd"
+      ],
+      "custom_css": [
+        ".rich-text__heading {font-size: 63px;}",
+        "@media only screen and (max-width: 769px) {.rich-text__heading {font-size: 28px; }}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "center",
+        "mobile_text_alignment": "center",
+        "horizontal_content": false,
+        "narrow": false,
+        "show_divider": false,
+        "use_custom_colors": false,
+        "colors_button_label": "#ffffff",
+        "colors_button_background": "#1a1b18",
+        "colors_text": "#212326",
+        "colors_background": "#ffffff",
+        "colors_highlight": "#ffb503",
+        "gradient_background": "",
+        "padding_top": 36,
+        "padding_bottom": 64
+      }
+    },
+    "classic_hero_section_8chdPw": {
+      "type": "classic-hero-section",
+      "name": "📼 Classic Hero",
+      "settings": {
+        "title": "Buccal troche delivery",
+        "content": "<p>Have you been swallowing your supplements up until now? At Troscriptions, we do things a little differently - we use buccal troches</p><p>A buccal troche is a uniquely designed delivery system that enhances the absorption of active ingredients directly into your bloodstream. Traditional methods (like tablets or powders) must navigate the detours of your digestive system, but buccal troches allow for more rapid and<br/>effective absorption by skipping the digestive system. The result? A swift, potent effect for maximum benefits.</p>",
+        "image": "shopify://shop_images/Just_Blue_Troche_No_Background_Cut.svg",
+        "image_position": "right",
+        "border_color": "#e0e0e0",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "classic_hero_section_YJCYiE": {
+      "type": "classic-hero-section",
+      "name": "📼 Classic Hero",
+      "settings": {
+        "title": "Child resistant packaging",
+        "content": "<p>Your safety and your family's safety is our top priority, which is why we've gone an extra mile to utilize child-resistant packaging for our products. We understand that this might make the packaging slightly more challenging to open, but it's a measure designed with the utmost safety in mind.</p>",
+        "image": "shopify://shop_images/Troscriptions_Tro_Blue_Cannatine_Child_Resistant_Package_Open_Box_c396b491-b34e-4939-ad35-b7119df97d0e.jpg",
+        "image_position": "left",
+        "border_color": "#e0e0e0",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "classic_hero_section_knUqzq": {
+      "type": "classic-hero-section",
+      "name": "📼 Classic Hero",
+      "settings": {
+        "title": "Recequiv™",
+        "content": "<p>A novel, patent-pending process of creating formulas with natural molecules that bind to the same receptor that a synthetic molecule would bind.</p>",
+        "image": "shopify://shop_images/Scott_holding_a_troche.jpg",
+        "image_position": "right",
+        "border_color": "#e0e0e0",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "collapsible_content_hrwAXd": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_a9Qx44": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What benefits will I get from Just Blue™?",
+            "row_content": "<p>Here’s what our community has reported:<br/><br/>High-Definition Focus: More energy for your cells = more brain power, without the stimulation effect.</p><p>Enhanced Endurance: Go the extra mile, literally and figuratively. Whether it's a workout or a workday, enjoy a newfound stamina.</p><p>Decreased inflammation: Methylene blue is a powerful antioxidant that helps your cells clean up and clear out.</p><p>Deeper Meditations: Connect with your inner world more profoundly. Just Blue™ users often find their meditative practices enriched, reaching serene depths with ease.portant product information, shipping policies, payment issues or returns.</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_dhCeDF": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What scientific research is the formulation based on?",
+            "row_content": "<p>See the many articles we've written on Methylene Blue <a href=\"https://troscriptions.com/search?type=product,page,article&q=methylene%20blue*\">here</a>!</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_F6pAQL": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Will it turn my mouth blue?",
+            "row_content": "<p>If used as a buccal troche, yes. The rate of discoloration varies between 2 to 24 hours.<br/><br/>Warning: In addition to being a star ingredient, methylene blue is a dye. It will temporarily stain your mouth (including your teeth). If you have any concerns about dental work and/or prolonged staining, please consult your dentist. Blue tongue resolution speed will depend on how much you move it around when it is dissolving and the amount you use. There is no quick antidote but if you want to reduce the blue faster we have included tips below.</p><p>---<br/><br/>When methylene blue is reduced, it decolorizes. Reducing agents such as sodium bicarbonate — add 1/4 tsp baking soda in 4 fl oz water and rinse the mouth with it for a few minutes — should reduce the methylene blue. This should be done ideally 5-10 minutes after the troche has fully dissolved. Since the reaction is acid-catalyzed, rinse the mouth with 1 part vinegar, and 1 part water first, right before rinsing with baking soda, which would hasten the decolorizing reaction. We also find that hot liquids help as well!</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_yMaHXA": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I see the 3rd party testing?",
+            "row_content": "<p>Email buccalup@troscriptions.com and we'll be happy to share this with you!</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_axQQwT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Why does it contain Polyethylene Glycol (PEG)?",
+            "row_content": "<p>Polyethylene Glycol is a long-established FDA-approved drug delivery method used around the world, especially by compounding pharmacists. Do not confuse polyethylene glycol with propylene glycol. The latter is antifreeze and will kill you if you drink it…so please don’t do that!<br/><br/>Our formulations use polyethylene glycol that is both non-absorbable and very low dose, meaning that it does not get absorbed into your body and it will not cause GI distress or any of those other symptoms/issues that you may have heard about.</p><p>For more information, please see <a href=\"https://troscriptions.com/blogs/main/polyethylene-glycol-peg\">this article</a> for an in-depth explanation.</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_miKGN6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How many troches am I getting?",
+            "row_content": "<p>There are 4 whole troches in each package and each troche can be cut into four quarters. Therefore, one pack can yield up to 16 doses, depending on your personalized needs. The troches are scored for easy titration.</p><p>Start with 1/4 troche to 1/2 troche and increase the dosage until you reach your optimal dose.</p><p>DO NOT exceed more than 4 whole troches in a 24-hour period.</p><p>For Tro+ Blue, the above instructions may not apply. Please follow the directions from your healthcare provider.</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_ydwGe9": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What is the difference between Blue Cannatine™ & Just Blue™?",
+            "row_content": "<p>Blue Cannatine™ contains methylene blue (5 mg per troche), caffeine, nicotine and hemp crystals.</p><p>Just Blue™ contains methylene blue (16 mg per troche).</p><p>We created Just Blue™ based on customer requests for a nootropic that optimizes and enhances mitochondrial function without nicotine or caffeine. Blue Cannatine™ gives you more of a \"kick\" or \"launch\" in energy and focus. With Just Blue™, it is more subtle and sustained energy, focus, and endurance.</p><p>Check out our reviews to see our customers' experiences with both products.</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        },
+        "collapsible_row_MitCnp": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are there contraindications for Just Blue™?",
+            "row_content": "<p>Do not use methylene blue if you are pregnant, breastfeeding, or have G6PD deficiency.</p><p>Do not use methylene blue if you are taking serotonergic drugs such as selective serotonin reuptake inhibitors (SSRI), serotonin and norepinephrine reuptake inhibitors (SNRI), or monoamine oxidase inhibitors (MAOi) without the close supervision of your healthcare provider.<br/>There is also a potential risk for serotonin syndrome when methylene blue is used in combination with “psychedelics” and therefore one should avoid this combination unless, again, directed by your healthcare provider.</p>",
+            "page": "",
+            "enable_highlight": false,
+            "highlight_style": "marker"
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_a9Qx44",
+        "collapsible_row_dhCeDF",
+        "collapsible_row_F6pAQL",
+        "collapsible_row_yMaHXA",
+        "collapsible_row_axQQwT",
+        "collapsible_row_miKGN6",
+        "collapsible_row_ydwGe9",
+        "collapsible_row_MitCnp"
+      ],
+      "custom_css": [
+        ".title {font-size: 63px;}",
+        ".product-details {border: 1px solid #e1e1e1; border-radius: 10px;}",
+        ".summary__title,.accordion__content {padding: 20px;}",
+        "@media only screen and (max-width: 769px) {.summary__title, .accordion__content {padding: 19px 12px; } .title {font-size: 28px; } .accordion__title {font-size: 15px; font-weight: 500; }}"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "open_first_collapsible_row": false,
+        "narrow": false,
+        "show_divider": false,
+        "heading": "Frequently asked questions",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "heading_tag": "h2",
+        "enable_faq_schema": false,
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
+    "classic_testimonials_8z3iaL": {
+      "type": "classic-testimonials",
+      "blocks": {
+        "testimonial_TrhkYV": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/ben-greenfield-photo.jpg",
+            "author_name": "Ben Greenfield",
+            "author_title": "Entrepreneur & Bestselling Author",
+            "quote": "<p>\"This is one of my favorite nootropics due to its wide-ranging benefits that include: Enhanced mitochondrial function, Provides neuroprotective effects against brain inflammation, Increased memory and cognitive function, Enhance the effects of light and oxygen therapies, and much more...\"</p>"
+          }
+        },
+        "testimonial_CzckUk": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/davinia-taylor-photo.jpg",
+            "author_name": "Davinia Taylor",
+            "author_title": "Actress, Author, Biohacker, Socialite & Interior Designer",
+            "quote": "<p>\"Troscriptions provides the extra edge and endurance needed to plough through everything from my taxes to the London Marathon with clarity and joy.\"</p>"
+          }
+        },
+        "testimonial_EqQnxN": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/dave-asprey-photo.jpg",
+            "author_name": "Dave Asprey",
+            "author_title": "Founder of Bulletproof 360, Inc.",
+            "quote": "<p>\"Methylene Blue is one of my favorite biohacks and mitochondrial enhancers of the last 20 years.\"</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_TrhkYV",
+        "testimonial_CzckUk",
+        "testimonial_EqQnxN"
+      ],
+      "name": "📼Classic Testimonials",
+      "settings": {
+        "heading": "Endorsed by leading health professionals and high achievers",
+        "heading_alignment": "center",
+        "heading_font_size_desktop": 48,
+        "heading_font_size_mobile": 28,
+        "quote_font_size": 18,
+        "quote_line_height": 1.6,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
     "replo_just_blue_reviews_BLFM9m": {
       "type": "replo-just-blue-reviews",
       "name": "Just Blue reviews",
       "settings": {}
     },
+    "text_columns_with_images_XK8jgB": {
+      "type": "text-columns-with-images",
+      "blocks": {
+        "column_xNrmma": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "title": "Physician formulated",
+            "text": "<p>Our team isn't just built on expertise - it's powered by real-world clinical application. We have 4 physicians on the team who use Troscriptions® in their practice.</p>",
+            "text_color": "",
+            "link": "https://troscriptions.com/pages/about"
+          }
+        },
+        "column_UngBjz": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "title": "Pharmaceutical grade",
+            "text": "<p>We traverse the globe to create, craft and discover groundbreaking, effective ingredients, subjecting each one to rigorous testing for unparalleled purity and potency.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        },
+        "column_6azWGC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/America.png",
+            "title": "Made in the USA",
+            "text": "<p>We ensure uncompromising standards and superior quality. Our products are meticulously created, clinically tested, and crafted with utmost care, right here in the USA.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        },
+        "column_TgtFzp": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Precision_Dosed_c4edaba0-6765-4971-8755-ca3cc8342b98.png",
+            "title": "Precision dosed",
+            "text": "<p>All ingredients are evenly distributed and carefully calibrated into our formulas. Plus, our troches are scored to help you easily find your unique dosage.</p>",
+            "text_color": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_xNrmma",
+        "column_UngBjz",
+        "column_6azWGC",
+        "column_TgtFzp"
+      ],
+      "name": "📼 Columns with images",
+      "settings": {
+        "heading": "Why Troscriptions?",
+        "subheading": "",
+        "heading_alignment": "center",
+        "grid_alignment": "center",
+        "columns_mobile": "2",
+        "enable_mobile_carousel": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "you_may_also_like_xHU3Dh": {
+      "type": "you-may-also-like",
+      "blocks": {
+        "product_card_JzMDwy": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-tx-fourmula"
+          }
+        },
+        "product_card_FPQ4Fg": {
+          "type": "product_card",
+          "settings": {
+            "product": "tro-zzz"
+          }
+        },
+        "product_card_bdPHNt": {
+          "type": "product_card",
+          "settings": {
+            "product": "trocalm"
+          }
+        },
+        "product_card_ApGTtm": {
+          "type": "product_card",
+          "settings": {
+            "product": "bluecannatine"
+          }
+        }
+      },
+      "block_order": [
+        "product_card_JzMDwy",
+        "product_card_FPQ4Fg",
+        "product_card_bdPHNt",
+        "product_card_ApGTtm"
+      ],
+      "name": "📼 You May Also Like",
+      "settings": {
+        "heading": "You May Also Like",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36
+      }
+    },
+    "featured_blog_v2_manual_GDxaP9": {
+      "type": "featured-blog-v2-manual",
+      "blocks": {
+        "post_yR7BH8": {
+          "type": "post",
+          "settings": {
+            "article": "main/methyleneblue"
+          }
+        },
+        "post_AaGQFA": {
+          "type": "post",
+          "settings": {
+            "article": "main/sorting-out-the-fishy-headlines-on-methylene-blue"
+          }
+        },
+        "post_CPRKdK": {
+          "type": "post",
+          "settings": {
+            "article": "main/polyethylene-glycol-peg"
+          }
+        },
+        "title_YLYgm3": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "show_comment_count": false
+          }
+        }
+      },
+      "block_order": [
+        "post_yR7BH8",
+        "post_AaGQFA",
+        "post_CPRKdK",
+        "title_YLYgm3"
+      ],
+      "name": "Featured blog (v2 manual)",
+      "settings": {
+        "post_limit": 3,
+        "show_view_all": true,
+        "view_all_button_style": "primary",
+        "view_all_inline_with_header": false,
+        "view_all_label": "View all",
+        "view_all_link": "",
+        "show_divider": false,
+        "heading": "Blog posts",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "heading_tag": "h2",
+        "subheading": "",
+        "subheading_tag": "p",
+        "subheading_size": "typeset2",
+        "subheading_font_size": 20,
+        "subheading_color": "#6b7280",
+        "columns_mobile": "1",
+        "post_limit_mobile": 2,
+        "swipe_on_mobile": false,
+        "show_image": true,
+        "image_ratio": "landscape",
+        "image_position": "center center",
+        "colors_highlight": "#ffb503",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_highlight": false,
+        "highlight_style": "marker"
+      }
+    },
     "custom_liquid_jtGRCE": {
       "type": "custom-liquid",
+      "custom_css": [
+        ".jdgm-rev-widg__title {font-size: 28px;}",
+        "@media only screen and (min-width: 769px) {.jdgm-rev-widg__title {font-size: 63px; }}"
+      ],
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
         "custom_liquid": "<div class=\"container  container--vertical-space   container--large \"><div id=\"shopify-block-AeTNRVEI5Qk5PK3BKQ__judge_me_reviews_review_widget_CQx3xX\" class=\"shopify-block shopify-app-block\">\n\n\n<div style=\"clear:both\"></div>\n<div id=\"judgeme_product_reviews\" class=\"jdgm-widget jdgm-review-widget jdgm--done-setup-widget\" data-product-title=\"Just Blue™\" data-id=\"5047151722629\" data-product-id=\"5047151722629\" data-widget=\"review\" data-shop-reviews=\"false\" data-shop-reviews-count=\"0\" data-empty-state=\"empty_widget\" data-entry-point=\"review_widget.js\" data-entry-key=\"review-widget/main.js\" data-block-id=\"AeTNRVEI5Qk5PK3BKQ__judge_me_reviews_review_widget_CQx3xX\" data-customer-logged-in=\"false\" style=\"max-width: 1200px; margin: 0 auto;\" data-widget-name=\"review_widget\" data-impressions-tracked=\"true\" data-views-tracked=\"true\">\n\n  \n    \n      <div class=\"jdgm-legacy-widget-content\" style=\"\">\n        <div class=\"jdgm-rev-widg\" data-updated-at=\"2026-02-04T11:52:21Z\" data-average-rating=\"4.78\" data-number-of-reviews=\"385\" data-number-of-questions=\"0\" data-image-url=\"https://cdn.shopify.com/s/files/1/0332/5263/8853/files/TroJustBlueProductPhoto1.jpg?v=1695546880\"> <style class=\"jdgm-temp-hiding-style\">.jdgm-rev-widg{ display: none }</style> <div class=\"jdgm-rev-widg__header\"> <h2 class=\"jdgm-rev-widg__title\">Customer Reviews</h2>  <div class=\"jdgm-row-stars jdgm-row-stars--only-summary\"><div class=\"jdgm-rev-widg__summary\"><div class=\"jdgm-rev-widg__summary-inner\"> <div class=\"jdgm-rev-widg__summary-stars\" aria-label=\"Average rating is 4.78 stars\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span> <span class=\"jdgm-rev-widg__summary-average\">4.78 out of 5</span></div> <div class=\"jdgm-rev-widg__summary-text\">Based on 385 reviews</div> </div></div>\n</div>        </div> <div class=\"jdgm-row-actions\"><div class=\"jdgm-rev-widg__sort-wrapper\"><div class=\"jdgm-sort-dropdown-wrapper\">\n  <select class=\"jdgm-sort-dropdown\" aria-label=\"Sort dropdown\">\n    <option value=\"most-recent\">Most Recent</option>\n    <option value=\"highest-rating\">Highest Rating</option>\n    <option value=\"lowest-rating\">Lowest Rating</option>\n    <option value=\"with-pictures\">Only Pictures</option>\n    <option value=\"pictures-first\">Pictures First</option>\n    <option value=\"videos-first\">Videos First</option>\n    <option value=\"most-helpful\">Most Helpful</option>\n  </select><span class=\"jdgm-sort-dropdown-arrow\"></span>\n</div>\n</div></div><div class=\"jdgm-rev-widg__body\">  <div class=\"jdgm-rev-widg__reviews\"><div class=\"jdgm-rev jdgm-divider-top jdgm--done-setup\" data-verified-buyer=\"true\" data-review-id=\"f6ff671b-078d-4f08-abe1-998be2024f4e\" data-review-language=\"\" data-product-title=\"Just Blue™\" data-product-url=\"/products/justblue\" data-thumb-up-count=\"0\" data-thumb-down-count=\"0\"> <div class=\"jdgm-rev__header\"><div class=\"jdgm-row-product\"></div><div class=\"jdgm-row-profile\"><span class=\"jdgm-rev__pinned\"></span><div class=\"jdgm-rev__icon\"></div><span class=\"jdgm-rev__author-wrapper\"> <span class=\"jdgm-rev__author\">Christine E.</span>   <span class=\"jdgm-rev__buyer-badge-wrapper\"> <span class=\"jdgm-rev__buyer-badge\"></span> </span><div class=\"jdgm-row-extra\"><span class=\"jdgm-rev__location\">  </span></div></span></div>         <div class=\"jdgm-rev__br\"></div>   </div> <div class=\"jdgm-rev__content\"><div class=\"jdgm-row-rating\"><span class=\"jdgm-rev__rating\" data-score=\"5\" tabindex=\"0\" aria-label=\"5 star review\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span> </span><span class=\"jdgm-rev__timestamp\" data-content=\"2025-07-26 15:10:27 UTC\">07/26/2025</span></div>   <b class=\"jdgm-rev__title\">ENERGY+CLARITY</b> <div class=\"jdgm-rev__body is-truncated\" style=\"overflow-wrap: break-word;\"><p style=\"\">I am in my 70’s &amp; have always been a very active type A multitasker.  When I told my functional medicine doctor I was feeling depressed because of a lack of energy, he first adjusted thyroid medication &amp; then recommended Methylene Blue.  Combined, I feel like my former self again &amp; any depression over a lack of energy is gone.  I also win a lot more... <a class=\"jdgm-rev__body-read-more\" tabindex=\"0\" aria-label=\"Read more\" role=\"button\">Read more</a></p></div><div class=\"jdgm-rev__custom-form\">  </div>   <div class=\"jdgm-rev__transparency-badge-wrapper\">  <div class=\"jdgm-rev__transparency-badge\" data-badge-type=\"review_collected_via_store_invitation\" style=\"display: inline-flex; align-items: center; padding: 4px 8px; margin-right: 2px; border-radius: 4px; border: 1px solid rgb(230, 230, 230); font-size: 12px; color: rgb(123, 123, 123);\">Review collected via store invitation</div>  </div> </div> <div class=\"jdgm-rev__actions\"> <div class=\"jdgm-rev__social\"></div> <div class=\"jdgm-rev__votes\"></div> </div>  </div><div class=\"jdgm-rev jdgm-divider-top jdgm--done-setup\" data-verified-buyer=\"true\" data-review-id=\"541f5162-3339-45b2-8546-7348db0aa249\" data-review-language=\"\" data-product-title=\"Just Blue™\" data-product-url=\"/products/justblue\" data-thumb-up-count=\"0\" data-thumb-down-count=\"0\"> <div class=\"jdgm-rev__header\"><div class=\"jdgm-row-product\"></div><div class=\"jdgm-row-profile\"><div class=\"jdgm-rev__icon\"></div><span class=\"jdgm-rev__author-wrapper\"> <span class=\"jdgm-rev__author\">Hope</span>   <span class=\"jdgm-rev__buyer-badge-wrapper\"> <span class=\"jdgm-rev__buyer-badge\"></span> </span><div class=\"jdgm-row-extra\"><span class=\"jdgm-rev__location\">  </span></div></span></div>         <div class=\"jdgm-rev__br\"></div>   </div> <div class=\"jdgm-rev__content\"><div class=\"jdgm-row-rating\"><span class=\"jdgm-rev__rating\" data-score=\"5\" tabindex=\"0\" aria-label=\"5 star review\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span> </span><span class=\"jdgm-rev__timestamp\" data-content=\"2025-07-28 18:56:45 UTC\">07/28/2025</span></div>   <b class=\"jdgm-rev__title\">Love your product</b> <div class=\"jdgm-rev__body\" style=\"overflow-wrap: break-word;\"><p>Great product really helps me with jet lag. Thank you</p><a class=\"jdgm-rev__body-read-more\" tabindex=\"0\" aria-label=\"Read more\" role=\"button\">Read more</a></div><div class=\"jdgm-rev__custom-form\">  </div>   <div class=\"jdgm-rev__transparency-badge-wrapper\">  <div class=\"jdgm-rev__transparency-badge\" data-badge-type=\"review_collected_via_store_invitation\" style=\"display: inline-flex; align-items: center; padding: 4px 8px; margin-right: 2px; border-radius: 4px; border: 1px solid rgb(230, 230, 230); font-size: 12px; color: rgb(123, 123, 123);\">Review collected via store invitation</div>  </div> </div> <div class=\"jdgm-rev__actions\"> <div class=\"jdgm-rev__social\"></div> <div class=\"jdgm-rev__votes\"></div> </div>  </div><div class=\"jdgm-rev jdgm-divider-top jdgm--done-setup\" data-verified-buyer=\"true\" data-review-id=\"7f31a0b8-a613-4242-9176-19f728c00fea\" data-review-language=\"\" data-product-title=\"Just Blue™\" data-product-url=\"/products/justblue\" data-thumb-up-count=\"0\" data-thumb-down-count=\"0\"> <div class=\"jdgm-rev__header\"><div class=\"jdgm-row-product\"></div><div class=\"jdgm-row-profile\"><div class=\"jdgm-rev__icon\"></div><span class=\"jdgm-rev__author-wrapper\"> <span class=\"jdgm-rev__author\">Peggy</span>   <span class=\"jdgm-rev__buyer-badge-wrapper\"> <span class=\"jdgm-rev__buyer-badge\"></span> </span><div class=\"jdgm-row-extra\"><span class=\"jdgm-rev__location\">  </span></div></span></div>         <div class=\"jdgm-rev__br\"></div>   </div> <div class=\"jdgm-rev__content\"><div class=\"jdgm-row-rating\"><span class=\"jdgm-rev__rating\" data-score=\"5\" tabindex=\"0\" aria-label=\"5 star review\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span> </span><span class=\"jdgm-rev__timestamp\" data-content=\"2025-07-28 13:41:06 UTC\">07/28/2025</span></div>   <b class=\"jdgm-rev__title\">My tongue tic is gone!</b> <div class=\"jdgm-rev__body\" style=\"overflow-wrap: break-word;\"><p>This cleared my brain fog and My memory is so much better! Plus, I wasn't expecting this as a benefit but after taking it two days I noticed my tongue was not moving on its own like it had been for years even though I had stopped taking the medicine that caused it many years ago.!</p><a class=\"jdgm-rev__body-read-more\" tabindex=\"0\" aria-label=\"Read more\" role=\"button\">Read more</a></div><div class=\"jdgm-rev__custom-form\">  </div>   <div class=\"jdgm-rev__transparency-badge-wrapper\">  <div class=\"jdgm-rev__transparency-badge\" data-badge-type=\"review_collected_via_store_invitation\" style=\"display: inline-flex; align-items: center; padding: 4px 8px; margin-right: 2px; border-radius: 4px; border: 1px solid rgb(230, 230, 230); font-size: 12px; color: rgb(123, 123, 123);\">Review collected via store invitation</div>  </div> </div> <div class=\"jdgm-rev__actions\"> <div class=\"jdgm-rev__social\"></div> <div class=\"jdgm-rev__votes\"></div> </div>  </div><div class=\"jdgm-rev jdgm-divider-top jdgm--done-setup\" data-verified-buyer=\"true\" data-review-id=\"398c002d-daf4-4236-bc2f-bb606a3a66b3\" data-review-language=\"\" data-product-title=\"Just Blue™\" data-product-url=\"/products/justblue\" data-thumb-up-count=\"0\" data-thumb-down-count=\"0\"> <div class=\"jdgm-rev__header\"><div class=\"jdgm-row-product\"></div><div class=\"jdgm-row-profile\"><div class=\"jdgm-rev__icon\"></div><span class=\"jdgm-rev__author-wrapper\"> <span class=\"jdgm-rev__author\">Kelly P.</span>   <span class=\"jdgm-rev__buyer-badge-wrapper\"> <span class=\"jdgm-rev__buyer-badge\"></span> </span><div class=\"jdgm-row-extra\"><span class=\"jdgm-rev__location\">  </span></div></span></div>         <div class=\"jdgm-rev__br\"></div>   </div> <div class=\"jdgm-rev__content\"><div class=\"jdgm-row-rating\"><span class=\"jdgm-rev__rating\" data-score=\"5\" tabindex=\"0\" aria-label=\"5 star review\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span> </span><span class=\"jdgm-rev__timestamp\" data-content=\"2025-07-26 15:56:28 UTC\">07/26/2025</span></div>   <b class=\"jdgm-rev__title\"></b> <div class=\"jdgm-rev__body\" style=\"overflow-wrap: break-word;\"><p>So far things going well.</p><a class=\"jdgm-rev__body-read-more\" tabindex=\"0\" aria-label=\"Read more\" role=\"button\">Read more</a></div><div class=\"jdgm-rev__custom-form\">  </div>   <div class=\"jdgm-rev__transparency-badge-wrapper\">  <div class=\"jdgm-rev__transparency-badge\" data-badge-type=\"review_collected_via_store_invitation\" style=\"display: inline-flex; align-items: center; padding: 4px 8px; margin-right: 2px; border-radius: 4px; border: 1px solid rgb(230, 230, 230); font-size: 12px; color: rgb(123, 123, 123);\">Review collected via store invitation</div>  </div> </div> <div class=\"jdgm-rev__actions\"> <div class=\"jdgm-rev__social\"></div> <div class=\"jdgm-rev__votes\"></div> </div>  </div><div class=\"jdgm-rev jdgm-divider-top jdgm--done-setup\" data-verified-buyer=\"true\" data-review-id=\"ce745411-d0fd-40d7-a287-b9739d143bda\" data-review-language=\"\" data-product-title=\"Just Blue™\" data-product-url=\"/products/justblue\" data-thumb-up-count=\"0\" data-thumb-down-count=\"0\"> <div class=\"jdgm-rev__header\"><div class=\"jdgm-row-product\"></div><div class=\"jdgm-row-profile\"><div class=\"jdgm-rev__icon\"></div><span class=\"jdgm-rev__author-wrapper\"> <span class=\"jdgm-rev__author\">Karen L.</span>   <span class=\"jdgm-rev__buyer-badge-wrapper\"> <span class=\"jdgm-rev__buyer-badge\"></span> </span><div class=\"jdgm-row-extra\"><span class=\"jdgm-rev__location\">  </span></div></span></div>         <div class=\"jdgm-rev__br\"></div>   </div> <div class=\"jdgm-rev__content\"><div class=\"jdgm-row-rating\"><span class=\"jdgm-rev__rating\" data-score=\"5\" tabindex=\"0\" aria-label=\"5 star review\" role=\"img\"> <span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span><span class=\"jdgm-star jdgm--on\"></span> </span><span class=\"jdgm-rev__timestamp\" data-content=\"2025-07-23 14:01:22 UTC\">07/23/2025</span></div>   <b class=\"jdgm-rev__title\">Game changer for fatigue</b> <div class=\"jdgm-rev__body is-truncated\" style=\"overflow-wrap: break-word;\"><p style=\"\">I’ve actually only been on it for about 6 days, but it is probably the biggest game changer to help the fatigue I’ve had since I got Lyme disease 11 years ago.  Other things have certainly helped but this has been remarkable in the speed of effectiveness in this area. I’m using it in combination with a medical grade red light bed at my doctor’s office which I think has... <a class=\"jdgm-rev__body-read-more\" tabindex=\"0\" aria-label=\"Read more\" role=\"button\">Read more</a></p></div><div class=\"jdgm-rev__custom-form\">  </div>   <div class=\"jdgm-rev__transparency-badge-wrapper\">  <div class=\"jdgm-rev__transparency-badge\" data-badge-type=\"review_collected_via_store_invitation\" style=\"display: inline-flex; align-items: center; padding: 4px 8px; margin-right: 2px; border-radius: 4px; border: 1px solid rgb(230, 230, 230); font-size: 12px; color: rgb(123, 123, 123);\">Review collected via store invitation</div>  </div> </div> <div class=\"jdgm-rev__actions\"> <div class=\"jdgm-rev__social\"></div> <div class=\"jdgm-rev__votes\"></div> </div>  </div></div> <div class=\"jdgm-paginate\" data-per-page=\"5\" data-url=\"https://api.judge.me/reviews/reviews_for_widget\"><a class=\"jdgm-btn jdgm-btn--solid jdgm-paginate__load-more\" data-page=\"2\" role=\"button\">Load More</a></div>  </div> <div class=\"jdgm-rev-widg__paginate-spinner-wrapper\"> <div class=\"jdgm-spinner\"></div> </div> </div>\n      </div>\n    \n  \n\n  \n</div>\n\n\n\n\n</div></div>",
@@ -43,7 +662,21 @@
   "order": [
     "main",
     "replo_just_blue_offer_test_v2_7e6UMN",
+    "custom_reviews_YqGe3A",
+    "video_testimonial_BK4NWQ",
+    "text_columns_with_images_4qqWVG",
+    "trust_and_testing_PGz7pG",
+    "text_columns_with_images_QC3qNE",
+    "rich_text_cafXWK",
+    "classic_hero_section_8chdPw",
+    "classic_hero_section_YJCYiE",
+    "classic_hero_section_knUqzq",
+    "collapsible_content_hrwAXd",
+    "classic_testimonials_8z3iaL",
     "replo_just_blue_reviews_BLFM9m",
+    "text_columns_with_images_XK8jgB",
+    "you_may_also_like_xHU3Dh",
+    "featured_blog_v2_manual_GDxaP9",
     "custom_liquid_jtGRCE"
   ]
 }
