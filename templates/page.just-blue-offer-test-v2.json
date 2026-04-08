@@ -91,6 +91,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Methylene_Blue.png",
+            "turn_to_icon_size": false,
+            "show_dose_squares": false,
+            "fill_count": 1,
             "title": "Methylene Blue",
             "text": "<p>16 mg. A powerful brain booster that increases energy production, decreases inflammation, and builds resilience</p>",
             "text_color": "#7d7d7d",
@@ -101,6 +104,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/troche_outline_-_smaller.png",
+            "turn_to_icon_size": false,
+            "show_dose_squares": false,
+            "fill_count": 1,
             "title": "Other Ingredients",
             "text": "<p>polyethylene glycol (PEG), stevia extract, lou han extract, peppermint, silica, Bitter-Bloc™</p>",
             "text_color": "#7d7d7d",
@@ -153,6 +159,9 @@
         "column_Y73fkM": {
           "type": "column",
           "settings": {
+            "turn_to_icon_size": false,
+            "show_dose_squares": true,
+            "fill_count": 0,
             "title": "Choose your starting point",
             "text": "<p>Decide on your starting dose and, if needed, cut the troche accordingly.</p>",
             "text_color": "",
@@ -162,6 +171,9 @@
         "column_M3aazK": {
           "type": "column",
           "settings": {
+            "turn_to_icon_size": false,
+            "show_dose_squares": true,
+            "fill_count": 1,
             "title": "Find the sweet spot",
             "text": "<p>Gently place the troche between your gum and upper cheek. Alternatively, because Methylene Blue is highly bioavailable, you can also swallow it on an empty stomach.</p>",
             "text_color": "",
@@ -171,6 +183,9 @@
         "column_GfaBed": {
           "type": "column",
           "settings": {
+            "turn_to_icon_size": false,
+            "show_dose_squares": true,
+            "fill_count": 2,
             "title": "Patience is key",
             "text": "<p>Allow the troche to dissolve completely. Onset will be 15 to 20 minutes if used as a buccal troche and 60 to 90 minutes if swallowed.</p>",
             "text_color": "",
@@ -180,6 +195,9 @@
         "column_9AQh6W": {
           "type": "column",
           "settings": {
+            "turn_to_icon_size": false,
+            "show_dose_squares": true,
+            "fill_count": 3,
             "title": "Feel the shift",
             "text": "<p>Soon you'll feel methylene blue's transformational effects as it powers up your cells.</p>",
             "text_color": "",
@@ -189,6 +207,9 @@
         "column_be7FBc": {
           "type": "column",
           "settings": {
+            "turn_to_icon_size": false,
+            "show_dose_squares": true,
+            "fill_count": 4,
             "title": "Unlock energy and resilience",
             "text": "<p>Just Blue will brighten your focus, boost your mood, your energy, and your endurance.</p>",
             "text_color": "",
@@ -477,7 +498,10 @@
         "column_xNrmma": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Physician_Formulated_a3ac717d-01e9-4909-8150-27729ea39e39.png",
+            "image": "shopify://shop_images/Physician_Formulated_03c96867-49c7-42f5-b7e2-dbfdb6c0596f.png",
+            "turn_to_icon_size": true,
+            "show_dose_squares": false,
+            "fill_count": 1,
             "title": "Physician formulated",
             "text": "<p>Our team isn't just built on expertise - it's powered by real-world clinical application. We have 4 physicians on the team who use Troscriptions® in their practice.</p>",
             "text_color": "",
@@ -487,7 +511,10 @@
         "column_UngBjz": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Pharmaceutical_Grade_0e893d54-46d9-4718-b71d-4c4a7fbcc1f7.png",
+            "image": "shopify://shop_images/Pharmaceutical_Grade_fb50d7af-dd0a-4242-be33-1295be98df56.png",
+            "turn_to_icon_size": true,
+            "show_dose_squares": false,
+            "fill_count": 1,
             "title": "Pharmaceutical grade",
             "text": "<p>We traverse the globe to create, craft and discover groundbreaking, effective ingredients, subjecting each one to rigorous testing for unparalleled purity and potency.</p>",
             "text_color": "",
@@ -498,6 +525,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/America.png",
+            "turn_to_icon_size": true,
+            "show_dose_squares": false,
+            "fill_count": 1,
             "title": "Made in the USA",
             "text": "<p>We ensure uncompromising standards and superior quality. Our products are meticulously created, clinically tested, and crafted with utmost care, right here in the USA.</p>",
             "text_color": "",
@@ -508,6 +538,9 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Precision_Dosed_c4edaba0-6765-4971-8755-ca3cc8342b98.png",
+            "turn_to_icon_size": true,
+            "show_dose_squares": false,
+            "fill_count": 1,
             "title": "Precision dosed",
             "text": "<p>All ingredients are evenly distributed and carefully calibrated into our formulas. Plus, our troches are scored to help you easily find your unique dosage.</p>",
             "text_color": "",
