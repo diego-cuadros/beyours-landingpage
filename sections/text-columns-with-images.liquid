@@ -51,7 +51,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    flex: 0 1 calc((100% - 120px) / 5);
+    flex: 0 1 {% if section.blocks.size == 3 %}calc((100% - 60px) / 3){% elsif section.blocks.size == 4 %}calc((100% - 90px) / 4){% else %}calc((100% - 120px) / 5){% endif %};
     min-width: 0;
   }
 
@@ -266,7 +266,9 @@
 <div class="dc_tcwi-section">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
-      <h2 class="dc_tcwi__heading">{{ section.settings.heading | escape }}</h2>
+      <h2 class="dc_tcwi__heading" style="margin-bottom: {{ section.settings.heading_margin_bottom }}px;">
+        {{ section.settings.heading | escape }}
+      </h2>
     {%- endif -%}
     {%- if section.settings.subheading != blank -%}
       <p class="dc_tcwi__subheading">{{ section.settings.subheading | escape }}</p>
@@ -505,6 +507,14 @@
       "id": "heading",
       "default": "Active ingredients",
       "label": "Heading"
+    },
+    {
+      "id": "heading_margin_bottom",
+      "type": "range",
+      "min": 0,
+      "max": 60,
+      "label": "Heading margin bottom",
+      "default": 0
     },
     {
       "type": "text",
