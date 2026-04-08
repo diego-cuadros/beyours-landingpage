@@ -162,6 +162,42 @@
     }
   {%- endif -%}
 
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel-component {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel-track-wrapper {
+      padding-inline: 1.5rem;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__track {
+      flex-wrap: nowrap;
+      gap: 0;
+      justify-content: flex-start;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__slide {
+      width: calc(100% / 3);
+      flex: 0 0 calc(100% / 3);
+      padding: 0 0.75rem;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    #shopify-section-{{ section.id }} .dc_tcwi__carousel .carousel__indicators {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+  }
+
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .dc_tcwi__heading {
       font-size: 28px;
@@ -398,7 +434,7 @@
       const track = sectionEl.querySelector('#Carousel-{{ section.id }}');
       const slides = track ? Array.from(track.querySelectorAll('.carousel__slide')) : [];
       const dots = carousel ? Array.from(carousel.querySelectorAll('.carousel__indicator')) : [];
-      const isMobile = window.matchMedia('(max-width: 749px)');
+      const isCarousel = window.matchMedia('(max-width: 989px)');
       let rafId = null;
 
       if (!carousel || !track || !slides.length) return;
@@ -433,7 +469,7 @@
       };
 
       const handleScroll = () => {
-        if (!isMobile.matches) return;
+        if (!isCarousel.matches) return;
         if (rafId) cancelAnimationFrame(rafId);
 
         rafId = requestAnimationFrame(() => {
@@ -444,7 +480,7 @@
 
       dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-          if (!isMobile.matches) return;
+          if (!isCarousel.matches) return;
           const targetSlide = slides[index];
           if (!targetSlide) return;
           track.scrollTo({ left: targetSlide.offsetLeft, behavior: 'smooth' });
