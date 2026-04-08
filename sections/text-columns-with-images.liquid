@@ -19,7 +19,7 @@
   #shopify-section-{{ section.id }} .dc_tcwi__subheading {
     font-size: 17px;
     font-weight: 400;
-    margin: 8px 0 0px;
+    margin: 8px 0px 40px 0px;
     text-align: {{ section.settings.heading_alignment }};
   }
 
@@ -80,6 +80,18 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* Styles for switching images to icon size */
+  .dc_tcwi__turn-to-icon-size__wrapper{
+    display:flex;
+    max-width: 160px !important;
+    justify-content: center;
+  }
+
+  .dc_tcwi__turn-to-icon-size__wrapper img{
+    width: 80px !important;
+    height: auto !important;
   }
 
   #shopify-section-{{ section.id }} .dc_tcwi__content {
@@ -255,7 +267,7 @@
                     <span class="dc_tcwi__dose-square{% if fc >= 4 %} dc_tcwi__dose-square--filled{% endif %}"></span>
                   </div>
                 {%- elsif block.settings.image != blank -%}
-                  <div class="dc_tcwi__image-wrapper">
+                  <div class="dc_tcwi__image-wrapper {% if block.settings.turn_to_icon_size %} dc_tcwi__turn-to-icon-size__wrapper {% endif %}">
                     {{
                       block.settings.image
                       | image_url: width: 500
@@ -531,6 +543,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "turn_to_icon_size",
+          "label": "Turn image to icon size (80px)",
+          "default": false
         },
         {
           "type": "checkbox",
