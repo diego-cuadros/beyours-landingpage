@@ -124,6 +124,7 @@
       "name": "📼 Columns with images",
       "settings": {
         "heading": "Active ingredients",
+        "heading_margin_bottom": 0,
         "subheading": "",
         "heading_alignment": "center",
         "grid_alignment": "flex-start",
@@ -227,6 +228,7 @@
       "name": "📼 Columns with images",
       "settings": {
         "heading": "Calibrate your dose of Just Blue",
+        "heading_margin_bottom": 0,
         "subheading": "Follow these steps",
         "heading_alignment": "center",
         "grid_alignment": "center",
@@ -473,6 +475,10 @@
         "testimonial_CzckUk",
         "testimonial_EqQnxN"
       ],
+      "custom_css": [
+        ".dc_ct-quote {font-size: 25px; line-height: 1.1;}",
+        "@media only screen and (max-width: 769px) {.dc_ct-quote {font-size: 22.4px; }}"
+      ],
       "name": "📼Classic Testimonials",
       "settings": {
         "heading": "Endorsed by leading health professionals and high achievers",
@@ -557,6 +563,7 @@
       "name": "📼 Columns with images",
       "settings": {
         "heading": "Why Troscriptions?",
+        "heading_margin_bottom": 40,
         "subheading": "",
         "heading_alignment": "center",
         "grid_alignment": "center",
