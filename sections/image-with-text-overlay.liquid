@@ -18,7 +18,7 @@
       #shopify-section-{{ section.id }} {
         --image-ratio-percent: {{ 1 | divided_by: section.settings.image_mobile.aspect_ratio | times: 100 }}%;
       }
-    }  
+    }
   {% endif -%}
 
   {%- if section.settings.mobile_text_box_position == 'image_first' %}
@@ -47,7 +47,10 @@
 
 <div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
   <div class="page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
-    <div id="Banner-{{ section.id }}" class="banner--overlay banner--{{ section.settings.text_box_position }} banner-mobile--{{ section.settings.mobile_text_box_position }}{% if section.settings.image != blank %} banner--stacked{% endif %}">
+    <div
+      id="Banner-{{ section.id }}"
+      class="banner--overlay banner--{{ section.settings.text_box_position }} banner-mobile--{{ section.settings.mobile_text_box_position }}{% if section.settings.image != blank %} banner--stacked{% endif %}"
+    >
       {%- if section.blocks.size > 0 -%}
         <use-animate class="banner__trigger"></use-animate>
         <div class="banner__content page-width">
@@ -55,28 +58,40 @@
             {%- for block in section.blocks -%}
               {%- case block.type -%}
                 {%- when 'heading' -%}
-                  <{{ block.settings.heading_tag }} class="banner__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
-                    {%- render 'highlight-text', 
-                        hl_input: block.settings.heading, 
-                        hl_style: block.settings.highlight_style,
-                        hl_enable: block.settings.enable_highlight,
-                        hl_animateWrap: true -%}
+                  <{{ block.settings.heading_tag }}
+                    class="banner__heading {{ block.settings.heading_size }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.heading,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
                   </{{ block.settings.heading_tag }}>
                 {%- when 'subheading' -%}
-                  <p class="banner__subheading{% if block.settings.secondary_color %} banner__subheading--colored{% endif %} {{ block.settings.subheading_size }}" {{ block.shopify_attributes }}>
-                    {%- render 'highlight-text', 
-                        hl_input: block.settings.subheading, 
-                        hl_style: block.settings.highlight_style,
-                        hl_enable: block.settings.enable_highlight,
-                        hl_animateWrap: true -%}
+                  <p
+                    class="banner__subheading{% if block.settings.secondary_color %} banner__subheading--colored{% endif %} {{ block.settings.subheading_size }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.subheading,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
                   </p>
                 {%- when 'text' -%}
-                  <div class="banner__text{% if block.settings.secondary_color %} image-with-text__text--colored{% endif %} {{ block.settings.text_size }} rte" {{ block.shopify_attributes }}>
-                    {%- render 'highlight-text', 
-                        hl_input: block.settings.text, 
-                        hl_style: block.settings.highlight_style,
-                        hl_enable: block.settings.enable_highlight,
-                        hl_animateWrap: true -%}
+                  <div
+                    class="banner__text{% if block.settings.secondary_color %} image-with-text__text--colored{% endif %} {{ block.settings.text_size }} rte"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- render 'highlight-text',
+                      hl_input: block.settings.text,
+                      hl_style: block.settings.highlight_style,
+                      hl_enable: block.settings.enable_highlight,
+                      hl_animateWrap: true
+                    -%}
                   </div>
                 {%- when 'custom_liquid' -%}
                   <div class="banner__text rte" {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
@@ -85,30 +100,67 @@
                     {%- if block.settings.button_label != blank or block.settings.button_alt_label != blank -%}
                       {%- if block.settings.button_label != blank -%}
                         {%- if block.settings.button_style_secondary -%}
-                          <a class="button button--cta button--{{ block.settings.button_size }}"{% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}"{% else %} role="link" aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                          <a
+                            class="button button--cta button--{{ block.settings.button_size }}"
+                            {% if block.settings.button_link != blank %}
+                              href="{{ block.settings.button_link }}"
+                            {% else %}
+                              role="link" aria-disabled="true"
+                            {% endif %}
+                            {{ block.shopify_attributes }}
+                          >
                             <span class="label">{{ block.settings.button_label | escape }}</span>
                             {% render 'icon', icon: 'arrow' %}
                           </a>
                         {%- else -%}
-                          <a class="button button--{{ block.settings.button_size }}"{% if block.settings.button_link != blank %} href="{{ block.settings.button_link }}"{% else %} role="link" aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                          <a
+                            class="button button--{{ block.settings.button_size }}"
+                            {% if block.settings.button_link != blank %}
+                              href="{{ block.settings.button_link }}"
+                            {% else %}
+                              role="link" aria-disabled="true"
+                            {% endif %}
+                            {{ block.shopify_attributes }}
+                          >
                             {{ block.settings.button_label | escape }}
                           </a>
                         {%- endif -%}
                       {%- endif -%}
                       {%- if block.settings.button_alt_label != blank -%}
                         {%- if block.settings.button_alt_style_secondary -%}
-                          <a class="button button--cta button--{{ block.settings.button_size }}"{% if block.settings.button_alt_link != blank %} href="{{ block.settings.button_alt_link }}"{% else %} role="link" aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                          <a
+                            class="button button--cta button--{{ block.settings.button_size }}"
+                            {% if block.settings.button_alt_link != blank %}
+                              href="{{ block.settings.button_alt_link }}"
+                            {% else %}
+                              role="link" aria-disabled="true"
+                            {% endif %}
+                            {{ block.shopify_attributes }}
+                          >
                             <span class="label">{{ block.settings.button_alt_label | escape }}</span>
                             {% render 'icon', icon: 'arrow' %}
                           </a>
                         {%- else -%}
-                          <a class="button button--secondary button--{{ block.settings.button_size }}"{% if block.settings.button_alt_link != blank %} href="{{ block.settings.button_alt_link }}"{% else %} role="link" aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                          <a
+                            class="button button--secondary button--{{ block.settings.button_size }}"
+                            {% if block.settings.button_alt_link != blank %}
+                              href="{{ block.settings.button_alt_link }}"
+                            {% else %}
+                              role="link" aria-disabled="true"
+                            {% endif %}
+                            {{ block.shopify_attributes }}
+                          >
                             {{ block.settings.button_alt_label | escape }}
                           </a>
                         {%- endif -%}
                       {%- endif -%}
                     {%- elsif section.blocks.size == 1 and block.settings.button_link != blank -%}
-                      <a class="full-unstyled-link" href="{{ block.settings.button_link }}" {{ block.shopify_attributes }} aria-label="{{ block.settings.heading | default: block.settings.subheading | escape }}"></a>
+                      <a
+                        class="full-unstyled-link"
+                        href="{{ block.settings.button_link }}"
+                        {{ block.shopify_attributes }}
+                        aria-label="{{ block.settings.heading | default: block.settings.subheading | escape }}"
+                      ></a>
                     {%- endif -%}
                   </div>
               {%- endcase -%}
@@ -121,19 +173,23 @@
           <div class="image-animate media media--{{ section.settings.image_ratio }} media-mobile--{{ section.settings.mobile_image_ratio }}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
             {%- if section.settings.video != null or section.settings.video_url != null -%}
               {%- if section.settings.video == null and section.settings.video_url != null -%}
-                <video-section data-video-hero 
+                <video-section
+                  data-video-hero
                   data-type="{{ section.settings.video_url.type }}"
                   data-loop="1"
-                  data-video-id="{{ section.settings.video_url.id }}"></video-section>
+                  data-video-id="{{ section.settings.video_url.id }}"
+                ></video-section>
               {% else %}
                 <video-section data-video-hero data-type="mp4">
-                  {{ section.settings.video | video_tag:
-                    image_size: "3840px",
-                    autoplay: true,
-                    loop: true,
-                    controls: false,
-                    muted: true,
-                    playsinline: true
+                  {{
+                    section.settings.video
+                    | video_tag:
+                      image_size: '3840px',
+                      autoplay: true,
+                      loop: true,
+                      controls: false,
+                      muted: true,
+                      playsinline: true
                   }}
                 </video-section>
               {% endif %}
