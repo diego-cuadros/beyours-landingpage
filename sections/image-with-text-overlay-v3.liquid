@@ -71,22 +71,22 @@
 {{ 'section-image-with-text-overlay.css' | asset_url | stylesheet_tag }}
 {{ 'section-image-with-text-overlay-v2.css' | asset_url | stylesheet_tag }}
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-test 3
-<div class="section--padding{% if section.settings.show_divider %} section--divider{% endif %}">
-  <div class="page-width{% if section.settings.full_width %} page-width--full-width{% endif %}">
+
+<div class='section--padding{% if section.settings.show_divider %} section--divider{% endif %}'>
+  <div class='page-width{% if section.settings.full_width %} page-width--full-width{% endif %}'>
     <div
-      id="Banner-{{ section.id }}"
-      class="banner--overlay banner--overlay-v2 banner--{{ section.settings.text_box_position }} banner-mobile--{{ section.settings.mobile_text_box_position }}{% if section.settings.image_ratio == 'content' %} banner--desktop-content-height{% endif %}{% if section.settings.mobile_overlay_safe_mode %} banner-mobile--safe-stack{% endif %}{% if section.settings.mobile_solid_content_background %} banner-mobile--solid-content-background{% endif %}{% if section.settings.image != blank %} banner--stacked{% endif %}"
+      id='Banner-{{ section.id }}'
+      class='banner--overlay banner--overlay-v2 banner--{{ section.settings.text_box_position }} banner-mobile--{{ section.settings.mobile_text_box_position }}{% if section.settings.image_ratio == 'content' %} banner--desktop-content-height{% endif %}{% if section.settings.mobile_overlay_safe_mode %} banner-mobile--safe-stack{% endif %}{% if section.settings.mobile_solid_content_background %} banner-mobile--solid-content-background{% endif %}{% if section.settings.image != blank %} banner--stacked{% endif %}'
     >
       {%- if section.blocks.size > 0 -%}
-        <use-animate class="banner__trigger"></use-animate>
-        <div class="banner__content page-width">
-          <div class="banner__box {{ section.settings.text_alignment }} mobile-{{ section.settings.mobile_text_alignment }}">
+        <use-animate class='banner__trigger'></use-animate>
+        <div class='banner__content page-width'>
+          <div class='banner__box {{ section.settings.text_alignment }} mobile-{{ section.settings.mobile_text_alignment }}'>
             {%- for block in section.blocks -%}
               {%- case block.type -%}
                 {%- when 'heading' -%}
                   <{{ block.settings.heading_tag }}
-                    class="banner__heading {{ block.settings.heading_size }}"
+                    class='banner__heading {{ block.settings.heading_size }}'
                     {{ block.shopify_attributes }}
                   >
                     {%- render 'highlight-text',
@@ -101,8 +101,8 @@ test 3
                     assign subheading_tag = block.settings.subheading_tag | default: block.settings.subheading_size | default: 'h5'
                   -%}
                   <{{ subheading_tag }}
-                    class="banner__subheading{% if block.settings.secondary_color %} banner__subheading--colored{% endif %} {{ subheading_tag }}"
-                    style="--banner-subheading-color: {{ block.settings.subheading_color }}; --banner-subheading-spacing-top: {{ block.settings.subheading_spacing_top | default: 0 }}px; --banner-subheading-spacing-bottom: {{ block.settings.subheading_spacing_bottom | default: 12 }}px;"
+                    class='banner__subheading{% if block.settings.secondary_color %} banner__subheading--colored{% endif %} {{ subheading_tag }}'
+                    style='--banner-subheading-color: {{ block.settings.subheading_color }}; --banner-subheading-spacing-top: {{ block.settings.subheading_spacing_top | default: 0 }}px; --banner-subheading-spacing-bottom: {{ block.settings.subheading_spacing_bottom | default: 12 }}px;'
                     {{ block.shopify_attributes }}
                   >
                     {%- render 'highlight-text',
@@ -114,7 +114,7 @@ test 3
                   </{{ subheading_tag }}>
                 {%- when 'text' -%}
                   <div
-                    class="banner__text{% if block.settings.secondary_color %} image-with-text__text--colored{% endif %} {{ block.settings.text_size }} rte"
+                    class='banner__text{% if block.settings.secondary_color %} image-with-text__text--colored{% endif %} {{ block.settings.text_size }} rte'
                     {{ block.shopify_attributes }}
                   >
                     {%- render 'highlight-text',
@@ -125,31 +125,31 @@ test 3
                     -%}
                   </div>
                 {%- when 'custom_liquid' -%}
-                  <div class="banner__text rte" {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
+                  <div class='banner__text rte' {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
                 {%- when 'button' -%}
-                  <div class="button-group">
+                  <div class='button-group'>
                     {%- if block.settings.button_label != blank or block.settings.button_alt_label != blank -%}
                       {%- if block.settings.button_label != blank -%}
                         {%- if block.settings.button_style_secondary -%}
                           <a
-                            class="button button--cta button--{{ block.settings.button_size }}"
+                            class='button button--cta button--{{ block.settings.button_size }}'
                             {% if block.settings.button_link != blank %}
-                              href="{{ block.settings.button_link }}"
+                              href='{{ block.settings.button_link }}'
                             {% else %}
-                              role="link" aria-disabled="true"
+                              role='link' aria-disabled='true'
                             {% endif %}
                             {{ block.shopify_attributes }}
                           >
-                            <span class="label">{{ block.settings.button_label | escape }}</span>
+                            <span class='label'>{{ block.settings.button_label | escape }}</span>
                             {% render 'icon', icon: 'arrow' %}
                           </a>
                         {%- else -%}
                           <a
-                            class="button button--{{ block.settings.button_size }}"
+                            class='button button--{{ block.settings.button_size }}'
                             {% if block.settings.button_link != blank %}
-                              href="{{ block.settings.button_link }}"
+                              href='{{ block.settings.button_link }}'
                             {% else %}
-                              role="link" aria-disabled="true"
+                              role='link' aria-disabled='true'
                             {% endif %}
                             {{ block.shopify_attributes }}
                           >
@@ -160,24 +160,24 @@ test 3
                       {%- if block.settings.button_alt_label != blank -%}
                         {%- if block.settings.button_alt_style_secondary -%}
                           <a
-                            class="button button--cta button--{{ block.settings.button_size }}"
+                            class='button button--cta button--{{ block.settings.button_size }}'
                             {% if block.settings.button_alt_link != blank %}
-                              href="{{ block.settings.button_alt_link }}"
+                              href='{{ block.settings.button_alt_link }}'
                             {% else %}
-                              role="link" aria-disabled="true"
+                              role='link' aria-disabled='true'
                             {% endif %}
                             {{ block.shopify_attributes }}
                           >
-                            <span class="label">{{ block.settings.button_alt_label | escape }}</span>
+                            <span class='label'>{{ block.settings.button_alt_label | escape }}</span>
                             {% render 'icon', icon: 'arrow' %}
                           </a>
                         {%- else -%}
                           <a
-                            class="button button--secondary button--{{ block.settings.button_size }}"
+                            class='button button--secondary button--{{ block.settings.button_size }}'
                             {% if block.settings.button_alt_link != blank %}
-                              href="{{ block.settings.button_alt_link }}"
+                              href='{{ block.settings.button_alt_link }}'
                             {% else %}
-                              role="link" aria-disabled="true"
+                              role='link' aria-disabled='true'
                             {% endif %}
                             {{ block.shopify_attributes }}
                           >
@@ -187,28 +187,28 @@ test 3
                       {%- endif -%}
                     {%- elsif section.blocks.size == 1 and block.settings.button_link != blank -%}
                       <a
-                        class="full-unstyled-link"
-                        href="{{ block.settings.button_link }}"
+                        class='full-unstyled-link'
+                        href='{{ block.settings.button_link }}'
                         {{ block.shopify_attributes }}
-                        aria-label="{{ block.settings.heading | default: block.settings.subheading | escape }}"
+                        aria-label='{{ block.settings.heading | default: block.settings.subheading | escape }}'
                       ></a>
                     {%- endif -%}
                   </div>
                 {%- when 'coa_button' -%}
                   {%- if block.settings.button_label != blank -%}
-                    <div class="button-group" {{ block.shopify_attributes }}>
+                    <div class='button-group' {{ block.shopify_attributes }}>
                       <modal-opener
-                        class="product-popup-modal__opener no-js-hidden"
-                        data-modal="#PopupModal-{{ block.id }}"
+                        class='product-popup-modal__opener no-js-hidden'
+                        data-modal='#PopupModal-{{ block.id }}'
                       >
                         <button
-                          id="ProductPopup-{{ block.id }}"
-                          class="button{% if block.settings.button_style_secondary %} button--cta{% else %} button--secondary{% endif %} button--{{ block.settings.button_size }}"
-                          type="button"
-                          aria-haspopup="dialog"
+                          id='ProductPopup-{{ block.id }}'
+                          class='button{% if block.settings.button_style_secondary %} button--cta{% else %} button--secondary{% endif %} button--{{ block.settings.button_size }}'
+                          type='button'
+                          aria-haspopup='dialog'
                         >
                           {%- if block.settings.button_style_secondary -%}
-                            <span class="label">{{ block.settings.button_label | escape }}</span>
+                            <span class='label'>{{ block.settings.button_label | escape }}</span>
                             {% render 'icon', icon: 'arrow' %}
                           {%- else -%}
                             {{ block.settings.button_label | escape }}
@@ -216,16 +216,16 @@ test 3
                         </button>
                       </modal-opener>
                       <a
-                        class="button{% if block.settings.button_style_secondary %} button--cta{% else %} button--secondary{% endif %} button--{{ block.settings.button_size }} no-js"
+                        class='button{% if block.settings.button_style_secondary %} button--cta{% else %} button--secondary{% endif %} button--{{ block.settings.button_size }} no-js'
                         {% if block.settings.fallback_link != blank %}
-                          href="{{ block.settings.fallback_link }}"
+                          href='{{ block.settings.fallback_link }}'
                         {% else %}
-                          role="link"
-                          aria-disabled="true"
+                          role='link'
+                          aria-disabled='true'
                         {% endif %}
                       >
                         {%- if block.settings.button_style_secondary -%}
-                          <span class="label">{{ block.settings.button_label | escape }}</span>
+                          <span class='label'>{{ block.settings.button_label | escape }}</span>
                           {% render 'icon', icon: 'arrow' %}
                         {%- else -%}
                           {{ block.settings.button_label | escape }}
@@ -238,19 +238,19 @@ test 3
           </div>
         </div>
       {%- endif -%}
-      <div class="banner__media{% if section.settings.video != null or section.settings.video_url != null %} banner__media-video{% endif %}">
-        <use-animate data-animate="zoom-fade" class="media-wrapper media-wrapper--large">
-          <div class="image-animate media media--{{ section.settings.image_ratio }} media-mobile--{{ section.settings.mobile_image_ratio }}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+      <div class='banner__media{% if section.settings.video != null or section.settings.video_url != null %} banner__media-video{% endif %}'>
+        <use-animate data-animate='zoom-fade' class='media-wrapper media-wrapper--large'>
+          <div class='image-animate media media--{{ section.settings.image_ratio }} media-mobile--{{ section.settings.mobile_image_ratio }}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}'>
             {%- if section.settings.video != null or section.settings.video_url != null -%}
               {%- if section.settings.video == null and section.settings.video_url != null -%}
                 <video-section
                   data-video-hero
-                  data-type="{{ section.settings.video_url.type }}"
-                  data-loop="1"
-                  data-video-id="{{ section.settings.video_url.id }}"
+                  data-type='{{ section.settings.video_url.type }}'
+                  data-loop='1'
+                  data-video-id='{{ section.settings.video_url.id }}'
                 ></video-section>
               {% else %}
-                <video-section data-video-hero data-type="mp4">
+                <video-section data-video-hero data-type='mp4'>
                   {{
                     section.settings.video
                     | video_tag:
@@ -298,42 +298,42 @@ test 3
 
 {%- assign coa_buttons = section.blocks | where: 'type', 'coa_button' -%}
 {%- for block in coa_buttons -%}
-  <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal image-with-text-overlay-v3__modal">
+  <modal-dialog id='PopupModal-{{ block.id }}' class='product-popup-modal image-with-text-overlay-v3__modal'>
     <div
-      role="dialog"
-      aria-label="{{ block.settings.modal_title | default: block.settings.button_label | escape }}"
-      aria-modal="true"
-      class="product-popup-modal__content"
-      tabindex="-1"
+      role='dialog'
+      aria-label='{{ block.settings.modal_title | default: block.settings.button_label | escape }}'
+      aria-modal='true'
+      class='product-popup-modal__content'
+      tabindex='-1'
     >
       <button
-        id="ModalClose-{{ block.id }}"
-        type="button"
-        class="product-popup-modal__toggle"
-        aria-label="{{ 'accessibility.close' | t }}"
+        id='ModalClose-{{ block.id }}'
+        type='button'
+        class='product-popup-modal__toggle'
+        aria-label='{{ 'accessibility.close' | t }}'
       >
-        <span class="icon icon-plus-alt"></span>
+        <span class='icon icon-plus-alt'></span>
       </button>
-      <div class="product-popup-modal__content-info">
+      <div class='product-popup-modal__content-info'>
         {%- if block.settings.modal_title != blank -%}
-          <div class="image-with-text-overlay-v3__modal-heading {{ block.settings.modal_heading_size }}">
+          <div class='image-with-text-overlay-v3__modal-heading {{ block.settings.modal_heading_size }}'>
             {{ block.settings.modal_title }}
           </div>
         {%- endif -%}
 
         {%- if block.settings.modal_text != blank -%}
-          <div class="rte">
+          <div class='rte'>
             {{ block.settings.modal_text }}
           </div>
         {%- endif -%}
 
-        <div class="image-with-text-overlay-v3__gorgias" id="gorgias-form-container-{{ block.id }}"></div>
+        <div class='image-with-text-overlay-v3__gorgias' id='gorgias-form-container-{{ block.id }}'></div>
         {%- if block.settings.gorgias_form_uid != blank -%}
           <script
             defer
-            src="https://contact.gorgias.help/api/contact-forms/loader.js?v=3"
+            src='https://contact.gorgias.help/api/contact-forms/loader.js?v=3'
             data-gorgias-loader-contact-form
-            data-gorgias-contact-form-uid="{{ block.settings.gorgias_form_uid }}"
+            data-gorgias-contact-form-uid='{{ block.settings.gorgias_form_uid }}'
           ></script>
         {%- endif -%}
       </div>

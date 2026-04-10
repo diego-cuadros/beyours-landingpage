@@ -18,6 +18,32 @@
         "padding_bottom": 72
       }
     },
+    "custom_liquid_xa88Df": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<script>(function() {\n  function scrollToReviews() {\n    const target = document.querySelector('#shopify-block-AZGhveC9obVB1bWRCb__loox_reviews_loox_dynamic_carousel_qFC77i');\n    if (target) {\n      const offset = target.getBoundingClientRect().top + window.scrollY - 80;\n      window.scrollTo({ top: offset, behavior: 'smooth' });\n    }\n  }\n\n  function scrollToFAQ() {\n    const target = document.querySelector('#scrollspy-heading-4');\n    if (target) {\n      const offset = target.getBoundingClientRect().top + window.scrollY - 80;\n      window.scrollTo({ top: offset, behavior: 'smooth' });\n    }\n  }\n\n  function insertScrollspyLink() {\n    const menu = document.querySelector('[data-scrollspy-menu]');\n    if (!menu) return;\n\n    const firstLink = menu.querySelector('[data-scrollspy-link]');\n    if (!firstLink) return;\n\n    const newLink = document.createElement('a');\n    newLink.className = 'content-scrollspy__menu-item';\n    newLink.setAttribute('data-scrollspy-link', '');\n    newLink.textContent = 'Just Blue™';\n    newLink.href = '#';\n    newLink.style.cursor = 'pointer';\n\n    newLink.addEventListener('click', function(e) {\n      e.preventDefault();\n      window.scrollTo({ top: 0, behavior: 'smooth' });\n    });\n\n    menu.insertBefore(newLink, firstLink);\n  }\n\n  function injectCursorStyles() {\n    const style = document.createElement('style');\n    style.textContent = `\n      [data-star-rating], [data-star-rating] * { cursor: pointer !important; }\n      [data-faq-link], [data-faq-link] * { cursor: pointer !important; }\n    `;\n    document.head.appendChild(style);\n  }\n\n  function initClickHandlers() {\n    document.addEventListener('click', function(e) {\n      // Star rating → scroll to reviews\n      const starRating = e.target.closest('[data-star-rating]');\n      if (starRating) {\n        e.preventDefault();\n        e.stopImmediatePropagation();\n        scrollToReviews();\n        return;\n      }\n\n      // FAQ link → scroll to FAQ section\n      const faqLink = e.target.closest('[data-faq-link]');\n      if (faqLink) {\n        e.preventDefault();\n        e.stopImmediatePropagation();\n        scrollToFAQ();\n        return;\n      }\n    }, true);\n  }\n\n  if (document.readyState === 'complete') {\n    insertScrollspyLink();\n    injectCursorStyles();\n    initClickHandlers();\n  } else {\n    window.addEventListener('load', function() {\n      insertScrollspyLink();\n      injectCursorStyles();\n      initClickHandlers();\n    });\n  }\n})();\n</script>",
+        "full_width": false,
+        "show_divider": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "content_scrollspy_fNhPM9": {
+      "type": "content-scrollspy",
+      "name": "t:sections.content_scrollspy.presets.name",
+      "settings": {
+        "heading_selector": ".product__heading, h2.title",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "active_color": "#1d428a",
+        "border_color": "#1d428a",
+        "enable_animations": true,
+        "animation_threshold": 0.6,
+        "hide_on_scroll_up": true,
+        "show_scroll_indicator": true
+      }
+    },
     "replo_just_blue_offer_test_v2_RWFmwa": {
       "type": "replo-just-blue-offer-test-v2",
       "name": "Just Blue Offer Test V2",
@@ -832,6 +858,8 @@
   },
   "order": [
     "main",
+    "custom_liquid_xa88Df",
+    "content_scrollspy_fNhPM9",
     "replo_just_blue_offer_test_v2_RWFmwa",
     "multicolumn_review_BdtPMU",
     "image_with_text_v2_48gzcf",
