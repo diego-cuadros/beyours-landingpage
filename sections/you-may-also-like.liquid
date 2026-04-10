@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
-<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-rating.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <style>
   #shopify-section-{{ section.id }} .dc_ymal-wrapper {
@@ -15,7 +16,7 @@
   }
 
   #shopify-section-{{ section.id }} .dc_ymal-heading {
-    text-align: center;
+    text-align: {{ section.settings.heading_alignment }};
     font-size: 37px;
     font-weight: 500;
     margin: 0 0 3rem 0;
@@ -28,10 +29,18 @@
     }
   }
 
-
-  /* ── Card ── */
-  #shopify-section-{{ section.id }} .dc_ymal-card {
+  /* ── Card Container ── */
+  #shopify-section-{{ section.id }} .dc_ymal-card__wrapper {
+    position: relative;
     display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
     border-radius: 10px;
@@ -39,9 +48,15 @@
     overflow: hidden;
     background: #fff;
     height: 100%;
+    transition: box-shadow 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   #shopify-section-{{ section.id }} .dc_ymal-card__image-wrap {
+    position: relative;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
@@ -52,24 +67,85 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card:hover .dc_ymal-card__image-wrap img {
+    transform: scale(1.05);
+  }
+
+  /* ── Quick Buy Overlay ── */
+  #shopify-section-{{ section.id }} .dc_ymal-card__quick-buy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-bottom: 1rem;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card:hover .dc_ymal-card__quick-buy {
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card__atc-button {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+    width:90%;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card__atc-button:hover {
+    background: #333;
   }
 
   #shopify-section-{{ section.id }} .dc_ymal-card__body {
     padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   #shopify-section-{{ section.id }} .dc_ymal-card__title {
     font-size: 17px;
     font-weight: 500;
-    margin: 0;
+    margin: 0 0 8px 0;
     line-height: 1.3;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card__vendor {
+    font-size: 13px;
+    font-weight: 400;
+    color: #999;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  #shopify-section-{{ section.id }} .dc_ymal-card__rating {
+    margin: 8px 0;
   }
 
   #shopify-section-{{ section.id }} .dc_ymal-card__price {
     font-size: 17px;
     font-weight: 400;
     color: #444;
-    margin: 4px 0 0 0;
+    margin: 8px 0 0 0;
   }
 
   /* ── Desktop grid ── */
@@ -88,109 +164,55 @@
     }
 
     #shopify-section-{{ section.id }} .dc_ymal-card__title {
-      font-size: 26px;
+      font-size: 16px;
     }
 
     #shopify-section-{{ section.id }} .dc_ymal-card__price {
-      font-size: 19px;
-    }
-
-    #shopify-section-{{ section.id }} .dc_ymal-slider-wrap {
-      display: none;
+      font-size: 16px;
     }
   }
 
-  /* ── Mobile slider ── */
+  /* ── Mobile Grid (2 columns, no slider) ── */
+  #shopify-section-{{ section.id }} .dc_ymal-mobile-grid {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .dc_ymal-grid {
       display: none;
     }
 
-    /* Clip horizontally only — overflow-x: clip doesn't create a scroll container
-       so box-shadows below are not clipped */
+    #shopify-section-{{ section.id }} .dc_ymal-mobile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_ymal-card__title {
+      font-size: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .dc_ymal-card__price {
+      font-size: 14px;
+    }
+  }
+
+  /* Hide sliders on mobile */
+  @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .dc_ymal-slider-wrap {
-      overflow-x: clip;
-      padding-bottom: 6px;
-    }
-
-    /* Force each card to exactly 50% — overrides the theme's slider-mobile-gutter
-       rule that sets flex-grid--2-col items to 42% to show a peek of the next card */
-    #shopify-section-{{ section.id }} .dc_ymal-slider-wrap .flex-grid__item {
-      width: calc(50% - var(--grid-horizontal-spacing) / 2);
-      min-width: calc(50% - var(--grid-horizontal-spacing) / 2);
-    }
-
-    /* Hide the native scrollbar */
-    #shopify-section-{{ section.id }} .dc_ymal-slider-wrap .flex-grid {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    #shopify-section-{{ section.id }} .dc_ymal-slider-wrap .flex-grid::-webkit-scrollbar {
       display: none;
     }
-  }
-
-  /* ── Nav (mobile only) ── */
-  #shopify-section-{{ section.id }} .dc_ymal-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-top: 2rem;
-  }
-
-  @media screen and (min-width: 750px) {
-    #shopify-section-{{ section.id }} .dc_ymal-nav {
-      display: none;
-    }
-  }
-
-  #shopify-section-{{ section.id }} .dc_ymal-nav__btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    transition: opacity 0.2s;
-  }
-
-  #shopify-section-{{ section.id }} .dc_ymal-nav__btn[disabled] {
-    opacity: 0.3;
-    cursor: default;
-  }
-
-  #shopify-section-{{ section.id }} .dc_ymal-dots {
-    display: flex;
-    gap: 0.6rem;
-    align-items: center;
-  }
-
-  #shopify-section-{{ section.id }} .dc_ymal-dot {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background: #d1d5db;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.2s, width 0.2s;
-  }
-
-  #shopify-section-{{ section.id }} .dc_ymal-dot.is-active {
-    background: #111;
-    width: 2.2rem;
-    border-radius: 0.5rem;
   }
 </style>
 
 <div class="dc_ymal-wrapper page-width">
   {%- if section.settings.heading != blank -%}
-    <h2 class="dc_ymal-heading">{{ section.settings.heading | escape }}</h2>
+    <{{ section.settings.heading_tag }} class="dc_ymal-heading">
+      {{- section.settings.heading | escape -}}
+    </{{ section.settings.heading_tag }}>
   {%- endif -%}
 
   {%- if section.blocks.size > 0 -%}
@@ -199,151 +221,139 @@
       {%- for block in section.blocks -%}
         {%- assign product = block.settings.product -%}
         <li {{ block.shopify_attributes }}>
-          <a
-            class="dc_ymal-card"
-            href="{{ product.url }}"
-            aria-label="{{ product.title | escape }}"
-          >
-            <div class="dc_ymal-card__image-wrap">
-              {%- if product.featured_image != blank -%}
-                {{
-                  product.featured_image
-                  | image_url: width: 600
-                  | image_tag: loading: 'lazy', alt: product.featured_image.alt
-                }}
-              {%- else -%}
-                {{ 'product-1' | placeholder_svg_tag: 'dc_ymal-card__placeholder' }}
-              {%- endif -%}
-            </div>
-            <div class="dc_ymal-card__body">
-              <p class="dc_ymal-card__title">{{ product.title | escape }}</p>
-              <p class="dc_ymal-card__price">
-                {%- if product.price_varies -%}
-                  From {{ product.price_min | money }}
+          <div class="dc_ymal-card__wrapper">
+            <div class="dc_ymal-card">
+              <div class="dc_ymal-card__image-wrap">
+                {%- if product.featured_image != blank -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 600
+                    | image_tag: loading: 'lazy', alt: product.featured_image.alt
+                  }}
                 {%- else -%}
-                  {{ product.price_min | money }}
+                  {{ 'product-1' | placeholder_svg_tag: 'dc_ymal-card__placeholder' }}
                 {%- endif -%}
-              </p>
+
+                {%- if section.settings.show_quick_buy -%}
+                  <div class="dc_ymal-card__quick-buy">
+                    <a href="{{ product.url }}" class="dc_ymal-card__atc-button">
+                      {%- if product.variants.size > 1 -%}
+                        {{ 'products.product.choose_options' | t }}
+                      {%- else -%}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {%- endif -%}
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="dc_ymal-card__body">
+                {%- if section.settings.show_vendor -%}
+                  <p class="dc_ymal-card__vendor">{{ product.vendor | escape }}</p>
+                {%- endif -%}
+
+                <a
+                  href="{{ product.url }}"
+                  class="dc_ymal-card__title-link"
+                  style="text-decoration: none; color: inherit;"
+                >
+                  <p class="dc_ymal-card__title">{{ product.title | escape }}</p>
+                </a>
+
+                {%- if section.settings.show_rating -%}
+                  <div
+                    class="loox-rating"
+                    data-id="{{ product.id }}"
+                    data-rating="{{ product.metafields.loox.avg_rating }}"
+                    data-raters="{{ product.metafields.loox.num_reviews }}"
+                  ></div>
+                {%- endif -%}
+
+                <p class="dc_ymal-card__price">
+                  {%- if product.price_varies -%}
+                    {{ product.price_min | money }} - {{ product.price_max | money }}
+                  {%- else -%}
+                    {{ product.price_min | money }}
+                  {%- endif -%}
+                </p>
+              </div>
             </div>
-          </a>
+          </div>
         </li>
       {%- endfor -%}
     </ul>
 
-    {%- comment -%} Mobile slider {%- endcomment -%}
-    <div class="dc_ymal-slider-wrap">
-      <slider-component class="slider-mobile-gutter">
-        <ul
-          id="Slider-{{ section.id }}"
-          class="flex-grid flex-grid--2-col slider slider--mobile"
-          role="list"
-        >
-          {%- for block in section.blocks -%}
-            <li
-              id="Slide-{{ section.id }}-{{ forloop.index }}"
-              class="flex-grid__item slider__slide"
-              {{ block.shopify_attributes }}
-            >
-              {%- assign product = block.settings.product -%}
-              <a
-                class="dc_ymal-card"
-                href="{{ product.url }}"
-                aria-label="{{ product.title | escape }}"
-              >
-                <div class="dc_ymal-card__image-wrap">
-                  {%- if product.featured_image != blank -%}
-                    {{
-                      product.featured_image
-                      | image_url: width: 400
-                      | image_tag: loading: 'lazy', alt: product.featured_image.alt
-                    }}
-                  {%- else -%}
-                    {{ 'product-1' | placeholder_svg_tag: 'dc_ymal-card__placeholder' }}
-                  {%- endif -%}
-                </div>
-                <div class="dc_ymal-card__body">
+    {%- comment -%} Mobile grid (2 columns, no slider) {%- endcomment -%}
+    <ul class="dc_ymal-mobile-grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign product = block.settings.product -%}
+        <li {{ block.shopify_attributes }}>
+          <div class="dc_ymal-card__wrapper">
+            <div class="dc_ymal-card">
+              <div class="dc_ymal-card__image-wrap">
+                {%- if product.featured_image != blank -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 400
+                    | image_tag: loading: 'lazy', alt: product.featured_image.alt
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'dc_ymal-card__placeholder' }}
+                {%- endif -%}
+
+                {%- if section.settings.show_quick_buy -%}
+                  <div class="dc_ymal-card__quick-buy">
+                    <a href="{{ product.url }}" class="dc_ymal-card__atc-button">
+                      {%- if product.variants.size > 1 -%}
+                        {{ 'products.product.choose_options' | t }}
+                      {%- else -%}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {%- endif -%}
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              <div class="dc_ymal-card__body">
+                {%- if section.settings.show_vendor -%}
+                  <p class="dc_ymal-card__vendor">{{ product.vendor | escape }}</p>
+                {%- endif -%}
+
+                <a
+                  href="{{ product.url }}"
+                  class="dc_ymal-card__title-link"
+                  style="text-decoration: none; color: inherit;"
+                >
                   <p class="dc_ymal-card__title">{{ product.title | escape }}</p>
-                  <p class="dc_ymal-card__price">
-                    {%- if product.price_varies -%}
-                      {{ 'products.product.price.from_price_html' | t: price: product.price_min | money }}
-                    {%- else -%}
-                      {{ product.price_min | money }}
-                    {%- endif -%}
-                  </p>
-                </div>
-              </a>
-            </li>
-          {%- endfor -%}
-        </ul>
+                </a>
 
-        {%- if section.blocks.size > 1 -%}
-          <div class="dc_ymal-nav no-js-hidden">
-            <button
-              type="button"
-              class="dc_ymal-nav__btn"
-              name="previous"
-              aria-label="{{ 'general.slider.previous_slide' | t }}"
-            >
-              <svg fill="none" height="13" viewBox="0 0 8 13" width="8" xmlns="http://www.w3.org/2000/svg">
-                <g fill="currentColor"><path d="m7.91419 1.41431-6.48529 6.48528-1.4142102-1.41422 6.4852802-6.48527702z"/><path d="m6.48528 12.9849-6.48528027-6.48532 1.41421027-1.41421 6.48528 6.48523z"/></g>
-              </svg>
-            </button>
+                {%- if section.settings.show_rating -%}
+                  <div
+                    class="loox-rating"
+                    data-id="{{ product.id }}"
+                    data-rating="{{ product.metafields.loox.avg_rating }}"
+                    data-raters="{{ product.metafields.loox.num_reviews }}"
+                  ></div>
+                {%- endif -%}
 
-            <div class="dc_ymal-dots" role="tablist">
-              {%- for block in section.blocks -%}
-                <button
-                  type="button"
-                  class="dc_ymal-dot{% if forloop.first %} is-active{% endif %}"
-                  data-index="{{ forloop.index0 }}"
-                  aria-label="Slide {{ forloop.index }}"
-                  role="tab"
-                ></button>
-              {%- endfor -%}
+                <p class="dc_ymal-card__price">
+                  {%- if product.price_varies -%}
+                    {{ product.price_min | money }} - {{ product.price_max | money }}
+                  {%- else -%}
+                    {{ product.price_min | money }}
+                  {%- endif -%}
+                </p>
+              </div>
             </div>
-
-            <button
-              type="button"
-              class="dc_ymal-nav__btn"
-              name="next"
-              aria-label="{{ 'general.slider.next_slide' | t }}"
-            >
-              <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.914169 11.5857L7.39945 5.10041L8.81367 6.51463L2.32838 12.9999L0.914169 11.5857Z" fill="currentColor"/><path d="M2.34307 0.0151367L8.82835 6.50042L7.41414 7.91463L0.928857 1.42935L2.34307 0.0151367Z" fill="currentColor"/>
-              </svg>
-            </button>
           </div>
-        {%- endif -%}
-      </slider-component>
-    </div>
+        </li>
+      {%- endfor -%}
+    </ul>
   {%- endif -%}
 </div>
 
 <script>
-  (function () {
-    const section = document.getElementById('shopify-section-{{ section.id }}');
-    if (!section) return;
-
-    const slider = section.querySelector('#Slider-{{ section.id }}');
-    const dots = section.querySelectorAll('.dc_ymal-dot');
-    const sliderComponent = section.querySelector('slider-component');
-
-    if (!slider || !sliderComponent || !dots.length) return;
-
-    sliderComponent.addEventListener('slideChanged', (e) => {
-      const current = e.detail.currentPage - 1;
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
-    });
-
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const index = parseInt(dot.dataset.index, 10);
-        const slides = slider.querySelectorAll('[id^="Slide-"]');
-        if (slides[index]) {
-          slider.scrollTo({ left: slides[index].offsetLeft, behavior: 'smooth' });
-        }
-      });
-    });
-  })();
+  // No script needed - buttons link directly to product pages
 </script>
 
 {% schema %}
@@ -357,6 +367,84 @@
       "id": "heading",
       "label": "Heading",
       "default": "You May Also Like"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "Heading 1"
+        },
+        {
+          "value": "h2",
+          "label": "Heading 2"
+        },
+        {
+          "value": "h3",
+          "label": "Heading 3"
+        },
+        {
+          "value": "h4",
+          "label": "Heading 4"
+        },
+        {
+          "value": "h5",
+          "label": "Heading 5"
+        },
+        {
+          "value": "h6",
+          "label": "Heading 6"
+        },
+        {
+          "value": "div",
+          "label": "Div"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading Tag"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Product Card Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": true,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "Show rating"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "default": true,
+      "label": "Show add to cart button on hover"
     },
     {
       "type": "header",
